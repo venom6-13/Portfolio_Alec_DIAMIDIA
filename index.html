@@ -19,6 +19,7 @@
             --accent: #0071e3;
             --border: #d2d2d7;
             --card-bg: #f5f5f7;
+            --apple-blue: #007AFF;
         }
 
         [data-theme="dark"] {
@@ -29,6 +30,7 @@
             --accent: #2997ff;
             --border: #424245;
             --card-bg: #1d1d1f;
+            --apple-blue: #0A84FF;
         }
 
         body {
@@ -220,13 +222,68 @@
             }
         }
 
+        /* Badges Apple Style */
+        .keywords-cloud {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 12px;
+            max-width: 800px;
+            margin: 32px 0;
+            opacity: 0;
+            animation: fadeInUp 1s ease-out 0.2s forwards;
+        }
+
+        .keyword-badge {
+            background: var(--apple-blue);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-size: 15px;
+            font-weight: 500;
+            display: inline-block;
+            box-shadow: 0 2px 8px rgba(0, 122, 255, 0.3);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: default;
+        }
+
+        .keyword-badge:hover {
+            transform: translateY(-4px) scale(1.05);
+            box-shadow: 0 8px 20px rgba(0, 122, 255, 0.4);
+        }
+
+        /* Animation d'apparition séquentielle */
+        .keyword-badge:nth-child(1) { animation: popIn 0.5s ease-out 0.4s backwards; }
+        .keyword-badge:nth-child(2) { animation: popIn 0.5s ease-out 0.5s backwards; }
+        .keyword-badge:nth-child(3) { animation: popIn 0.5s ease-out 0.6s backwards; }
+        .keyword-badge:nth-child(4) { animation: popIn 0.5s ease-out 0.7s backwards; }
+        .keyword-badge:nth-child(5) { animation: popIn 0.5s ease-out 0.8s backwards; }
+        .keyword-badge:nth-child(6) { animation: popIn 0.5s ease-out 0.9s backwards; }
+        .keyword-badge:nth-child(7) { animation: popIn 0.5s ease-out 1.0s backwards; }
+        .keyword-badge:nth-child(8) { animation: popIn 0.5s ease-out 1.1s backwards; }
+        .keyword-badge:nth-child(9) { animation: popIn 0.5s ease-out 1.2s backwards; }
+        .keyword-badge:nth-child(10) { animation: popIn 0.5s ease-out 1.3s backwards; }
+        .keyword-badge:nth-child(11) { animation: popIn 0.5s ease-out 1.4s backwards; }
+        .keyword-badge:nth-child(12) { animation: popIn 0.5s ease-out 1.5s backwards; }
+
+        @keyframes popIn {
+            from {
+                opacity: 0;
+                transform: scale(0.5);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
         /* Logo Carousel */
         .logo-carousel-container {
             width: 100%;
             overflow: hidden;
             margin: 40px 0;
             opacity: 0;
-            animation: fadeInUp 1s ease-out 0.2s forwards;
+            animation: fadeInUp 1s ease-out 1.6s forwards;
         }
 
         .logo-carousel-title {
@@ -287,6 +344,7 @@
             color: var(--text-secondary);
         }
 
+        /* Hero Subtitle avec "Votre futur..." */
         .hero-subtitle-container {
             min-height: 80px;
             display: flex;
@@ -294,7 +352,7 @@
             justify-content: center;
             margin-top: 20px;
             opacity: 0;
-            animation: fadeInUp 1s ease-out 0.4s forwards;
+            animation: fadeInUp 1s ease-out 1.8s forwards;
         }
 
         .hero-subtitle {
@@ -303,6 +361,10 @@
             font-weight: 400;
             letter-spacing: 0.004em;
             color: var(--text-secondary);
+        }
+
+        .hero-subtitle .prefix {
+            color: var(--text-primary);
         }
 
         .typing-cursor {
@@ -328,7 +390,7 @@
             margin: 0 auto;
             padding: 60px 22px 100px;
             opacity: 0;
-            animation: fadeInUp 1s ease-out 0.6s forwards;
+            animation: fadeInUp 1s ease-out 2s forwards;
         }
 
         .cards-grid {
@@ -454,6 +516,13 @@
                 grid-template-columns: repeat(2, 1fr);
                 gap: 16px;
             }
+            .keywords-cloud {
+                gap: 8px;
+            }
+            .keyword-badge {
+                font-size: 14px;
+                padding: 8px 16px;
+            }
         }
 
         @media (max-width: 734px) {
@@ -482,6 +551,10 @@
                 width: 40px;
                 height: 40px;
                 font-size: 24px;
+            }
+            .keyword-badge {
+                font-size: 13px;
+                padding: 7px 14px;
             }
         }
     </style>
@@ -514,11 +587,34 @@
     <div class="hero">
         <h1>Alec DIAMIDIA</h1>
 
+        <!-- Badges Apple Style - Mots-clés -->
+        <div class="keywords-cloud">
+            <span class="keyword-badge">Proactivité</span>
+            <span class="keyword-badge">Autonomie</span>
+            <span class="keyword-badge">Rigueur</span>
+            <span class="keyword-badge">Engagement</span>
+            <span class="keyword-badge">Ambition</span>
+            <span class="keyword-badge">Organisation</span>
+            <span class="keyword-badge">Amélioration continue</span>
+            <span class="keyword-badge">Gestion de projets</span>
+            <span class="keyword-badge">Process Optimization</span>
+            <span class="keyword-badge">Data-driven</span>
+            <span class="keyword-badge">Team Leadership</span>
+            <span class="keyword-badge">Problem Solving</span>
+        </div>
+
+        <!-- Typing Effect avec "Votre futur..." -->
+        <div class="hero-subtitle-container">
+            <p class="hero-subtitle">
+                <span class="prefix">Votre futur </span><span id="typingText"></span><span class="typing-cursor"></span>
+            </p>
+        </div>
+
         <!-- Logo Carousel -->
         <div class="logo-carousel-container">
             <p class="logo-carousel-title">Tech Stack</p>
             <div style="overflow: hidden; width: 100%;">
-                <div class="logo-carousel" id="logoCarousel">
+                <div class="logo-carousel">
                     <!-- Premier set -->
                     <div class="logo-item">
                         <div class="logo-icon">🔧</div>
@@ -568,7 +664,7 @@
                         <div class="logo-icon">📝</div>
                         <div class="logo-name">Notion</div>
                     </div>
-                    <!-- Duplicate pour loop infini -->
+                    <!-- Duplicate pour loop -->
                     <div class="logo-item">
                         <div class="logo-icon">🔧</div>
                         <div class="logo-name">Make</div>
@@ -620,12 +716,6 @@
                 </div>
             </div>
         </div>
-
-        <div class="hero-subtitle-container">
-            <p class="hero-subtitle">
-                <span id="typingText"></span><span class="typing-cursor"></span>
-            </p>
-        </div>
     </div>
 
     <!-- Main Grid -->
@@ -665,23 +755,24 @@
     </footer>
 
     <script>
+        // Job titles avec format "Votre futur..."
         const jobTitles = {
             fr: [
-                "Revenue Operations Specialist",
+                "Revenue Operations Manager",
                 "CRM Manager",
                 "Salesforce Operations Expert",
                 "Sales Operations Analyst",
                 "Business Intelligence Analyst",
-                "Data & Process Automation",
+                "Data Analyst",
                 "RevOps & Growth Specialist"
             ],
             en: [
-                "Revenue Operations Specialist",
+                "Revenue Operations Manager",
                 "CRM Manager",
                 "Salesforce Operations Expert",
                 "Sales Operations Analyst",
                 "Business Intelligence Analyst",
-                "Data & Process Automation",
+                "Data Analyst",
                 "RevOps & Growth Specialist"
             ]
         };
@@ -728,7 +819,7 @@
         window.addEventListener('load', () => {
             setTimeout(() => {
                 typeEffect();
-            }, 1000);
+            }, 2000); // Démarre après l'animation des badges
         });
 
         // Theme Toggle
