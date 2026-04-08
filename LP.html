@@ -68,7 +68,6 @@
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             top: -10%;
             left: -10%;
-            animation-delay: 0s;
         }
 
         .bg-shape-2 {
@@ -90,15 +89,9 @@
         }
 
         @keyframes float {
-            0%, 100% {
-                transform: translate(0, 0) scale(1);
-            }
-            33% {
-                transform: translate(50px, -50px) scale(1.1);
-            }
-            66% {
-                transform: translate(-30px, 30px) scale(0.9);
-            }
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(50px, -50px) scale(1.1); }
+            66% { transform: translate(-30px, 30px) scale(0.9); }
         }
 
         [data-theme="dark"] .animated-background {
@@ -185,12 +178,62 @@
             box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
         }
 
+        /* Contact Links (au-dessus du nom) */
+        .contact-links {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            margin-top: 80px;
+            margin-bottom: 32px;
+            opacity: 0;
+            animation: fadeInUp 1s ease-out forwards;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .contact-link {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            background: var(--card-bg);
+            border-radius: 24px;
+            text-decoration: none;
+            color: var(--text-primary);
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid var(--border);
+        }
+
+        .contact-link:hover {
+            background: var(--apple-blue);
+            color: white;
+            transform: translateY(-4px);
+            box-shadow: 0 8px 20px rgba(0, 122, 255, 0.3);
+            border-color: var(--apple-blue);
+        }
+
+        .contact-link .icon {
+            font-size: 18px;
+        }
+
         /* Hero Section */
         .hero {
             position: relative;
             z-index: 1;
-            margin-top: 48px;
-            padding: 100px 22px 40px;
+            padding: 20px 22px 40px;
             text-align: center;
             max-width: 980px;
             margin-left: auto;
@@ -208,18 +251,7 @@
             line-height: 1.05;
             margin-bottom: 24px;
             opacity: 0;
-            animation: fadeInUp 1s ease-out forwards;
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            animation: fadeInUp 1s ease-out 0.2s forwards;
         }
 
         /* Badges Apple Style */
@@ -231,7 +263,7 @@
             max-width: 800px;
             margin: 32px 0;
             opacity: 0;
-            animation: fadeInUp 1s ease-out 0.2s forwards;
+            animation: fadeInUp 1s ease-out 0.4s forwards;
         }
 
         .keyword-badge {
@@ -252,99 +284,25 @@
             box-shadow: 0 8px 20px rgba(0, 122, 255, 0.4);
         }
 
-        /* Animation d'apparition séquentielle */
-        .keyword-badge:nth-child(1) { animation: popIn 0.5s ease-out 0.4s backwards; }
-        .keyword-badge:nth-child(2) { animation: popIn 0.5s ease-out 0.5s backwards; }
-        .keyword-badge:nth-child(3) { animation: popIn 0.5s ease-out 0.6s backwards; }
-        .keyword-badge:nth-child(4) { animation: popIn 0.5s ease-out 0.7s backwards; }
-        .keyword-badge:nth-child(5) { animation: popIn 0.5s ease-out 0.8s backwards; }
-        .keyword-badge:nth-child(6) { animation: popIn 0.5s ease-out 0.9s backwards; }
-        .keyword-badge:nth-child(7) { animation: popIn 0.5s ease-out 1.0s backwards; }
-        .keyword-badge:nth-child(8) { animation: popIn 0.5s ease-out 1.1s backwards; }
-        .keyword-badge:nth-child(9) { animation: popIn 0.5s ease-out 1.2s backwards; }
-        .keyword-badge:nth-child(10) { animation: popIn 0.5s ease-out 1.3s backwards; }
-        .keyword-badge:nth-child(11) { animation: popIn 0.5s ease-out 1.4s backwards; }
-        .keyword-badge:nth-child(12) { animation: popIn 0.5s ease-out 1.5s backwards; }
+        .keyword-badge:nth-child(1) { animation: popIn 0.5s ease-out 0.6s backwards; }
+        .keyword-badge:nth-child(2) { animation: popIn 0.5s ease-out 0.7s backwards; }
+        .keyword-badge:nth-child(3) { animation: popIn 0.5s ease-out 0.8s backwards; }
+        .keyword-badge:nth-child(4) { animation: popIn 0.5s ease-out 0.9s backwards; }
+        .keyword-badge:nth-child(5) { animation: popIn 0.5s ease-out 1.0s backwards; }
+        .keyword-badge:nth-child(6) { animation: popIn 0.5s ease-out 1.1s backwards; }
+        .keyword-badge:nth-child(7) { animation: popIn 0.5s ease-out 1.2s backwards; }
+        .keyword-badge:nth-child(8) { animation: popIn 0.5s ease-out 1.3s backwards; }
+        .keyword-badge:nth-child(9) { animation: popIn 0.5s ease-out 1.4s backwards; }
+        .keyword-badge:nth-child(10) { animation: popIn 0.5s ease-out 1.5s backwards; }
+        .keyword-badge:nth-child(11) { animation: popIn 0.5s ease-out 1.6s backwards; }
+        .keyword-badge:nth-child(12) { animation: popIn 0.5s ease-out 1.7s backwards; }
 
         @keyframes popIn {
-            from {
-                opacity: 0;
-                transform: scale(0.5);
-            }
-            to {
-                opacity: 1;
-                transform: scale(1);
-            }
+            from { opacity: 0; transform: scale(0.5); }
+            to { opacity: 1; transform: scale(1); }
         }
 
-        /* Logo Carousel */
-        .logo-carousel-container {
-            width: 100%;
-            overflow: hidden;
-            margin: 40px 0;
-            opacity: 0;
-            animation: fadeInUp 1s ease-out 1.6s forwards;
-        }
-
-        .logo-carousel-title {
-            font-size: 14px;
-            font-weight: 600;
-            color: var(--text-secondary);
-            text-align: center;
-            margin-bottom: 20px;
-            text-transform: uppercase;
-            letter-spacing: 0.08em;
-        }
-
-        .logo-carousel {
-            display: flex;
-            gap: 48px;
-            animation: scroll 30s linear infinite;
-            width: max-content;
-        }
-
-        @keyframes scroll {
-            0% {
-                transform: translateX(0);
-            }
-            100% {
-                transform: translateX(calc(-100% - 48px));
-            }
-        }
-
-        .logo-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 8px;
-            min-width: 100px;
-            opacity: 0.6;
-            transition: opacity 0.3s ease;
-        }
-
-        .logo-item:hover {
-            opacity: 1;
-        }
-
-        .logo-icon {
-            width: 48px;
-            height: 48px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 32px;
-            background: var(--card-bg);
-            border-radius: 12px;
-            padding: 8px;
-        }
-
-        .logo-name {
-            font-size: 12px;
-            font-weight: 500;
-            color: var(--text-secondary);
-        }
-
-        /* Hero Subtitle avec "Votre futur..." */
+        /* Hero Subtitle */
         .hero-subtitle-container {
             min-height: 80px;
             display: flex;
@@ -382,6 +340,69 @@
             51%, 100% { opacity: 0; }
         }
 
+        /* Logo Carousel */
+        .logo-carousel-container {
+            width: 100%;
+            overflow: hidden;
+            margin: 40px 0;
+            opacity: 0;
+            animation: fadeInUp 1s ease-out 2s forwards;
+        }
+
+        .logo-carousel-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-secondary);
+            text-align: center;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+        }
+
+        .logo-carousel {
+            display: flex;
+            gap: 48px;
+            animation: scroll 30s linear infinite;
+            width: max-content;
+        }
+
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(calc(-100% - 48px)); }
+        }
+
+        .logo-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            min-width: 100px;
+            opacity: 0.6;
+            transition: opacity 0.3s ease;
+        }
+
+        .logo-item:hover {
+            opacity: 1;
+        }
+
+        .logo-icon {
+            width: 48px;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 8px;
+        }
+
+        .logo-name {
+            font-size: 12px;
+            font-weight: 500;
+            color: var(--text-secondary);
+        }
+
         /* Grid Section */
         .section {
             position: relative;
@@ -390,12 +411,12 @@
             margin: 0 auto;
             padding: 60px 22px 100px;
             opacity: 0;
-            animation: fadeInUp 1s ease-out 2s forwards;
+            animation: fadeInUp 1s ease-out 2.2s forwards;
         }
 
         .cards-grid {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
+            grid-template-columns: repeat(3, 1fr);
             gap: 12px;
         }
 
@@ -408,7 +429,6 @@
             cursor: pointer;
             position: relative;
             overflow: hidden;
-            border: none;
         }
 
         .card::before {
@@ -506,68 +526,38 @@
 
         /* Responsive */
         @media (max-width: 1068px) {
-            .hero h1 {
-                font-size: 72px;
-            }
-            .hero-subtitle {
-                font-size: 28px;
-            }
-            .cards-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 16px;
-            }
-            .keywords-cloud {
-                gap: 8px;
-            }
-            .keyword-badge {
-                font-size: 14px;
-                padding: 8px 16px;
-            }
+            .hero h1 { font-size: 72px; }
+            .hero-subtitle { font-size: 28px; }
+            .cards-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
+            .keywords-cloud { gap: 8px; }
+            .keyword-badge { font-size: 14px; padding: 8px 16px; }
+            .contact-links { flex-wrap: wrap; }
         }
 
         @media (max-width: 734px) {
-            .hero {
-                padding: 80px 22px 40px;
+            .contact-links {
+                margin-top: 60px;
+                flex-direction: column;
+                align-items: center;
+                gap: 12px;
             }
-            .hero h1 {
-                font-size: 48px;
-            }
-            .hero-subtitle {
-                font-size: 21px;
-            }
-            .typing-cursor {
-                height: 24px;
-            }
-            .cards-grid {
-                grid-template-columns: 1fr;
-            }
-            .card {
-                padding: 48px 24px 36px;
-            }
-            .logo-carousel {
-                gap: 32px;
-            }
-            .logo-icon {
-                width: 40px;
-                height: 40px;
-                font-size: 24px;
-            }
-            .keyword-badge {
-                font-size: 13px;
-                padding: 7px 14px;
-            }
+            .hero { padding: 20px 22px 40px; }
+            .hero h1 { font-size: 48px; }
+            .hero-subtitle { font-size: 21px; }
+            .typing-cursor { height: 24px; }
+            .cards-grid { grid-template-columns: 1fr; }
+            .card { padding: 48px 24px 36px; }
+            .keyword-badge { font-size: 13px; padding: 7px 14px; }
         }
     </style>
 </head>
 <body>
-    <!-- Background animé -->
     <div class="animated-background">
         <div class="bg-shape bg-shape-1"></div>
         <div class="bg-shape bg-shape-2"></div>
         <div class="bg-shape bg-shape-3"></div>
     </div>
 
-    <!-- Navigation -->
     <nav>
         <div class="nav-content">
             <div class="nav-title">Alec DIAMIDIA</div>
@@ -583,30 +573,34 @@
         </div>
     </nav>
 
-    <!-- Hero Section -->
+    <!-- Contact Links (au-dessus du nom) -->
+    <div class="contact-links">
+        <a href="mailto:alecrudydiami@gmail.com" class="contact-link">
+            <span class="icon">📧</span>
+            <span>alecrudydiami@gmail.com</span>
+        </a>
+        <a href="tel:+33626638786" class="contact-link">
+            <span class="icon">📱</span>
+            <span>+33 6 26 63 87 86</span>
+        </a>
+        <a href="https://linkedin.com/in/alec-diamidia" target="_blank" class="contact-link">
+            <span class="icon">💼</span>
+            <span>/in/alec-diamidia</span>
+        </a>
+    </div>
+
     <div class="hero">
         <h1>Alec DIAMIDIA</h1>
 
-        <!-- Badges Apple Style - Mots-clés -->
-        <div class="keywords-cloud">
-            <span class="keyword-badge">Proactivité</span>
-            <span class="keyword-badge">Autonomie</span>
-            <span class="keyword-badge">Rigueur</span>
-            <span class="keyword-badge">Engagement</span>
-            <span class="keyword-badge">Ambition</span>
-            <span class="keyword-badge">Organisation</span>
-            <span class="keyword-badge">Amélioration continue</span>
-            <span class="keyword-badge">Gestion de projets</span>
-            <span class="keyword-badge">Process Optimization</span>
-            <span class="keyword-badge">Data-driven</span>
-            <span class="keyword-badge">Team Leadership</span>
-            <span class="keyword-badge">Problem Solving</span>
+        <!-- Badges -->
+        <div class="keywords-cloud" id="keywordsCloud">
+            <!-- Rempli dynamiquement par JS -->
         </div>
 
-        <!-- Typing Effect avec "Votre futur..." -->
+        <!-- Typing Effect -->
         <div class="hero-subtitle-container">
             <p class="hero-subtitle">
-                <span class="prefix">Votre futur </span><span id="typingText"></span><span class="typing-cursor"></span>
+                <span class="prefix" data-i18n="your-future">Votre futur </span><span id="typingText"></span><span class="typing-cursor"></span>
             </p>
         </div>
 
@@ -615,135 +609,55 @@
             <p class="logo-carousel-title">Tech Stack</p>
             <div style="overflow: hidden; width: 100%;">
                 <div class="logo-carousel">
-                    <!-- Premier set -->
-                    <div class="logo-item">
-                        <div class="logo-icon">🔧</div>
-                        <div class="logo-name">Make</div>
-                    </div>
-                    <div class="logo-item">
-                        <div class="logo-icon">🟠</div>
-                        <div class="logo-name">Hubspot</div>
-                    </div>
-                    <div class="logo-item">
-                        <div class="logo-icon">☁️</div>
-                        <div class="logo-name">Salesforce</div>
-                    </div>
-                    <div class="logo-item">
-                        <div class="logo-icon">🔷</div>
-                        <div class="logo-name">Airtable</div>
-                    </div>
-                    <div class="logo-item">
-                        <div class="logo-icon">📊</div>
-                        <div class="logo-name">Tableau</div>
-                    </div>
-                    <div class="logo-item">
-                        <div class="logo-icon">🗄️</div>
-                        <div class="logo-name">SQL</div>
-                    </div>
-                    <div class="logo-item">
-                        <div class="logo-icon">⚡</div>
-                        <div class="logo-name">Supabase</div>
-                    </div>
-                    <div class="logo-item">
-                        <div class="logo-icon">🐍</div>
-                        <div class="logo-name">Python</div>
-                    </div>
-                    <div class="logo-item">
-                        <div class="logo-icon">✨</div>
-                        <div class="logo-name">Dust</div>
-                    </div>
-                    <div class="logo-item">
-                        <div class="logo-icon">📗</div>
-                        <div class="logo-name">Sheets</div>
-                    </div>
-                    <div class="logo-item">
-                        <div class="logo-icon">📈</div>
-                        <div class="logo-name">BigQuery</div>
-                    </div>
-                    <div class="logo-item">
-                        <div class="logo-icon">📝</div>
-                        <div class="logo-name">Notion</div>
-                    </div>
-                    <!-- Duplicate pour loop -->
-                    <div class="logo-item">
-                        <div class="logo-icon">🔧</div>
-                        <div class="logo-name">Make</div>
-                    </div>
-                    <div class="logo-item">
-                        <div class="logo-icon">🟠</div>
-                        <div class="logo-name">Hubspot</div>
-                    </div>
-                    <div class="logo-item">
-                        <div class="logo-icon">☁️</div>
-                        <div class="logo-name">Salesforce</div>
-                    </div>
-                    <div class="logo-item">
-                        <div class="logo-icon">🔷</div>
-                        <div class="logo-name">Airtable</div>
-                    </div>
-                    <div class="logo-item">
-                        <div class="logo-icon">📊</div>
-                        <div class="logo-name">Tableau</div>
-                    </div>
-                    <div class="logo-item">
-                        <div class="logo-icon">🗄️</div>
-                        <div class="logo-name">SQL</div>
-                    </div>
-                    <div class="logo-item">
-                        <div class="logo-icon">⚡</div>
-                        <div class="logo-name">Supabase</div>
-                    </div>
-                    <div class="logo-item">
-                        <div class="logo-icon">🐍</div>
-                        <div class="logo-name">Python</div>
-                    </div>
-                    <div class="logo-item">
-                        <div class="logo-icon">✨</div>
-                        <div class="logo-name">Dust</div>
-                    </div>
-                    <div class="logo-item">
-                        <div class="logo-icon">📗</div>
-                        <div class="logo-name">Sheets</div>
-                    </div>
-                    <div class="logo-item">
-                        <div class="logo-icon">📈</div>
-                        <div class="logo-name">BigQuery</div>
-                    </div>
-                    <div class="logo-item">
-                        <div class="logo-icon">📝</div>
-                        <div class="logo-name">Notion</div>
-                    </div>
+                    <div class="logo-item"><div class="logo-icon">🔧</div><div class="logo-name">Make</div></div>
+                    <div class="logo-item"><div class="logo-icon">🟠</div><div class="logo-name">Hubspot</div></div>
+                    <div class="logo-item"><div class="logo-icon">☁️</div><div class="logo-name">Salesforce</div></div>
+                    <div class="logo-item"><div class="logo-icon">🔷</div><div class="logo-name">Airtable</div></div>
+                    <div class="logo-item"><div class="logo-icon">📊</div><div class="logo-name">Tableau</div></div>
+                    <div class="logo-item"><div class="logo-icon">🗄️</div><div class="logo-name">SQL</div></div>
+                    <div class="logo-item"><div class="logo-icon">⚡</div><div class="logo-name">Supabase</div></div>
+                    <div class="logo-item"><div class="logo-icon">🐍</div><div class="logo-name">Python</div></div>
+                    <div class="logo-item"><div class="logo-icon">✨</div><div class="logo-name">Dust</div></div>
+                    <div class="logo-item"><div class="logo-icon">📗</div><div class="logo-name">Sheets</div></div>
+                    <div class="logo-item"><div class="logo-icon">📈</div><div class="logo-name">BigQuery</div></div>
+                    <div class="logo-item"><div class="logo-icon">📝</div><div class="logo-name">Notion</div></div>
+                    <!-- Duplicate -->
+                    <div class="logo-item"><div class="logo-icon">🔧</div><div class="logo-name">Make</div></div>
+                    <div class="logo-item"><div class="logo-icon">🟠</div><div class="logo-name">Hubspot</div></div>
+                    <div class="logo-item"><div class="logo-icon">☁️</div><div class="logo-name">Salesforce</div></div>
+                    <div class="logo-item"><div class="logo-icon">🔷</div><div class="logo-name">Airtable</div></div>
+                    <div class="logo-item"><div class="logo-icon">📊</div><div class="logo-name">Tableau</div></div>
+                    <div class="logo-item"><div class="logo-icon">🗄️</div><div class="logo-name">SQL</div></div>
+                    <div class="logo-item"><div class="logo-icon">⚡</div><div class="logo-name">Supabase</div></div>
+                    <div class="logo-item"><div class="logo-icon">🐍</div><div class="logo-name">Python</div></div>
+                    <div class="logo-item"><div class="logo-icon">✨</div><div class="logo-name">Dust</div></div>
+                    <div class="logo-item"><div class="logo-icon">📗</div><div class="logo-name">Sheets</div></div>
+                    <div class="logo-item"><div class="logo-icon">📈</div><div class="logo-name">BigQuery</div></div>
+                    <div class="logo-item"><div class="logo-icon">📝</div><div class="logo-name">Notion</div></div>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Main Grid -->
     <div class="section">
         <div class="cards-grid">
             <div class="card">
-                <span class="coming-soon">Bientôt</span>
+                <span class="coming-soon" data-i18n="soon">Bientôt</span>
                 <span class="card-icon">💼</span>
                 <h2 class="card-title">CV</h2>
-                <p class="card-label">Experience</p>
+                <p class="card-label" data-i18n="experience">Experience</p>
             </div>
             <div class="card">
-                <span class="coming-soon">Bientôt</span>
+                <span class="coming-soon" data-i18n="soon">Bientôt</span>
                 <span class="card-icon">📊</span>
                 <h2 class="card-title">Portfolio Data & AI</h2>
-                <p class="card-label">Projects</p>
+                <p class="card-label" data-i18n="projects">Projects</p>
             </div>
             <div class="card">
-                <span class="coming-soon">Bientôt</span>
+                <span class="coming-soon" data-i18n="soon">Bientôt</span>
                 <span class="card-icon">🎨</span>
-                <h2 class="card-title">Personal Portfolio</h2>
-                <p class="card-label">Side Projects</p>
-            </div>
-            <div class="card">
-                <span class="coming-soon">Bientôt</span>
-                <span class="card-icon">✉️</span>
-                <h2 class="card-title">Contact</h2>
-                <p class="card-label">Get in Touch</p>
+                <h2 class="card-title" data-i18n="personal-portfolio">Portfolio Personnel</h2>
+                <p class="card-label" data-i18n="side-projects">Side Projects</p>
             </div>
         </div>
     </div>
@@ -755,26 +669,48 @@
     </footer>
 
     <script>
-        // Job titles avec format "Votre futur..."
-        const jobTitles = {
-            fr: [
-                "Revenue Operations Manager",
-                "CRM Manager",
-                "Salesforce Operations Expert",
-                "Sales Operations Analyst",
-                "Business Intelligence Analyst",
-                "Data Analyst",
-                "RevOps & Growth Specialist"
-            ],
-            en: [
-                "Revenue Operations Manager",
-                "CRM Manager",
-                "Salesforce Operations Expert",
-                "Sales Operations Analyst",
-                "Business Intelligence Analyst",
-                "Data Analyst",
-                "RevOps & Growth Specialist"
-            ]
+        // Traductions
+        const translations = {
+            fr: {
+                "your-future": "Votre futur ",
+                "soon": "Bientôt",
+                "experience": "Expérience",
+                "projects": "Projets",
+                "personal-portfolio": "Portfolio Personnel",
+                "side-projects": "Side Projects",
+                keywords: [
+                    "Proactivité", "Autonomie", "Rigueur", "Engagement",
+                    "Ambition", "Organisation", "Amélioration continue",
+                    "Gestion de projets", "Process Optimization", "Data-driven",
+                    "Team Leadership", "Problem Solving"
+                ],
+                jobs: [
+                    "Revenue Operations Manager", "CRM Manager",
+                    "Salesforce Operations Expert", "Sales Operations Analyst",
+                    "Business Intelligence Analyst", "Data Analyst",
+                    "RevOps & Growth Specialist"
+                ]
+            },
+            en: {
+                "your-future": "Your future ",
+                "soon": "Soon",
+                "experience": "Experience",
+                "projects": "Projects",
+                "personal-portfolio": "Personal Portfolio",
+                "side-projects": "Side Projects",
+                keywords: [
+                    "Proactivity", "Autonomy", "Rigor", "Engagement",
+                    "Ambition", "Organization", "Continuous Improvement",
+                    "Project Management", "Process Optimization", "Data-driven",
+                    "Team Leadership", "Problem Solving"
+                ],
+                jobs: [
+                    "Revenue Operations Manager", "CRM Manager",
+                    "Salesforce Operations Expert", "Sales Operations Analyst",
+                    "Business Intelligence Analyst", "Data Analyst",
+                    "RevOps & Growth Specialist"
+                ]
+            }
         };
 
         let currentLang = 'fr';
@@ -787,10 +723,24 @@
         const pauseBeforeType = 500;
 
         const typingText = document.getElementById('typingText');
+        const keywordsCloud = document.getElementById('keywordsCloud');
 
+        // Fonction pour mettre à jour les badges
+        function updateKeywords() {
+            const keywords = translations[currentLang].keywords;
+            keywordsCloud.innerHTML = '';
+            keywords.forEach(keyword => {
+                const badge = document.createElement('span');
+                badge.className = 'keyword-badge';
+                badge.textContent = keyword;
+                keywordsCloud.appendChild(badge);
+            });
+        }
+
+        // Typing Effect
         function typeEffect() {
-            const titles = jobTitles[currentLang];
-            const currentTitle = titles[currentTitleIndex];
+            const jobs = translations[currentLang].jobs;
+            const currentTitle = jobs[currentTitleIndex];
 
             if (!isDeleting) {
                 typingText.textContent = currentTitle.substring(0, currentCharIndex);
@@ -808,7 +758,7 @@
 
                 if (currentCharIndex === 0) {
                     isDeleting = false;
-                    currentTitleIndex = (currentTitleIndex + 1) % titles.length;
+                    currentTitleIndex = (currentTitleIndex + 1) % jobs.length;
                     setTimeout(typeEffect, pauseBeforeType);
                     return;
                 }
@@ -816,11 +766,28 @@
             }
         }
 
-        window.addEventListener('load', () => {
-            setTimeout(() => {
-                typeEffect();
-            }, 2000); // Démarre après l'animation des badges
-        });
+        // Fonction pour traduire tous les éléments
+        function updateLanguage(lang) {
+            currentLang = lang;
+            
+            // Mettre à jour tous les éléments avec data-i18n
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (translations[lang][key]) {
+                    el.textContent = translations[lang][key];
+                }
+            });
+
+            // Mettre à jour les badges
+            updateKeywords();
+
+            // Reset typing effect
+            currentTitleIndex = 0;
+            currentCharIndex = 0;
+            isDeleting = false;
+            typingText.textContent = '';
+            typeEffect();
+        }
 
         // Theme Toggle
         const themeToggle = document.getElementById('themeToggle');
@@ -844,22 +811,26 @@
         // Language Toggle
         document.querySelectorAll('.lang-btn').forEach(btn => {
             btn.addEventListener('click', () => {
-                currentLang = btn.dataset.lang;
                 document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
                 btn.classList.add('active');
-                localStorage.setItem('lang', currentLang);
-                
-                currentTitleIndex = 0;
-                currentCharIndex = 0;
-                isDeleting = false;
-                typingText.textContent = '';
-                typeEffect();
+                const lang = btn.dataset.lang;
+                localStorage.setItem('lang', lang);
+                updateLanguage(lang);
             });
         });
 
-        const savedLang = localStorage.getItem('lang') || 'fr';
-        currentLang = savedLang;
-        document.querySelector(`[data-lang="${savedLang}"]`)?.classList.add('active');
+        // Initialisation
+        window.addEventListener('load', () => {
+            const savedLang = localStorage.getItem('lang') || 'fr';
+            currentLang = savedLang;
+            document.querySelector(`[data-lang="${savedLang}"]`)?.classList.add('active');
+            
+            updateKeywords();
+            
+            setTimeout(() => {
+                typeEffect();
+            }, 2000);
+        });
     </script>
 </body>
 </html>
