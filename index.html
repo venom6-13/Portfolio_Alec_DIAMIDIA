@@ -36,7 +36,7 @@
             background: var(--bg-primary);
             color: var(--text-primary);
             -webkit-font-smoothing: antialiased;
-            transition: background-color 0.3s ease, color 0.3s ease;
+            transition: background-color 0.5s ease, color 0.5s ease;
         }
 
         /* Navigation */
@@ -49,7 +49,12 @@
             backdrop-filter: saturate(180%) blur(20px);
             z-index: 9999;
             border-bottom: 1px solid var(--border);
-            transition: background-color 0.3s ease;
+            transition: all 0.3s ease;
+            transform: translateY(0);
+        }
+
+        nav.hidden {
+            transform: translateY(-100%);
         }
 
         [data-theme="dark"] nav {
@@ -70,6 +75,13 @@
             font-size: 21px;
             font-weight: 600;
             letter-spacing: -0.01em;
+            color: var(--text-primary);
+            text-decoration: none;
+            transition: opacity 0.2s;
+        }
+
+        .nav-title:hover {
+            opacity: 0.7;
         }
 
         .nav-controls {
@@ -121,11 +133,15 @@
         /* Hero Section */
         .hero {
             margin-top: 48px;
-            padding: 80px 22px 0;
+            padding: 120px 22px 80px;
             text-align: center;
             max-width: 980px;
             margin-left: auto;
             margin-right: auto;
+            min-height: 70vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
         }
 
         .hero h1 {
@@ -133,41 +149,81 @@
             font-weight: 600;
             letter-spacing: -0.015em;
             line-height: 1.05;
-            margin-bottom: 0;
+            margin-bottom: 16px;
+            opacity: 0;
+            animation: fadeInUp 1s ease-out forwards;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-subtitle-container {
+            min-height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            animation: fadeInUp 1s ease-out 0.3s forwards;
         }
 
         .hero-subtitle {
-            font-size: 28px;
-            line-height: 1.14;
+            font-size: 32px;
+            line-height: 1.25;
             font-weight: 400;
-            letter-spacing: 0.007em;
+            letter-spacing: 0.004em;
             color: var(--text-secondary);
-            margin-top: 6px;
+        }
+
+        .typing-cursor {
+            display: inline-block;
+            width: 3px;
+            height: 36px;
+            background: var(--accent);
+            margin-left: 4px;
+            animation: blink 1s step-end infinite;
+            vertical-align: middle;
+        }
+
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
         }
 
         /* Grid Section */
         .section {
             max-width: 980px;
             margin: 0 auto;
-            padding: 100px 22px;
+            padding: 60px 22px 100px;
+            opacity: 0;
+            animation: fadeInUp 1s ease-out 0.6s forwards;
         }
 
         .cards-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
             gap: 12px;
-            margin-top: 20px;
         }
 
         .card {
             background: var(--card-bg);
             border-radius: 18px;
-            padding: 48px 24px 32px;
+            padding: 56px 24px 40px;
             text-align: center;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             cursor: pointer;
             position: relative;
             overflow: hidden;
+            text-decoration: none;
+            color: inherit;
+            display: block;
         }
 
         .card::before {
@@ -179,7 +235,8 @@
             height: 3px;
             background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
             transform: scaleX(0);
-            transition: transform 0.3s ease;
+            transform-origin: left;
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .card:hover::before {
@@ -187,193 +244,55 @@
         }
 
         .card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
         }
 
         [data-theme="dark"] .card:hover {
-            box-shadow: 0 20px 40px rgba(255, 255, 255, 0.05);
+            box-shadow: 0 25px 50px rgba(255, 255, 255, 0.08);
         }
 
         .card-icon {
             font-size: 64px;
             margin-bottom: 20px;
             display: block;
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .card:hover .card-icon {
+            transform: scale(1.1) rotate(5deg);
         }
 
         .card-title {
             font-size: 24px;
             font-weight: 600;
             letter-spacing: -0.01em;
-            margin-bottom: 4px;
+            margin-bottom: 6px;
+            transition: color 0.3s ease;
+        }
+
+        .card:hover .card-title {
+            color: var(--accent);
         }
 
         .card-label {
             font-size: 12px;
-            color: #f56300;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-        }
-
-        /* Content Sections */
-        .content-section {
-            display: none;
-            max-width: 980px;
-            margin: 0 auto;
-            padding: 100px 22px;
-            animation: fadeIn 0.5s ease;
-        }
-
-        .content-section.active {
-            display: block;
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .back-button {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            color: var(--accent);
-            text-decoration: none;
-            font-size: 17px;
-            margin-bottom: 40px;
-            transition: opacity 0.2s;
-        }
-
-        .back-button:hover {
-            opacity: 0.7;
-        }
-
-        .content-title {
-            font-size: 56px;
-            font-weight: 600;
-            letter-spacing: -0.015em;
-            margin-bottom: 20px;
-        }
-
-        .content-description {
-            font-size: 21px;
-            line-height: 1.38;
             color: var(--text-secondary);
-            margin-bottom: 60px;
-        }
-
-        /* Timeline */
-        .timeline-item {
-            display: grid;
-            grid-template-columns: 120px 1fr;
-            gap: 40px;
-            padding: 40px 0;
-            border-bottom: 1px solid var(--border);
-        }
-
-        .timeline-item:last-child {
-            border-bottom: none;
-        }
-
-        .timeline-date {
-            font-size: 17px;
-            font-weight: 600;
-            color: var(--text-secondary);
-            padding-top: 2px;
-        }
-
-        .timeline-content h3 {
-            font-size: 24px;
-            font-weight: 600;
-            margin-bottom: 4px;
-        }
-
-        .timeline-company {
-            font-size: 17px;
-            color: var(--accent);
-            margin-bottom: 8px;
-        }
-
-        .timeline-description {
-            font-size: 17px;
-            line-height: 1.47;
-            color: var(--text-secondary);
-        }
-
-        /* Skills Grid */
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-            gap: 16px;
-            margin-top: 40px;
-        }
-
-        .skill-item {
-            background: var(--card-bg);
-            padding: 24px;
-            border-radius: 12px;
-            text-align: center;
-            transition: transform 0.2s;
-        }
-
-        .skill-item:hover {
-            transform: scale(1.05);
-        }
-
-        .skill-item .emoji {
-            font-size: 36px;
-            margin-bottom: 8px;
-        }
-
-        .skill-item .name {
-            font-size: 15px;
             font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            transition: color 0.3s ease;
         }
 
-        /* Contact */
-        .contact-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
-            margin-top: 40px;
-        }
-
-        .contact-card {
-            background: var(--card-bg);
-            padding: 32px;
-            border-radius: 18px;
-            text-align: center;
-        }
-
-        .contact-card .emoji {
-            font-size: 48px;
-            margin-bottom: 16px;
-        }
-
-        .contact-card h3 {
-            font-size: 17px;
-            font-weight: 600;
-            margin-bottom: 8px;
-        }
-
-        .contact-card a {
+        .card:hover .card-label {
             color: var(--accent);
-            text-decoration: none;
-            font-size: 15px;
         }
 
         /* Footer */
         footer {
             border-top: 1px solid var(--border);
             padding: 20px 22px;
-            margin-top: 100px;
+            margin-top: 40px;
         }
 
         .footer-content {
@@ -387,41 +306,66 @@
         /* Responsive */
         @media (max-width: 1068px) {
             .hero h1 {
-                font-size: 64px;
+                font-size: 72px;
+            }
+            .hero-subtitle {
+                font-size: 28px;
             }
             .cards-grid {
                 grid-template-columns: repeat(2, 1fr);
+                gap: 16px;
             }
         }
 
         @media (max-width: 734px) {
+            .hero {
+                padding: 100px 22px 60px;
+            }
             .hero h1 {
                 font-size: 48px;
             }
             .hero-subtitle {
                 font-size: 21px;
             }
+            .typing-cursor {
+                height: 24px;
+            }
             .cards-grid {
                 grid-template-columns: 1fr;
             }
-            .timeline-item {
-                grid-template-columns: 1fr;
-                gap: 16px;
+            .card {
+                padding: 48px 24px 36px;
             }
-            .contact-grid {
-                grid-template-columns: 1fr;
-            }
-            .content-title {
-                font-size: 40px;
-            }
+        }
+
+        /* Page transition overlay */
+        .page-transition {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--bg-primary);
+            z-index: 99999;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .page-transition.active {
+            opacity: 1;
+            pointer-events: all;
         }
     </style>
 </head>
 <body>
+    <!-- Page Transition Overlay -->
+    <div class="page-transition" id="pageTransition"></div>
+
     <!-- Navigation -->
-    <nav>
+    <nav id="mainNav">
         <div class="nav-content">
-            <div class="nav-title">Alec DIAMIDIA</div>
+            <a href="index.html" class="nav-title">Alec DIAMIDIA</a>
             <div class="nav-controls">
                 <button class="toggle-btn" id="themeToggle" aria-label="Toggle theme">
                     <span id="themeIcon">🌙</span>
@@ -435,174 +379,38 @@
     </nav>
 
     <!-- Hero Section -->
-    <div id="home" class="hero">
-        <h1 data-i18n="name">Alec DIAMIDIA</h1>
-        <p class="hero-subtitle" data-i18n="subtitle">Revenue Operations & CRM Specialist</p>
+    <div class="hero">
+        <h1>Alec DIAMIDIA</h1>
+        <div class="hero-subtitle-container">
+            <p class="hero-subtitle">
+                <span id="typingText"></span><span class="typing-cursor"></span>
+            </p>
+        </div>
     </div>
 
     <!-- Main Grid -->
     <div class="section">
         <div class="cards-grid">
-            <div class="card" onclick="showSection('cv')">
+            <a href="cv.html" class="card" onclick="handlePageTransition(event, 'cv.html')">
                 <span class="card-icon">💼</span>
-                <h2 class="card-title" data-i18n="cv-title">CV</h2>
-                <p class="card-label" data-i18n="experience">Experience</p>
-            </div>
-            <div class="card" onclick="showSection('portfolio-data')">
+                <h2 class="card-title">CV</h2>
+                <p class="card-label">Experience</p>
+            </a>
+            <a href="portfolio-data.html" class="card" onclick="handlePageTransition(event, 'portfolio-data.html')">
                 <span class="card-icon">📊</span>
-                <h2 class="card-title" data-i18n="portfolio-data-title">Portfolio Data & AI</h2>
-                <p class="card-label" data-i18n="projects">Projects</p>
-            </div>
-            <div class="card" onclick="showSection('portfolio-perso')">
+                <h2 class="card-title">Portfolio Data & AI</h2>
+                <p class="card-label">Projects</p>
+            </a>
+            <a href="portfolio-perso.html" class="card" onclick="handlePageTransition(event, 'portfolio-perso.html')">
                 <span class="card-icon">🎨</span>
-                <h2 class="card-title" data-i18n="portfolio-perso-title">Personal Portfolio</h2>
-                <p class="card-label" data-i18n="side-projects">Side projects</p>
-            </div>
-            <div class="card" onclick="showSection('contact')">
+                <h2 class="card-title">Personal Portfolio</h2>
+                <p class="card-label">Side Projects</p>
+            </a>
+            <a href="contact.html" class="card" onclick="handlePageTransition(event, 'contact.html')">
                 <span class="card-icon">✉️</span>
-                <h2 class="card-title" data-i18n="contact-title">Contact</h2>
-                <p class="card-label" data-i18n="get-in-touch">Get in touch</p>
-            </div>
-        </div>
-    </div>
-
-    <!-- CV Section -->
-    <div id="cv" class="content-section">
-        <a href="#" class="back-button" onclick="showSection('home')">
-            <span>←</span>
-            <span data-i18n="back">Back</span>
-        </a>
-        <h2 class="content-title" data-i18n="professional-journey">Professional Journey</h2>
-        <p class="content-description" data-i18n="journey-desc">From strategy to execution, discover my expertise in Revenue Operations</p>
-
-        <div class="timeline-item">
-            <div class="timeline-date">01/2026<br>Present</div>
-            <div class="timeline-content">
-                <p class="timeline-company">Evaneos</p>
-                <h3 data-i18n="job-evaneos">Salesforce Operations Specialist</h3>
-                <p class="timeline-description" data-i18n="desc-evaneos">
-                    Salesforce configuration and optimization, process automation, and analytical reporting creation for Sales, Marketing, and Account Management teams.
-                </p>
-            </div>
-        </div>
-
-        <div class="timeline-item">
-            <div class="timeline-date">07/2024<br>06/2025</div>
-            <div class="timeline-content">
-                <p class="timeline-company">United Heroes</p>
-                <h3 data-i18n="job-united">Revenue Operations</h3>
-                <p class="timeline-description" data-i18n="desc-united">
-                    Leading RevOps transformation with focus on process optimization, tool implementation, and data intelligence.
-                </p>
-            </div>
-        </div>
-
-        <div class="timeline-item">
-            <div class="timeline-date">06/2023<br>12/2023</div>
-            <div class="timeline-content">
-                <p class="timeline-company">Tellent France</p>
-                <h3 data-i18n="job-tellent">Sales & Revenue Operations</h3>
-                <p class="timeline-description" data-i18n="desc-tellent">
-                    Structuring Revenue operations with focus on market segmentation and sales cycle optimization.
-                </p>
-            </div>
-        </div>
-
-        <div class="timeline-item">
-            <div class="timeline-date">2020<br>2024</div>
-            <div class="timeline-content">
-                <p class="timeline-company">emlyon Business School</p>
-                <h3 data-i18n="job-emlyon">Global BBA</h3>
-                <p class="timeline-description" data-i18n="desc-emlyon">
-                    Comprehensive business education with specialization in Business Intelligence, Sales Strategy, and Data Management.
-                </p>
-            </div>
-        </div>
-    </div>
-
-    <!-- Portfolio Data Section -->
-    <div id="portfolio-data" class="content-section">
-        <a href="#" class="back-button" onclick="showSection('home')">
-            <span>←</span>
-            <span data-i18n="back">Back</span>
-        </a>
-        <h2 class="content-title" data-i18n="portfolio-data-h2">Data & AI Portfolio</h2>
-        <p class="content-description" data-i18n="portfolio-data-desc">Projects completed as part of my Eugenia training</p>
-
-        <div class="skills-grid">
-            <div class="skill-item">
-                <div class="emoji">🤖</div>
-                <div class="name" data-i18n="ai-project">AI Project</div>
-            </div>
-            <div class="skill-item">
-                <div class="emoji">📈</div>
-                <div class="name" data-i18n="dashboard">Dashboards</div>
-            </div>
-            <div class="skill-item">
-                <div class="emoji">🔮</div>
-                <div class="name" data-i18n="predictive">Predictive Analytics</div>
-            </div>
-            <div class="skill-item">
-                <div class="emoji">🧠</div>
-                <div class="name" data-i18n="ml">Machine Learning</div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Portfolio Perso Section -->
-    <div id="portfolio-perso" class="content-section">
-        <a href="#" class="back-button" onclick="showSection('home')">
-            <span>←</span>
-            <span data-i18n="back">Back</span>
-        </a>
-        <h2 class="content-title" data-i18n="portfolio-perso-h2">Personal Portfolio</h2>
-        <p class="content-description" data-i18n="portfolio-perso-desc">My side projects and personal achievements</p>
-
-        <div class="skills-grid">
-            <div class="skill-item">
-                <div class="emoji">⚙️</div>
-                <div class="name" data-i18n="automation">Automation Stack</div>
-            </div>
-            <div class="skill-item">
-                <div class="emoji">📱</div>
-                <div class="name" data-i18n="personal-crm">Personal CRM</div>
-            </div>
-            <div class="skill-item">
-                <div class="emoji">💡</div>
-                <div class="name" data-i18n="playbook">RevOps Playbook</div>
-            </div>
-            <div class="skill-item">
-                <div class="emoji">🔧</div>
-                <div class="name" data-i18n="tools">Custom Tools</div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Contact Section -->
-    <div id="contact" class="content-section">
-        <a href="#" class="back-button" onclick="showSection('home')">
-            <span>←</span>
-            <span data-i18n="back">Back</span>
-        </a>
-        <h2 class="content-title" data-i18n="contact-h2">Get in Touch</h2>
-        <p class="content-description" data-i18n="contact-desc">Let's discuss your RevOps or Salesforce projects</p>
-
-        <div class="contact-grid">
-            <div class="contact-card">
-                <div class="emoji">📧</div>
-                <h3>Email</h3>
-                <a href="mailto:alecrudydiami@gmail.com">alecrudydiami@gmail.com</a>
-            </div>
-            <div class="contact-card">
-                <div class="emoji">📱</div>
-                <h3 data-i18n="phone">Phone</h3>
-                <a href="tel:+33626638786">+33 6 26 63 87 86</a>
-            </div>
-            <div class="contact-card">
-                <div class="emoji">💼</div>
-                <h3>LinkedIn</h3>
-                <a href="https://linkedin.com/in/alec-diamidia" target="_blank">/in/alec-diamidia</a>
-            </div>
+                <h2 class="card-title">Contact</h2>
+                <p class="card-label">Get in Touch</p>
+            </a>
         </div>
     </div>
 
@@ -613,85 +421,77 @@
     </footer>
 
     <script>
-        // Translations
-        const translations = {
-            fr: {
-                "name": "Alec DIAMIDIA",
-                "subtitle": "Revenue Operations & CRM Specialist",
-                "cv-title": "CV",
-                "experience": "Expérience",
-                "portfolio-data-title": "Portfolio Data & IA",
-                "projects": "Projets",
-                "portfolio-perso-title": "Portfolio Perso",
-                "side-projects": "Side projects",
-                "contact-title": "Contact",
-                "get-in-touch": "Me contacter",
-                "back": "Retour",
-                "professional-journey": "Mon Parcours Professionnel",
-                "journey-desc": "De la stratégie à l'exécution, découvrez mon expertise en Revenue Operations",
-                "job-evaneos": "Salesforce Operations Specialist",
-                "desc-evaneos": "Configuration et optimisation de Salesforce, automatisation des processus et création de reportings analytiques pour les équipes Sales, Marketing et Account Management.",
-                "job-united": "Revenue Operations",
-                "desc-united": "Pilotage de la transformation RevOps avec focus sur l'optimisation des process, l'implémentation d'outils et la data intelligence.",
-                "job-tellent": "Sales & Revenue Operations",
-                "desc-tellent": "Structuration des opérations Revenue avec focus sur la segmentation marché et l'optimisation du cycle de vente.",
-                "job-emlyon": "Global BBA",
-                "desc-emlyon": "Formation complète en business avec spécialisation en Business Intelligence, Sales Strategy et Data Management.",
-                "portfolio-data-h2": "Portfolio Data & IA",
-                "portfolio-data-desc": "Projets réalisés dans le cadre de ma formation Eugenia",
-                "ai-project": "Projet IA",
-                "dashboard": "Dashboards",
-                "predictive": "Analyse Prédictive",
-                "ml": "Machine Learning",
-                "portfolio-perso-h2": "Portfolio Personnel",
-                "portfolio-perso-desc": "Mes side projects et réalisations personnelles",
-                "automation": "Automation Stack",
-                "personal-crm": "CRM Personnel",
-                "playbook": "RevOps Playbook",
-                "tools": "Outils Custom",
-                "contact-h2": "Me Contacter",
-                "contact-desc": "Échangeons sur vos projets RevOps ou Salesforce",
-                "phone": "Téléphone"
-            },
-            en: {
-                "name": "Alec DIAMIDIA",
-                "subtitle": "Revenue Operations & CRM Specialist",
-                "cv-title": "CV",
-                "experience": "Experience",
-                "portfolio-data-title": "Data & AI Portfolio",
-                "projects": "Projects",
-                "portfolio-perso-title": "Personal Portfolio",
-                "side-projects": "Side projects",
-                "contact-title": "Contact",
-                "get-in-touch": "Get in touch",
-                "back": "Back",
-                "professional-journey": "Professional Journey",
-                "journey-desc": "From strategy to execution, discover my expertise in Revenue Operations",
-                "job-evaneos": "Salesforce Operations Specialist",
-                "desc-evaneos": "Salesforce configuration and optimization, process automation, and analytical reporting creation for Sales, Marketing, and Account Management teams.",
-                "job-united": "Revenue Operations",
-                "desc-united": "Leading RevOps transformation with focus on process optimization, tool implementation, and data intelligence.",
-                "job-tellent": "Sales & Revenue Operations",
-                "desc-tellent": "Structuring Revenue operations with focus on market segmentation and sales cycle optimization.",
-                "job-emlyon": "Global BBA",
-                "desc-emlyon": "Comprehensive business education with specialization in Business Intelligence, Sales Strategy, and Data Management.",
-                "portfolio-data-h2": "Data & AI Portfolio",
-                "portfolio-data-desc": "Projects completed as part of my Eugenia training",
-                "ai-project": "AI Project",
-                "dashboard": "Dashboards",
-                "predictive": "Predictive Analytics",
-                "ml": "Machine Learning",
-                "portfolio-perso-h2": "Personal Portfolio",
-                "portfolio-perso-desc": "My side projects and personal achievements",
-                "automation": "Automation Stack",
-                "personal-crm": "Personal CRM",
-                "playbook": "RevOps Playbook",
-                "tools": "Custom Tools",
-                "contact-h2": "Get in Touch",
-                "contact-desc": "Let's discuss your RevOps or Salesforce projects",
-                "phone": "Phone"
-            }
+        // Job titles rotation (FR/EN)
+        const jobTitles = {
+            fr: [
+                "Revenue Operations Specialist",
+                "CRM Manager",
+                "Salesforce Operations Expert",
+                "Sales Operations Analyst",
+                "Business Intelligence Analyst",
+                "Data & Process Automation",
+                "RevOps & Growth Specialist"
+            ],
+            en: [
+                "Revenue Operations Specialist",
+                "CRM Manager",
+                "Salesforce Operations Expert",
+                "Sales Operations Analyst",
+                "Business Intelligence Analyst",
+                "Data & Process Automation",
+                "RevOps & Growth Specialist"
+            ]
         };
+
+        let currentLang = 'fr';
+        let currentTitleIndex = 0;
+        let currentCharIndex = 0;
+        let isDeleting = false;
+        let typingSpeed = 100;
+        const deletingSpeed = 50;
+        const pauseBeforeDelete = 2000;
+        const pauseBeforeType = 500;
+
+        const typingText = document.getElementById('typingText');
+
+        function typeEffect() {
+            const titles = jobTitles[currentLang];
+            const currentTitle = titles[currentTitleIndex];
+
+            if (!isDeleting) {
+                // Typing
+                typingText.textContent = currentTitle.substring(0, currentCharIndex);
+                currentCharIndex++;
+
+                if (currentCharIndex > currentTitle.length) {
+                    // Finished typing, pause then start deleting
+                    isDeleting = true;
+                    setTimeout(typeEffect, pauseBeforeDelete);
+                    return;
+                }
+                setTimeout(typeEffect, typingSpeed);
+            } else {
+                // Deleting
+                typingText.textContent = currentTitle.substring(0, currentCharIndex);
+                currentCharIndex--;
+
+                if (currentCharIndex === 0) {
+                    // Finished deleting, move to next title
+                    isDeleting = false;
+                    currentTitleIndex = (currentTitleIndex + 1) % titles.length;
+                    setTimeout(typeEffect, pauseBeforeType);
+                    return;
+                }
+                setTimeout(typeEffect, deletingSpeed);
+            }
+        }
+
+        // Start typing effect on page load
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                typeEffect();
+            }, 1000);
+        });
 
         // Theme Toggle
         const themeToggle = document.getElementById('themeToggle');
@@ -714,55 +514,53 @@
         setTheme(savedTheme);
 
         // Language Toggle
-        let currentLang = 'fr';
-
-        function setLanguage(lang) {
-            currentLang = lang;
-            document.querySelectorAll('[data-i18n]').forEach(el => {
-                const key = el.getAttribute('data-i18n');
-                if (translations[lang] && translations[lang][key]) {
-                    el.textContent = translations[lang][key];
-                }
-            });
-            
-            document.querySelectorAll('.lang-btn').forEach(btn => {
-                btn.classList.toggle('active', btn.dataset.lang === lang);
-            });
-            
-            localStorage.setItem('lang', lang);
-        }
-
         document.querySelectorAll('.lang-btn').forEach(btn => {
-            btn.addEventListener('click', () => setLanguage(btn.dataset.lang));
+            btn.addEventListener('click', () => {
+                currentLang = btn.dataset.lang;
+                document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                localStorage.setItem('lang', currentLang);
+                
+                // Reset typing animation with new language
+                currentTitleIndex = 0;
+                currentCharIndex = 0;
+                isDeleting = false;
+                typingText.textContent = '';
+                typeEffect();
+            });
         });
 
         // Load saved language
         const savedLang = localStorage.getItem('lang') || 'fr';
-        setLanguage(savedLang);
+        currentLang = savedLang;
+        document.querySelector(`[data-lang="${savedLang}"]`).classList.add('active');
 
-        // Section Navigation
-        function showSection(sectionId) {
-            const sections = document.querySelectorAll('#home, .content-section');
-            sections.forEach(section => {
-                section.classList.remove('active');
-                section.style.display = 'none';
-            });
-
-            if (sectionId === 'home') {
-                document.getElementById('home').style.display = 'block';
-                document.querySelector('.section').style.display = 'block';
-            } else {
-                const section = document.getElementById(sectionId);
-                section.style.display = 'block';
-                section.classList.add('active');
-            }
-
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+        // Page Transition Effect
+        function handlePageTransition(event, url) {
+            event.preventDefault();
+            const transition = document.getElementById('pageTransition');
+            transition.classList.add('active');
+            
+            setTimeout(() => {
+                window.location.href = url;
+            }, 400);
         }
 
-        // Initialize
-        document.getElementById('home').style.display = 'block';
-        document.querySelector('.section').style.display = 'block';
+        // Hide nav on scroll down, show on scroll up
+        let lastScrollTop = 0;
+        const nav = document.getElementById('mainNav');
+
+        window.addEventListener('scroll', () => {
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            
+            if (scrollTop > lastScrollTop && scrollTop > 100) {
+                nav.classList.add('hidden');
+            } else {
+                nav.classList.remove('hidden');
+            }
+            
+            lastScrollTop = scrollTop;
+        });
     </script>
 </body>
 </html>
