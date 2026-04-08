@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Alec DIAMIDIA - Revenue Operations & CRM Specialist</title>
+    <title>Alec DIAMIDIA</title>
     <style>
         * {
             margin: 0;
@@ -178,17 +178,32 @@
             box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
         }
 
-        /* Contact Links (au-dessus du nom) */
-        .contact-links {
+        /* Hero Section */
+        .hero {
             position: relative;
             z-index: 1;
+            margin-top: 48px;
+            padding: 100px 22px 40px;
+            text-align: center;
+            max-width: 980px;
+            margin-left: auto;
+            margin-right: auto;
             display: flex;
+            flex-direction: column;
             justify-content: center;
-            gap: 16px;
-            margin-top: 80px;
-            margin-bottom: 32px;
+            align-items: center;
+        }
+
+        /* Nom avec changement de police */
+        .hero h1 {
+            font-size: 96px;
+            font-weight: 600;
+            letter-spacing: -0.015em;
+            line-height: 1.05;
+            margin-bottom: 24px;
             opacity: 0;
             animation: fadeInUp 1s ease-out forwards;
+            transition: font-family 0.5s ease;
         }
 
         @keyframes fadeInUp {
@@ -202,68 +217,35 @@
             }
         }
 
-        .contact-link {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            padding: 10px 20px;
-            background: var(--card-bg);
-            border-radius: 24px;
-            text-decoration: none;
-            color: var(--text-primary);
-            font-size: 14px;
-            font-weight: 500;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            border: 1px solid var(--border);
-        }
+        /* Polices Apple à alterner */
+        .font-sf-pro { font-family: "SF Pro Display", -apple-system, sans-serif; }
+        .font-sf-compact { font-family: "SF Compact Display", -apple-system, sans-serif; }
+        .font-new-york { font-family: "New York", "Times New Roman", serif; }
+        .font-sf-mono { font-family: "SF Mono", "Monaco", monospace; }
 
-        .contact-link:hover {
-            background: var(--apple-blue);
-            color: white;
-            transform: translateY(-4px);
-            box-shadow: 0 8px 20px rgba(0, 122, 255, 0.3);
-            border-color: var(--apple-blue);
-        }
-
-        .contact-link .icon {
-            font-size: 18px;
-        }
-
-        /* Hero Section */
-        .hero {
-            position: relative;
-            z-index: 1;
-            padding: 20px 22px 40px;
-            text-align: center;
-            max-width: 980px;
-            margin-left: auto;
-            margin-right: auto;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .hero h1 {
-            font-size: 96px;
-            font-weight: 600;
-            letter-spacing: -0.015em;
-            line-height: 1.05;
-            margin-bottom: 24px;
+        /* Section Keywords avec titre */
+        .keywords-section {
+            width: 100%;
+            margin: 32px 0;
             opacity: 0;
             animation: fadeInUp 1s ease-out 0.2s forwards;
         }
 
-        /* Badges Apple Style */
+        .keywords-title {
+            font-size: 17px;
+            font-weight: 600;
+            color: var(--text-secondary);
+            margin-bottom: 24px;
+            text-align: center;
+        }
+
         .keywords-cloud {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
             gap: 12px;
             max-width: 800px;
-            margin: 32px 0;
-            opacity: 0;
-            animation: fadeInUp 1s ease-out 0.4s forwards;
+            margin: 0 auto;
         }
 
         .keyword-badge {
@@ -276,7 +258,8 @@
             display: inline-block;
             box-shadow: 0 2px 8px rgba(0, 122, 255, 0.3);
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            cursor: default;
+            cursor: pointer;
+            position: relative;
         }
 
         .keyword-badge:hover {
@@ -284,33 +267,59 @@
             box-shadow: 0 8px 20px rgba(0, 122, 255, 0.4);
         }
 
-        .keyword-badge:nth-child(1) { animation: popIn 0.5s ease-out 0.6s backwards; }
-        .keyword-badge:nth-child(2) { animation: popIn 0.5s ease-out 0.7s backwards; }
-        .keyword-badge:nth-child(3) { animation: popIn 0.5s ease-out 0.8s backwards; }
-        .keyword-badge:nth-child(4) { animation: popIn 0.5s ease-out 0.9s backwards; }
-        .keyword-badge:nth-child(5) { animation: popIn 0.5s ease-out 1.0s backwards; }
-        .keyword-badge:nth-child(6) { animation: popIn 0.5s ease-out 1.1s backwards; }
-        .keyword-badge:nth-child(7) { animation: popIn 0.5s ease-out 1.2s backwards; }
-        .keyword-badge:nth-child(8) { animation: popIn 0.5s ease-out 1.3s backwards; }
-        .keyword-badge:nth-child(9) { animation: popIn 0.5s ease-out 1.4s backwards; }
-        .keyword-badge:nth-child(10) { animation: popIn 0.5s ease-out 1.5s backwards; }
-        .keyword-badge:nth-child(11) { animation: popIn 0.5s ease-out 1.6s backwards; }
-        .keyword-badge:nth-child(12) { animation: popIn 0.5s ease-out 1.7s backwards; }
+        /* Tooltip pour les explications */
+        .keyword-badge::after {
+            content: attr(data-tooltip);
+            position: absolute;
+            bottom: 120%;
+            left: 50%;
+            transform: translateX(-50%) scale(0.9);
+            background: var(--text-primary);
+            color: var(--bg-primary);
+            padding: 8px 12px;
+            border-radius: 8px;
+            font-size: 13px;
+            white-space: nowrap;
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.3s ease;
+            font-weight: 400;
+        }
+
+        .keyword-badge:hover::after {
+            opacity: 1;
+            transform: translateX(-50%) scale(1);
+        }
+
+        .keyword-badge:nth-child(1) { animation: popIn 0.5s ease-out 0.4s backwards; }
+        .keyword-badge:nth-child(2) { animation: popIn 0.5s ease-out 0.5s backwards; }
+        .keyword-badge:nth-child(3) { animation: popIn 0.5s ease-out 0.6s backwards; }
+        .keyword-badge:nth-child(4) { animation: popIn 0.5s ease-out 0.7s backwards; }
+        .keyword-badge:nth-child(5) { animation: popIn 0.5s ease-out 0.8s backwards; }
+        .keyword-badge:nth-child(6) { animation: popIn 0.5s ease-out 0.9s backwards; }
+        .keyword-badge:nth-child(7) { animation: popIn 0.5s ease-out 1.0s backwards; }
+        .keyword-badge:nth-child(8) { animation: popIn 0.5s ease-out 1.1s backwards; }
+        .keyword-badge:nth-child(9) { animation: popIn 0.5s ease-out 1.2s backwards; }
+        .keyword-badge:nth-child(10) { animation: popIn 0.5s ease-out 1.3s backwards; }
+        .keyword-badge:nth-child(11) { animation: popIn 0.5s ease-out 1.4s backwards; }
 
         @keyframes popIn {
             from { opacity: 0; transform: scale(0.5); }
             to { opacity: 1; transform: scale(1); }
         }
 
-        /* Hero Subtitle */
+        /* Hero Subtitle avec background adaptatif */
         .hero-subtitle-container {
-            min-height: 80px;
-            display: flex;
+            display: inline-flex;
             align-items: center;
             justify-content: center;
-            margin-top: 20px;
+            margin-top: 40px;
             opacity: 0;
-            animation: fadeInUp 1s ease-out 1.8s forwards;
+            animation: fadeInUp 1s ease-out 1.6s forwards;
+            background: var(--card-bg);
+            padding: 20px 40px;
+            border-radius: 24px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
         }
 
         .hero-subtitle {
@@ -319,6 +328,7 @@
             font-weight: 400;
             letter-spacing: 0.004em;
             color: var(--text-secondary);
+            white-space: nowrap;
         }
 
         .hero-subtitle .prefix {
@@ -340,13 +350,20 @@
             51%, 100% { opacity: 0; }
         }
 
-        /* Logo Carousel */
-        .logo-carousel-container {
+        /* Logo Carousel avec encadré */
+        .logo-carousel-wrapper {
             width: 100%;
-            overflow: hidden;
-            margin: 40px 0;
+            margin: 48px 0;
             opacity: 0;
-            animation: fadeInUp 1s ease-out 2s forwards;
+            animation: fadeInUp 1s ease-out 1.8s forwards;
+        }
+
+        .logo-carousel-container {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 18px;
+            padding: 32px 24px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
         }
 
         .logo-carousel-title {
@@ -354,9 +371,14 @@
             font-weight: 600;
             color: var(--text-secondary);
             text-align: center;
-            margin-bottom: 20px;
+            margin-bottom: 24px;
             text-transform: uppercase;
             letter-spacing: 0.08em;
+        }
+
+        .logo-carousel-track {
+            overflow: hidden;
+            width: 100%;
         }
 
         .logo-carousel {
@@ -392,7 +414,7 @@
             align-items: center;
             justify-content: center;
             font-size: 32px;
-            background: var(--card-bg);
+            background: var(--bg-primary);
             border-radius: 12px;
             padding: 8px;
         }
@@ -403,15 +425,34 @@
             color: var(--text-secondary);
         }
 
-        /* Grid Section */
+        /* Section avec intro */
         .section {
             position: relative;
             z-index: 1;
             max-width: 980px;
             margin: 0 auto;
-            padding: 60px 22px 100px;
+            padding: 60px 22px 80px;
             opacity: 0;
-            animation: fadeInUp 1s ease-out 2.2s forwards;
+            animation: fadeInUp 1s ease-out 2s forwards;
+        }
+
+        .section-intro {
+            text-align: center;
+            margin-bottom: 48px;
+        }
+
+        .section-intro h2 {
+            font-size: 40px;
+            font-weight: 600;
+            letter-spacing: -0.015em;
+            margin-bottom: 12px;
+        }
+
+        .section-intro p {
+            font-size: 19px;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
         }
 
         .cards-grid {
@@ -507,13 +548,85 @@
             letter-spacing: 0.05em;
         }
 
+        /* Section Contact */
+        .contact-section {
+            position: relative;
+            z-index: 1;
+            max-width: 980px;
+            margin: 0 auto;
+            padding: 80px 22px 100px;
+            text-align: center;
+        }
+
+        .contact-section h2 {
+            font-size: 40px;
+            font-weight: 600;
+            letter-spacing: -0.015em;
+            margin-bottom: 48px;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .contact-card {
+            background: var(--card-bg);
+            padding: 40px 32px;
+            border-radius: 18px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid var(--border);
+        }
+
+        .contact-card:hover {
+            background: var(--apple-blue);
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 122, 255, 0.3);
+            border-color: var(--apple-blue);
+        }
+
+        .contact-card .icon {
+            font-size: 48px;
+            margin-bottom: 16px;
+            transition: transform 0.3s ease;
+        }
+
+        .contact-card:hover .icon {
+            transform: scale(1.1);
+        }
+
+        .contact-card h3 {
+            font-size: 17px;
+            font-weight: 600;
+            margin-bottom: 12px;
+            color: var(--text-primary);
+            transition: color 0.3s ease;
+        }
+
+        .contact-card:hover h3 {
+            color: white;
+        }
+
+        .contact-card a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 15px;
+            transition: color 0.3s ease;
+        }
+
+        .contact-card:hover a {
+            color: white;
+        }
+
         /* Footer */
         footer {
             position: relative;
             z-index: 1;
             border-top: 1px solid var(--border);
             padding: 20px 22px;
-            margin-top: 40px;
         }
 
         .footer-content {
@@ -528,26 +641,22 @@
         @media (max-width: 1068px) {
             .hero h1 { font-size: 72px; }
             .hero-subtitle { font-size: 28px; }
-            .cards-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
+            .cards-grid, .contact-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
             .keywords-cloud { gap: 8px; }
             .keyword-badge { font-size: 14px; padding: 8px 16px; }
-            .contact-links { flex-wrap: wrap; }
         }
 
         @media (max-width: 734px) {
-            .contact-links {
-                margin-top: 60px;
-                flex-direction: column;
-                align-items: center;
-                gap: 12px;
-            }
-            .hero { padding: 20px 22px 40px; }
+            .hero { padding: 80px 22px 40px; }
             .hero h1 { font-size: 48px; }
             .hero-subtitle { font-size: 21px; }
+            .hero-subtitle-container { padding: 16px 24px; }
             .typing-cursor { height: 24px; }
-            .cards-grid { grid-template-columns: 1fr; }
+            .cards-grid, .contact-grid { grid-template-columns: 1fr; }
             .card { padding: 48px 24px 36px; }
             .keyword-badge { font-size: 13px; padding: 7px 14px; }
+            .keyword-badge::after { display: none; }
+            .section-intro h2 { font-size: 32px; }
         }
     </style>
 </head>
@@ -573,91 +682,105 @@
         </div>
     </nav>
 
-    <!-- Contact Links (au-dessus du nom) -->
-    <div class="contact-links">
-        <a href="mailto:alecrudydiami@gmail.com" class="contact-link">
-            <span class="icon">📧</span>
-            <span>alecrudydiami@gmail.com</span>
-        </a>
-        <a href="tel:+33626638786" class="contact-link">
-            <span class="icon">📱</span>
-            <span>+33 6 26 63 87 86</span>
-        </a>
-        <a href="https://linkedin.com/in/alec-diamidia" target="_blank" class="contact-link">
-            <span class="icon">💼</span>
-            <span>/in/alec-diamidia</span>
-        </a>
-    </div>
-
     <div class="hero">
-        <h1>Alec DIAMIDIA</h1>
+        <h1 id="heroName">Alec DIAMIDIA</h1>
 
-        <!-- Badges -->
-        <div class="keywords-cloud" id="keywordsCloud">
-            <!-- Rempli dynamiquement par JS -->
+        <!-- Section Keywords avec titre -->
+        <div class="keywords-section">
+            <p class="keywords-title" data-i18n="keywords-intro">Quelques compétences clés</p>
+            <div class="keywords-cloud" id="keywordsCloud"></div>
         </div>
 
-        <!-- Typing Effect -->
+        <!-- Typing Effect avec background -->
         <div class="hero-subtitle-container">
             <p class="hero-subtitle">
                 <span class="prefix" data-i18n="your-future">Votre futur </span><span id="typingText"></span><span class="typing-cursor"></span>
             </p>
         </div>
 
-        <!-- Logo Carousel -->
-        <div class="logo-carousel-container">
-            <p class="logo-carousel-title">Tech Stack</p>
-            <div style="overflow: hidden; width: 100%;">
-                <div class="logo-carousel">
-                    <div class="logo-item"><div class="logo-icon">🔧</div><div class="logo-name">Make</div></div>
-                    <div class="logo-item"><div class="logo-icon">🟠</div><div class="logo-name">Hubspot</div></div>
-                    <div class="logo-item"><div class="logo-icon">☁️</div><div class="logo-name">Salesforce</div></div>
-                    <div class="logo-item"><div class="logo-icon">🔷</div><div class="logo-name">Airtable</div></div>
-                    <div class="logo-item"><div class="logo-icon">📊</div><div class="logo-name">Tableau</div></div>
-                    <div class="logo-item"><div class="logo-icon">🗄️</div><div class="logo-name">SQL</div></div>
-                    <div class="logo-item"><div class="logo-icon">⚡</div><div class="logo-name">Supabase</div></div>
-                    <div class="logo-item"><div class="logo-icon">🐍</div><div class="logo-name">Python</div></div>
-                    <div class="logo-item"><div class="logo-icon">✨</div><div class="logo-name">Dust</div></div>
-                    <div class="logo-item"><div class="logo-icon">📗</div><div class="logo-name">Sheets</div></div>
-                    <div class="logo-item"><div class="logo-icon">📈</div><div class="logo-name">BigQuery</div></div>
-                    <div class="logo-item"><div class="logo-icon">📝</div><div class="logo-name">Notion</div></div>
-                    <!-- Duplicate -->
-                    <div class="logo-item"><div class="logo-icon">🔧</div><div class="logo-name">Make</div></div>
-                    <div class="logo-item"><div class="logo-icon">🟠</div><div class="logo-name">Hubspot</div></div>
-                    <div class="logo-item"><div class="logo-icon">☁️</div><div class="logo-name">Salesforce</div></div>
-                    <div class="logo-item"><div class="logo-icon">🔷</div><div class="logo-name">Airtable</div></div>
-                    <div class="logo-item"><div class="logo-icon">📊</div><div class="logo-name">Tableau</div></div>
-                    <div class="logo-item"><div class="logo-icon">🗄️</div><div class="logo-name">SQL</div></div>
-                    <div class="logo-item"><div class="logo-icon">⚡</div><div class="logo-name">Supabase</div></div>
-                    <div class="logo-item"><div class="logo-icon">🐍</div><div class="logo-name">Python</div></div>
-                    <div class="logo-item"><div class="logo-icon">✨</div><div class="logo-name">Dust</div></div>
-                    <div class="logo-item"><div class="logo-icon">📗</div><div class="logo-name">Sheets</div></div>
-                    <div class="logo-item"><div class="logo-icon">📈</div><div class="logo-name">BigQuery</div></div>
-                    <div class="logo-item"><div class="logo-icon">📝</div><div class="logo-name">Notion</div></div>
+        <!-- Logo Carousel avec encadré -->
+        <div class="logo-carousel-wrapper">
+            <div class="logo-carousel-container">
+                <p class="logo-carousel-title">Tech Stack</p>
+                <div class="logo-carousel-track">
+                    <div class="logo-carousel">
+                        <div class="logo-item"><div class="logo-icon">🔧</div><div class="logo-name">Make</div></div>
+                        <div class="logo-item"><div class="logo-icon">🟠</div><div class="logo-name">Hubspot</div></div>
+                        <div class="logo-item"><div class="logo-icon">☁️</div><div class="logo-name">Salesforce</div></div>
+                        <div class="logo-item"><div class="logo-icon">🔷</div><div class="logo-name">Airtable</div></div>
+                        <div class="logo-item"><div class="logo-icon">📊</div><div class="logo-name">Tableau</div></div>
+                        <div class="logo-item"><div class="logo-icon">🗄️</div><div class="logo-name">SQL</div></div>
+                        <div class="logo-item"><div class="logo-icon">⚡</div><div class="logo-name">Supabase</div></div>
+                        <div class="logo-item"><div class="logo-icon">🐍</div><div class="logo-name">Python</div></div>
+                        <div class="logo-item"><div class="logo-icon">✨</div><div class="logo-name">Dust</div></div>
+                        <div class="logo-item"><div class="logo-icon">📗</div><div class="logo-name">Sheets</div></div>
+                        <div class="logo-item"><div class="logo-icon">📈</div><div class="logo-name">BigQuery</div></div>
+                        <div class="logo-item"><div class="logo-icon">📝</div><div class="logo-name">Notion</div></div>
+                        <!-- Duplicate -->
+                        <div class="logo-item"><div class="logo-icon">🔧</div><div class="logo-name">Make</div></div>
+                        <div class="logo-item"><div class="logo-icon">🟠</div><div class="logo-name">Hubspot</div></div>
+                        <div class="logo-item"><div class="logo-icon">☁️</div><div class="logo-name">Salesforce</div></div>
+                        <div class="logo-item"><div class="logo-icon">🔷</div><div class="logo-name">Airtable</div></div>
+                        <div class="logo-item"><div class="logo-icon">📊</div><div class="logo-name">Tableau</div></div>
+                        <div class="logo-item"><div class="logo-icon">🗄️</div><div class="logo-name">SQL</div></div>
+                        <div class="logo-item"><div class="logo-icon">⚡</div><div class="logo-name">Supabase</div></div>
+                        <div class="logo-item"><div class="logo-icon">🐍</div><div class="logo-name">Python</div></div>
+                        <div class="logo-item"><div class="logo-icon">✨</div><div class="logo-name">Dust</div></div>
+                        <div class="logo-item"><div class="logo-icon">📗</div><div class="logo-name">Sheets</div></div>
+                        <div class="logo-item"><div class="logo-icon">📈</div><div class="logo-name">BigQuery</div></div>
+                        <div class="logo-item"><div class="logo-icon">📝</div><div class="logo-name">Notion</div></div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 
     <div class="section">
+        <div class="section-intro">
+            <h2 data-i18n="explore-title">Explorez mon travail</h2>
+            <p data-i18n="explore-desc">Découvrez mes projets professionnels et personnels</p>
+        </div>
+
         <div class="cards-grid">
             <div class="card">
                 <span class="coming-soon" data-i18n="soon">Bientôt</span>
                 <span class="card-icon">💼</span>
                 <h2 class="card-title">CV</h2>
-                <p class="card-label" data-i18n="experience">Experience</p>
-            </div>
-            <div class="card">
-                <span class="coming-soon" data-i18n="soon">Bientôt</span>
-                <span class="card-icon">📊</span>
-                <h2 class="card-title">Portfolio Data & AI</h2>
-                <p class="card-label" data-i18n="projects">Projects</p>
+                <p class="card-label" data-i18n="experience">Expérience</p>
             </div>
             <div class="card">
                 <span class="coming-soon" data-i18n="soon">Bientôt</span>
                 <span class="card-icon">🎨</span>
-                <h2 class="card-title" data-i18n="personal-portfolio">Portfolio Personnel</h2>
-                <p class="card-label" data-i18n="side-projects">Side Projects</p>
+                <h2 class="card-title" data-i18n="personal-projects">Projets Perso</h2>
+                <p class="card-label" data-i18n="personal-label">Créations</p>
+            </div>
+            <div class="card">
+                <span class="coming-soon" data-i18n="soon">Bientôt</span>
+                <span class="card-icon">💡</span>
+                <h2 class="card-title" data-i18n="pro-projects">Projets Pro/Autres</h2>
+                <p class="card-label" data-i18n="pro-label">Réalisations</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Section Contact -->
+    <div class="contact-section">
+        <h2 data-i18n="contact-me">Contactez-moi</h2>
+        <div class="contact-grid">
+            <div class="contact-card">
+                <div class="icon">📧</div>
+                <h3 data-i18n="by-email">Par mail</h3>
+                <a href="mailto:alecrudydiami@gmail.com">alecrudydiami@gmail.com</a>
+            </div>
+            <div class="contact-card">
+                <div class="icon">📱</div>
+                <h3 data-i18n="by-phone">Par téléphone</h3>
+                <a href="tel:+33626638786">+33 6 26 63 87 86</a>
+            </div>
+            <div class="contact-card">
+                <div class="icon">💼</div>
+                <h3 data-i18n="by-linkedin">Par LinkedIn</h3>
+                <a href="https://linkedin.com/in/alec-diamidia" target="_blank">/in/alec-diamidia</a>
             </div>
         </div>
     </div>
@@ -669,20 +792,36 @@
     </footer>
 
     <script>
-        // Traductions
+        // Traductions avec tooltips
         const translations = {
             fr: {
                 "your-future": "Votre futur ",
                 "soon": "Bientôt",
                 "experience": "Expérience",
-                "projects": "Projets",
-                "personal-portfolio": "Portfolio Personnel",
-                "side-projects": "Side Projects",
+                "personal-projects": "Projets Perso",
+                "personal-label": "Créations",
+                "pro-projects": "Projets Pro/Autres",
+                "pro-label": "Réalisations",
+                "keywords-intro": "Quelques compétences clés",
+                "explore-title": "Explorez mon travail",
+                "explore-desc": "Découvrez mes projets professionnels et personnels",
+                "contact-me": "Contactez-moi",
+                "by-email": "Par mail",
+                "by-phone": "Par téléphone",
+                "by-linkedin": "Par LinkedIn",
                 keywords: [
-                    "Proactivité", "Autonomie", "Rigueur", "Engagement",
-                    "Ambition", "Organisation", "Amélioration continue",
-                    "Gestion de projets", "Process Optimization", "Data-driven",
-                    "Team Leadership", "Problem Solving"
+                    { name: "Proactivité", tooltip: "J'anticipe les besoins et propose des solutions" },
+                    { name: "Autonomie", tooltip: "Je prends des initiatives et gère mes projets" },
+                    { name: "Rigueur", tooltip: "Je garantis la qualité et la précision" },
+                    { name: "Engagement", tooltip: "Je m'investis pleinement dans mes missions" },
+                    { name: "Ambition", tooltip: "Je vise l'excellence dans chaque projet" },
+                    { name: "Organisation", tooltip: "Je structure et optimise mes workflows" },
+                    { name: "Amélioration continue", tooltip: "J'apprends et j'évolue constamment" },
+                    { name: "Gestion de projets", tooltip: "Je pilote des projets de A à Z" },
+                    { name: "Process Optimization", tooltip: "J'identifie et j'améliore les processus" },
+                    { name: "Data-driven", tooltip: "Je base mes décisions sur la data" },
+                    { name: "Accompagnement des équipes revenue", tooltip: "Je forme et soutiens les équipes" },
+                    { name: "Problem Solving", tooltip: "Je trouve des solutions créatives" }
                 ],
                 jobs: [
                     "Revenue Operations Manager", "CRM Manager",
@@ -695,14 +834,30 @@
                 "your-future": "Your future ",
                 "soon": "Soon",
                 "experience": "Experience",
-                "projects": "Projects",
-                "personal-portfolio": "Personal Portfolio",
-                "side-projects": "Side Projects",
+                "personal-projects": "Personal Projects",
+                "personal-label": "Creations",
+                "pro-projects": "Pro/Other Projects",
+                "pro-label": "Achievements",
+                "keywords-intro": "Key skills",
+                "explore-title": "Explore my work",
+                "explore-desc": "Discover my professional and personal projects",
+                "contact-me": "Contact me",
+                "by-email": "By email",
+                "by-phone": "By phone",
+                "by-linkedin": "On LinkedIn",
                 keywords: [
-                    "Proactivity", "Autonomy", "Rigor", "Engagement",
-                    "Ambition", "Organization", "Continuous Improvement",
-                    "Project Management", "Process Optimization", "Data-driven",
-                    "Team Leadership", "Problem Solving"
+                    { name: "Proactivity", tooltip: "I anticipate needs and propose solutions" },
+                    { name: "Autonomy", tooltip: "I take initiatives and manage my projects" },
+                    { name: "Rigor", tooltip: "I ensure quality and precision" },
+                    { name: "Engagement", tooltip: "I fully commit to my missions" },
+                    { name: "Ambition", tooltip: "I aim for excellence in every project" },
+                    { name: "Organization", tooltip: "I structure and optimize my workflows" },
+                    { name: "Continuous Improvement", tooltip: "I learn and evolve constantly" },
+                    { name: "Project Management", tooltip: "I lead projects from A to Z" },
+                    { name: "Process Optimization", tooltip: "I identify and improve processes" },
+                    { name: "Data-driven", tooltip: "I base decisions on data" },
+                    { name: "Revenue Team Support", tooltip: "I train and support teams" },
+                    { name: "Problem Solving", tooltip: "I find creative solutions" }
                 ],
                 jobs: [
                     "Revenue Operations Manager", "CRM Manager",
@@ -724,15 +879,28 @@
 
         const typingText = document.getElementById('typingText');
         const keywordsCloud = document.getElementById('keywordsCloud');
+        const heroName = document.getElementById('heroName');
 
-        // Fonction pour mettre à jour les badges
+        // Polices Apple à alterner
+        const fonts = ['font-sf-pro', 'font-sf-compact', 'font-new-york', 'font-sf-mono'];
+        let currentFontIndex = 0;
+
+        // Changement de police toutes les 6 secondes
+        setInterval(() => {
+            heroName.className = '';
+            currentFontIndex = (currentFontIndex + 1) % fonts.length;
+            heroName.classList.add(fonts[currentFontIndex]);
+        }, 6000);
+
+        // Mise à jour des badges avec tooltips
         function updateKeywords() {
             const keywords = translations[currentLang].keywords;
             keywordsCloud.innerHTML = '';
-            keywords.forEach(keyword => {
+            keywords.forEach(item => {
                 const badge = document.createElement('span');
                 badge.className = 'keyword-badge';
-                badge.textContent = keyword;
+                badge.textContent = item.name;
+                badge.setAttribute('data-tooltip', item.tooltip);
                 keywordsCloud.appendChild(badge);
             });
         }
@@ -766,11 +934,10 @@
             }
         }
 
-        // Fonction pour traduire tous les éléments
+        // Traduction
         function updateLanguage(lang) {
             currentLang = lang;
             
-            // Mettre à jour tous les éléments avec data-i18n
             document.querySelectorAll('[data-i18n]').forEach(el => {
                 const key = el.getAttribute('data-i18n');
                 if (translations[lang][key]) {
@@ -778,10 +945,8 @@
                 }
             });
 
-            // Mettre à jour les badges
             updateKeywords();
 
-            // Reset typing effect
             currentTitleIndex = 0;
             currentCharIndex = 0;
             isDeleting = false;
