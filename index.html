@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Alec DIAMIDIA</title>
+    <title>Alec DIAMIDIA - Revenue Operations & CRM Specialist</title>
     <style>
         * {
             margin: 0;
@@ -37,6 +37,70 @@
             color: var(--text-primary);
             -webkit-font-smoothing: antialiased;
             transition: background-color 0.5s ease, color 0.5s ease;
+            overflow-x: hidden;
+        }
+
+        /* Background animé */
+        .animated-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            opacity: 0.4;
+            pointer-events: none;
+        }
+
+        .bg-shape {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.3;
+            animation: float 20s infinite ease-in-out;
+        }
+
+        .bg-shape-1 {
+            width: 500px;
+            height: 500px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            top: -10%;
+            left: -10%;
+            animation-delay: 0s;
+        }
+
+        .bg-shape-2 {
+            width: 400px;
+            height: 400px;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            bottom: -10%;
+            right: -10%;
+            animation-delay: 7s;
+        }
+
+        .bg-shape-3 {
+            width: 350px;
+            height: 350px;
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            top: 50%;
+            right: 10%;
+            animation-delay: 14s;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translate(0, 0) scale(1);
+            }
+            33% {
+                transform: translate(50px, -50px) scale(1.1);
+            }
+            66% {
+                transform: translate(-30px, 30px) scale(0.9);
+            }
+        }
+
+        [data-theme="dark"] .animated-background {
+            opacity: 0.15;
         }
 
         /* Navigation */
@@ -50,11 +114,6 @@
             z-index: 9999;
             border-bottom: 1px solid var(--border);
             transition: all 0.3s ease;
-            transform: translateY(0);
-        }
-
-        nav.hidden {
-            transform: translateY(-100%);
         }
 
         [data-theme="dark"] nav {
@@ -76,12 +135,6 @@
             font-weight: 600;
             letter-spacing: -0.01em;
             color: var(--text-primary);
-            text-decoration: none;
-            transition: opacity 0.2s;
-        }
-
-        .nav-title:hover {
-            opacity: 0.7;
         }
 
         .nav-controls {
@@ -132,16 +185,18 @@
 
         /* Hero Section */
         .hero {
+            position: relative;
+            z-index: 1;
             margin-top: 48px;
-            padding: 120px 22px 80px;
+            padding: 100px 22px 40px;
             text-align: center;
             max-width: 980px;
             margin-left: auto;
             margin-right: auto;
-            min-height: 70vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
+            align-items: center;
         }
 
         .hero h1 {
@@ -149,7 +204,7 @@
             font-weight: 600;
             letter-spacing: -0.015em;
             line-height: 1.05;
-            margin-bottom: 16px;
+            margin-bottom: 24px;
             opacity: 0;
             animation: fadeInUp 1s ease-out forwards;
         }
@@ -165,13 +220,81 @@
             }
         }
 
+        /* Logo Carousel */
+        .logo-carousel-container {
+            width: 100%;
+            overflow: hidden;
+            margin: 40px 0;
+            opacity: 0;
+            animation: fadeInUp 1s ease-out 0.2s forwards;
+        }
+
+        .logo-carousel-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-secondary);
+            text-align: center;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+        }
+
+        .logo-carousel {
+            display: flex;
+            gap: 48px;
+            animation: scroll 30s linear infinite;
+            width: max-content;
+        }
+
+        @keyframes scroll {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(calc(-100% - 48px));
+            }
+        }
+
+        .logo-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            min-width: 100px;
+            opacity: 0.6;
+            transition: opacity 0.3s ease;
+        }
+
+        .logo-item:hover {
+            opacity: 1;
+        }
+
+        .logo-icon {
+            width: 48px;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 8px;
+        }
+
+        .logo-name {
+            font-size: 12px;
+            font-weight: 500;
+            color: var(--text-secondary);
+        }
+
         .hero-subtitle-container {
             min-height: 80px;
             display: flex;
             align-items: center;
             justify-content: center;
+            margin-top: 20px;
             opacity: 0;
-            animation: fadeInUp 1s ease-out 0.3s forwards;
+            animation: fadeInUp 1s ease-out 0.4s forwards;
         }
 
         .hero-subtitle {
@@ -199,6 +322,8 @@
 
         /* Grid Section */
         .section {
+            position: relative;
+            z-index: 1;
             max-width: 980px;
             margin: 0 auto;
             padding: 60px 22px 100px;
@@ -221,9 +346,7 @@
             cursor: pointer;
             position: relative;
             overflow: hidden;
-            text-decoration: none;
-            color: inherit;
-            display: block;
+            border: none;
         }
 
         .card::before {
@@ -288,8 +411,24 @@
             color: var(--accent);
         }
 
+        .coming-soon {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            background: var(--accent);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
         /* Footer */
         footer {
+            position: relative;
+            z-index: 1;
             border-top: 1px solid var(--border);
             padding: 20px 22px;
             margin-top: 40px;
@@ -319,7 +458,7 @@
 
         @media (max-width: 734px) {
             .hero {
-                padding: 100px 22px 60px;
+                padding: 80px 22px 40px;
             }
             .hero h1 {
                 font-size: 48px;
@@ -336,36 +475,29 @@
             .card {
                 padding: 48px 24px 36px;
             }
-        }
-
-        /* Page transition overlay */
-        .page-transition {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: var(--bg-primary);
-            z-index: 99999;
-            pointer-events: none;
-            opacity: 0;
-            transition: opacity 0.4s ease;
-        }
-
-        .page-transition.active {
-            opacity: 1;
-            pointer-events: all;
+            .logo-carousel {
+                gap: 32px;
+            }
+            .logo-icon {
+                width: 40px;
+                height: 40px;
+                font-size: 24px;
+            }
         }
     </style>
 </head>
 <body>
-    <!-- Page Transition Overlay -->
-    <div class="page-transition" id="pageTransition"></div>
+    <!-- Background animé -->
+    <div class="animated-background">
+        <div class="bg-shape bg-shape-1"></div>
+        <div class="bg-shape bg-shape-2"></div>
+        <div class="bg-shape bg-shape-3"></div>
+    </div>
 
     <!-- Navigation -->
-    <nav id="mainNav">
+    <nav>
         <div class="nav-content">
-            <a href="index.html" class="nav-title">Alec DIAMIDIA</a>
+            <div class="nav-title">Alec DIAMIDIA</div>
             <div class="nav-controls">
                 <button class="toggle-btn" id="themeToggle" aria-label="Toggle theme">
                     <span id="themeIcon">🌙</span>
@@ -381,6 +513,114 @@
     <!-- Hero Section -->
     <div class="hero">
         <h1>Alec DIAMIDIA</h1>
+
+        <!-- Logo Carousel -->
+        <div class="logo-carousel-container">
+            <p class="logo-carousel-title">Tech Stack</p>
+            <div style="overflow: hidden; width: 100%;">
+                <div class="logo-carousel" id="logoCarousel">
+                    <!-- Premier set -->
+                    <div class="logo-item">
+                        <div class="logo-icon">🔧</div>
+                        <div class="logo-name">Make</div>
+                    </div>
+                    <div class="logo-item">
+                        <div class="logo-icon">🟠</div>
+                        <div class="logo-name">Hubspot</div>
+                    </div>
+                    <div class="logo-item">
+                        <div class="logo-icon">☁️</div>
+                        <div class="logo-name">Salesforce</div>
+                    </div>
+                    <div class="logo-item">
+                        <div class="logo-icon">🔷</div>
+                        <div class="logo-name">Airtable</div>
+                    </div>
+                    <div class="logo-item">
+                        <div class="logo-icon">📊</div>
+                        <div class="logo-name">Tableau</div>
+                    </div>
+                    <div class="logo-item">
+                        <div class="logo-icon">🗄️</div>
+                        <div class="logo-name">SQL</div>
+                    </div>
+                    <div class="logo-item">
+                        <div class="logo-icon">⚡</div>
+                        <div class="logo-name">Supabase</div>
+                    </div>
+                    <div class="logo-item">
+                        <div class="logo-icon">🐍</div>
+                        <div class="logo-name">Python</div>
+                    </div>
+                    <div class="logo-item">
+                        <div class="logo-icon">✨</div>
+                        <div class="logo-name">Dust</div>
+                    </div>
+                    <div class="logo-item">
+                        <div class="logo-icon">📗</div>
+                        <div class="logo-name">Sheets</div>
+                    </div>
+                    <div class="logo-item">
+                        <div class="logo-icon">📈</div>
+                        <div class="logo-name">BigQuery</div>
+                    </div>
+                    <div class="logo-item">
+                        <div class="logo-icon">📝</div>
+                        <div class="logo-name">Notion</div>
+                    </div>
+                    <!-- Duplicate pour loop infini -->
+                    <div class="logo-item">
+                        <div class="logo-icon">🔧</div>
+                        <div class="logo-name">Make</div>
+                    </div>
+                    <div class="logo-item">
+                        <div class="logo-icon">🟠</div>
+                        <div class="logo-name">Hubspot</div>
+                    </div>
+                    <div class="logo-item">
+                        <div class="logo-icon">☁️</div>
+                        <div class="logo-name">Salesforce</div>
+                    </div>
+                    <div class="logo-item">
+                        <div class="logo-icon">🔷</div>
+                        <div class="logo-name">Airtable</div>
+                    </div>
+                    <div class="logo-item">
+                        <div class="logo-icon">📊</div>
+                        <div class="logo-name">Tableau</div>
+                    </div>
+                    <div class="logo-item">
+                        <div class="logo-icon">🗄️</div>
+                        <div class="logo-name">SQL</div>
+                    </div>
+                    <div class="logo-item">
+                        <div class="logo-icon">⚡</div>
+                        <div class="logo-name">Supabase</div>
+                    </div>
+                    <div class="logo-item">
+                        <div class="logo-icon">🐍</div>
+                        <div class="logo-name">Python</div>
+                    </div>
+                    <div class="logo-item">
+                        <div class="logo-icon">✨</div>
+                        <div class="logo-name">Dust</div>
+                    </div>
+                    <div class="logo-item">
+                        <div class="logo-icon">📗</div>
+                        <div class="logo-name">Sheets</div>
+                    </div>
+                    <div class="logo-item">
+                        <div class="logo-icon">📈</div>
+                        <div class="logo-name">BigQuery</div>
+                    </div>
+                    <div class="logo-item">
+                        <div class="logo-icon">📝</div>
+                        <div class="logo-name">Notion</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <div class="hero-subtitle-container">
             <p class="hero-subtitle">
                 <span id="typingText"></span><span class="typing-cursor"></span>
@@ -391,37 +631,40 @@
     <!-- Main Grid -->
     <div class="section">
         <div class="cards-grid">
-            <a href="cv.html" class="card" onclick="handlePageTransition(event, 'cv.html')">
+            <div class="card">
+                <span class="coming-soon">Bientôt</span>
                 <span class="card-icon">💼</span>
                 <h2 class="card-title">CV</h2>
                 <p class="card-label">Experience</p>
-            </a>
-            <a href="portfolio-data.html" class="card" onclick="handlePageTransition(event, 'portfolio-data.html')">
+            </div>
+            <div class="card">
+                <span class="coming-soon">Bientôt</span>
                 <span class="card-icon">📊</span>
                 <h2 class="card-title">Portfolio Data & AI</h2>
                 <p class="card-label">Projects</p>
-            </a>
-            <a href="portfolio-perso.html" class="card" onclick="handlePageTransition(event, 'portfolio-perso.html')">
+            </div>
+            <div class="card">
+                <span class="coming-soon">Bientôt</span>
                 <span class="card-icon">🎨</span>
                 <h2 class="card-title">Personal Portfolio</h2>
                 <p class="card-label">Side Projects</p>
-            </a>
-            <a href="contact.html" class="card" onclick="handlePageTransition(event, 'contact.html')">
+            </div>
+            <div class="card">
+                <span class="coming-soon">Bientôt</span>
                 <span class="card-icon">✉️</span>
                 <h2 class="card-title">Contact</h2>
                 <p class="card-label">Get in Touch</p>
-            </a>
+            </div>
         </div>
     </div>
 
     <footer>
         <div class="footer-content">
-            <p>© 2026 Alec DIAMIDIA</p>
+            <p>© 2026 Alec DIAMIDIA • Revenue Operations & CRM Specialist</p>
         </div>
     </footer>
 
     <script>
-        // Job titles rotation (FR/EN)
         const jobTitles = {
             fr: [
                 "Revenue Operations Specialist",
@@ -447,7 +690,7 @@
         let currentTitleIndex = 0;
         let currentCharIndex = 0;
         let isDeleting = false;
-        let typingSpeed = 100;
+        const typingSpeed = 100;
         const deletingSpeed = 50;
         const pauseBeforeDelete = 2000;
         const pauseBeforeType = 500;
@@ -459,24 +702,20 @@
             const currentTitle = titles[currentTitleIndex];
 
             if (!isDeleting) {
-                // Typing
                 typingText.textContent = currentTitle.substring(0, currentCharIndex);
                 currentCharIndex++;
 
                 if (currentCharIndex > currentTitle.length) {
-                    // Finished typing, pause then start deleting
                     isDeleting = true;
                     setTimeout(typeEffect, pauseBeforeDelete);
                     return;
                 }
                 setTimeout(typeEffect, typingSpeed);
             } else {
-                // Deleting
                 typingText.textContent = currentTitle.substring(0, currentCharIndex);
                 currentCharIndex--;
 
                 if (currentCharIndex === 0) {
-                    // Finished deleting, move to next title
                     isDeleting = false;
                     currentTitleIndex = (currentTitleIndex + 1) % titles.length;
                     setTimeout(typeEffect, pauseBeforeType);
@@ -486,7 +725,6 @@
             }
         }
 
-        // Start typing effect on page load
         window.addEventListener('load', () => {
             setTimeout(() => {
                 typeEffect();
@@ -509,7 +747,6 @@
             setTheme(currentTheme === 'dark' ? 'light' : 'dark');
         });
 
-        // Load saved theme
         const savedTheme = localStorage.getItem('theme') || 'light';
         setTheme(savedTheme);
 
@@ -521,7 +758,6 @@
                 btn.classList.add('active');
                 localStorage.setItem('lang', currentLang);
                 
-                // Reset typing animation with new language
                 currentTitleIndex = 0;
                 currentCharIndex = 0;
                 isDeleting = false;
@@ -530,37 +766,9 @@
             });
         });
 
-        // Load saved language
         const savedLang = localStorage.getItem('lang') || 'fr';
         currentLang = savedLang;
-        document.querySelector(`[data-lang="${savedLang}"]`).classList.add('active');
-
-        // Page Transition Effect
-        function handlePageTransition(event, url) {
-            event.preventDefault();
-            const transition = document.getElementById('pageTransition');
-            transition.classList.add('active');
-            
-            setTimeout(() => {
-                window.location.href = url;
-            }, 400);
-        }
-
-        // Hide nav on scroll down, show on scroll up
-        let lastScrollTop = 0;
-        const nav = document.getElementById('mainNav');
-
-        window.addEventListener('scroll', () => {
-            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-            
-            if (scrollTop > lastScrollTop && scrollTop > 100) {
-                nav.classList.add('hidden');
-            } else {
-                nav.classList.remove('hidden');
-            }
-            
-            lastScrollTop = scrollTop;
-        });
+        document.querySelector(`[data-lang="${savedLang}"]`)?.classList.add('active');
     </script>
 </body>
 </html>
