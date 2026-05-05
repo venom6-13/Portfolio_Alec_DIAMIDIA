@@ -12,59 +12,20 @@
             user-select:none; -webkit-font-smoothing:antialiased;
         }
 
-        /* ── AURORA WALLPAPER (macOS Ventura) ── */
+        /* ── AURORA WALLPAPER ── */
         .aurora { position:fixed; inset:0; z-index:0; background:#1a0533; overflow:hidden; }
         .blob { position:absolute; border-radius:50%; filter:blur(90px); opacity:0.75; }
-        .blob:nth-child(1) {
-            width:650px; height:650px; top:-150px; left:-150px;
-            background:radial-gradient(circle, #6e40c9 0%, transparent 70%);
-            animation:b1 20s ease-in-out infinite;
-        }
-        .blob:nth-child(2) {
-            width:550px; height:550px; top:10%; right:-100px;
-            background:radial-gradient(circle, #c84b97 0%, transparent 70%);
-            animation:b2 24s ease-in-out infinite;
-        }
-        .blob:nth-child(3) {
-            width:450px; height:450px; bottom:-80px; left:25%;
-            background:radial-gradient(circle, #f4845f 0%, transparent 70%);
-            animation:b3 18s ease-in-out infinite;
-        }
-        .blob:nth-child(4) {
-            width:380px; height:380px; bottom:5%; right:5%;
-            background:radial-gradient(circle, #4facfe 0%, transparent 70%);
-            animation:b4 22s ease-in-out infinite;
-        }
-        @keyframes b1 {
-            0%,100%{transform:translate(0,0) scale(1)}
-            25%{transform:translate(100px,70px) scale(1.1)}
-            50%{transform:translate(140px,-50px) scale(0.9)}
-            75%{transform:translate(-50px,90px) scale(1.05)}
-        }
-        @keyframes b2 {
-            0%,100%{transform:translate(0,0) scale(1)}
-            33%{transform:translate(-120px,90px) scale(1.12)}
-            66%{transform:translate(70px,-70px) scale(0.88)}
-        }
-        @keyframes b3 {
-            0%,100%{transform:translate(0,0) scale(1)}
-            50%{transform:translate(90px,-120px) scale(1.2)}
-        }
-        @keyframes b4 {
-            0%,100%{transform:translate(0,0) scale(1)}
-            40%{transform:translate(-90px,-70px) scale(1.1)}
-            80%{transform:translate(50px,50px) scale(0.9)}
-        }
+        .blob:nth-child(1) { width:650px; height:650px; top:-150px; left:-150px; background:radial-gradient(circle,#6e40c9 0%,transparent 70%); animation:b1 20s ease-in-out infinite; }
+        .blob:nth-child(2) { width:550px; height:550px; top:10%; right:-100px; background:radial-gradient(circle,#c84b97 0%,transparent 70%); animation:b2 24s ease-in-out infinite; }
+        .blob:nth-child(3) { width:450px; height:450px; bottom:-80px; left:25%; background:radial-gradient(circle,#f4845f 0%,transparent 70%); animation:b3 18s ease-in-out infinite; }
+        .blob:nth-child(4) { width:380px; height:380px; bottom:5%; right:5%; background:radial-gradient(circle,#4facfe 0%,transparent 70%); animation:b4 22s ease-in-out infinite; }
+        @keyframes b1 { 0%,100%{transform:translate(0,0) scale(1)} 25%{transform:translate(100px,70px) scale(1.1)} 50%{transform:translate(140px,-50px) scale(0.9)} 75%{transform:translate(-50px,90px) scale(1.05)} }
+        @keyframes b2 { 0%,100%{transform:translate(0,0) scale(1)} 33%{transform:translate(-120px,90px) scale(1.12)} 66%{transform:translate(70px,-70px) scale(0.88)} }
+        @keyframes b3 { 0%,100%{transform:translate(0,0) scale(1)} 50%{transform:translate(90px,-120px) scale(1.2)} }
+        @keyframes b4 { 0%,100%{transform:translate(0,0) scale(1)} 40%{transform:translate(-90px,-70px) scale(1.1)} 80%{transform:translate(50px,50px) scale(0.9)} }
 
         /* ── MENU BAR ── */
-        .menubar {
-            position:fixed; top:0; left:0; right:0; height:28px;
-            background:rgba(0,0,0,0.4); backdrop-filter:blur(24px);
-            z-index:2000; display:flex; align-items:center;
-            justify-content:space-between; padding:0 14px;
-            color:white; font-size:13px;
-            border-bottom:1px solid rgba(255,255,255,0.07);
-        }
+        .menubar { position:fixed; top:0; left:0; right:0; height:28px; background:rgba(0,0,0,0.4); backdrop-filter:blur(24px); z-index:2000; display:flex; align-items:center; justify-content:space-between; padding:0 14px; color:white; font-size:13px; border-bottom:1px solid rgba(255,255,255,0.07); }
         .mb-l { display:flex; align-items:center; gap:18px; }
         .mb-r { display:flex; align-items:center; gap:10px; }
         .mb-apple { font-size:17px; }
@@ -72,101 +33,66 @@
         .mb-dim { opacity:0.5; cursor:default; }
         .mb-time { font-weight:500; }
         .lang-sw { display:flex; background:rgba(255,255,255,0.12); border-radius:10px; padding:1px; }
-        .lang-btn {
-            background:none; border:none; color:rgba(255,255,255,0.6);
-            padding:2px 8px; border-radius:9px; font-size:11px;
-            cursor:pointer; font-family:inherit; transition:all 0.2s;
-        }
+        .lang-btn { background:none; border:none; color:rgba(255,255,255,0.6); padding:2px 8px; border-radius:9px; font-size:11px; cursor:pointer; font-family:inherit; transition:all 0.2s; }
         .lang-btn.active { background:rgba(255,255,255,0.22); color:white; }
 
         /* ── MISSION CONTROL ── */
-        .mc {
-            position:fixed; top:28px; left:0; right:0; bottom:80px; z-index:1;
-            display:flex; flex-direction:column; align-items:center; justify-content:center;
-            padding:20px; transition:opacity 0.4s, filter 0.4s;
-        }
+        .mc { position:fixed; top:28px; left:0; right:0; bottom:80px; z-index:1; display:flex; flex-direction:column; align-items:center; justify-content:center; padding:20px; transition:opacity 0.4s, filter 0.4s; }
         .mc.blurred { opacity:0; filter:blur(10px); pointer-events:none; }
-        .mc-label {
-            font-size:11px; font-weight:700; text-transform:uppercase;
-            letter-spacing:0.13em; color:rgba(255,255,255,0.35); margin-bottom:28px;
-        }
-        .mc-grid {
-            display:flex; flex-wrap:wrap; justify-content:center;
-            gap:16px; max-width:920px;
-        }
+        .mc-label { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.13em; color:rgba(255,255,255,0.35); margin-bottom:28px; }
+        .mc-grid { display:flex; flex-wrap:wrap; justify-content:center; gap:16px; max-width:920px; }
         .mc-hint { margin-top:22px; font-size:12px; color:rgba(255,255,255,0.28); }
 
         /* ── MINI WINDOWS ── */
-        .mc-win {
-            width:256px; height:168px;
-            background:rgba(255,255,255,0.06);
-            backdrop-filter:blur(20px);
-            border:1px solid rgba(255,255,255,0.11);
-            border-radius:14px; cursor:pointer;
-            overflow:hidden; display:flex; flex-direction:column;
-            transition:all 0.3s cubic-bezier(0.4,0,0.2,1);
-        }
-        .mc-win:hover {
-            transform:scale(1.05) translateY(-5px);
-            border-color:rgba(255,255,255,0.26);
-            box-shadow:0 22px 44px rgba(0,0,0,0.45);
-        }
+        .mc-win { width:256px; height:168px; background:rgba(255,255,255,0.06); backdrop-filter:blur(20px); border:1px solid rgba(255,255,255,0.11); border-radius:14px; cursor:pointer; overflow:hidden; display:flex; flex-direction:column; transition:all 0.3s cubic-bezier(0.4,0,0.2,1); }
+        .mc-win:hover { transform:scale(1.05) translateY(-5px); border-color:rgba(255,255,255,0.26); box-shadow:0 22px 44px rgba(0,0,0,0.45); }
         .mc-accent { height:3px; flex-shrink:0; }
-        .mc-titlebar {
-            height:26px; background:rgba(0,0,0,0.28);
-            display:flex; align-items:center; padding:0 9px; gap:5px; flex-shrink:0;
-        }
+        .mc-titlebar { height:26px; background:rgba(0,0,0,0.28); display:flex; align-items:center; padding:0 9px; gap:5px; flex-shrink:0; }
         .tl { width:10px; height:10px; border-radius:50%; }
         .tl.r{background:#ff5f57} .tl.y{background:#febc2e} .tl.g{background:#28c840}
-        .mc-wtitle {
-            font-size:11px; color:rgba(255,255,255,0.65); font-weight:500;
-            margin-left:5px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;
-        }
+        .mc-wtitle { font-size:11px; color:rgba(255,255,255,0.65); font-weight:500; margin-left:5px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
         .mc-body { flex:1; padding:10px 13px; display:flex; flex-direction:column; gap:6px; }
         .mc-ico { font-size:20px; }
         .mc-k1 { font-size:14px; font-weight:700; color:white; line-height:1.2; }
         .mc-k2 { font-size:10.5px; color:rgba(255,255,255,0.5); }
         .mc-tags { display:flex; flex-wrap:wrap; gap:4px; margin-top:auto; }
-        .mc-tag {
-            background:rgba(255,255,255,0.09); border:1px solid rgba(255,255,255,0.1);
-            padding:2px 6px; border-radius:20px; font-size:9.5px; color:rgba(255,255,255,0.55);
-        }
+        .mc-tag { background:rgba(255,255,255,0.09); border:1px solid rgba(255,255,255,0.1); padding:2px 6px; border-radius:20px; font-size:9.5px; color:rgba(255,255,255,0.55); }
 
         /* ── PROJECT OVERLAY ── */
-        .ov {
-            position:fixed; inset:0; z-index:1500;
-            display:none; flex-direction:column;
-            background:rgba(15,0,30,0.97);
-            backdrop-filter:blur(40px);
-        }
+        .ov { position:fixed; inset:0; z-index:1500; display:none; flex-direction:column; background:rgba(15,0,30,0.97); backdrop-filter:blur(40px); }
         .ov.open { display:flex; animation:ovIn 0.38s cubic-bezier(0.4,0,0.2,1); }
         @keyframes ovIn { from{opacity:0;transform:scale(0.96)} to{opacity:1;transform:scale(1)} }
 
-        .ov-bar {
-            height:46px; background:rgba(0,0,0,0.4);
-            border-bottom:1px solid rgba(255,255,255,0.07);
-            display:flex; align-items:center; padding:0 16px; flex-shrink:0; position:relative;
-        }
+        /* ── OVERLAY TITLE BAR ── */
+        .ov-bar { height:46px; background:rgba(0,0,0,0.4); border-bottom:1px solid rgba(255,255,255,0.07); display:flex; align-items:center; padding:0 16px; flex-shrink:0; position:relative; }
         .ov-traffic { display:flex; gap:7px; }
         .ovtl { width:12px; height:12px; border-radius:50%; cursor:pointer; transition:filter 0.15s; }
         .ovtl:hover { filter:brightness(0.75); }
         .ovtl.r{background:#ff5f57} .ovtl.y{background:#febc2e} .ovtl.g{background:#28c840}
-        .ov-bartitle {
-            position:absolute; left:50%; transform:translateX(-50%);
-            color:rgba(255,255,255,0.75); font-size:14px; font-weight:600;
-        }
-        .ov-back {
-            margin-left:auto; background:rgba(255,255,255,0.08);
-            border:1px solid rgba(255,255,255,0.14); color:rgba(255,255,255,0.7);
-            padding:5px 14px; border-radius:20px; font-size:12px;
-            cursor:pointer; font-family:inherit; transition:all 0.2s;
-        }
-        .ov-back:hover { background:rgba(255,255,255,0.16); color:white; }
+        .ov-bartitle { position:absolute; left:50%; transform:translateX(-50%); color:rgba(255,255,255,0.75); font-size:14px; font-weight:600; }
 
-        .ov-body {
-            flex:1; overflow-y:auto; padding:40px 64px;
-            max-width:880px; margin:0 auto; width:100%;
+        /* ── BOUTON RETOUR (haut) — plus visible ── */
+        .ov-back {
+            margin-left:auto;
+            background:rgba(255,255,255,0.15);
+            border:1px solid rgba(255,255,255,0.3);
+            color:white;
+            padding:7px 16px;
+            border-radius:20px;
+            font-size:13px;
+            font-weight:600;
+            cursor:pointer;
+            font-family:inherit;
+            transition:all 0.2s;
+            display:flex;
+            align-items:center;
+            gap:6px;
         }
+        .ov-back:hover { background:rgba(255,255,255,0.28); }
+        .ov-back-esc { opacity:0.45; font-size:11px; }
+
+        /* ── OVERLAY BODY ── */
+        .ov-body { flex:1; overflow-y:auto; padding:40px 64px 0; max-width:880px; margin:0 auto; width:100%; }
         .ov-body::-webkit-scrollbar { width:5px; }
         .ov-body::-webkit-scrollbar-thumb { background:rgba(255,255,255,0.14); border-radius:3px; }
 
@@ -174,86 +100,63 @@
         .ov-emoji { font-size:50px; }
         .ov-name { font-size:30px; font-weight:700; color:white; margin-bottom:4px; letter-spacing:-0.02em; }
         .ov-sub { font-size:14px; color:rgba(255,255,255,0.45); }
-
         .ov-tags { display:flex; flex-wrap:wrap; gap:7px; margin-bottom:26px; }
-        .ov-tag {
-            background:rgba(255,255,255,0.07); border:1px solid rgba(255,255,255,0.11);
-            padding:4px 12px; border-radius:20px; font-size:12px; color:rgba(255,255,255,0.6);
-        }
-
-        .ov-h {
-            font-size:11px; font-weight:700; text-transform:uppercase;
-            letter-spacing:0.1em; color:rgba(255,255,255,0.32); margin:22px 0 9px;
-        }
+        .ov-tag { background:rgba(255,255,255,0.07); border:1px solid rgba(255,255,255,0.11); padding:4px 12px; border-radius:20px; font-size:12px; color:rgba(255,255,255,0.6); }
+        .ov-h { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.1em; color:rgba(255,255,255,0.32); margin:22px 0 9px; }
         .ov-p { font-size:13.5px; color:rgba(255,255,255,0.68); line-height:1.75; }
         .ov-p strong { color:white; font-weight:600; }
-
         .ov-list { list-style:none; display:flex; flex-direction:column; gap:8px; }
-        .ov-list li {
-            font-size:13px; color:rgba(255,255,255,0.62);
-            padding-left:16px; position:relative; line-height:1.65;
-        }
-        .ov-list li::before {
-            content:'·'; position:absolute; left:3px;
-            font-size:22px; line-height:0.9; color:#bf5af2;
-        }
+        .ov-list li { font-size:13px; color:rgba(255,255,255,0.62); padding-left:16px; position:relative; line-height:1.65; }
+        .ov-list li::before { content:'·'; position:absolute; left:3px; font-size:22px; line-height:0.9; color:#bf5af2; }
         .ov-list li strong { color:white; }
-
-        .ov-metrics {
-            display:grid; grid-template-columns:repeat(auto-fit, minmax(130px,1fr));
-            gap:10px; margin-top:8px;
-        }
-        .ov-metric {
-            background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.09);
-            border-radius:12px; padding:14px; text-align:center;
-        }
+        .ov-metrics { display:grid; grid-template-columns:repeat(auto-fit, minmax(130px,1fr)); gap:10px; margin-top:8px; }
+        .ov-metric { background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.09); border-radius:12px; padding:14px; text-align:center; }
         .ov-mval { font-size:22px; font-weight:700; }
         .ov-mlbl { font-size:11px; color:rgba(255,255,255,0.42); margin-top:4px; line-height:1.3; }
-
-        .ov-btn {
-            display:inline-flex; align-items:center; gap:7px;
-            background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.15);
-            color:white; padding:9px 18px; border-radius:22px;
-            text-decoration:none; font-size:13px; font-weight:500;
-            margin-top:20px; margin-right:10px; transition:all 0.2s;
-        }
+        .ov-btn { display:inline-flex; align-items:center; gap:7px; background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.15); color:white; padding:9px 18px; border-radius:22px; text-decoration:none; font-size:13px; font-weight:500; margin-top:20px; margin-right:10px; transition:all 0.2s; }
         .ov-btn:hover { background:rgba(255,255,255,0.17); }
 
+        /* ── BOUTON RETOUR (bas) — bien visible en fin de scroll ── */
+        .ov-footer {
+            position:sticky;
+            bottom:0;
+            padding:20px 0 28px;
+            display:flex;
+            justify-content:center;
+            background:linear-gradient(transparent, rgba(15,0,30,0.98));
+            margin-top:24px;
+        }
+        .ov-footer-btn {
+            display:flex;
+            align-items:center;
+            gap:10px;
+            background:rgba(255,255,255,0.1);
+            border:1px solid rgba(255,255,255,0.22);
+            color:white;
+            padding:12px 32px;
+            border-radius:28px;
+            font-size:14px;
+            font-weight:600;
+            cursor:pointer;
+            font-family:inherit;
+            transition:all 0.2s;
+        }
+        .ov-footer-btn:hover { background:rgba(255,255,255,0.2); transform:translateY(-2px); box-shadow:0 8px 20px rgba(0,0,0,0.4); }
+
         /* ── DOCK ── */
-        .dock-wrap {
-            position:fixed; bottom:8px; left:50%;
-            transform:translateX(-50%); z-index:2000;
-        }
-        .dock {
-            display:flex; align-items:flex-end; gap:8px;
-            background:rgba(255,255,255,0.13);
-            backdrop-filter:blur(24px) saturate(180%);
-            border:1px solid rgba(255,255,255,0.19);
-            border-radius:18px; padding:8px 12px;
-            box-shadow:0 8px 32px rgba(0,0,0,0.5);
-        }
+        .dock-wrap { position:fixed; bottom:8px; left:50%; transform:translateX(-50%); z-index:2000; }
+        .dock { display:flex; align-items:flex-end; gap:8px; background:rgba(255,255,255,0.13); backdrop-filter:blur(24px) saturate(180%); border:1px solid rgba(255,255,255,0.19); border-radius:18px; padding:8px 12px; box-shadow:0 8px 32px rgba(0,0,0,0.5); }
         .di { display:flex; flex-direction:column; align-items:center; gap:3px; cursor:pointer; position:relative; }
-        .di-ico {
-            width:48px; height:48px; border-radius:12px;
-            display:flex; align-items:center; justify-content:center;
-            font-size:26px; box-shadow:0 2px 8px rgba(0,0,0,0.3);
-            transition:transform 0.2s cubic-bezier(0.4,0,0.2,1);
-        }
+        .di-ico { width:48px; height:48px; border-radius:12px; display:flex; align-items:center; justify-content:center; font-size:26px; box-shadow:0 2px 8px rgba(0,0,0,0.3); transition:transform 0.2s cubic-bezier(0.4,0,0.2,1); }
         .di:hover .di-ico { transform:translateY(-10px) scale(1.15); }
         .di-dot { width:4px; height:4px; background:rgba(255,255,255,0.5); border-radius:50%; }
-        .di-tip {
-            position:absolute; bottom:72px; left:50%; transform:translateX(-50%);
-            background:rgba(15,15,15,0.85); backdrop-filter:blur(10px);
-            color:white; padding:4px 10px; border-radius:7px;
-            font-size:12px; white-space:nowrap;
-            opacity:0; pointer-events:none; transition:opacity 0.18s;
-        }
+        .di-tip { position:absolute; bottom:72px; left:50%; transform:translateX(-50%); background:rgba(15,15,15,0.85); backdrop-filter:blur(10px); color:white; padding:4px 10px; border-radius:7px; font-size:12px; white-space:nowrap; opacity:0; pointer-events:none; transition:opacity 0.18s; }
         .di:hover .di-tip { opacity:1; }
         .dsep { width:1px; height:44px; background:rgba(255,255,255,0.18); align-self:center; margin:0 2px; }
 
         @media(max-width:768px) {
             .mc-win{width:220px;height:150px;}
-            .ov-body{padding:24px;}
+            .ov-body{padding:24px 24px 0;}
             .ov-name{font-size:22px;}
             .mb-dim{display:none;}
         }
@@ -325,11 +228,11 @@
             <div class="di-tip" data-i18n="d-pro">Projets Pro</div>
         </div>
         <div class="dsep"></div>
-        <div class="di" onclick="open('https://linkedin.com/in/alec-diamidia','_blank')">
+        <div class="di" onclick="window.open('https://linkedin.com/in/alec-diamidia','_blank')">
             <div class="di-ico" style="background:#0a66c2;">💼</div>
             <div class="di-tip">LinkedIn</div>
         </div>
-        <div class="di" onclick="open('https://github.com/venom6-13','_blank')">
+        <div class="di" onclick="window.open('https://github.com/venom6-13','_blank')">
             <div class="di-ico" style="background:#161b22;">⌨️</div>
             <div class="di-tip">GitHub</div>
         </div>
@@ -341,319 +244,32 @@
 </div>
 
 <script>
-/* ══ DATA ══ */
 const P = {
-    seo: {
-        icon:"🔍", color:"#0071e3",
-        tags:["Dust","SEMrush","ChatGPT","Perplexity","Webflow","Substack"],
-        github:null,
-        fr:{
-            wt:"Eugenia — SEO/GEO/AEO",
-            k1:"4 agents IA opérationnels",
-            k2:"Machine éditoriale en 3 jours",
-            title:"Eugenia School — Audit Visibilité & Stratégie Contenu Agentique",
-            sub:"Conseil stratégique + Implémentation technique",
-            ctx:"Eugenia School était quasiment <strong>inexistante en ligne</strong> malgré un positionnement fort et des partenaires solides (Grenoble EM, Microsoft, Mistral AI). En 2026, un lycéen demande à ChatGPT « quelle école IA choisir » — et Eugenia n'apparaissait nulle part, ni sur Google, ni dans les LLMs.",
-            mission:[
-                "<strong>Audit 3 surfaces simultanées</strong> : SEO (Google) · GEO (ChatGPT + Perplexity) · AEO (Featured Snippets) — cadre encore rare en 2026",
-                "<strong>Le paradoxe Aivancity</strong> : 954 mots-clés Google construits sur 5 ans → 0/6 citations LLMs. Dominer Google ne garantit plus l'existence dans l'IA",
-                "<strong>4 agents Dust déployés</strong> : Lundi Édito · Veille & Découverte · Coordinateur · Rédacteur (auto-évaluation 9 critères/15 pts, seuil 13/15)",
-                "<strong>Quick win 0€</strong> : page 'Bachelor IA hors Parcoursup' déjà en CMS mais non publiée → mise en ligne immédiate → Top 20 potentiel en 6 semaines",
-                "<strong>Livrables opérationnels</strong> : prompts, fiche Webflow, calendrier 7 semaines, recommandation newsletter Substack"
-            ],
-            rh:"Baseline → Projections 6 mois",
-            metrics:[
-                {v:"10→150",l:"Mots-clés positionnés"},
-                {v:"+1 500",l:"Trafic organique/mois"},
-                {v:"1→3/6",l:"Citations LLMs"},
-                {v:"2/sem",l:"Articles (vs 0)"},
-                {v:"2h/sem",l:"Effort humain requis"},
-                {v:"13/15",l:"Score qualité garanti"}
-            ],
-            lh:"Ce que ce projet démontre",
-            learned:"La solution livrée n'est pas un rapport — c'est une <strong>machine opérationnelle</strong> : agents configurés, prompts rédigés, fiche Webflow prête, calendrier daté. L'équipe peut déployer le lendemain de la restitution."
-        },
-        en:{
-            wt:"Eugenia — SEO/GEO/AEO",
-            k1:"4 operational AI agents",
-            k2:"Editorial machine in 3 days",
-            title:"Eugenia School — Visibility Audit & Agentic Content Strategy",
-            sub:"Strategic consulting + Technical implementation",
-            ctx:"Eugenia School was virtually <strong>non-existent online</strong> despite strong positioning and solid partners (Grenoble EM, Microsoft, Mistral AI). In 2026, a student asks ChatGPT 'which AI school should I choose' — and Eugenia appeared nowhere, neither on Google nor in LLMs.",
-            mission:[
-                "<strong>3-surface simultaneous audit</strong>: SEO (Google) · GEO (ChatGPT + Perplexity) · AEO (Featured Snippets) — still rare in 2026",
-                "<strong>The Aivancity paradox</strong>: 954 Google keywords built over 5 years → 0/6 LLM citations. Dominating Google no longer guarantees AI visibility",
-                "<strong>4 Dust agents deployed</strong>: Monday Editorial · Watch & Discovery · Coordinator · Writer (self-eval 9 criteria/15 pts, threshold 13/15)",
-                "<strong>€0 quick win</strong>: 'Bachelor AI outside Parcoursup' page already in CMS but unpublished → immediate go-live → Top 20 potential in 6 weeks",
-                "<strong>Operational deliverables</strong>: prompts, Webflow sheet, 7-week calendar, Substack newsletter recommendation"
-            ],
-            rh:"Baseline → 6-month Projections",
-            metrics:[
-                {v:"10→150",l:"Ranked keywords"},
-                {v:"+1,500",l:"Monthly organic traffic"},
-                {v:"1→3/6",l:"LLM citations"},
-                {v:"2/week",l:"Articles (vs 0)"},
-                {v:"2h/week",l:"Human effort required"},
-                {v:"13/15",l:"Guaranteed quality score"}
-            ],
-            lh:"What this project demonstrates",
-            learned:"The delivered solution isn't a report — it's an <strong>operational machine</strong>: configured agents, written prompts, ready Webflow sheet, dated calendar. The team can deploy the day after the presentation."
-        }
-    },
-
-    payfit:{
-        icon:"⚡", color:"#FF6B35",
-        tags:["Make.com","OpenAI GPT-4","Claude Sonnet","Google Sheets","Docker","Data for SEO"],
-        github:null,
-        fr:{
-            wt:"Hackathon PayFit 2026",
-            k1:"80% temps économisé",
-            k2:"14.3/15 qualité · Innovation Award",
-            title:"Hackathon PayFit 2026 — Intelligence Collective Content SEO",
-            sub:"Automatisation enterprise pour production de contenu RH/Paie",
-            ctx:"PayFit (10 000+ clients PME, leader SaaS RH/Paie) faisait face à un <strong>goulot d'étranglement critique</strong> : 2h par article expert, 1 rédacteur dédié, 5h/semaine de veille juridique. Résultat : scaling impossible face à une concurrence IA agressive.",
-            mission:[
-                "<strong>4 agents orchestrés</strong> : Info-Radar (veille URSSAF/Legifrance) · StrategicPlanner (scoring /13, anti-duplication) · SEO Writer (14+/15 garanti) · Quality Guardian (EEAT /100)",
-                "<strong>2 scénarios Make.com</strong> : Keyword Research (1 thématique → 10 mots-clés) + Question Generation (1 mot-clé → 10 questions business)",
-                "<strong>APIs réglementaires temps réel</strong> : URSSAF · Legifrance · DARES — knowledge base juridique enrichie automatiquement",
-                "<strong>Google Sheets Hub central</strong> : SOURCE · ANALYSIS · HISTORY · METRICS — orchestration pipeline complète",
-                "<strong>Export multi-format</strong> : HTML · DOCX · PDF → publication-ready en 2 minutes"
-            ],
-            rh:"Résultats concrets (48h hackathon)",
-            metrics:[
-                {v:"80%",l:"Temps économisé (2h→24min)"},
-                {v:"14.3/15",l:"Qualité articles moyenne"},
-                {v:"200K€",l:"Économies/an estimées"},
-                {v:"92%",l:"Automation end-to-end"},
-                {v:"0",l:"Erreurs juridiques (vs 15% manuel)"},
-                {v:"🏆",l:"Innovation Award PayFit"}
-            ],
-            lh:"Impact",
-            learned:"4 articles produits en 48h (vs 1 semaine workflow normal). 50% de la production à 15/15. 0 erreur compliance. <strong>Innovation Award</strong> décerné par PayFit — solution immédiatement déployable en production."
-        },
-        en:{
-            wt:"PayFit Hackathon 2026",
-            k1:"80% time saved",
-            k2:"14.3/15 quality · Innovation Award",
-            title:"PayFit Hackathon 2026 — Collective Intelligence Content SEO",
-            sub:"Enterprise automation for HR/Payroll content production",
-            ctx:"PayFit (10,000+ SME clients, French SaaS HR/Payroll leader) faced a <strong>critical bottleneck</strong>: 2h per expert article, 1 dedicated writer, 5h/week of legal monitoring. Result: impossible to scale against aggressive AI competition.",
-            mission:[
-                "<strong>4 orchestrated agents</strong>: Info-Radar (URSSAF/Legifrance watch) · StrategicPlanner (scoring /13, anti-duplication) · SEO Writer (14+/15 guaranteed) · Quality Guardian (EEAT /100)",
-                "<strong>2 Make.com scenarios</strong>: Keyword Research (1 theme → 10 keywords) + Question Generation (1 keyword → 10 business questions)",
-                "<strong>Real-time regulatory APIs</strong>: URSSAF · Legifrance · DARES — legal knowledge base auto-enriched",
-                "<strong>Central Google Sheets Hub</strong>: SOURCE · ANALYSIS · HISTORY · METRICS — full pipeline orchestration",
-                "<strong>Multi-format export</strong>: HTML · DOCX · PDF → publication-ready in 2 minutes"
-            ],
-            rh:"Concrete results (48h hackathon)",
-            metrics:[
-                {v:"80%",l:"Time saved (2h→24min)"},
-                {v:"14.3/15",l:"Average article quality"},
-                {v:"€200K",l:"Estimated annual savings"},
-                {v:"92%",l:"End-to-end automation"},
-                {v:"0",l:"Legal errors (vs 15% manual)"},
-                {v:"🏆",l:"PayFit Innovation Award"}
-            ],
-            lh:"Impact",
-            learned:"4 articles produced in 48h (vs 1 week normal workflow). 50% of production at 15/15. 0 compliance errors. <strong>Innovation Award</strong> granted by PayFit — immediately deployable in production."
-        }
-    },
-
-    marathon:{
-        icon:"🏃", color:"#30d158",
-        tags:["Python","requests","pandas","Google Sheets","GitHub"],
-        github:"https://github.com/venom6-13/scraping_marathonParis",
-        fr:{
-            wt:"Marathon Paris 2025",
-            k1:"50 001 runners analysés",
-            k2:"Reverse-engineering API non documentée",
-            title:"Marathon de Paris 2025 — Analyse data des 50 001 finishers",
-            sub:"Python · Pipeline de données complet · Google Sheets",
-            ctx:"Le site officiel (results.timeto.com) n'offre aucune API publique. En analysant les requêtes réseau via F12, nous avons identifié une <strong>API interne non documentée</strong> et construit un pipeline Python complet de bout en bout. Projet réalisé en binôme avec Matthieu Larboullet.",
-            mission:[
-                "<strong>Collecte</strong> : requête GET authentifiée avec simulation navigateur (cookies PHPSESSID + headers user-agent) — récupération de 50 001 entrées",
-                "<strong>Nettoyage</strong> : 9 champs utiles extraits parmi ~40 du JSON brut · renommage · 4 variables calculées",
-                "<strong>Enrichissement</strong> : search_continent() (code ISO → continent) · runner_cat() (catégorie FFA → sexe, tranche d'âge, étiquette combinée)",
-                "<strong>Export</strong> : JSON + CSV → import Google Sheets pour analyse et visualisation",
-                "<strong>8 graphiques</strong> sur 3 axes : démographie · performance · géographie"
-            ],
-            rh:"Insights extraits des données",
-            metrics:[
-                {v:"50 001",l:"Finishers analysés"},
-                {v:"72%",l:"Hommes (27,9% femmes = levier)"},
-                {v:"100+",l:"Nationalités représentées"},
-                {v:"5:28",l:"min/km (allure africaine)"},
-                {v:"71,9%",l:"Finishers français"},
-                {v:"1s/km",l:"Écart 18-34 vs 35-44 ans"}
-            ],
-            lh:"Ce que ce projet m'a appris",
-            learned:"<strong>Reverse-engineering d'API</strong> : identifier et exploiter une API interne non documentée. Structurer un pipeline en fonctions indépendantes et réutilisables. Penser analytiquement : formuler des hypothèses, les confronter aux données, tirer des conclusions business actionnables."
-        },
-        en:{
-            wt:"Paris Marathon 2025",
-            k1:"50,001 runners analyzed",
-            k2:"Undocumented API reverse-engineering",
-            title:"Paris Marathon 2025 — Data Analysis of 50,001 Finishers",
-            sub:"Python · Full data pipeline · Google Sheets",
-            ctx:"The official site (results.timeto.com) offers no public API. By analyzing network requests via F12, we identified an <strong>undocumented internal API</strong> and built a complete end-to-end Python pipeline. Project done in a pair with Matthieu Larboullet.",
-            mission:[
-                "<strong>Collection</strong>: authenticated GET request with browser simulation (PHPSESSID cookies + user-agent headers) — 50,001 entries retrieved",
-                "<strong>Cleaning</strong>: 9 useful fields extracted from ~40 in raw JSON · renaming · 4 calculated variables",
-                "<strong>Enrichment</strong>: search_continent() (ISO code → continent) · runner_cat() (FFA category → gender, age group, combined label)",
-                "<strong>Export</strong>: JSON + CSV → Google Sheets import for analysis and visualization",
-                "<strong>8 charts</strong> on 3 axes: demographics · performance · geography"
-            ],
-            rh:"Key insights from data",
-            metrics:[
-                {v:"50,001",l:"Finishers analyzed"},
-                {v:"72%",l:"Male (27.9% female = growth lever)"},
-                {v:"100+",l:"Nationalities represented"},
-                {v:"5:28",l:"min/km (African pace)"},
-                {v:"71.9%",l:"French finishers"},
-                {v:"1s/km",l:"Gap 18-34 vs 35-44 years"}
-            ],
-            lh:"What this project taught me",
-            learned:"<strong>API reverse-engineering</strong>: identifying and exploiting an undocumented internal API. Structuring a pipeline with independent, reusable functions. Analytical thinking: formulating hypotheses, confronting them with data, drawing actionable business conclusions."
-        }
-    },
-
-    thelook:{
-        icon:"📊", color:"#bf5af2",
-        tags:["BigQuery","SQL","Looker Studio","Google Cloud"],
-        github:"https://github.com/venom6-13/1_sql_thelook_ecommercet_audit",
-        fr:{
-            wt:"TheLook — SQL Audit",
-            k1:"6 insights actionnables",
-            k2:"14 mois · BigQuery Multi-CTE",
-            title:"TheLook E-Commerce — Profitability & Return Rate Audit",
-            sub:"BigQuery SQL · Looker Studio · Fashion Hoodies & Sweatshirts",
-            ctx:"Anomalie : malgré une croissance de <strong>+154% de CA</strong> et <strong>+163% de commandes</strong> en 14 mois, la rentabilité nette ne progresse pas. Certains segments brassent de l'air — fort volume, marge faible. Les retours érodent silencieusement le P&L.",
-            mission:[
-                "<strong>Architecture Multi-CTE</strong> : 1 CTE par dimension métier (financial_monthly · sessions_monthly · retention_monthly)",
-                "<strong>LEFT JOIN</strong> pour garantir l'exhaustivité — aucun article exclu même sans métadonnées",
-                "<strong>SAFE_DIVIDE</strong> pour la robustesse en production (NULL vs Division by zero)",
-                "<strong>Marge nette estimée</strong> : intègre les coûts logistiques retours (benchmark NRF 16.9%, Zalando 12-15%)",
-                "<strong>7 requêtes SQL distinctes</strong> : retours · genre · variabilité · canal Email jan. · focus Chine · marchés anti-retours"
-            ],
-            rh:"6 insights clés",
-            metrics:[
-                {v:"30%",l:"Return rate moyen (critique)"},
-                {v:"8 pts",l:"Marge femmes > hommes"},
-                {v:"42%",l:"CA concentré Chine (risque)"},
-                {v:"4.6%",l:"Record Brésil déc. 2025"},
-                {v:"~15%",l:"Return rate Japon (benchmark)"},
-                {v:"Jan ☠️",l:"Email : 100% rebond × 2 ans"}
-            ],
-            lh:"Recommandations phares",
-            learned:"Réallouer 30% budget acquisition vers les femmes (+1.6 pts marge). Suspendre les campagnes Email de janvier. Localiser les fiches Chine en mandarin. Monitoring mensuel seuil 35%. Investiguer le <strong>blueprint Brésil Q4</strong> (4.6% — record absolu du dataset)."
-        },
-        en:{
-            wt:"TheLook — SQL Audit",
-            k1:"6 actionable insights",
-            k2:"14 months · BigQuery Multi-CTE",
-            title:"TheLook E-Commerce — Profitability & Return Rate Audit",
-            sub:"BigQuery SQL · Looker Studio · Fashion Hoodies & Sweatshirts",
-            ctx:"Anomaly: despite <strong>+154% revenue growth</strong> and <strong>+163% orders</strong> over 14 months, net profitability isn't improving. Some segments generate high volume with low margin. Return rates silently erode the P&L.",
-            mission:[
-                "<strong>Multi-CTE architecture</strong>: 1 CTE per business dimension (financial_monthly · sessions_monthly · retention_monthly)",
-                "<strong>LEFT JOIN</strong> to guarantee completeness — no article excluded even without metadata",
-                "<strong>SAFE_DIVIDE</strong> for production robustness (NULL vs Division by zero)",
-                "<strong>Estimated net margin</strong>: includes reverse logistics costs (NRF 16.9% benchmark, Zalando 12-15%)",
-                "<strong>7 distinct SQL queries</strong>: returns · gender · variability · Jan Email channel · China focus · anti-return markets"
-            ],
-            rh:"6 key insights",
-            metrics:[
-                {v:"30%",l:"Average return rate (critical)"},
-                {v:"8 pts",l:"Women's margin > men's"},
-                {v:"42%",l:"Revenue concentrated in China (risk)"},
-                {v:"4.6%",l:"Brazil record Dec. 2025"},
-                {v:"~15%",l:"Japan return rate (benchmark)"},
-                {v:"Jan ☠️",l:"Email: 100% bounce × 2 years"}
-            ],
-            lh:"Key recommendations",
-            learned:"Reallocate 30% acquisition budget to women (+1.6 margin pts). Suspend January Email campaigns. Localize China pages in Mandarin. Monthly monitoring with 35% threshold. Investigate the <strong>Brazil Q4 blueprint</strong> (4.6% — dataset absolute record)."
-        }
-    },
-
-    mirakl:{
-        icon:"🏆", color:"#ff375f",
-        tags:["Next.js","GPT-4o","Supabase","Apify","Vercel","Better Contact"],
-        github:"https://github.com/CodeurFort/mirakl-prospector",
-        fr:{
-            wt:"Hackathon Mirakl",
-            k1:"1h15 → 2 min par lead",
-            k2:"×37 plus rapide · ×2400 ROI",
-            title:"Hackathon Mirakl — Mirakl Connect Prospector",
-            sub:"Application web de prospection intelligente · Déployée en 48h sur Vercel",
-            ctx:"Les BDRs de <strong>Mirakl Connect</strong> (700+ opérateurs : Carrefour, Leroy Merlin, Best Buy) passaient <strong>1h15 par lead</strong> en travail manuel. Ce temps n'était pas consacré à la vente. L'objectif : automatiser le pipeline BDR de bout en bout.",
-            mission:[
-                "<strong>UC2-A (By Seller)</strong> : URL → scraping auto → analyse catalogue → fit marketplace → séquence 3 emails (J0/J+5/J+12) en <strong>6 secondes</strong>",
-                "<strong>UC2-B (By Marketplace)</strong> : filtres multi-critères sur base Supabase → scoring propriétaire → liste leads priorisés",
-                "<strong>Grille de scoring 100 pts</strong> : Catégorie (28) · Géographie (22) · Prix (16) · Positionnement (14) · Saisonnalité (10) · Signaux marketplace (10)",
-                "<strong>Outreach personnalisé</strong> : méthode × angle × saisonnalité → GPT-4o adapte au profil du seller et à la culture marché",
-                "<strong>Déployé en production</strong> sur Vercel avec screenshots réels — pas des mockups"
-            ],
-            rh:"Impact business",
-            metrics:[
-                {v:"×37",l:"Plus rapide (1h15→2min)"},
-                {v:"-89%",l:"Coût par lead"},
-                {v:"6¢",l:"Coût pipeline complet/lead"},
-                {v:"+62 pts",l:"Temps vente libérés"},
-                {v:"6s",l:"Pipeline By Seller complet"},
-                {v:"×2400",l:"ROI estimé"}
-            ],
-            lh:"Mon rôle & ce que ça démontre",
-            learned:"Conception produit de bout en bout : problématique terrain → architecture pipeline → grille de scoring → stratégie outreach → présentation jury. <strong>Pensée produit</strong> et <strong>sens business</strong> : ROI calculé, impact quantifié, solution utilisable immédiatement."
-        },
-        en:{
-            wt:"Mirakl Hackathon",
-            k1:"1h15 → 2 min per lead",
-            k2:"×37 faster · ×2400 ROI",
-            title:"Mirakl Hackathon — Mirakl Connect Prospector",
-            sub:"Intelligent prospecting web app · Deployed in 48h on Vercel",
-            ctx:"<strong>Mirakl Connect</strong> BDRs (700+ operators: Carrefour, Leroy Merlin, Best Buy) spent <strong>1h15 per lead</strong> on manual work — time not spent selling. Objective: automate the full BDR pipeline.",
-            mission:[
-                "<strong>UC2-A (By Seller)</strong>: URL → auto scraping → catalog analysis → marketplace fit → 3-email sequence (D0/D+5/D+12) in <strong>6 seconds</strong>",
-                "<strong>UC2-B (By Marketplace)</strong>: multi-criteria filters on Supabase database → proprietary scoring → prioritized lead list",
-                "<strong>100-point scoring grid</strong>: Category (28) · Geography (22) · Price (16) · Positioning (14) · Seasonality (10) · Marketplace signals (10)",
-                "<strong>Personalized outreach</strong>: method × angle × seasonality → GPT-4o adapts to seller profile and market culture",
-                "<strong>Deployed in production</strong> on Vercel with real screenshots — not mockups"
-            ],
-            rh:"Business impact",
-            metrics:[
-                {v:"×37",l:"Faster (1h15→2min)"},
-                {v:"-89%",l:"Cost per lead"},
-                {v:"6¢",l:"Full pipeline cost/lead"},
-                {v:"+62 pts",l:"Sales time freed"},
-                {v:"6s",l:"Full By Seller pipeline"},
-                {v:"×2400",l:"Estimated ROI"}
-            ],
-            lh:"My role & what it demonstrates",
-            learned:"End-to-end product design: field problem → pipeline architecture → scoring grid → outreach strategy → jury presentation. <strong>Product thinking</strong> and <strong>business sense</strong>: calculated ROI, quantified impact, immediately usable solution."
-        }
-    }
+    seo:{icon:"🔍",color:"#0071e3",tags:["Dust","SEMrush","ChatGPT","Perplexity","Webflow","Substack"],github:null,fr:{wt:"Eugenia — SEO/GEO/AEO",k1:"4 agents IA opérationnels",k2:"Machine éditoriale en 3 jours",title:"Eugenia School — Audit Visibilité & Stratégie Contenu Agentique",sub:"Conseil stratégique + Implémentation technique",ctx:"Eugenia School était quasiment <strong>inexistante en ligne</strong> malgré un positionnement fort et des partenaires solides (Grenoble EM, Microsoft, Mistral AI). En 2026, un lycéen demande à ChatGPT « quelle école IA choisir » — et Eugenia n'apparaissait nulle part, ni sur Google, ni dans les LLMs.",mission:["<strong>Audit 3 surfaces simultanées</strong> : SEO (Google) · GEO (ChatGPT + Perplexity) · AEO (Featured Snippets) — cadre encore rare en 2026","<strong>Le paradoxe Aivancity</strong> : 954 mots-clés Google construits sur 5 ans → 0/6 citations LLMs. Dominer Google ne garantit plus l'existence dans l'IA","<strong>4 agents Dust déployés</strong> : Lundi Édito · Veille & Découverte · Coordinateur · Rédacteur (auto-évaluation 9 critères/15 pts, seuil 13/15)","<strong>Quick win 0€</strong> : page 'Bachelor IA hors Parcoursup' déjà en CMS mais non publiée → mise en ligne immédiate → Top 20 potentiel en 6 semaines","<strong>Livrables opérationnels</strong> : prompts, fiche Webflow, calendrier 7 semaines, recommandation newsletter Substack"],rh:"Baseline → Projections 6 mois",metrics:[{v:"10→150",l:"Mots-clés positionnés"},{v:"+1 500",l:"Trafic organique/mois"},{v:"1→3/6",l:"Citations LLMs"},{v:"2/sem",l:"Articles (vs 0)"},{v:"2h/sem",l:"Effort humain requis"},{v:"13/15",l:"Score qualité garanti"}],lh:"Ce que ce projet démontre",learned:"La solution livrée n'est pas un rapport — c'est une <strong>machine opérationnelle</strong> : agents configurés, prompts rédigés, fiche Webflow prête, calendrier daté. L'équipe peut déployer le lendemain de la restitution."},en:{wt:"Eugenia — SEO/GEO/AEO",k1:"4 operational AI agents",k2:"Editorial machine in 3 days",title:"Eugenia School — Visibility Audit & Agentic Content Strategy",sub:"Strategic consulting + Technical implementation",ctx:"Eugenia School was virtually <strong>non-existent online</strong> despite strong positioning and solid partners (Grenoble EM, Microsoft, Mistral AI). In 2026, a student asks ChatGPT 'which AI school should I choose' — and Eugenia appeared nowhere, neither on Google nor in LLMs.",mission:["<strong>3-surface simultaneous audit</strong>: SEO (Google) · GEO (ChatGPT + Perplexity) · AEO (Featured Snippets) — still rare in 2026","<strong>The Aivancity paradox</strong>: 954 Google keywords built over 5 years → 0/6 LLM citations. Dominating Google no longer guarantees AI visibility","<strong>4 Dust agents deployed</strong>: Monday Editorial · Watch & Discovery · Coordinator · Writer (self-eval 9 criteria/15 pts, threshold 13/15)","<strong>€0 quick win</strong>: 'Bachelor AI outside Parcoursup' page already in CMS but unpublished → immediate go-live → Top 20 potential in 6 weeks","<strong>Operational deliverables</strong>: prompts, Webflow sheet, 7-week calendar, Substack newsletter recommendation"],rh:"Baseline → 6-month Projections",metrics:[{v:"10→150",l:"Ranked keywords"},{v:"+1,500",l:"Monthly organic traffic"},{v:"1→3/6",l:"LLM citations"},{v:"2/week",l:"Articles (vs 0)"},{v:"2h/week",l:"Human effort required"},{v:"13/15",l:"Guaranteed quality score"}],lh:"What this project demonstrates",learned:"The delivered solution isn't a report — it's an <strong>operational machine</strong>: configured agents, written prompts, ready Webflow sheet, dated calendar. The team can deploy the day after the presentation."}},
+    payfit:{icon:"⚡",color:"#FF6B35",tags:["Make.com","OpenAI GPT-4","Claude Sonnet","Google Sheets","Docker","Data for SEO"],github:null,fr:{wt:"Hackathon PayFit 2026",k1:"80% temps économisé",k2:"14.3/15 qualité · Innovation Award",title:"Hackathon PayFit 2026 — Intelligence Collective Content SEO",sub:"Automatisation enterprise pour production de contenu RH/Paie",ctx:"PayFit (10 000+ clients PME, leader SaaS RH/Paie) faisait face à un <strong>goulot d'étranglement critique</strong> : 2h par article expert, 1 rédacteur dédié, 5h/semaine de veille juridique. Résultat : scaling impossible face à une concurrence IA agressive.",mission:["<strong>4 agents orchestrés</strong> : Info-Radar (veille URSSAF/Legifrance) · StrategicPlanner (scoring /13, anti-duplication) · SEO Writer (14+/15 garanti) · Quality Guardian (EEAT /100)","<strong>2 scénarios Make.com</strong> : Keyword Research (1 thématique → 10 mots-clés) + Question Generation (1 mot-clé → 10 questions business)","<strong>APIs réglementaires temps réel</strong> : URSSAF · Legifrance · DARES — knowledge base juridique enrichie automatiquement","<strong>Google Sheets Hub central</strong> : SOURCE · ANALYSIS · HISTORY · METRICS — orchestration pipeline complète","<strong>Export multi-format</strong> : HTML · DOCX · PDF → publication-ready en 2 minutes"],rh:"Résultats concrets (48h hackathon)",metrics:[{v:"80%",l:"Temps économisé (2h→24min)"},{v:"14.3/15",l:"Qualité articles moyenne"},{v:"200K€",l:"Économies/an estimées"},{v:"92%",l:"Automation end-to-end"},{v:"0",l:"Erreurs juridiques (vs 15% manuel)"},{v:"🏆",l:"Innovation Award PayFit"}],lh:"Impact",learned:"4 articles produits en 48h (vs 1 semaine workflow normal). 50% de la production à 15/15. 0 erreur compliance. <strong>Innovation Award</strong> décerné par PayFit — solution immédiatement déployable en production."},en:{wt:"PayFit Hackathon 2026",k1:"80% time saved",k2:"14.3/15 quality · Innovation Award",title:"PayFit Hackathon 2026 — Collective Intelligence Content SEO",sub:"Enterprise automation for HR/Payroll content production",ctx:"PayFit (10,000+ SME clients, French SaaS HR/Payroll leader) faced a <strong>critical bottleneck</strong>: 2h per expert article, 1 dedicated writer, 5h/week of legal monitoring. Result: impossible to scale against aggressive AI competition.",mission:["<strong>4 orchestrated agents</strong>: Info-Radar (URSSAF/Legifrance watch) · StrategicPlanner (scoring /13, anti-duplication) · SEO Writer (14+/15 guaranteed) · Quality Guardian (EEAT /100)","<strong>2 Make.com scenarios</strong>: Keyword Research (1 theme → 10 keywords) + Question Generation (1 keyword → 10 business questions)","<strong>Real-time regulatory APIs</strong>: URSSAF · Legifrance · DARES — legal knowledge base auto-enriched","<strong>Central Google Sheets Hub</strong>: SOURCE · ANALYSIS · HISTORY · METRICS — full pipeline orchestration","<strong>Multi-format export</strong>: HTML · DOCX · PDF → publication-ready in 2 minutes"],rh:"Concrete results (48h hackathon)",metrics:[{v:"80%",l:"Time saved (2h→24min)"},{v:"14.3/15",l:"Average article quality"},{v:"€200K",l:"Estimated annual savings"},{v:"92%",l:"End-to-end automation"},{v:"0",l:"Legal errors (vs 15% manual)"},{v:"🏆",l:"PayFit Innovation Award"}],lh:"Impact",learned:"4 articles produced in 48h (vs 1 week normal workflow). 50% of production at 15/15. 0 compliance errors. <strong>Innovation Award</strong> granted by PayFit — immediately deployable in production."}},
+    marathon:{icon:"🏃",color:"#30d158",tags:["Python","requests","pandas","Google Sheets","GitHub"],github:"https://github.com/venom6-13/scraping_marathonParis",fr:{wt:"Marathon Paris 2025",k1:"50 001 runners analysés",k2:"Reverse-engineering API non documentée",title:"Marathon de Paris 2025 — Analyse data des 50 001 finishers",sub:"Python · Pipeline de données complet · Google Sheets",ctx:"Le site officiel (results.timeto.com) n'offre aucune API publique. En analysant les requêtes réseau via F12, nous avons identifié une <strong>API interne non documentée</strong> et construit un pipeline Python complet de bout en bout. Projet réalisé en binôme avec Matthieu Larboullet.",mission:["<strong>Collecte</strong> : requête GET authentifiée avec simulation navigateur (cookies PHPSESSID + headers user-agent) — récupération de 50 001 entrées","<strong>Nettoyage</strong> : 9 champs utiles extraits parmi ~40 du JSON brut · renommage · 4 variables calculées","<strong>Enrichissement</strong> : search_continent() (code ISO → continent) · runner_cat() (catégorie FFA → sexe, tranche d'âge, étiquette combinée)","<strong>Export</strong> : JSON + CSV → import Google Sheets pour analyse et visualisation","<strong>8 graphiques</strong> sur 3 axes : démographie · performance · géographie"],rh:"Insights extraits des données",metrics:[{v:"50 001",l:"Finishers analysés"},{v:"72%",l:"Hommes (27,9% femmes = levier)"},{v:"100+",l:"Nationalités représentées"},{v:"5:28",l:"min/km (allure africaine)"},{v:"71,9%",l:"Finishers français"},{v:"1s/km",l:"Écart 18-34 vs 35-44 ans"}],lh:"Ce que ce projet m'a appris",learned:"<strong>Reverse-engineering d'API</strong> : identifier et exploiter une API interne non documentée. Structurer un pipeline en fonctions indépendantes et réutilisables. Penser analytiquement : formuler des hypothèses, les confronter aux données, tirer des conclusions business actionnables."},en:{wt:"Paris Marathon 2025",k1:"50,001 runners analyzed",k2:"Undocumented API reverse-engineering",title:"Paris Marathon 2025 — Data Analysis of 50,001 Finishers",sub:"Python · Full data pipeline · Google Sheets",ctx:"The official site (results.timeto.com) offers no public API. By analyzing network requests via F12, we identified an <strong>undocumented internal API</strong> and built a complete end-to-end Python pipeline. Project done in a pair with Matthieu Larboullet.",mission:["<strong>Collection</strong>: authenticated GET request with browser simulation (PHPSESSID cookies + user-agent headers) — 50,001 entries retrieved","<strong>Cleaning</strong>: 9 useful fields extracted from ~40 in raw JSON · renaming · 4 calculated variables","<strong>Enrichment</strong>: search_continent() (ISO code → continent) · runner_cat() (FFA category → gender, age group, combined label)","<strong>Export</strong>: JSON + CSV → Google Sheets import for analysis and visualization","<strong>8 charts</strong> on 3 axes: demographics · performance · geography"],rh:"Key insights from data",metrics:[{v:"50,001",l:"Finishers analyzed"},{v:"72%",l:"Male (27.9% female = growth lever)"},{v:"100+",l:"Nationalities represented"},{v:"5:28",l:"min/km (African pace)"},{v:"71.9%",l:"French finishers"},{v:"1s/km",l:"Gap 18-34 vs 35-44 years"}],lh:"What this project taught me",learned:"<strong>API reverse-engineering</strong>: identifying and exploiting an undocumented internal API. Structuring a pipeline with independent, reusable functions. Analytical thinking: formulating hypotheses, confronting them with data, drawing actionable business conclusions."}},
+    thelook:{icon:"📊",color:"#bf5af2",tags:["BigQuery","SQL","Looker Studio","Google Cloud"],github:"https://github.com/venom6-13/1_sql_thelook_ecommercet_audit",fr:{wt:"TheLook — SQL Audit",k1:"6 insights actionnables",k2:"14 mois · BigQuery Multi-CTE",title:"TheLook E-Commerce — Profitability & Return Rate Audit",sub:"BigQuery SQL · Looker Studio · Fashion Hoodies & Sweatshirts",ctx:"Anomalie : malgré une croissance de <strong>+154% de CA</strong> et <strong>+163% de commandes</strong> en 14 mois, la rentabilité nette ne progresse pas. Certains segments brassent de l'air — fort volume, marge faible. Les retours érodent silencieusement le P&L.",mission:["<strong>Architecture Multi-CTE</strong> : 1 CTE par dimension métier (financial_monthly · sessions_monthly · retention_monthly)","<strong>LEFT JOIN</strong> pour garantir l'exhaustivité — aucun article exclu même sans métadonnées","<strong>SAFE_DIVIDE</strong> pour la robustesse en production (NULL vs Division by zero)","<strong>Marge nette estimée</strong> : intègre les coûts logistiques retours (benchmark NRF 16.9%, Zalando 12-15%)","<strong>7 requêtes SQL distinctes</strong> : retours · genre · variabilité · canal Email jan. · focus Chine · marchés anti-retours"],rh:"6 insights clés",metrics:[{v:"30%",l:"Return rate moyen (critique)"},{v:"8 pts",l:"Marge femmes > hommes"},{v:"42%",l:"CA concentré Chine (risque)"},{v:"4.6%",l:"Record Brésil déc. 2025"},{v:"~15%",l:"Return rate Japon (benchmark)"},{v:"Jan ☠️",l:"Email : 100% rebond × 2 ans"}],lh:"Recommandations phares",learned:"Réallouer 30% budget acquisition vers les femmes (+1.6 pts marge). Suspendre les campagnes Email de janvier. Localiser les fiches Chine en mandarin. Monitoring mensuel seuil 35%. Investiguer le <strong>blueprint Brésil Q4</strong> (4.6% — record absolu du dataset)."},en:{wt:"TheLook — SQL Audit",k1:"6 actionable insights",k2:"14 months · BigQuery Multi-CTE",title:"TheLook E-Commerce — Profitability & Return Rate Audit",sub:"BigQuery SQL · Looker Studio · Fashion Hoodies & Sweatshirts",ctx:"Anomaly: despite <strong>+154% revenue growth</strong> and <strong>+163% orders</strong> over 14 months, net profitability isn't improving. Some segments generate high volume with low margin. Return rates silently erode the P&L.",mission:["<strong>Multi-CTE architecture</strong>: 1 CTE per business dimension (financial_monthly · sessions_monthly · retention_monthly)","<strong>LEFT JOIN</strong> to guarantee completeness — no article excluded even without metadata","<strong>SAFE_DIVIDE</strong> for production robustness (NULL vs Division by zero)","<strong>Estimated net margin</strong>: includes reverse logistics costs (NRF 16.9% benchmark, Zalando 12-15%)","<strong>7 distinct SQL queries</strong>: returns · gender · variability · Jan Email channel · China focus · anti-return markets"],rh:"6 key insights",metrics:[{v:"30%",l:"Average return rate (critical)"},{v:"8 pts",l:"Women's margin > men's"},{v:"42%",l:"Revenue concentrated in China (risk)"},{v:"4.6%",l:"Brazil record Dec. 2025"},{v:"~15%",l:"Japan return rate (benchmark)"},{v:"Jan ☠️",l:"Email: 100% bounce × 2 years"}],lh:"Key recommendations",learned:"Reallocate 30% acquisition budget to women (+1.6 margin pts). Suspend January Email campaigns. Localize China pages in Mandarin. Monthly monitoring with 35% threshold. Investigate the <strong>Brazil Q4 blueprint</strong> (4.6% — dataset absolute record)."}},
+    mirakl:{icon:"🏆",color:"#ff375f",tags:["Next.js","GPT-4o","Supabase","Apify","Vercel","Better Contact"],github:"https://github.com/CodeurFort/mirakl-prospector",fr:{wt:"Hackathon Mirakl",k1:"1h15 → 2 min par lead",k2:"×37 plus rapide · ×2400 ROI",title:"Hackathon Mirakl — Mirakl Connect Prospector",sub:"Application web de prospection intelligente · Déployée en 48h sur Vercel",ctx:"Les BDRs de <strong>Mirakl Connect</strong> (700+ opérateurs : Carrefour, Leroy Merlin, Best Buy) passaient <strong>1h15 par lead</strong> en travail manuel. Ce temps n'était pas consacré à la vente. L'objectif : automatiser le pipeline BDR de bout en bout.",mission:["<strong>UC2-A (By Seller)</strong> : URL → scraping auto → analyse catalogue → fit marketplace → séquence 3 emails (J0/J+5/J+12) en <strong>6 secondes</strong>","<strong>UC2-B (By Marketplace)</strong> : filtres multi-critères sur base Supabase → scoring propriétaire → liste leads priorisés","<strong>Grille de scoring 100 pts</strong> : Catégorie (28) · Géographie (22) · Prix (16) · Positionnement (14) · Saisonnalité (10) · Signaux marketplace (10)","<strong>Outreach personnalisé</strong> : méthode × angle × saisonnalité → GPT-4o adapte au profil du seller et à la culture marché","<strong>Déployé en production</strong> sur Vercel avec screenshots réels — pas des mockups"],rh:"Impact business",metrics:[{v:"×37",l:"Plus rapide (1h15→2min)"},{v:"-89%",l:"Coût par lead"},{v:"6¢",l:"Coût pipeline complet/lead"},{v:"+62 pts",l:"Temps vente libérés"},{v:"6s",l:"Pipeline By Seller complet"},{v:"×2400",l:"ROI estimé"}],lh:"Mon rôle & ce que ça démontre",learned:"Conception produit de bout en bout : problématique terrain → architecture pipeline → grille de scoring → stratégie outreach → présentation jury. <strong>Pensée produit</strong> et <strong>sens business</strong> : ROI calculé, impact quantifié, solution utilisable immédiatement."},en:{wt:"Mirakl Hackathon",k1:"1h15 → 2 min per lead",k2:"×37 faster · ×2400 ROI",title:"Mirakl Hackathon — Mirakl Connect Prospector",sub:"Intelligent prospecting web app · Deployed in 48h on Vercel",ctx:"<strong>Mirakl Connect</strong> BDRs (700+ operators: Carrefour, Leroy Merlin, Best Buy) spent <strong>1h15 per lead</strong> on manual work — time not spent selling. Objective: automate the full BDR pipeline.",mission:["<strong>UC2-A (By Seller)</strong>: URL → auto scraping → catalog analysis → marketplace fit → 3-email sequence (D0/D+5/D+12) in <strong>6 seconds</strong>","<strong>UC2-B (By Marketplace)</strong>: multi-criteria filters on Supabase database → proprietary scoring → prioritized lead list","<strong>100-point scoring grid</strong>: Category (28) · Geography (22) · Price (16) · Positioning (14) · Seasonality (10) · Marketplace signals (10)","<strong>Personalized outreach</strong>: method × angle × seasonality → GPT-4o adapts to seller profile and market culture","<strong>Deployed in production</strong> on Vercel with real screenshots — not mockups"],rh:"Business impact",metrics:[{v:"×37",l:"Faster (1h15→2min)"},{v:"-89%",l:"Cost per lead"},{v:"6¢",l:"Full pipeline cost/lead"},{v:"+62 pts",l:"Sales time freed"},{v:"6s",l:"Full By Seller pipeline"},{v:"×2400",l:"Estimated ROI"}],lh:"My role & what it demonstrates",learned:"End-to-end product design: field problem → pipeline architecture → scoring grid → outreach strategy → jury presentation. <strong>Product thinking</strong> and <strong>business sense</strong>: calculated ROI, quantified impact, immediately usable solution."}}
 };
 
 const ORDER = ['seo','payfit','marathon','thelook','mirakl'];
 let lang = localStorage.getItem('lang') || 'fr';
 let openId = null;
 
-/* ── Heure ── */
 function tick() {
     const n = new Date();
     document.getElementById('mbTime').textContent =
         `${String(n.getHours()).padStart(2,'0')}:${String(n.getMinutes()).padStart(2,'0')}`;
 }
-tick(); setInterval(tick,10000);
+tick(); setInterval(tick, 10000);
 
-/* ── Render grille ── */
 function renderGrid() {
     const g = document.getElementById('mcGrid');
     g.innerHTML = '';
     ORDER.forEach(id => {
         const p = P[id], d = p[lang];
         const w = document.createElement('div');
-        w.className = 'mc-win'; w.id = `mcw-${id}`;
+        w.className = 'mc-win';
         w.onclick = () => openProj(id);
         w.innerHTML = `
             <div class="mc-accent" style="background:${p.color}"></div>
@@ -671,38 +287,42 @@ function renderGrid() {
     });
 }
 
-/* ── Render overlays ── */
 function renderOverlays() {
     const c = document.getElementById('ovContainer');
     c.innerHTML = '';
     const L = lang;
-    const backLbl = L==='fr' ? '← Mission Control' : '← Mission Control';
-    const ctxLbl = L==='fr' ? 'Contexte' : 'Context';
-    const mLbl = L==='fr' ? 'Ce que j\'ai fait' : 'What I built';
-    const ghLbl = L==='fr' ? 'Voir sur GitHub' : 'View on GitHub';
+    const backLbl  = L==='fr' ? 'Mission Control' : 'Mission Control';
+    const escLbl   = L==='fr' ? 'Échap'           : 'Esc';
+    const ctxLbl   = L==='fr' ? 'Contexte'        : 'Context';
+    const mLbl     = L==='fr' ? "Ce que j'ai fait": 'What I built';
+    const ghLbl    = L==='fr' ? 'Voir sur GitHub'  : 'View on GitHub';
 
     ORDER.forEach(id => {
         const p = P[id], d = p[L];
         const ov = document.createElement('div');
         ov.className = 'ov'; ov.id = `ov-${id}`;
+
         const metrics = d.metrics.map(m=>`
             <div class="ov-metric">
                 <div class="ov-mval" style="color:${p.color}">${m.v}</div>
                 <div class="ov-mlbl">${m.l}</div>
             </div>`).join('');
-        const tags = p.tags.map(t=>`<span class="ov-tag">${t}</span>`).join('');
+        const tags    = p.tags.map(t=>`<span class="ov-tag">${t}</span>`).join('');
         const mission = d.mission.map(m=>`<li>${m}</li>`).join('');
-        const links = p.github ? `<a href="${p.github}" target="_blank" class="ov-btn">⌨️ ${ghLbl}</a>` : '';
+        const links   = p.github ? `<a href="${p.github}" target="_blank" class="ov-btn">⌨️ ${ghLbl}</a>` : '';
 
         ov.innerHTML = `
             <div class="ov-bar">
                 <div class="ov-traffic">
-                    <div class="ovtl r" onclick="closeProj()"></div>
+                    <div class="ovtl r" onclick="closeProj()" title="${L==='fr'?'Fermer':'Close'}"></div>
                     <div class="ovtl y"></div>
                     <div class="ovtl g"></div>
                 </div>
                 <span class="ov-bartitle">${d.wt}</span>
-                <button class="ov-back" onclick="closeProj()">${backLbl}</button>
+                <button class="ov-back" onclick="closeProj()">
+                    ← ${backLbl}
+                    <span class="ov-back-esc">${escLbl}</span>
+                </button>
             </div>
             <div class="ov-body">
                 <div class="ov-hero">
@@ -722,47 +342,50 @@ function renderOverlays() {
                 <div class="ov-h">${d.lh}</div>
                 <p class="ov-p">${d.learned}</p>
                 ${links}
+                <div class="ov-footer">
+                    <button class="ov-footer-btn" onclick="closeProj()">← ${backLbl}</button>
+                </div>
             </div>`;
         c.appendChild(ov);
     });
 }
 
-/* ── Open / Close ── */
 function openProj(id) {
     openId = id;
     document.getElementById('mc').classList.add('blurred');
     document.getElementById(`ov-${id}`).classList.add('open');
 }
+
 function closeProj() {
-    if(!openId) return;
+    if (!openId) return;
     document.getElementById(`ov-${openId}`).classList.remove('open');
     document.getElementById('mc').classList.remove('blurred');
     openId = null;
 }
-document.addEventListener('keydown', e => { if(e.key==='Escape') closeProj(); });
 
-/* ── Lang ── */
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeProj(); });
+
 const UI = {
     fr:{"mb-title":"Projets Pro","mc-label":"Mission Control — Projets Pro","mc-hint":"Cliquez sur un projet pour l'explorer","d-home":"Accueil","d-perso":"Projets Perso","d-pro":"Projets Pro"},
     en:{"mb-title":"Pro Projects","mc-label":"Mission Control — Pro Projects","mc-hint":"Click on a project to explore it","d-home":"Home","d-perso":"Personal Projects","d-pro":"Pro Projects"}
 };
+
 function setLang(l) {
-    lang = l; localStorage.setItem('lang',l);
+    lang = l; localStorage.setItem('lang', l);
     document.querySelectorAll('[data-i18n]').forEach(el => {
-        if(UI[l][el.dataset.i18n]) el.textContent = UI[l][el.dataset.i18n];
+        if (UI[l][el.dataset.i18n]) el.textContent = UI[l][el.dataset.i18n];
     });
     document.querySelectorAll('.lang-btn').forEach(b =>
-        b.classList.toggle('active', b.textContent.toLowerCase()===l)
+        b.classList.toggle('active', b.textContent.toLowerCase() === l)
     );
     const was = openId;
-    if(was) closeProj();
+    if (was) closeProj();
     renderGrid(); renderOverlays();
-    if(was) openProj(was);
+    if (was) openProj(was);
 }
 
 function go(url) { location.href = url; }
 
-/* ── Init ── */
 renderGrid();
 renderOverlays();
 setLang(lang);
