@@ -3,66 +3,658 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio Personnel - Alec DIAMIDIA</title>
-    <link rel="stylesheet" href="css/style.css">
+    <title>Projets Perso — Alec DIAMIDIA</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif;
+            width: 100vw; height: 100vh;
+            overflow: hidden;
+            user-select: none;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* ── WALLPAPER ── */
+        .wallpaper {
+            position: fixed; inset: 0; z-index: 0;
+            background: #1a3d1f; overflow: hidden;
+        }
+        .wallpaper svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+
+        /* ── MENU BAR ── */
+        .menubar {
+            position: fixed; top: 0; left: 0; right: 0;
+            height: 28px;
+            background: rgba(0,0,0,0.35);
+            backdrop-filter: blur(24px) saturate(180%);
+            z-index: 2000;
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 0 14px; color: white; font-size: 13px;
+        }
+        .mb-left { display: flex; align-items: center; gap: 18px; }
+        .mb-apple { font-size: 17px; cursor: default; }
+        .mb-item { opacity: 0.85; cursor: default; }
+        .mb-item.bold { font-weight: 600; }
+        .mb-item.dim { opacity: 0.55; }
+        .mb-right { display: flex; align-items: center; gap: 10px; }
+        .mb-time { font-weight: 500; font-size: 13px; }
+        .lang-sw {
+            display: flex; background: rgba(255,255,255,0.12);
+            border-radius: 10px; padding: 1px;
+        }
+        .lang-btn {
+            background: none; border: none; color: rgba(255,255,255,0.7);
+            padding: 2px 8px; border-radius: 9px; font-size: 11px;
+            cursor: pointer; font-family: inherit; transition: all 0.2s;
+        }
+        .lang-btn.active { background: rgba(255,255,255,0.2); color: white; }
+
+        /* ── DESKTOP ── */
+        .desktop {
+            position: fixed; top: 28px; left: 0; right: 0; bottom: 80px;
+            z-index: 1; padding: 16px;
+        }
+
+        /* ── FOLDER ICONS ── */
+        .desktop-icons {
+            position: absolute; top: 16px; right: 16px;
+            display: flex; flex-direction: column; gap: 16px;
+        }
+        .folder-icon {
+            display: flex; flex-direction: column; align-items: center;
+            gap: 5px; cursor: pointer; padding: 8px; border-radius: 8px;
+            width: 82px; transition: background 0.15s;
+        }
+        .folder-icon:hover { background: rgba(255,255,255,0.12); }
+        .folder-icon.selected { background: rgba(0,120,255,0.35); }
+        .folder-icon svg { width: 62px; height: 62px; }
+        .folder-label {
+            color: white; font-size: 11px; text-align: center;
+            text-shadow: 0 1px 4px rgba(0,0,0,0.9);
+            line-height: 1.3; max-width: 80px;
+        }
+
+        .desktop-hint {
+            position: absolute; bottom: 16px; left: 50%; transform: translateX(-50%);
+            color: rgba(255,255,255,0.45); font-size: 12px;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.6); pointer-events: none;
+            white-space: nowrap;
+        }
+
+        /* ── FINDER WINDOW ── */
+        .finder-window {
+            position: fixed;
+            width: min(780px, 92vw); height: min(520px, 80vh);
+            background: rgba(30,30,32,0.94);
+            backdrop-filter: blur(40px) saturate(180%);
+            border-radius: 12px;
+            box-shadow: 0 28px 60px rgba(0,0,0,0.65), 0 0 0 0.5px rgba(255,255,255,0.1);
+            display: none; flex-direction: column;
+            overflow: hidden;
+            top: 50%; left: 50%; transform: translate(-50%, -50%);
+            transition: none;
+        }
+        .finder-window.open { display: flex; }
+
+        /* Title bar */
+        .win-titlebar {
+            height: 40px; background: rgba(44,44,46,0.98);
+            display: flex; align-items: center; padding: 0 14px;
+            cursor: default; flex-shrink: 0; position: relative;
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+        }
+        .traffic { display: flex; gap: 7px; }
+        .tl {
+            width: 12px; height: 12px; border-radius: 50%; cursor: pointer;
+            transition: filter 0.15s; position: relative;
+        }
+        .tl:hover { filter: brightness(0.75); }
+        .tl.red { background: #ff5f57; }
+        .tl.yellow { background: #febc2e; }
+        .tl.green { background: #28c840; }
+        .win-title {
+            position: absolute; left: 50%; transform: translateX(-50%);
+            color: rgba(255,255,255,0.8); font-size: 13px; font-weight: 500;
+        }
+
+        /* Window body */
+        .win-body { display: flex; flex: 1; overflow: hidden; }
+
+        /* Sidebar */
+        .win-sidebar {
+            width: 175px; background: rgba(22,22,24,0.9);
+            border-right: 1px solid rgba(255,255,255,0.07);
+            padding: 14px 0; flex-shrink: 0; overflow-y: auto;
+        }
+        .sb-cat {
+            font-size: 10.5px; font-weight: 700; color: rgba(255,255,255,0.35);
+            text-transform: uppercase; letter-spacing: 0.07em;
+            padding: 0 12px; margin: 10px 0 4px;
+        }
+        .sb-item {
+            display: flex; align-items: center; gap: 7px;
+            padding: 5px 12px; color: rgba(255,255,255,0.7);
+            font-size: 12.5px; cursor: pointer;
+            border-radius: 6px; margin: 0 5px; transition: background 0.15s;
+        }
+        .sb-item:hover { background: rgba(255,255,255,0.07); }
+        .sb-item.active { background: rgba(0,120,255,0.28); color: white; }
+        .sb-sep { height: 1px; background: rgba(255,255,255,0.06); margin: 8px 0; }
+
+        /* Content */
+        .win-content {
+            flex: 1; overflow-y: auto; padding: 22px 26px;
+            color: white;
+        }
+        .win-content::-webkit-scrollbar { width: 5px; }
+        .win-content::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.15); border-radius: 3px; }
+
+        /* Project layout */
+        .proj-hero {
+            display: flex; align-items: center; gap: 14px; margin-bottom: 16px;
+        }
+        .proj-emoji { font-size: 44px; }
+        .proj-name { font-size: 21px; font-weight: 700; margin-bottom: 3px; }
+        .proj-sub { font-size: 13px; color: rgba(255,255,255,0.5); }
+        .proj-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 18px; }
+        .proj-tag {
+            background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.12);
+            padding: 3px 10px; border-radius: 20px;
+            font-size: 11px; color: rgba(255,255,255,0.65);
+        }
+        .proj-h {
+            font-size: 11px; font-weight: 700; text-transform: uppercase;
+            letter-spacing: 0.09em; color: rgba(255,255,255,0.38);
+            margin: 18px 0 8px;
+        }
+        .proj-p { font-size: 13px; color: rgba(255,255,255,0.7); line-height: 1.7; }
+        .proj-p strong { color: white; font-weight: 600; }
+
+        /* Pillars */
+        .pillars { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+        .pillar { display: flex; gap: 10px; }
+        .pillar-n {
+            width: 20px; height: 20px; background: rgba(0,120,255,0.45);
+            border-radius: 50%; display: flex; align-items: center;
+            justify-content: center; font-size: 10px; font-weight: 700;
+            flex-shrink: 0; margin-top: 2px;
+        }
+        .pillar-t { font-size: 13px; color: rgba(255,255,255,0.7); line-height: 1.65; }
+        .pillar-t strong { color: white; }
+
+        /* Agent grid */
+        .agent-grid {
+            display: grid; grid-template-columns: repeat(3, 1fr);
+            gap: 7px; margin: 10px 0;
+        }
+        .agent-card {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 9px; padding: 9px 10px;
+        }
+        .a-num { font-size: 10px; color: rgba(255,255,255,0.35); margin-bottom: 1px; }
+        .a-name { font-size: 12px; font-weight: 600; color: white; margin-bottom: 2px; }
+        .a-role { font-size: 10.5px; color: rgba(255,255,255,0.45); }
+
+        /* Link button */
+        .proj-link {
+            display: inline-flex; align-items: center; gap: 7px;
+            background: rgba(255,255,255,0.09); border: 1px solid rgba(255,255,255,0.15);
+            color: white; padding: 8px 16px; border-radius: 20px;
+            text-decoration: none; font-size: 12.5px; font-weight: 500;
+            margin-top: 14px; transition: all 0.2s;
+        }
+        .proj-link:hover { background: rgba(255,255,255,0.16); }
+
+        /* Status bar */
+        .win-status {
+            height: 22px; background: rgba(38,38,40,0.98);
+            border-top: 1px solid rgba(255,255,255,0.06);
+            display: flex; align-items: center; padding: 0 12px;
+            font-size: 11px; color: rgba(255,255,255,0.35); flex-shrink: 0;
+        }
+
+        /* ── DOCK ── */
+        .dock-wrap {
+            position: fixed; bottom: 8px; left: 50%;
+            transform: translateX(-50%); z-index: 2000;
+        }
+        .dock {
+            display: flex; align-items: flex-end; gap: 8px;
+            background: rgba(255,255,255,0.16);
+            backdrop-filter: blur(24px) saturate(180%);
+            border: 1px solid rgba(255,255,255,0.22);
+            border-radius: 18px; padding: 8px 12px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.45);
+        }
+        .di {
+            display: flex; flex-direction: column; align-items: center;
+            gap: 3px; cursor: pointer; position: relative;
+        }
+        .di-icon {
+            width: 48px; height: 48px; border-radius: 12px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 26px;
+            transition: transform 0.2s cubic-bezier(0.4,0,0.2,1);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+        }
+        .di:hover .di-icon { transform: translateY(-10px) scale(1.15); }
+        .di-dot { width: 4px; height: 4px; background: rgba(255,255,255,0.55); border-radius: 50%; }
+        .di-tip {
+            position: absolute; bottom: 72px; left: 50%; transform: translateX(-50%);
+            background: rgba(20,20,20,0.82); backdrop-filter: blur(10px);
+            color: white; padding: 4px 10px; border-radius: 7px;
+            font-size: 12px; white-space: nowrap;
+            opacity: 0; pointer-events: none; transition: opacity 0.18s;
+        }
+        .di:hover .di-tip { opacity: 1; }
+        .dock-sep { width: 1px; height: 44px; background: rgba(255,255,255,0.2); align-self: center; margin: 0 2px; }
+
+        @media (max-width: 600px) {
+            .win-sidebar { display: none; }
+            .agent-grid { grid-template-columns: repeat(2,1fr); }
+            .mb-item.dim { display: none; }
+        }
+    </style>
 </head>
 <body>
-    <nav>
-        <div class="nav-content">
-            <a href="index.html" class="nav-title">Alec DIAMIDIA</a>
-            <div class="nav-controls">
-                <button class="toggle-btn" id="themeToggle" aria-label="Toggle theme">
-                    <span id="themeIcon">🌙</span>
-                </button>
-                <div class="lang-switch">
-                    <button class="lang-btn active" data-lang="fr">FR</button>
-                    <button class="lang-btn" data-lang="en">EN</button>
-                </div>
-            </div>
+
+<!-- WALLPAPER macOS Sonoma -->
+<div class="wallpaper">
+    <svg viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+            <radialGradient id="g1" cx="25%" cy="75%">
+                <stop offset="0%" stop-color="#2d6e35"/>
+                <stop offset="100%" stop-color="#163b1c"/>
+            </radialGradient>
+            <radialGradient id="g2">
+                <stop offset="0%" stop-color="#f4845f" stop-opacity="0.95"/>
+                <stop offset="100%" stop-color="#e03e20" stop-opacity="0"/>
+            </radialGradient>
+            <radialGradient id="g3">
+                <stop offset="0%" stop-color="#c77dff" stop-opacity="0.85"/>
+                <stop offset="100%" stop-color="#480ca8" stop-opacity="0"/>
+            </radialGradient>
+            <radialGradient id="g4">
+                <stop offset="0%" stop-color="#90e0ef" stop-opacity="0.75"/>
+                <stop offset="100%" stop-color="#0077b6" stop-opacity="0"/>
+            </radialGradient>
+        </defs>
+        <rect width="1440" height="900" fill="url(#g1)"/>
+        <ellipse cx="480" cy="280" rx="680" ry="440" fill="url(#g2)" transform="rotate(-28 480 280)"/>
+        <ellipse cx="1080" cy="180" rx="520" ry="360" fill="url(#g3)" transform="rotate(12 1080 180)"/>
+        <ellipse cx="1320" cy="120" rx="380" ry="280" fill="url(#g4)" transform="rotate(8 1320 120)"/>
+    </svg>
+</div>
+
+<!-- MENU BAR -->
+<div class="menubar">
+    <div class="mb-left">
+        <span class="mb-apple">🍎</span>
+        <span class="mb-item bold">Projets Perso</span>
+        <span class="mb-item dim">Finder</span>
+        <span class="mb-item dim">Fichier</span>
+        <span class="mb-item dim">Présentation</span>
+        <span class="mb-item dim">Affichage</span>
+        <span class="mb-item dim">Aller</span>
+    </div>
+    <div class="mb-right">
+        <div class="lang-sw">
+            <button class="lang-btn active" onclick="setLang('fr')">FR</button>
+            <button class="lang-btn" onclick="setLang('en')">EN</button>
         </div>
-    </nav>
+        <span style="opacity:.6;font-size:14px;">🔋</span>
+        <span style="opacity:.6;font-size:14px;">📶</span>
+        <span class="mb-time" id="mbTime">--:--</span>
+    </div>
+</div>
 
-    <div class="content-page">
-        <div class="container">
-            <a href="index.html" class="back-button">
-                <span>←</span>
-                <span data-i18n="back">Retour</span>
-            </a>
+<!-- DESKTOP -->
+<div class="desktop" id="desktop">
 
-            <h1 class="content-title" data-i18n="portfolio-perso-h2">Portfolio Personnel</h1>
-            <p class="content-description" data-i18n="portfolio-perso-desc">Mes side projects et réalisations personnelles</p>
+    <div class="desktop-icons">
 
-            <div class="projects-grid">
-                <div class="project-card">
-                    <div class="project-icon">⚙️</div>
-                    <h3>Automation Stack</h3>
-                    <p>Mon setup personnel d'automatisations avec Make, N8N et Zapier.</p>
-                    <a href="#" class="project-link">Découvrir →</a>
-                </div>
-
-                <div class="project-card">
-                    <div class="project-icon">📱</div>
-                    <h3>CRM Personnel</h3>
-                    <p>Construction d'un CRM sur-mesure avec Notion et intégrations API.</p>
-                    <a href="#" class="project-link">Découvrir →</a>
-                </div>
-
-                <div class="project-card">
-                    <div class="project-icon">💡</div>
-                    <h3>RevOps Playbook</h3>
-                    <p>Documentation complète de mes process et best practices en RevOps.</p>
-                    <a href="#" class="project-link">Découvrir →</a>
-                </div>
-            </div>
+        <!-- Dossier 1 : Weekly Task Master -->
+        <div class="folder-icon" id="ico-weekly"
+             onclick="selectIcon('ico-weekly')"
+             ondblclick="openWin('weekly')">
+            <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+                <path d="M4 22 Q4 15 11 15 L25 15 L29 11 L53 11 Q60 11 60 18 L60 52 Q60 59 53 59 L11 59 Q4 59 4 52Z" fill="#1971c2" opacity="0.95"/>
+                <path d="M4 26 L60 26 L60 52 Q60 59 53 59 L11 59 Q4 59 4 52Z" fill="#339af0"/>
+                <rect x="18" y="31" width="28" height="22" rx="3" fill="white" opacity="0.92"/>
+                <rect x="18" y="31" width="28" height="7" rx="2" fill="#1971c2"/>
+                <rect x="21" y="41" width="5" height="4" rx="1" fill="#339af0" opacity="0.6"/>
+                <rect x="29" y="41" width="5" height="4" rx="1" fill="#339af0" opacity="0.6"/>
+                <rect x="37" y="41" width="5" height="4" rx="1" fill="#339af0" opacity="0.6"/>
+                <rect x="21" y="47" width="5" height="4" rx="1" fill="#339af0" opacity="0.4"/>
+                <rect x="29" y="47" width="5" height="4" rx="1" fill="#339af0" opacity="0.6"/>
+                <circle cx="25" cy="28" r="3" fill="white" opacity="0.9"/>
+                <circle cx="39" cy="28" r="3" fill="white" opacity="0.9"/>
+            </svg>
+            <span class="folder-label">Weekly Task Master</span>
         </div>
+
+        <!-- Dossier 2 : AI Agent Ecosystem -->
+        <div class="folder-icon" id="ico-ai"
+             onclick="selectIcon('ico-ai')"
+             ondblclick="openWin('ai')">
+            <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+                <path d="M4 22 Q4 15 11 15 L25 15 L29 11 L53 11 Q60 11 60 18 L60 52 Q60 59 53 59 L11 59 Q4 59 4 52Z" fill="#6741d9" opacity="0.95"/>
+                <path d="M4 26 L60 26 L60 52 Q60 59 53 59 L11 59 Q4 59 4 52Z" fill="#9775fa"/>
+                <rect x="20" y="32" width="24" height="20" rx="4" fill="white" opacity="0.92"/>
+                <circle cx="27" cy="39" r="3" fill="#6741d9"/>
+                <circle cx="37" cy="39" r="3" fill="#6741d9"/>
+                <rect x="27" y="45" width="10" height="3" rx="1.5" fill="#9775fa" opacity="0.7"/>
+                <rect x="30" y="29" width="4" height="4" rx="2" fill="white" opacity="0.9"/>
+                <rect x="14" y="36" width="5" height="8" rx="2.5" fill="white" opacity="0.75"/>
+                <rect x="45" y="36" width="5" height="8" rx="2.5" fill="white" opacity="0.75"/>
+            </svg>
+            <span class="folder-label">AI Agent Ecosystem</span>
+        </div>
+
     </div>
 
-    <footer>
-        <div class="footer-content">
-            <p>© 2026 Alec DIAMIDIA</p>
-        </div>
-    </footer>
+    <div class="desktop-hint" data-i18n="hint">Double-cliquez sur un dossier pour ouvrir le projet</div>
+</div>
 
-    <script src="js/main.js"></script>
+<!-- ══ FINDER : WEEKLY TASK MASTER ══ -->
+<div class="finder-window" id="win-weekly">
+    <div class="win-titlebar" id="tb-weekly">
+        <div class="traffic">
+            <div class="tl red" onclick="closeWin('weekly')" title="Fermer"></div>
+            <div class="tl yellow"></div>
+            <div class="tl green" onclick="toggleMax('weekly')"></div>
+        </div>
+        <span class="win-title">Weekly Task Master</span>
+    </div>
+    <div class="win-body">
+        <div class="win-sidebar">
+            <div class="sb-cat">Favoris</div>
+            <div class="sb-item active">📁 <span>Projets Perso</span></div>
+            <div class="sb-item" onclick="switchWin('weekly','ai')">📁 <span>AI Ecosystem</span></div>
+            <div class="sb-sep"></div>
+            <div class="sb-cat">Étiquettes</div>
+            <div class="sb-item">🟢 <span>Apps Script</span></div>
+            <div class="sb-item">🔵 <span>Automation</span></div>
+            <div class="sb-item">🟡 <span>Productivité</span></div>
+            <div class="sb-sep"></div>
+            <div class="sb-cat">Navigation</div>
+            <div class="sb-item" onclick="go('index.html')">🏠 <span data-i18n="nav-home">Accueil</span></div>
+            <div class="sb-item" onclick="go('cv.html')">📄 <span>CV</span></div>
+        </div>
+        <div class="win-content">
+            <div class="proj-hero">
+                <div class="proj-emoji">📅</div>
+                <div>
+                    <div class="proj-name">Weekly Task Master</div>
+                    <div class="proj-sub" data-i18n="wtm-sub">Automatisation de productivité personnelle — Google Workspace</div>
+                </div>
+            </div>
+            <div class="proj-tags">
+                <span class="proj-tag">Google Apps Script</span>
+                <span class="proj-tag">JavaScript ES6</span>
+                <span class="proj-tag">CalendarApp</span>
+                <span class="proj-tag">GmailApp</span>
+                <span class="proj-tag">HtmlService</span>
+                <span class="proj-tag">Web App</span>
+                <span class="proj-tag">Time-driven Triggers</span>
+            </div>
+            <div class="proj-h" data-i18n="h-context">Contexte</div>
+            <p class="proj-p" data-i18n="wtm-ctx">Planifier sa semaine manuellement est chronophage, et les apps de productivité créent trop de friction. L'idée : un outil <strong>entièrement intégré à Google Workspace</strong>, sans aucune dépendance externe.</p>
+            <div class="proj-h" data-i18n="h-pillars">Les 4 piliers automatisés</div>
+            <ul class="pillars">
+                <li class="pillar"><span class="pillar-n">1</span><div class="pillar-t"><strong data-i18n="wtm-p1t">Planification</strong> — <span data-i18n="wtm-p1">Formulaire HTML dynamique depuis un menu Google Sheets. Task Library personnalisable, sélection des tâches/jours/heures en quelques clics. Création automatique dans Google Agenda via CalendarApp.</span></div></li>
+                <li class="pillar"><span class="pillar-n">2</span><div class="pillar-t"><strong data-i18n="wtm-p2t">Vérification auto</strong> — <span data-i18n="wtm-p2">Trigger à 23h comparant les tâches planifiées aux événements réels. Marquage ✅ / ❌ dans Weekly Plan, archivage avec déduplication via Set().</span></div></li>
+                <li class="pillar"><span class="pillar-n">3</span><div class="pillar-t"><strong data-i18n="wtm-p3t">Email hebdo</strong> — <span data-i18n="wtm-p3">Dimanche 20h : taux de complétion, XP par catégorie (Sport ×1.5, Formation ×1.3...), rang atteint (Débutant → Élite), bouton de relance vers la Web App.</span></div></li>
+                <li class="pillar"><span class="pillar-n">4</span><div class="pillar-t"><strong data-i18n="wtm-p4t">Briefing matinal</strong> — <span data-i18n="wtm-p4">Email à 8h : tâches accomplies la veille, programme du jour, conseil motivant.</span></div></li>
+            </ul>
+            <div class="proj-h" data-i18n="h-learned">Ce que ça m'a appris</div>
+            <p class="proj-p" data-i18n="wtm-learned">Concevoir un système de <strong>bout en bout</strong>, gérer la communication front-end ↔ serveur sans framework, construire un email HTML compatible tous clients, et penser en termes d'<strong>architecture</strong> (responsabilité unique, source de vérité unique).</p>
+            <a href="https://github.com/venom6-13/weekly-task-master_appscript" target="_blank" class="proj-link">⌨️ <span data-i18n="see-gh">Voir sur GitHub</span></a>
+        </div>
+    </div>
+    <div class="win-status" data-i18n="wtm-status">Google Apps Script · JavaScript ES6 · Zero dépendances</div>
+</div>
+
+<!-- ══ FINDER : AI AGENT ECOSYSTEM ══ -->
+<div class="finder-window" id="win-ai">
+    <div class="win-titlebar" id="tb-ai">
+        <div class="traffic">
+            <div class="tl red" onclick="closeWin('ai')" title="Fermer"></div>
+            <div class="tl yellow"></div>
+            <div class="tl green" onclick="toggleMax('ai')"></div>
+        </div>
+        <span class="win-title">AI Agent Ecosystem — Dust</span>
+    </div>
+    <div class="win-body">
+        <div class="win-sidebar">
+            <div class="sb-cat">Favoris</div>
+            <div class="sb-item" onclick="switchWin('ai','weekly')">📁 <span>Weekly Task Master</span></div>
+            <div class="sb-item active">📁 <span>AI Ecosystem</span></div>
+            <div class="sb-sep"></div>
+            <div class="sb-cat">Étiquettes</div>
+            <div class="sb-item">🟣 <span>Prompt Eng.</span></div>
+            <div class="sb-item">🟠 <span>Dust</span></div>
+            <div class="sb-item">🔵 <span>Claude</span></div>
+            <div class="sb-sep"></div>
+            <div class="sb-cat">Navigation</div>
+            <div class="sb-item" onclick="go('index.html')">🏠 <span data-i18n="nav-home">Accueil</span></div>
+            <div class="sb-item" onclick="go('cv.html')">📄 <span>CV</span></div>
+        </div>
+        <div class="win-content">
+            <div class="proj-hero">
+                <div class="proj-emoji">🤖</div>
+                <div>
+                    <div class="proj-name">AI Agent Ecosystem</div>
+                    <div class="proj-sub" data-i18n="ai-sub">9 agents IA spécialisés — Dust × Claude (Anthropic)</div>
+                </div>
+            </div>
+            <div class="proj-tags">
+                <span class="proj-tag">Prompt Engineering</span>
+                <span class="proj-tag">Dust</span>
+                <span class="proj-tag">Claude (Anthropic)</span>
+                <span class="proj-tag">Chain-of-thought</span>
+                <span class="proj-tag">XML Structuring</span>
+                <span class="proj-tag">System Thinking</span>
+                <span class="proj-tag">AI Product Design</span>
+            </div>
+            <div class="proj-h" data-i18n="h-context">Contexte</div>
+            <p class="proj-p" data-i18n="ai-ctx">Les outils IA généralistes produisent des résultats superficiels. Ce projet part du principe inverse : <strong>la spécialisation produit de la profondeur</strong>. Un agent = une expertise = un livrable. Inspiré du principe SOLID en développement logiciel.</p>
+            <div class="proj-h" data-i18n="h-agents">Les 9 agents spécialisés</div>
+            <div class="agent-grid">
+                <div class="agent-card"><div class="a-num">01</div><div class="a-name">🎯 ProjectMaster</div><div class="a-role">Cadrage & structuration</div></div>
+                <div class="agent-card"><div class="a-num">02</div><div class="a-name">🔍 Benchmark</div><div class="a-role">Analyse concurrentielle</div></div>
+                <div class="agent-card"><div class="a-num">03</div><div class="a-name">💻 CTO Tech</div><div class="a-role">Stack & architecture</div></div>
+                <div class="agent-card"><div class="a-num">04</div><div class="a-name">🎨 ProductCraft</div><div class="a-role">UX/UI & MVP</div></div>
+                <div class="agent-card"><div class="a-num">05</div><div class="a-name">💰 FinanceMaster</div><div class="a-role">Budget & ROI</div></div>
+                <div class="agent-card"><div class="a-num">06</div><div class="a-name">📣 MarketingMaster</div><div class="a-role">Go-to-market</div></div>
+                <div class="agent-card"><div class="a-num">07</div><div class="a-name">📅 RoadmapManager</div><div class="a-role">Planning & sprints</div></div>
+                <div class="agent-card"><div class="a-num">08</div><div class="a-name">📒 NotionMaster</div><div class="a-role">Workspaces Notion</div></div>
+                <div class="agent-card"><div class="a-num">09</div><div class="a-name">🧠 StrategyMaster CEO</div><div class="a-role">Vision macro & arbitrage</div></div>
+            </div>
+            <div class="proj-h" data-i18n="h-results">Résultats — Cas test CoachConnect</div>
+            <p class="proj-p" data-i18n="ai-results">En <strong>moins de 3 heures</strong> : brief SMART, analyse 4 concurrents + gap identifié, stack technique avec coûts, 5 wireframes, budget 3 scénarios + runway 18 mois, stratégie marketing 0€, roadmap 12 semaines, workspace Notion complet, synthèse go/no-go.</p>
+            <a href="https://dust.tt" target="_blank" class="proj-link">✨ <span data-i18n="see-dust">Voir sur Dust</span></a>
+        </div>
+    </div>
+    <div class="win-status" data-i18n="ai-status">9 agents · Dust × Claude (Anthropic) · Prompt Engineering avancé</div>
+</div>
+
+<!-- ── DOCK ── -->
+<div class="dock-wrap">
+    <div class="dock">
+        <div class="di" onclick="go('index.html')">
+            <div class="di-icon" style="background:linear-gradient(145deg,#667eea,#764ba2);">🏠</div>
+            <div class="di-dot"></div>
+            <div class="di-tip" data-i18n="nav-home">Accueil</div>
+        </div>
+        <div class="di" onclick="go('cv.html')">
+            <div class="di-icon" style="background:linear-gradient(145deg,#f093fb,#f5576c);">📄</div>
+            <div class="di-dot"></div>
+            <div class="di-tip">CV</div>
+        </div>
+        <div class="dock-sep"></div>
+        <div class="di" onclick="openWin('weekly'); selectIcon('ico-weekly')">
+            <div class="di-icon" style="background:linear-gradient(145deg,#4facfe,#1971c2);">📅</div>
+            <div class="di-dot"></div>
+            <div class="di-tip">Weekly Task Master</div>
+        </div>
+        <div class="di" onclick="openWin('ai'); selectIcon('ico-ai')">
+            <div class="di-icon" style="background:linear-gradient(145deg,#9775fa,#6741d9);">🤖</div>
+            <div class="di-dot"></div>
+            <div class="di-tip">AI Agent Ecosystem</div>
+        </div>
+        <div class="dock-sep"></div>
+        <div class="di" onclick="window.open('https://linkedin.com/in/alec-diamidia','_blank')">
+            <div class="di-icon" style="background:#0a66c2;">💼</div>
+            <div class="di-tip">LinkedIn</div>
+        </div>
+        <div class="di" onclick="window.open('https://github.com/venom6-13','_blank')">
+            <div class="di-icon" style="background:#161b22;">⌨️</div>
+            <div class="di-tip">GitHub</div>
+        </div>
+        <div class="di" onclick="location.href='mailto:alecrudydiami@gmail.com'">
+            <div class="di-icon" style="background:linear-gradient(145deg,#4facfe,#00f2fe);">📧</div>
+            <div class="di-tip">Mail</div>
+        </div>
+    </div>
+</div>
+
+<script>
+// ── Heure ──
+function tick() {
+    const n = new Date();
+    document.getElementById('mbTime').textContent =
+        `${String(n.getHours()).padStart(2,'0')}:${String(n.getMinutes()).padStart(2,'0')}`;
+}
+tick(); setInterval(tick, 10000);
+
+// ── Fenêtres ──
+let z = 600;
+const maxed = {};
+
+function openWin(id) {
+    const w = document.getElementById(`win-${id}`);
+    w.classList.add('open');
+    w.style.zIndex = ++z;
+    makeDraggable(w, document.getElementById(`tb-${id}`));
+}
+
+function closeWin(id) {
+    document.getElementById(`win-${id}`).classList.remove('open');
+    document.querySelectorAll('.folder-icon').forEach(i => i.classList.remove('selected'));
+}
+
+function toggleMax(id) {
+    const w = document.getElementById(`win-${id}`);
+    if (!maxed[id]) {
+        w.style.cssText += `;width:92vw;height:82vh;top:36px;left:4vw;transform:none;border-radius:10px;`;
+        maxed[id] = true;
+    } else {
+        w.style.width = ''; w.style.height = ''; w.style.top = '50%';
+        w.style.left = '50%'; w.style.transform = 'translate(-50%,-50%)';
+        w.style.borderRadius = '';
+        maxed[id] = false;
+    }
+}
+
+function switchWin(from, to) { closeWin(from); openWin(to); selectIcon(`ico-${to}`); }
+
+// ── Drag ──
+function makeDraggable(win, handle) {
+    let drag = false, ox, oy, ol, ot;
+    handle.addEventListener('mousedown', e => {
+        if (e.target.classList.contains('tl')) return;
+        drag = true;
+        const r = win.getBoundingClientRect();
+        ox = e.clientX; oy = e.clientY; ol = r.left; ot = r.top;
+        win.style.transform = 'none'; win.style.left = ol + 'px'; win.style.top = ot + 'px';
+        win.style.zIndex = ++z;
+    });
+    document.addEventListener('mousemove', e => {
+        if (!drag) return;
+        win.style.left = (ol + e.clientX - ox) + 'px';
+        win.style.top = (ot + e.clientY - oy) + 'px';
+    });
+    document.addEventListener('mouseup', () => drag = false);
+}
+
+// ── Icons ──
+function selectIcon(id) {
+    document.querySelectorAll('.folder-icon').forEach(i => i.classList.remove('selected'));
+    document.getElementById(id)?.classList.add('selected');
+}
+document.getElementById('desktop').addEventListener('click', e => {
+    if (e.target === document.getElementById('desktop') ||
+        e.target.tagName === 'svg' || e.target.tagName === 'rect') {
+        document.querySelectorAll('.folder-icon').forEach(i => i.classList.remove('selected'));
+    }
+});
+
+// ── Navigation ──
+function go(url) { window.location.href = url; }
+
+// ── Lang ──
+const T = {
+    fr: {
+        "hint": "Double-cliquez sur un dossier pour ouvrir le projet",
+        "nav-home": "Accueil",
+        "wtm-sub": "Automatisation de productivité personnelle — Google Workspace",
+        "h-context": "Contexte", "h-pillars": "Les 4 piliers automatisés",
+        "wtm-ctx": "Planifier sa semaine est chronophage. L'idée : un outil entièrement intégré à Google Workspace, sans aucune dépendance externe.",
+        "wtm-p1t": "Planification", "wtm-p1": "Formulaire HTML depuis Google Sheets. Task Library personnalisable, sélection en quelques clics. Création automatique dans Google Agenda.",
+        "wtm-p2t": "Vérification auto", "wtm-p2": "Trigger à 23h comparant tâches planifiées vs événements réels. Marquage ✅/❌ + archivage avec déduplication.",
+        "wtm-p3t": "Email hebdo", "wtm-p3": "Dimanche 20h : taux de complétion, XP par catégorie, rang atteint, bouton de relance vers la Web App.",
+        "wtm-p4t": "Briefing matinal", "wtm-p4": "Email à 8h : tâches accomplies la veille, programme du jour, conseil motivant.",
+        "h-learned": "Ce que ça m'a appris",
+        "wtm-learned": "Concevoir un système de bout en bout, gérer la communication front-end ↔ serveur sans framework, construire un email HTML cross-client, penser en termes d'architecture.",
+        "see-gh": "Voir sur GitHub",
+        "wtm-status": "Google Apps Script · JavaScript ES6 · Zero dépendances",
+        "ai-sub": "9 agents IA spécialisés — Dust × Claude (Anthropic)",
+        "h-agents": "Les 9 agents spécialisés",
+        "ai-ctx": "Les outils IA généralistes produisent des résultats superficiels. Principe inverse : la spécialisation produit de la profondeur. Un agent = une expertise = un livrable.",
+        "h-results": "Résultats — Cas test CoachConnect",
+        "ai-results": "En moins de 3 heures : brief SMART, analyse concurrents, stack technique, wireframes, budget 3 scénarios + runway 18 mois, stratégie marketing 0€, roadmap 12 semaines, workspace Notion, go/no-go.",
+        "see-dust": "Voir sur Dust",
+        "ai-status": "9 agents · Dust × Claude (Anthropic) · Prompt Engineering avancé"
+    },
+    en: {
+        "hint": "Double-click a folder to open the project",
+        "nav-home": "Home",
+        "wtm-sub": "Personal productivity automation — Google Workspace",
+        "h-context": "Context", "h-pillars": "The 4 automated pillars",
+        "wtm-ctx": "Planning your week manually is time-consuming. The idea: a tool fully integrated into Google Workspace, with zero external dependencies.",
+        "wtm-p1t": "Planning", "wtm-p1": "HTML form from Google Sheets. Customizable Task Library, task/day/hour selection in a few clicks. Auto-creation in Google Calendar.",
+        "wtm-p2t": "Auto-verification", "wtm-p2": "11pm trigger comparing planned tasks vs real events. ✅/❌ marking + archiving with deduplication.",
+        "wtm-p3t": "Weekly email", "wtm-p3": "Sunday 8pm: completion rate, XP by category, rank reached, re-launch button to the Web App.",
+        "wtm-p4t": "Morning briefing", "wtm-p4": "8am email: yesterday's achievements, today's schedule, motivational tip.",
+        "h-learned": "What this project taught me",
+        "wtm-learned": "Designing an end-to-end system, handling front-end ↔ server communication without a framework, building cross-client HTML emails, thinking in terms of architecture.",
+        "see-gh": "View on GitHub",
+        "wtm-status": "Google Apps Script · JavaScript ES6 · Zero dependencies",
+        "ai-sub": "9 specialized AI agents — Dust × Claude (Anthropic)",
+        "h-agents": "The 9 specialized agents",
+        "ai-ctx": "Generalist AI tools produce shallow results. Opposite principle: specialization produces depth. One agent = one expertise = one deliverable.",
+        "h-results": "Results — CoachConnect test case",
+        "ai-results": "In under 3 hours: SMART brief, competitor analysis, tech stack, wireframes, 3-scenario budget + 18-month runway, €0 marketing strategy, 12-week roadmap, Notion workspace, go/no-go.",
+        "see-dust": "View on Dust",
+        "ai-status": "9 agents · Dust × Claude (Anthropic) · Advanced Prompt Engineering"
+    }
+};
+
+let lang = localStorage.getItem('lang') || 'fr';
+function setLang(l) {
+    lang = l;
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+        if (T[l][el.dataset.i18n]) el.textContent = T[l][el.dataset.i18n];
+    });
+    document.querySelectorAll('.lang-btn').forEach(b =>
+        b.classList.toggle('active', b.textContent.toLowerCase() === l)
+    );
+    localStorage.setItem('lang', l);
+}
+setLang(lang);
+</script>
 </body>
 </html>
