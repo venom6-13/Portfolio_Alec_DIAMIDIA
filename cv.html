@@ -3,1124 +3,936 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CV - Alec DIAMIDIA</title>
+    <title>CV — Alec DIAMIDIA</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         :root {
-            --bg-primary: #ffffff;
-            --text-primary: #1d1d1f;
-            --text-secondary: #86868b;
+            --bg: #ffffff;
+            --bg2: #f5f5f7;
+            --text: #1d1d1f;
+            --muted: #86868b;
             --accent: #0071e3;
+            --blue: #007AFF;
+            --green: #30d158;
             --border: #d2d2d7;
-            --card-bg: #f5f5f7;
-            --apple-blue: #007AFF;
-            --timeline-line: #d2d2d7;
+            --card: #f5f5f7;
         }
 
         [data-theme="dark"] {
-            --bg-primary: #000000;
-            --text-primary: #f5f5f7;
-            --text-secondary: #86868b;
+            --bg: #000;
+            --bg2: #111;
+            --text: #f5f5f7;
+            --muted: #86868b;
             --accent: #2997ff;
-            --border: #424245;
-            --card-bg: #1d1d1f;
-            --apple-blue: #0A84FF;
-            --timeline-line: #424245;
+            --blue: #0A84FF;
+            --green: #30d158;
+            --border: #3a3a3c;
+            --card: #1c1c1e;
         }
 
         body {
             font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Helvetica Neue", Arial, sans-serif;
-            background: var(--bg-primary);
-            color: var(--text-primary);
+            background: var(--bg);
+            color: var(--text);
             -webkit-font-smoothing: antialiased;
-            transition: background-color 0.4s ease, color 0.4s ease;
+            transition: background 0.4s, color 0.4s;
         }
 
-        /* ── NAV ── */
+        /* NAV */
         nav {
-            position: fixed;
-            top: 0; left: 0; right: 0;
-            background: rgba(255,255,255,0.72);
-            backdrop-filter: saturate(180%) blur(20px);
+            position: fixed; top: 0; left: 0; right: 0;
+            background: rgba(255,255,255,0.8);
+            backdrop-filter: blur(20px) saturate(180%);
             border-bottom: 1px solid var(--border);
-            z-index: 9999;
+            z-index: 999;
             transition: background 0.3s;
         }
+        [data-theme="dark"] nav { background: rgba(0,0,0,0.85); }
 
-        [data-theme="dark"] nav {
-            background: rgba(0,0,0,0.8);
+        .nav-inner {
+            max-width: 1040px; margin: 0 auto;
+            padding: 0 24px; height: 48px;
+            display: flex; align-items: center; justify-content: space-between;
         }
-
-        .nav-content {
-            max-width: 980px;
-            margin: 0 auto;
-            padding: 0 22px;
-            height: 48px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        .nav-left {
-            display: flex;
-            align-items: center;
-            gap: 16px;
-        }
-
+        .nav-left { display: flex; align-items: center; gap: 14px; }
         .back-btn {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            color: var(--accent);
-            text-decoration: none;
-            font-size: 15px;
-            font-weight: 500;
+            color: var(--accent); text-decoration: none;
+            font-size: 15px; font-weight: 500;
+            display: flex; align-items: center; gap: 4px;
             transition: opacity 0.2s;
         }
-
         .back-btn:hover { opacity: 0.7; }
-
-        .nav-divider {
-            width: 1px;
-            height: 20px;
-            background: var(--border);
-        }
-
-        .nav-page-title {
-            font-size: 15px;
-            color: var(--text-secondary);
-        }
-
-        .nav-controls {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-        }
-
+        .nav-sep { width: 1px; height: 18px; background: var(--border); }
+        .nav-label { font-size: 14px; color: var(--muted); }
+        .nav-right { display: flex; align-items: center; gap: 16px; }
         .toggle-btn {
-            background: none;
-            border: none;
-            font-size: 20px;
-            cursor: pointer;
-            padding: 6px;
-            border-radius: 6px;
+            background: none; border: none; font-size: 19px;
+            cursor: pointer; padding: 5px; border-radius: 6px;
             transition: background 0.2s;
         }
-
-        .toggle-btn:hover { background: var(--card-bg); }
-
-        .lang-switch {
-            display: flex;
-            background: var(--card-bg);
-            border-radius: 20px;
-            padding: 2px;
+        .toggle-btn:hover { background: var(--card); }
+        .lang-sw {
+            display: flex; background: var(--card);
+            border-radius: 20px; padding: 2px;
         }
-
         .lang-btn {
-            background: none;
-            border: none;
-            padding: 4px 12px;
-            border-radius: 18px;
-            font-size: 12px;
-            font-weight: 500;
-            color: var(--text-secondary);
-            cursor: pointer;
-            transition: all 0.2s;
+            background: none; border: none;
+            padding: 4px 12px; border-radius: 18px;
+            font-size: 12px; font-weight: 500;
+            color: var(--muted); cursor: pointer; transition: all 0.2s;
         }
-
         .lang-btn.active {
-            background: var(--bg-primary);
-            color: var(--text-primary);
-            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            background: var(--bg); color: var(--text);
+            box-shadow: 0 1px 4px rgba(0,0,0,0.12);
         }
 
-        /* ── PAGE HEADER ── */
-        .page-header {
-            max-width: 980px;
-            margin: 0 auto;
-            padding: 112px 22px 64px;
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-end;
+        /* HERO HEADER */
+        .hero-header {
+            max-width: 1040px; margin: 0 auto;
+            padding: 80px 24px 48px;
+            display: flex; align-items: center; gap: 48px;
         }
-
-        .page-header-text h1 {
-            font-size: 56px;
-            font-weight: 600;
-            letter-spacing: -0.02em;
-            line-height: 1.05;
-            margin-bottom: 8px;
+        .hero-photo {
+            width: 140px; height: 140px; border-radius: 50%;
+            object-fit: cover; object-position: center top;
+            border: 4px solid var(--bg);
+            box-shadow: 0 0 0 3px var(--blue), 0 16px 48px rgba(0,122,255,0.2);
+            flex-shrink: 0;
+            filter: grayscale(20%);
         }
-
-        .page-header-text p {
-            font-size: 21px;
-            color: var(--text-secondary);
+        .hero-info h1 {
+            font-size: 52px; font-weight: 700;
+            letter-spacing: -0.025em; line-height: 1;
+            margin-bottom: 10px;
         }
-
+        .hero-info h1 span { color: var(--blue); }
+        .hero-subtitle {
+            font-size: 20px; color: var(--muted);
+            font-weight: 400; margin-bottom: 20px;
+        }
+        .hero-pills { display: flex; flex-wrap: wrap; gap: 8px; }
+        .hero-pill {
+            background: var(--card); border: 1px solid var(--border);
+            padding: 6px 14px; border-radius: 20px;
+            font-size: 13px; color: var(--muted); font-weight: 500;
+        }
+        .hero-pill.blue { background: var(--blue); color: #fff; border-color: var(--blue); }
         .pdf-btn {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            background: var(--apple-blue);
-            color: white;
-            padding: 12px 24px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-size: 15px;
-            font-weight: 500;
-            white-space: nowrap;
-            transition: all 0.3s cubic-bezier(0.4,0,0.2,1);
-            box-shadow: 0 4px 12px rgba(0,122,255,0.3);
+            display: inline-flex; align-items: center; gap: 6px;
+            background: var(--blue); color: #fff;
+            padding: 10px 22px; border-radius: 50px;
+            text-decoration: none; font-size: 14px; font-weight: 600;
+            box-shadow: 0 4px 14px rgba(0,122,255,0.3);
+            transition: all 0.3s;
         }
-
         .pdf-btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(0,122,255,0.4);
+            box-shadow: 0 8px 22px rgba(0,122,255,0.4);
         }
 
-        /* ── MAIN LAYOUT ── */
-        .cv-layout {
-            max-width: 980px;
-            margin: 0 auto;
-            padding: 0 22px 100px;
+        /* LAYOUT */
+        .layout {
+            max-width: 1040px; margin: 0 auto;
+            padding: 0 24px 100px;
             display: grid;
-            grid-template-columns: 1fr 340px;
-            gap: 48px;
-            align-items: start;
+            grid-template-columns: 1fr 320px;
+            gap: 56px;
         }
 
-        /* ── SECTION TITLES ── */
-        .section-label {
-            font-size: 12px;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            color: var(--text-secondary);
-            margin-bottom: 32px;
+        /* SECTION LABEL */
+        .sec-label {
+            font-size: 11px; font-weight: 700;
+            text-transform: uppercase; letter-spacing: 0.12em;
+            color: var(--muted); margin-bottom: 28px;
+            display: flex; align-items: center; gap: 10px;
+        }
+        .sec-label::after {
+            content: ''; flex: 1; height: 1px; background: var(--border);
         }
 
-        /* ── TIMELINE ── */
-        .timeline {
-            position: relative;
-        }
-
+        /* TIMELINE */
+        .timeline { position: relative; }
         .timeline::before {
-            content: '';
-            position: absolute;
-            left: 20px;
-            top: 8px;
-            bottom: 0;
-            width: 1px;
-            background: var(--timeline-line);
+            content: ''; position: absolute;
+            left: 18px; top: 10px; bottom: 0; width: 1px;
+            background: linear-gradient(to bottom, var(--blue), var(--border));
         }
-
-        .timeline-item {
-            position: relative;
-            padding-left: 60px;
-            margin-bottom: 8px;
-        }
-
-        .timeline-dot {
-            position: absolute;
-            left: 12px;
-            top: 10px;
-            width: 18px;
-            height: 18px;
-            border-radius: 50%;
-            background: var(--apple-blue);
-            border: 3px solid var(--bg-primary);
-            box-shadow: 0 0 0 2px var(--apple-blue);
+        .t-item { position: relative; padding-left: 56px; margin-bottom: 8px; }
+        .t-dot {
+            position: absolute; left: 10px; top: 12px;
+            width: 18px; height: 18px; border-radius: 50%;
+            background: var(--blue);
+            border: 3px solid var(--bg);
+            box-shadow: 0 0 0 2px var(--blue);
             z-index: 1;
         }
+        .t-dot.green { background: var(--green); box-shadow: 0 0 0 2px var(--green); }
 
-        .timeline-dot.education {
-            background: #30d158;
-            box-shadow: 0 0 0 2px #30d158;
-        }
-
-        /* Card job */
+        /* JOB CARD */
         .job-card {
-            background: var(--card-bg);
-            border-radius: 18px;
-            overflow: hidden;
-            margin-bottom: 24px;
+            background: var(--card);
+            border-radius: 20px; margin-bottom: 20px;
             border: 1px solid transparent;
+            overflow: hidden;
             transition: all 0.3s cubic-bezier(0.4,0,0.2,1);
         }
-
         .job-card:hover {
             border-color: var(--border);
-            box-shadow: 0 8px 32px rgba(0,0,0,0.08);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.09);
+            transform: translateY(-2px);
         }
-
-        [data-theme="dark"] .job-card:hover {
-            box-shadow: 0 8px 32px rgba(255,255,255,0.04);
-        }
-
-        .job-card-top {
-            position: relative;
-        }
-
-        .job-accent-bar {
-            height: 4px;
+        .job-accent {
+            height: 3px;
             background: linear-gradient(90deg, #667eea, #764ba2);
-            border-radius: 0;
         }
-
-        .job-card-top.current .job-accent-bar {
-            background: linear-gradient(90deg, var(--apple-blue), #30d158);
+        .job-accent.current {
+            background: linear-gradient(90deg, var(--blue), var(--green));
         }
-
-        .job-header {
-            padding: 28px 28px 20px;
+        .job-body { padding: 24px 26px 16px; }
+        .job-top {
+            display: flex; justify-content: space-between;
+            align-items: flex-start; margin-bottom: 6px;
         }
-
-        .job-meta {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            margin-bottom: 8px;
-        }
-
         .job-company {
-            font-size: 13px;
-            font-weight: 600;
-            color: var(--apple-blue);
-            text-transform: uppercase;
-            letter-spacing: 0.06em;
+            font-size: 12px; font-weight: 700;
+            color: var(--blue); text-transform: uppercase;
+            letter-spacing: 0.07em;
         }
-
-        .job-date {
-            font-size: 13px;
-            color: var(--text-secondary);
-            white-space: nowrap;
-        }
-
+        .job-date { font-size: 12px; color: var(--muted); }
         .job-title {
-            font-size: 24px;
-            font-weight: 600;
-            letter-spacing: -0.01em;
-            margin-bottom: 8px;
+            font-size: 22px; font-weight: 700;
+            letter-spacing: -0.015em; margin-bottom: 6px;
         }
-
+        .job-loc {
+            font-size: 13px; color: var(--muted); margin-bottom: 4px;
+        }
+        .job-desc {
+            font-size: 13px; color: var(--muted);
+            font-style: italic; margin-bottom: 12px;
+        }
         .job-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 6px;
-            margin-top: 12px;
+            display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px;
         }
-
         .job-tag {
-            background: var(--bg-primary);
-            border: 1px solid var(--border);
-            padding: 4px 12px;
-            border-radius: 20px;
-            font-size: 12px;
-            color: var(--text-secondary);
-            font-weight: 500;
+            background: var(--bg); border: 1px solid var(--border);
+            padding: 3px 10px; border-radius: 20px;
+            font-size: 11px; color: var(--muted); font-weight: 500;
+        }
+        .current-pill {
+            background: linear-gradient(90deg, var(--blue), var(--green));
+            color: #fff; padding: 3px 10px; border-radius: 20px;
+            font-size: 11px; font-weight: 700;
         }
 
-        .current-badge {
-            background: linear-gradient(90deg, var(--apple-blue), #30d158);
-            color: white;
-            padding: 3px 10px;
-            border-radius: 20px;
-            font-size: 11px;
-            font-weight: 600;
-        }
-
-        /* Expand Button */
+        /* EXPAND */
         .expand-btn {
-            width: 100%;
-            background: none;
-            border: none;
-            border-top: 1px solid var(--border);
-            padding: 14px 28px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            cursor: pointer;
-            color: var(--accent);
-            font-size: 14px;
-            font-weight: 500;
+            width: 100%; background: none;
+            border: none; border-top: 1px solid var(--border);
+            padding: 12px 26px;
+            display: flex; justify-content: space-between; align-items: center;
+            cursor: pointer; color: var(--accent);
+            font-size: 13px; font-weight: 600;
             transition: background 0.2s;
         }
-
-        .expand-btn:hover {
-            background: rgba(0,113,227,0.04);
-        }
-
-        .expand-arrow {
-            transition: transform 0.3s cubic-bezier(0.4,0,0.2,1);
-            font-size: 12px;
-        }
-
-        .expand-btn.open .expand-arrow {
-            transform: rotate(180deg);
-        }
-
-        /* Missions panel */
+        .expand-btn:hover { background: rgba(0,113,227,0.04); }
+        .expand-arrow { transition: transform 0.35s; }
+        .expand-btn.open .expand-arrow { transform: rotate(180deg); }
         .missions-panel {
-            max-height: 0;
-            overflow: hidden;
+            max-height: 0; overflow: hidden;
             transition: max-height 0.5s cubic-bezier(0.4,0,0.2,1);
         }
+        .missions-panel.open { max-height: 1200px; }
+        .missions-inner { padding: 4px 26px 24px; }
 
-        .missions-panel.open {
-            max-height: 1000px;
+        /* MISSION BLOCK */
+        .m-block { padding: 16px 0; border-top: 1px solid var(--border); }
+        .m-block:first-child { border-top: none; padding-top: 8px; }
+        .m-title {
+            font-size: 13px; font-weight: 700;
+            margin-bottom: 10px; display: flex;
+            align-items: center; gap: 6px;
         }
-
-        .missions-content {
-            padding: 0 28px 24px;
-        }
-
-        .mission-block {
-            margin-bottom: 20px;
-            padding-top: 20px;
-            border-top: 1px solid var(--border);
-        }
-
-        .mission-block:first-child {
-            border-top: none;
-            padding-top: 0;
-        }
-
-        .mission-title {
-            font-size: 14px;
-            font-weight: 600;
-            margin-bottom: 10px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .mission-list {
-            list-style: none;
-            padding: 0;
-        }
-
-        .mission-list li {
-            font-size: 14px;
-            color: var(--text-secondary);
-            line-height: 1.6;
-            padding: 4px 0 4px 16px;
+        .m-list { list-style: none; }
+        .m-list li {
+            font-size: 13px; color: var(--muted);
+            line-height: 1.65; padding: 3px 0 3px 16px;
             position: relative;
         }
-
-        .mission-list li::before {
-            content: '·';
-            position: absolute;
-            left: 4px;
-            color: var(--apple-blue);
-            font-size: 18px;
-            line-height: 1.3;
+        .m-list li::before {
+            content: '·'; position: absolute;
+            left: 4px; color: var(--blue);
+            font-size: 20px; line-height: 1.1;
         }
+        /* Texte en gras dans les missions */
+        .m-list li strong { color: var(--text); font-weight: 600; }
 
-        /* Contact référent */
-        .referent-block {
-            margin-top: 20px;
-            padding: 14px 16px;
-            background: var(--bg-primary);
-            border-radius: 12px;
+        /* REFERENT */
+        .referent {
+            margin-top: 14px; padding: 12px 14px;
+            background: var(--bg); border-radius: 12px;
             border: 1px solid var(--border);
         }
-
-        .referent-label {
-            font-size: 11px;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.08em;
-            color: var(--text-secondary);
-            margin-bottom: 6px;
+        .referent-lbl {
+            font-size: 10px; font-weight: 700;
+            text-transform: uppercase; letter-spacing: 0.1em;
+            color: var(--muted); margin-bottom: 5px;
         }
+        .referent-name { font-size: 13px; font-weight: 600; margin-bottom: 2px; }
+        .referent-phone { font-size: 12px; color: var(--accent); }
 
-        .referent-name {
-            font-size: 14px;
-            font-weight: 500;
-            margin-bottom: 2px;
-        }
-
-        .referent-phone {
-            font-size: 13px;
-            color: var(--accent);
-        }
-
-        /* Education card */
+        /* EDU CARD */
         .edu-card {
-            background: var(--card-bg);
-            border-radius: 18px;
-            padding: 24px 28px;
-            border: 1px solid transparent;
-            transition: all 0.3s ease;
+            background: var(--card); border-radius: 18px;
+            padding: 22px 26px; border: 1px solid transparent;
+            transition: all 0.3s;
         }
-
         .edu-card:hover {
             border-color: var(--border);
-            box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.06);
         }
-
         .edu-school {
-            font-size: 13px;
-            font-weight: 600;
-            color: #30d158;
-            text-transform: uppercase;
-            letter-spacing: 0.06em;
-            margin-bottom: 6px;
+            font-size: 12px; font-weight: 700;
+            color: var(--green); text-transform: uppercase;
+            letter-spacing: 0.07em; margin-bottom: 5px;
         }
-
-        .edu-title {
-            font-size: 20px;
-            font-weight: 600;
-            margin-bottom: 4px;
-        }
-
-        .edu-date {
-            font-size: 13px;
-            color: var(--text-secondary);
-            margin-bottom: 14px;
-        }
-
-        .edu-courses {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 6px;
-        }
-
-        .edu-course {
-            background: var(--bg-primary);
-            border: 1px solid var(--border);
-            padding: 4px 12px;
-            border-radius: 20px;
-            font-size: 12px;
-            color: var(--text-secondary);
+        .edu-title { font-size: 19px; font-weight: 700; margin-bottom: 3px; }
+        .edu-date { font-size: 12px; color: var(--muted); margin-bottom: 14px; }
+        .edu-pills { display: flex; flex-wrap: wrap; gap: 6px; }
+        .edu-pill {
+            background: var(--bg); border: 1px solid var(--border);
+            padding: 3px 10px; border-radius: 20px;
+            font-size: 11px; color: var(--muted);
         }
 
         /* ── SIDEBAR ── */
-        .sidebar {
-            position: sticky;
-            top: 72px;
-        }
+        .sidebar { position: sticky; top: 68px; }
+        .sb-section { margin-bottom: 36px; }
 
-        .sidebar-section {
-            margin-bottom: 40px;
+        /* Skills catégorisés */
+        .skill-cat { margin-bottom: 20px; }
+        .skill-cat-label {
+            font-size: 12px; font-weight: 700;
+            color: var(--muted); margin-bottom: 10px;
+            display: flex; align-items: center; gap: 6px;
         }
-
-        .sidebar-title {
-            font-size: 12px;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            color: var(--text-secondary);
-            margin-bottom: 16px;
+        .skill-bar-row {
+            display: flex; align-items: center;
+            gap: 10px; margin-bottom: 8px;
+        }
+        .skill-name { font-size: 13px; min-width: 100px; font-weight: 500; }
+        .skill-bar-bg {
+            flex: 1; height: 6px; background: var(--border);
+            border-radius: 10px; overflow: hidden;
+        }
+        .skill-bar {
+            height: 100%; border-radius: 10px;
+            background: linear-gradient(90deg, var(--blue), #5ac8fa);
+            transition: width 1s ease;
         }
 
         /* Soft skills badges */
-        .soft-badges {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-        }
-
+        .soft-wrap { display: flex; flex-wrap: wrap; gap: 7px; }
         .soft-badge {
-            background: var(--apple-blue);
-            color: white;
-            padding: 7px 14px;
-            border-radius: 20px;
-            font-size: 13px;
-            font-weight: 500;
-            box-shadow: 0 2px 6px rgba(0,122,255,0.25);
+            background: var(--blue); color: #fff;
+            padding: 6px 13px; border-radius: 20px;
+            font-size: 12px; font-weight: 500;
+            box-shadow: 0 2px 6px rgba(0,122,255,0.22);
             transition: all 0.2s;
         }
+        .soft-badge:hover { transform: translateY(-2px); }
 
-        .soft-badge:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(0,122,255,0.35);
-        }
-
-        /* Compétences opé */
-        .ops-list {
-            list-style: none;
-        }
-
-        .ops-list li {
-            font-size: 14px;
-            color: var(--text-secondary);
-            padding: 8px 0;
-            border-bottom: 1px solid var(--border);
-            line-height: 1.5;
-        }
-
-        .ops-list li:last-child {
-            border-bottom: none;
-        }
-
-        /* Certifications */
-        .cert-item {
-            display: flex;
-            align-items: flex-start;
-            gap: 12px;
-            padding: 12px 0;
+        /* Certifs */
+        .cert-row {
+            display: flex; align-items: flex-start;
+            gap: 12px; padding: 12px 0;
             border-bottom: 1px solid var(--border);
         }
+        .cert-row:last-child { border-bottom: none; }
+        .cert-ico { font-size: 26px; min-width: 32px; }
+        .cert-name { font-size: 13px; font-weight: 600; margin-bottom: 2px; }
+        .cert-sub { font-size: 11px; color: var(--muted); }
 
-        .cert-item:last-child { border-bottom: none; }
-
-        .cert-icon {
-            font-size: 24px;
-            min-width: 32px;
+        /* Extra */
+        .extra-row {
+            padding: 9px 0; border-bottom: 1px solid var(--border);
         }
-
-        .cert-name {
-            font-size: 14px;
-            font-weight: 500;
-            margin-bottom: 2px;
-        }
-
-        .cert-date {
-            font-size: 12px;
-            color: var(--text-secondary);
-        }
-
-        /* Expériences additionnelles */
-        .extra-item {
-            padding: 10px 0;
-            border-bottom: 1px solid var(--border);
-        }
-
-        .extra-item:last-child { border-bottom: none; }
-
-        .extra-role {
-            font-size: 14px;
-            font-weight: 500;
-        }
-
-        .extra-date {
-            font-size: 12px;
-            color: var(--text-secondary);
-            margin-top: 2px;
-        }
+        .extra-row:last-child { border-bottom: none; }
+        .extra-role { font-size: 13px; font-weight: 600; }
+        .extra-date { font-size: 11px; color: var(--muted); margin-top: 1px; }
 
         /* Intérêts */
-        .interest-badges {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 6px;
-        }
-
+        .interest-wrap { display: flex; flex-wrap: wrap; gap: 6px; }
         .interest-badge {
-            background: var(--card-bg);
-            border: 1px solid var(--border);
-            padding: 6px 12px;
-            border-radius: 20px;
-            font-size: 13px;
-            color: var(--text-secondary);
+            background: var(--card); border: 1px solid var(--border);
+            padding: 5px 11px; border-radius: 20px;
+            font-size: 12px; color: var(--muted);
             transition: all 0.2s;
         }
+        .interest-badge:hover { border-color: var(--blue); color: var(--blue); }
 
-        .interest-badge:hover {
-            border-color: var(--apple-blue);
-            color: var(--apple-blue);
-        }
-
-        /* ── FOOTER ── */
+        /* FOOTER */
         footer {
             border-top: 1px solid var(--border);
-            padding: 20px 22px;
+            padding: 18px 24px;
+        }
+        .footer-inner {
+            max-width: 1040px; margin: 0 auto;
+            text-align: center; font-size: 11px; color: var(--muted);
         }
 
-        .footer-content {
-            max-width: 980px;
-            margin: 0 auto;
-            text-align: center;
-            font-size: 12px;
-            color: var(--text-secondary);
+        /* RESPONSIVE */
+        @media (max-width: 820px) {
+            .layout { grid-template-columns: 1fr; }
+            .sidebar { position: static; }
+            .hero-header {
+                flex-direction: column; align-items: flex-start;
+                padding: 80px 24px 32px; gap: 24px;
+            }
+            .hero-info h1 { font-size: 38px; }
         }
-
-        /* ── RESPONSIVE ── */
-        @media (max-width: 768px) {
-            .cv-layout {
-                grid-template-columns: 1fr;
-            }
-            .sidebar {
-                position: static;
-            }
-            .page-header {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 24px;
-                padding: 96px 22px 48px;
-            }
-            .page-header-text h1 {
-                font-size: 40px;
-            }
-            .timeline::before { left: 16px; }
-            .timeline-item { padding-left: 48px; }
-            .timeline-dot { left: 8px; }
+        @media (max-width: 480px) {
+            .hero-photo { width: 110px; height: 110px; }
         }
     </style>
 </head>
 <body>
-    <!-- NAV -->
-    <nav>
-        <div class="nav-content">
-            <div class="nav-left">
-                <a href="index.html" class="back-btn">← <span data-i18n="back">Accueil</span></a>
-                <div class="nav-divider"></div>
-                <span class="nav-page-title" data-i18n="cv-nav">Parcours</span>
-            </div>
-            <div class="nav-controls">
-                <button class="toggle-btn" id="themeToggle">
-                    <span id="themeIcon">🌙</span>
-                </button>
-                <div class="lang-switch">
-                    <button class="lang-btn active" data-lang="fr">FR</button>
-                    <button class="lang-btn" data-lang="en">EN</button>
-                </div>
-            </div>
-        </div>
-    </nav>
 
-    <!-- PAGE HEADER -->
-    <div class="page-header">
-        <div class="page-header-text">
-            <h1 data-i18n="cv-title">Mon Parcours</h1>
-            <p data-i18n="cv-subtitle">Revenue Operations & CRM Specialist</p>
+<!-- NAV -->
+<nav>
+    <div class="nav-inner">
+        <div class="nav-left">
+            <a href="index.html" class="back-btn">← <span data-i18n="back">Accueil</span></a>
+            <div class="nav-sep"></div>
+            <span class="nav-label" data-i18n="nav-cv">Parcours</span>
         </div>
-        <a href="#" class="pdf-btn" id="pdfBtn">
-            ⬇️ <span data-i18n="download-cv">Télécharger le CV</span>
-        </a>
+        <div class="nav-right">
+            <button class="toggle-btn" id="themeToggle"><span id="themeIcon">🌙</span></button>
+            <div class="lang-sw">
+                <button class="lang-btn active" data-lang="fr">FR</button>
+                <button class="lang-btn" data-lang="en">EN</button>
+            </div>
+        </div>
     </div>
+</nav>
 
-    <!-- MAIN LAYOUT -->
-    <div class="cv-layout">
-
-        <!-- ── COLONNE GAUCHE : TIMELINE ── -->
-        <div class="main-col">
-            <p class="section-label" data-i18n="experience-label">Expérience professionnelle</p>
-
-            <div class="timeline">
-
-                <!-- EVANEOS -->
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="job-card">
-                        <div class="job-card-top current">
-                            <div class="job-accent-bar"></div>
-                        </div>
-                        <div class="job-header">
-                            <div class="job-meta">
-                                <span class="job-company">Evaneos</span>
-                                <span class="current-badge" data-i18n="current-badge">En poste</span>
-                            </div>
-                            <h3 class="job-title" data-i18n="job-title-evaneos">Salesforce Operations Specialist</h3>
-                            <div style="font-size:13px; color:var(--text-secondary); margin-bottom:4px;">
-                                📍 Paris · <span data-i18n="evaneos-date">Mars 2026 — Janv. 2028</span>
-                            </div>
-                            <div style="font-size:13px; color:var(--text-secondary); font-style:italic;" data-i18n="evaneos-desc">
-                                Plateforme de voyage sur-mesure
-                            </div>
-                            <div class="job-tags">
-                                <span class="job-tag">Salesforce</span>
-                                <span class="job-tag">Make</span>
-                                <span class="job-tag">N8N</span>
-                                <span class="job-tag">Automation</span>
-                                <span class="job-tag">Reporting</span>
-                            </div>
-                        </div>
-                        <button class="expand-btn" onclick="toggleMissions(this)">
-                            <span data-i18n="see-missions">Voir les missions</span>
-                            <span class="expand-arrow">▾</span>
-                        </button>
-                        <div class="missions-panel">
-                            <div class="missions-content">
-                                <div class="mission-block">
-                                    <div class="mission-title">⚙️ <span data-i18n="m-sf-config">Configuration & Maintenance Salesforce</span></div>
-                                    <ul class="mission-list">
-                                        <li data-i18n="m-sf-1">Configuration et personnalisation de la plateforme : comptes utilisateurs, profils, rôles, workflows et permissions.</li>
-                                        <li data-i18n="m-sf-2">Gestion des données : import/export, déduplication et nettoyage pour garantir l'intégrité des données.</li>
-                                        <li data-i18n="m-sf-3">Suivi et résolution des problèmes techniques affectant les utilisateurs.</li>
-                                        <li data-i18n="m-sf-4">Support quotidien aux utilisateurs Salesforce : résolution de problèmes et optimisation de l'usage.</li>
-                                    </ul>
-                                </div>
-                                <div class="mission-block">
-                                    <div class="mission-title">🔄 <span data-i18n="m-auto">Automatisation des processus</span></div>
-                                    <ul class="mission-list">
-                                        <li data-i18n="m-auto-1">Configuration et optimisation des outils Salesforce : Process Builder, Flows et Workflows.</li>
-                                        <li data-i18n="m-auto-2">Création de workflows automatisés et processus d'approbation avec Make et N8N.</li>
-                                    </ul>
-                                </div>
-                                <div class="mission-block">
-                                    <div class="mission-title">📊 <span data-i18n="m-report">Reporting & Dashboards</span></div>
-                                    <ul class="mission-list">
-                                        <li data-i18n="m-report-1">Création et maintenance de rapports personnalisés pour les équipes Sales, AM et Marketing.</li>
-                                        <li data-i18n="m-report-2">Collaboration avec les stakeholders pour adapter Salesforce à leurs besoins.</li>
-                                    </ul>
-                                </div>
-                                <div class="mission-block">
-                                    <div class="mission-title">🤝 <span data-i18n="m-collab">Collaboration transversale</span></div>
-                                    <ul class="mission-list">
-                                        <li data-i18n="m-collab-1">Participation aux projets d'amélioration de la plateforme : upgrades, nouvelles fonctionnalités et intégrations.</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- UNITED HEROES -->
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="job-card">
-                        <div class="job-card-top">
-                            <div class="job-accent-bar"></div>
-                        </div>
-                        <div class="job-header">
-                            <div class="job-meta">
-                                <span class="job-company">United Heroes</span>
-                                <span class="job-date">07/2024 — 07/2025</span>
-                            </div>
-                            <h3 class="job-title" data-i18n="job-title-uh">Revenue Operations</h3>
-                            <div style="font-size:13px; color:var(--text-secondary); margin-bottom:4px;">📍 Paris</div>
-                            <div style="font-size:13px; color:var(--text-secondary); font-style:italic;" data-i18n="uh-desc">Application d'engagement collaborateurs</div>
-                            <div class="job-tags">
-                                <span class="job-tag">Hubspot</span>
-                                <span class="job-tag">Planhat</span>
-                                <span class="job-tag">Modjo</span>
-                                <span class="job-tag">Nomination</span>
-                                <span class="job-tag">RevOps</span>
-                            </div>
-                        </div>
-                        <button class="expand-btn" onclick="toggleMissions(this)">
-                            <span data-i18n="see-missions">Voir les missions</span>
-                            <span class="expand-arrow">▾</span>
-                        </button>
-                        <div class="missions-panel">
-                            <div class="missions-content">
-                                <div class="mission-block">
-                                    <div class="mission-title">📈 <span data-i18n="m-strat">Stratégie</span></div>
-                                    <ul class="mission-list">
-                                        <li data-i18n="uh-s1">Refonte des rapports à destination du CODIR.</li>
-                                        <li data-i18n="uh-s2">Proposition de la nouvelle stratégie d'attribution de portefeuille.</li>
-                                        <li data-i18n="uh-s3">Proposition d'automatisations réductrices de temps de saisie via Hubspot et Planhat.</li>
-                                        <li data-i18n="uh-s4">Accompagnement des équipes sur l'adoption et l'optimisation des outils.</li>
-                                    </ul>
-                                </div>
-                                <div class="mission-block">
-                                    <div class="mission-title">🛠️ <span data-i18n="m-tools">Outils & Données</span></div>
-                                    <ul class="mission-list">
-                                        <li data-i18n="uh-t1">Gestion de l'implémentation de Modjo, Nomination et co-gestion Hubspot / Planhat.</li>
-                                        <li data-i18n="uh-t2">Cleaning des doublons (entreprises, contacts, deals) dans Hubspot et Planhat.</li>
-                                        <li data-i18n="uh-t3">Enrichissement de la donnée entreprise en volume et en qualité.</li>
-                                        <li data-i18n="uh-t4">Création de workflows (notif, création et modification de propriétés), édition de rapports et dashboards.</li>
-                                    </ul>
-                                </div>
-                                <div class="mission-block">
-                                    <div class="mission-title">📚 <span data-i18n="m-enable">Process, Enablement & FAQ</span></div>
-                                    <ul class="mission-list">
-                                        <li data-i18n="uh-e1">Rédaction des nouveaux process Sales, CSM et AM.</li>
-                                        <li data-i18n="uh-e2">Intégration et formation des équipes sur les nouveautés liées aux outils.</li>
-                                        <li data-i18n="uh-e3">Refonte de la base de connaissance et FAQ management via Slack.</li>
-                                    </ul>
-                                </div>
-                                <div class="referent-block">
-                                    <div class="referent-label" data-i18n="ref-label">Contact référent</div>
-                                    <div class="referent-name">Lucas FINCHELSTEIN — Rev Ops @United Heroes</div>
-                                    <div class="referent-phone">+33 6 74 50 60 94</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- TELLENT -->
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="job-card">
-                        <div class="job-card-top">
-                            <div class="job-accent-bar"></div>
-                        </div>
-                        <div class="job-header">
-                            <div class="job-meta">
-                                <span class="job-company">Tellent France (ex. Javelo)</span>
-                                <span class="job-date">06/2023 — 12/2023</span>
-                            </div>
-                            <h3 class="job-title" data-i18n="job-title-tellent">Sales Ops → Revenue Ops</h3>
-                            <div style="font-size:13px; color:var(--text-secondary); margin-bottom:4px;">📍 Paris</div>
-                            <div style="font-size:13px; color:var(--text-secondary); font-style:italic;" data-i18n="tellent-desc">Plateforme RH de développement de compétences</div>
-                            <div class="job-tags">
-                                <span class="job-tag">Hubspot</span>
-                                <span class="job-tag">Slack</span>
-                                <span class="job-tag">Notion</span>
-                                <span class="job-tag">Zapier</span>
-                                <span class="job-tag">Sales Ops</span>
-                            </div>
-                        </div>
-                        <button class="expand-btn" onclick="toggleMissions(this)">
-                            <span data-i18n="see-missions">Voir les missions</span>
-                            <span class="expand-arrow">▾</span>
-                        </button>
-                        <div class="missions-panel">
-                            <div class="missions-content">
-                                <div class="mission-block">
-                                    <div class="mission-title">🎯 <span data-i18n="m-strategy-process">Stratégie & Process</span></div>
-                                    <ul class="mission-list">
-                                        <li data-i18n="t-s1">Analyse et segmentation du marché adressable.</li>
-                                        <li data-i18n="t-s2">Lancement de campagnes Sales et BDR ciblées par secteur ou suite à des webinars.</li>
-                                        <li data-i18n="t-s3">Lancement, amélioration et création du process des campagnes d'upsell.</li>
-                                        <li data-i18n="t-s4">Attribution de batchs Sales et BDR ; création de workflows via Hubspot, Slack x Notion et Zapier.</li>
-                                    </ul>
-                                </div>
-                                <div class="mission-block">
-                                    <div class="mission-title">📂 <span data-i18n="m-data">Gestion de données</span></div>
-                                    <ul class="mission-list">
-                                        <li data-i18n="t-d1">Mapping de comptes (prospects et clients) ; traitement et dispatching des leads inbound.</li>
-                                        <li data-i18n="t-d2">Cleaning des données (doublons entreprises et contacts).</li>
-                                        <li data-i18n="t-d3">Création et analyse de rapports et dashboards pour les équipes Sales, BDR et CSM.</li>
-                                        <li data-i18n="t-d4">Vérification des deals closés : New biz, Renews, Upsells.</li>
-                                    </ul>
-                                </div>
-                                <div class="mission-block">
-                                    <div class="mission-title">📚 <span data-i18n="m-enable">Enablement & FAQ</span></div>
-                                    <ul class="mission-list">
-                                        <li data-i18n="t-e1">Réponses aux problématiques des équipes Sales, BDR et CSM.</li>
-                                        <li data-i18n="t-e2">Rédaction et aménagement de la source d'enablement Sales et BDRs suite à la création du groupe Tellent.</li>
-                                    </ul>
-                                </div>
-                                <div class="referent-block">
-                                    <div class="referent-label" data-i18n="ref-label">Contact référent</div>
-                                    <div class="referent-name">Delphine AIM — Rev Ops @Tellent France</div>
-                                    <div class="referent-phone">+33 6 50 31 51 87</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- EMLYON -->
-                <div class="timeline-item">
-                    <div class="timeline-dot education"></div>
-                    <div class="edu-card">
-                        <div class="edu-school">🎓 emlyon Business School</div>
-                        <div class="edu-title">Global BBA</div>
-                        <div class="edu-date">2020 — 2024 · Campus de Saint-Étienne</div>
-                        <div class="edu-courses">
-                            <span class="edu-course">Business Intelligence</span>
-                            <span class="edu-course">Sales Strategy</span>
-                            <span class="edu-course">AI for Business</span>
-                            <span class="edu-course">Data Management</span>
-                            <span class="edu-course">Customer Experience</span>
-                            <span class="edu-course">International Business</span>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
+<!-- HERO HEADER -->
+<div class="hero-header">
+    <img src="photo.jpg" alt="Alec DIAMIDIA" class="hero-photo">
+    <div class="hero-info">
+        <h1>Alec <span>DIAMIDIA</span></h1>
+        <p class="hero-subtitle" data-i18n="hero-subtitle">Revenue Operations & CRM Specialist</p>
+        <div class="hero-pills" style="margin-bottom:20px;">
+            <span class="hero-pill blue">📍 Paris</span>
+            <span class="hero-pill">+33 6 26 63 87 86</span>
+            <span class="hero-pill">alecrudydiami@gmail.com</span>
+            <a href="https://linkedin.com/in/alec-diamidia" target="_blank" class="hero-pill" style="text-decoration:none; color:var(--muted);">💼 LinkedIn</a>
+            <a href="https://github.com/venom6-13" target="_blank" class="hero-pill" style="text-decoration:none; color:var(--muted);">⌨️ GitHub</a>
         </div>
+        <a href="#" class="pdf-btn">⬇️ <span data-i18n="dl-cv">Télécharger le CV</span></a>
+    </div>
+</div>
 
-        <!-- ── SIDEBAR ── -->
-        <div class="sidebar">
+<!-- LAYOUT -->
+<div class="layout">
 
-            <!-- Compétences personnelles -->
-            <div class="sidebar-section">
-                <div class="sidebar-title" data-i18n="soft-skills">Compétences personnelles</div>
-                <div class="soft-badges">
-                    <span class="soft-badge">Rigueur</span>
-                    <span class="soft-badge">Organisation</span>
-                    <span class="soft-badge">Bienveillance</span>
-                    <span class="soft-badge">Autonomie</span>
-                    <span class="soft-badge">Engagement</span>
-                    <span class="soft-badge">Ambition</span>
-                    <span class="soft-badge">Amélioration continue</span>
-                    <span class="soft-badge">Proactivité</span>
-                </div>
-            </div>
+    <!-- ══ COLONNE PRINCIPALE ══ -->
+    <div>
+        <p class="sec-label" data-i18n="exp-label">Expériences professionnelles</p>
+        <div class="timeline">
 
-            <!-- Compétences opérationnelles -->
-            <div class="sidebar-section">
-                <div class="sidebar-title" data-i18n="ops-skills">Compétences opérationnelles</div>
-                <ul class="ops-list">
-                    <li data-i18n="ops-1">Gestion de projets</li>
-                    <li data-i18n="ops-2">Amélioration des process des équipes Revenue</li>
-                    <li data-i18n="ops-3">Slack, Notion, Teams, Trello & Monday</li>
-                    <li data-i18n="ops-4">CRM Hubspot, Pack Office & Suite Google</li>
-                </ul>
-            </div>
-
-            <!-- Certifications -->
-            <div class="sidebar-section">
-                <div class="sidebar-title" data-i18n="certifs">Certifications</div>
-                <div class="cert-item">
-                    <div class="cert-icon">☁️</div>
-                    <div>
-                        <div class="cert-name" data-i18n="cert-1-name">Formation outils : Salesforce, SQL, Power BI</div>
-                        <div class="cert-date">Via Trailhead · En cours</div>
+            <!-- EVANEOS -->
+            <div class="t-item">
+                <div class="t-dot"></div>
+                <div class="job-card">
+                    <div class="job-accent current"></div>
+                    <div class="job-body">
+                        <div class="job-top">
+                            <span class="job-company">Evaneos</span>
+                            <span class="current-pill" data-i18n="current">En poste</span>
+                        </div>
+                        <h3 class="job-title" data-i18n="title-evaneos">Salesforce Operations Specialist</h3>
+                        <p class="job-loc">📍 Paris · <span data-i18n="date-evaneos">Mars 2026 — Janv. 2028</span></p>
+                        <p class="job-desc" data-i18n="desc-evaneos">Plateforme de voyage sur-mesure</p>
+                        <div class="job-tags">
+                            <span class="job-tag">Salesforce</span>
+                            <span class="job-tag">Make</span>
+                            <span class="job-tag">N8N</span>
+                            <span class="job-tag">Flow Builder</span>
+                            <span class="job-tag">Reporting</span>
+                            <span class="job-tag">Data Integrity</span>
+                        </div>
+                    </div>
+                    <button class="expand-btn" onclick="toggle(this)">
+                        <span data-i18n="see-missions">Voir les missions</span>
+                        <span class="expand-arrow">▾</span>
+                    </button>
+                    <div class="missions-panel">
+                        <div class="missions-inner">
+                            <div class="m-block">
+                                <div class="m-title">⚙️ <span data-i18n="m-config">Configuration & Maintenance Salesforce</span></div>
+                                <ul class="m-list">
+                                    <li data-i18n="ev-1">Gestion des <strong>comptes utilisateurs, profils, rôles, workflows et permissions</strong> sur la plateforme.</li>
+                                    <li data-i18n="ev-2"><strong>Data management</strong> : import/export, déduplication et nettoyage pour garantir l'intégrité des données.</li>
+                                    <li data-i18n="ev-3">Monitoring et <strong>résolution des incidents techniques</strong> affectant les utilisateurs.</li>
+                                    <li data-i18n="ev-4">Support quotidien et <strong>formation des utilisateurs</strong> Salesforce.</li>
+                                </ul>
+                            </div>
+                            <div class="m-block">
+                                <div class="m-title">🔄 <span data-i18n="m-auto">Automatisation des processus</span></div>
+                                <ul class="m-list">
+                                    <li data-i18n="ev-5">Configuration et optimisation des outils : <strong>Process Builder, Flows et Workflows</strong>.</li>
+                                    <li data-i18n="ev-6">Création de <strong>workflows automatisés</strong> avec Make et N8N en dehors de Salesforce.</li>
+                                </ul>
+                            </div>
+                            <div class="m-block">
+                                <div class="m-title">📊 <span data-i18n="m-report">Reporting & Dashboards</span></div>
+                                <ul class="m-list">
+                                    <li data-i18n="ev-7">Création et maintenance de <strong>rapports et dashboards custom</strong> pour les équipes Sales, AM et Marketing.</li>
+                                    <li data-i18n="ev-8">Collaboration avec les stakeholders pour <strong>adapter Salesforce à leurs besoins métier</strong>.</li>
+                                </ul>
+                            </div>
+                            <div class="m-block">
+                                <div class="m-title">🤝 <span data-i18n="m-collab">Collaboration transversale</span></div>
+                                <ul class="m-list">
+                                    <li data-i18n="ev-9">Participation aux projets de <strong>system upgrades, nouvelles features et intégrations</strong> inter-outils.</li>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="cert-item">
-                    <div class="cert-icon">📊</div>
-                    <div>
-                        <div class="cert-name">Microsoft 365 — ICDL</div>
-                        <div class="cert-date">05/2021 — 05/2022</div>
+            </div>
+
+            <!-- UNITED HEROES -->
+            <div class="t-item">
+                <div class="t-dot"></div>
+                <div class="job-card">
+                    <div class="job-accent"></div>
+                    <div class="job-body">
+                        <div class="job-top">
+                            <span class="job-company">United Heroes</span>
+                            <span class="job-date">07/2024 — 07/2025</span>
+                        </div>
+                        <h3 class="job-title" data-i18n="title-uh">Revenue Operations</h3>
+                        <p class="job-loc">📍 Paris</p>
+                        <p class="job-desc" data-i18n="desc-uh">Application d'engagement collaborateurs</p>
+                        <div class="job-tags">
+                            <span class="job-tag">Hubspot</span>
+                            <span class="job-tag">Planhat</span>
+                            <span class="job-tag">Modjo</span>
+                            <span class="job-tag">Nomination</span>
+                            <span class="job-tag">RevOps</span>
+                        </div>
+                    </div>
+                    <button class="expand-btn" onclick="toggle(this)">
+                        <span data-i18n="see-missions">Voir les missions</span>
+                        <span class="expand-arrow">▾</span>
+                    </button>
+                    <div class="missions-panel">
+                        <div class="missions-inner">
+                            <div class="m-block">
+                                <div class="m-title">📈 <span data-i18n="m-strat">Stratégie</span></div>
+                                <ul class="m-list">
+                                    <li data-i18n="uh-1">Refonte des <strong>rapports à destination du CODIR</strong>.</li>
+                                    <li data-i18n="uh-2">Proposition d'une <strong>nouvelle stratégie d'attribution de portefeuille</strong>.</li>
+                                    <li data-i18n="uh-3">Mise en place d'<strong>automatisations réductrices de temps de saisie</strong> via Hubspot et Planhat.</li>
+                                    <li data-i18n="uh-4">Accompagnement des équipes sur <strong>l'adoption et l'optimisation des outils</strong>.</li>
+                                </ul>
+                            </div>
+                            <div class="m-block">
+                                <div class="m-title">🛠️ <span data-i18n="m-tools">Outils & Données</span></div>
+                                <ul class="m-list">
+                                    <li data-i18n="uh-5">Implémentation de <strong>Modjo et Nomination</strong> ; co-gestion Hubspot / Planhat.</li>
+                                    <li data-i18n="uh-6"><strong>Cleaning des doublons</strong> (entreprises, contacts, deals) dans Hubspot et Planhat.</li>
+                                    <li data-i18n="uh-7"><strong>Enrichissement de la donnée entreprise</strong> en volume et en qualité.</li>
+                                    <li data-i18n="uh-8">Création de <strong>workflows, rapports et dashboards</strong> personnalisés.</li>
+                                </ul>
+                            </div>
+                            <div class="m-block">
+                                <div class="m-title">📚 <span data-i18n="m-enable">Process, Enablement & FAQ</span></div>
+                                <ul class="m-list">
+                                    <li data-i18n="uh-9">Rédaction des <strong>process Sales, CSM et AM</strong>.</li>
+                                    <li data-i18n="uh-10">Formation des équipes sur les nouveautés outils et <strong>refonte de la base de connaissance</strong>.</li>
+                                    <li data-i18n="uh-11"><strong>FAQ management</strong> via canal Slack dédié.</li>
+                                </ul>
+                            </div>
+                            <div class="referent">
+                                <div class="referent-lbl" data-i18n="ref">Contact référent</div>
+                                <div class="referent-name">Lucas FINCHELSTEIN — Rev Ops @United Heroes</div>
+                                <div class="referent-phone">+33 6 74 50 60 94</div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <!-- Expériences additionnelles -->
-            <div class="sidebar-section">
-                <div class="sidebar-title" data-i18n="extra-exp">Expériences additionnelles</div>
-                <div class="extra-item">
-                    <div class="extra-role" data-i18n="extra-1-role">Responsable de promotion</div>
-                    <div class="extra-date">02/2023 — 05/2024</div>
-                </div>
-                <div class="extra-item">
-                    <div class="extra-role" data-i18n="extra-2-role">Project Manager — Business Challenge</div>
-                    <div class="extra-date">02/2022 — 05/2023</div>
+            <!-- TELLENT -->
+            <div class="t-item">
+                <div class="t-dot"></div>
+                <div class="job-card">
+                    <div class="job-accent"></div>
+                    <div class="job-body">
+                        <div class="job-top">
+                            <span class="job-company">Tellent France (ex. Javelo)</span>
+                            <span class="job-date">06/2023 — 12/2023</span>
+                        </div>
+                        <h3 class="job-title" data-i18n="title-tellent">Sales Ops → Revenue Ops</h3>
+                        <p class="job-loc">📍 Paris</p>
+                        <p class="job-desc" data-i18n="desc-tellent">Plateforme RH de développement de compétences</p>
+                        <div class="job-tags">
+                            <span class="job-tag">Hubspot</span>
+                            <span class="job-tag">Slack</span>
+                            <span class="job-tag">Notion</span>
+                            <span class="job-tag">Zapier</span>
+                            <span class="job-tag">Sales Ops</span>
+                        </div>
+                    </div>
+                    <button class="expand-btn" onclick="toggle(this)">
+                        <span data-i18n="see-missions">Voir les missions</span>
+                        <span class="expand-arrow">▾</span>
+                    </button>
+                    <div class="missions-panel">
+                        <div class="missions-inner">
+                            <div class="m-block">
+                                <div class="m-title">🎯 <span data-i18n="m-strat-proc">Stratégie & Process</span></div>
+                                <ul class="m-list">
+                                    <li data-i18n="t-1">Analyse et <strong>segmentation du marché adressable</strong>.</li>
+                                    <li data-i18n="t-2">Lancement de <strong>campagnes Sales et BDR</strong> ciblées par secteur ou suite à des webinars.</li>
+                                    <li data-i18n="t-3">Création du <strong>process des campagnes d'upsell</strong> et attribution de batchs Sales et BDR.</li>
+                                    <li data-i18n="t-4">Création de <strong>workflows via Hubspot, Slack × Notion et Zapier</strong>.</li>
+                                </ul>
+                            </div>
+                            <div class="m-block">
+                                <div class="m-title">📂 <span data-i18n="m-data">Gestion de données</span></div>
+                                <ul class="m-list">
+                                    <li data-i18n="t-5"><strong>Mapping de comptes</strong> (prospects et clients) ; traitement et dispatching des leads inbound.</li>
+                                    <li data-i18n="t-6"><strong>Cleaning des données</strong> (doublons entreprises et contacts).</li>
+                                    <li data-i18n="t-7">Création et analyse de <strong>rapports et dashboards</strong> pour Sales, BDR et CSM.</li>
+                                    <li data-i18n="t-8">Vérification des deals closés : <strong>New biz, Renews, Upsells</strong>.</li>
+                                </ul>
+                            </div>
+                            <div class="m-block">
+                                <div class="m-title">📚 <span data-i18n="m-enable">Enablement & FAQ</span></div>
+                                <ul class="m-list">
+                                    <li data-i18n="t-9">Support aux problématiques des équipes <strong>Sales, BDR et CSM</strong>.</li>
+                                    <li data-i18n="t-10">Rédaction de la <strong>source d'enablement Sales et BDRs</strong> suite à la création du groupe Tellent.</li>
+                                </ul>
+                            </div>
+                            <div class="referent">
+                                <div class="referent-lbl" data-i18n="ref">Contact référent</div>
+                                <div class="referent-name">Delphine AIM — Rev Ops @Tellent France</div>
+                                <div class="referent-phone">+33 6 50 31 51 87</div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
 
-            <!-- Centres d'intérêt -->
-            <div class="sidebar-section">
-                <div class="sidebar-title" data-i18n="interests">Centres d'intérêt</div>
-                <div class="interest-badges">
-                    <span class="interest-badge">🧘 Méditation</span>
-                    <span class="interest-badge">💡 Entrepreneuriat</span>
-                    <span class="interest-badge">🏃 Running</span>
-                    <span class="interest-badge">📈 Développement perso</span>
-                    <span class="interest-badge">💪 Musculation</span>
-                    <span class="interest-badge">⚽ Football</span>
-                    <span class="interest-badge">🍳 Cuisine</span>
-                    <span class="interest-badge">📚 Lecture</span>
-                    <span class="interest-badge">🎬 Montage vidéo</span>
-                    <span class="interest-badge">📸 Photographie</span>
+            <!-- EMLYON -->
+            <div class="t-item">
+                <div class="t-dot green"></div>
+                <div class="edu-card">
+                    <div class="edu-school">🎓 emlyon Business School — Saint-Étienne</div>
+                    <div class="edu-title">Global BBA</div>
+                    <div class="edu-date">2020 — 2024</div>
+                    <div class="edu-pills">
+                        <span class="edu-pill">Business Intelligence</span>
+                        <span class="edu-pill">Sales Strategy</span>
+                        <span class="edu-pill">AI for Business</span>
+                        <span class="edu-pill">Data Management</span>
+                        <span class="edu-pill">Customer Experience</span>
+                        <span class="edu-pill">International Business</span>
+                    </div>
                 </div>
             </div>
 
         </div>
     </div>
 
-    <footer>
-        <div class="footer-content">
-            <p>© 2026 Alec DIAMIDIA</p>
+    <!-- ══ SIDEBAR ══ -->
+    <div class="sidebar">
+
+        <!-- SKILLS -->
+        <div class="sb-section">
+            <p class="sec-label" data-i18n="skills-label">Compétences</p>
+
+            <div class="skill-cat">
+                <div class="skill-cat-label">☁️ CRM & RevOps</div>
+                <div class="skill-bar-row"><span class="skill-name">Salesforce</span><div class="skill-bar-bg"><div class="skill-bar" style="width:80%"></div></div></div>
+                <div class="skill-bar-row"><span class="skill-name">Hubspot</span><div class="skill-bar-bg"><div class="skill-bar" style="width:90%"></div></div></div>
+                <div class="skill-bar-row"><span class="skill-name">Planhat</span><div class="skill-bar-bg"><div class="skill-bar" style="width:75%"></div></div></div>
+            </div>
+
+            <div class="skill-cat">
+                <div class="skill-cat-label">⚡ Automation</div>
+                <div class="skill-bar-row"><span class="skill-name">Make</span><div class="skill-bar-bg"><div class="skill-bar" style="width:85%"></div></div></div>
+                <div class="skill-bar-row"><span class="skill-name">N8N</span><div class="skill-bar-bg"><div class="skill-bar" style="width:65%"></div></div></div>
+                <div class="skill-bar-row"><span class="skill-name">Zapier</span><div class="skill-bar-bg"><div class="skill-bar" style="width:80%"></div></div></div>
+            </div>
+
+            <div class="skill-cat">
+                <div class="skill-cat-label">📊 Data & Analytics</div>
+                <div class="skill-bar-row"><span class="skill-name">SQL</span><div class="skill-bar-bg"><div class="skill-bar" style="width:70%"></div></div></div>
+                <div class="skill-bar-row"><span class="skill-name">BigQuery</span><div class="skill-bar-bg"><div class="skill-bar" style="width:60%"></div></div></div>
+                <div class="skill-bar-row"><span class="skill-name">Tableau</span><div class="skill-bar-bg"><div class="skill-bar" style="width:65%"></div></div></div>
+            </div>
+
+            <div class="skill-cat">
+                <div class="skill-cat-label">🧠 Soft Skills</div>
+                <div class="soft-wrap">
+                    <span class="soft-badge" data-i18n="sk-rigueur">Rigueur</span>
+                    <span class="soft-badge" data-i18n="sk-auto">Autonomie</span>
+                    <span class="soft-badge" data-i18n="sk-org">Organisation</span>
+                    <span class="soft-badge" data-i18n="sk-engage">Engagement</span>
+                    <span class="soft-badge" data-i18n="sk-ambi">Ambition</span>
+                    <span class="soft-badge" data-i18n="sk-bien">Bienveillance</span>
+                    <span class="soft-badge" data-i18n="sk-amel">Amélioration continue</span>
+                    <span class="soft-badge" data-i18n="sk-pro">Proactivité</span>
+                </div>
+            </div>
         </div>
-    </footer>
 
-    <script>
-        // Theme
-        const themeToggle = document.getElementById('themeToggle');
-        const themeIcon = document.getElementById('themeIcon');
-        const html = document.documentElement;
+        <!-- CERTIFICATIONS -->
+        <div class="sb-section">
+            <p class="sec-label" data-i18n="certifs-label">Certifications</p>
+            <div class="cert-row">
+                <div class="cert-ico">☁️</div>
+                <div>
+                    <div class="cert-name">Salesforce — Trailhead</div>
+                    <div class="cert-sub" data-i18n="cert-sf-sub">CRM, SQL, Power BI · En cours</div>
+                </div>
+            </div>
+            <div class="cert-row">
+                <div class="cert-ico">📊</div>
+                <div>
+                    <div class="cert-name">Microsoft 365 — ICDL</div>
+                    <div class="cert-sub">05/2021 — 05/2022</div>
+                </div>
+            </div>
+        </div>
 
-        function setTheme(theme) {
-            html.setAttribute('data-theme', theme);
-            themeIcon.textContent = theme === 'dark' ? '☀️' : '🌙';
-            localStorage.setItem('theme', theme);
-        }
+        <!-- EXPÉRIENCES ADDITIONNELLES -->
+        <div class="sb-section">
+            <p class="sec-label" data-i18n="extra-label">Expériences additionnelles</p>
+            <div class="extra-row">
+                <div class="extra-role" data-i18n="extra-hackathon">🏆 Finaliste Hackathon Mirakl</div>
+                <div class="extra-date" data-i18n="extra-hackathon-sub">Use case : Prospection BDR</div>
+            </div>
+            <div class="extra-row">
+                <div class="extra-role" data-i18n="extra-rp">Responsable de promotion</div>
+                <div class="extra-date">02/2023 — 05/2024</div>
+            </div>
+            <div class="extra-row">
+                <div class="extra-role" data-i18n="extra-pm">Project Manager — Business Challenge</div>
+                <div class="extra-date">02/2022 — 05/2023</div>
+            </div>
+        </div>
 
-        themeToggle.addEventListener('click', () => {
-            setTheme(html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
-        });
-        setTheme(localStorage.getItem('theme') || 'light');
+        <!-- INTÉRÊTS -->
+        <div class="sb-section">
+            <p class="sec-label" data-i18n="interests-label">Centres d'intérêt</p>
+            <div class="interest-wrap">
+                <span class="interest-badge">🧘 Méditation</span>
+                <span class="interest-badge">💡 Entrepreneuriat</span>
+                <span class="interest-badge">🏃 Running</span>
+                <span class="interest-badge">📈 Développement perso</span>
+                <span class="interest-badge">💪 Musculation</span>
+                <span class="interest-badge">⚽ Football</span>
+                <span class="interest-badge">🍳 Cuisine</span>
+                <span class="interest-badge">📚 Lecture</span>
+                <span class="interest-badge">🎬 Montage vidéo</span>
+                <span class="interest-badge">📸 Photographie</span>
+            </div>
+        </div>
 
-        // Language
-        const translations = {
-            fr: {
-                "back": "Accueil",
-                "cv-nav": "Parcours",
-                "cv-title": "Mon Parcours",
-                "cv-subtitle": "Revenue Operations & CRM Specialist",
-                "download-cv": "Télécharger le CV",
-                "experience-label": "Expérience professionnelle",
-                "current-badge": "En poste",
-                "see-missions": "Voir les missions",
-                "hide-missions": "Masquer les missions",
-                "ref-label": "Contact référent",
-                "soft-skills": "Compétences personnelles",
-                "ops-skills": "Compétences opérationnelles",
-                "certifs": "Certifications",
-                "extra-exp": "Expériences additionnelles",
-                "interests": "Centres d'intérêt",
-                "job-title-evaneos": "Salesforce Operations Specialist",
-                "evaneos-date": "Mars 2026 — Janv. 2028",
-                "evaneos-desc": "Plateforme de voyage sur-mesure",
-                "job-title-uh": "Revenue Operations",
-                "uh-desc": "Application d'engagement collaborateurs",
-                "job-title-tellent": "Sales Ops → Revenue Ops",
-                "tellent-desc": "Plateforme RH de développement de compétences",
-                "ops-1": "Gestion de projets",
-                "ops-2": "Amélioration des process des équipes Revenue",
-                "ops-3": "Slack, Notion, Teams, Trello & Monday",
-                "ops-4": "CRM Hubspot, Pack Office & Suite Google",
-                "extra-1-role": "Responsable de promotion",
-                "extra-2-role": "Project Manager — Business Challenge"
-            },
-            en: {
-                "back": "Home",
-                "cv-nav": "Career",
-                "cv-title": "My Career",
-                "cv-subtitle": "Revenue Operations & CRM Specialist",
-                "download-cv": "Download Resume",
-                "experience-label": "Professional experience",
-                "current-badge": "Current",
-                "see-missions": "See missions",
-                "hide-missions": "Hide missions",
-                "ref-label": "Reference contact",
-                "soft-skills": "Personal skills",
-                "ops-skills": "Operational skills",
-                "certifs": "Certifications",
-                "extra-exp": "Additional experiences",
-                "interests": "Interests",
-                "job-title-evaneos": "Salesforce Operations Specialist",
-                "evaneos-date": "Mar 2026 — Jan 2028",
-                "evaneos-desc": "Custom travel platform",
-                "job-title-uh": "Revenue Operations",
-                "uh-desc": "Employee engagement platform",
-                "job-title-tellent": "Sales Ops → Revenue Ops",
-                "tellent-desc": "HR skills development platform",
-                "ops-1": "Project management",
-                "ops-2": "Revenue team process improvement",
-                "ops-3": "Slack, Notion, Teams, Trello & Monday",
-                "ops-4": "Hubspot CRM, Office Suite & Google Suite",
-                "extra-1-role": "Class representative",
-                "extra-2-role": "Project Manager — Business Challenge"
-            }
-        };
+    </div>
+</div>
 
-        let currentLang = localStorage.getItem('lang') || 'fr';
+<footer>
+    <div class="footer-inner">© 2026 Alec DIAMIDIA — Revenue Operations & CRM Specialist</div>
+</footer>
 
-        function updateLanguage(lang) {
-            currentLang = lang;
-            document.querySelectorAll('[data-i18n]').forEach(el => {
-                const key = el.getAttribute('data-i18n');
-                if (translations[lang][key]) el.textContent = translations[lang][key];
-            });
-            document.querySelectorAll('.lang-btn').forEach(b => {
-                b.classList.toggle('active', b.dataset.lang === lang);
-            });
-            localStorage.setItem('lang', lang);
-        }
+<script>
+const T = {
+    fr: {
+        "back": "Accueil", "nav-cv": "Parcours",
+        "hero-subtitle": "Revenue Operations & CRM Specialist",
+        "dl-cv": "Télécharger le CV",
+        "exp-label": "Expériences professionnelles",
+        "current": "En poste",
+        "title-evaneos": "Salesforce Operations Specialist",
+        "date-evaneos": "Mars 2026 — Janv. 2028",
+        "desc-evaneos": "Plateforme de voyage sur-mesure",
+        "title-uh": "Revenue Operations",
+        "desc-uh": "Application d'engagement collaborateurs",
+        "title-tellent": "Sales Ops → Revenue Ops",
+        "desc-tellent": "Plateforme RH de développement de compétences",
+        "see-missions": "Voir les missions",
+        "hide-missions": "Masquer",
+        "m-config": "Configuration & Maintenance Salesforce",
+        "m-auto": "Automatisation des processus",
+        "m-report": "Reporting & Dashboards",
+        "m-collab": "Collaboration transversale",
+        "m-strat": "Stratégie",
+        "m-tools": "Outils & Données",
+        "m-enable": "Process, Enablement & FAQ",
+        "m-strat-proc": "Stratégie & Process",
+        "m-data": "Gestion de données",
+        "ref": "Contact référent",
+        "ev-1": "Gestion des comptes utilisateurs, profils, rôles, workflows et permissions.",
+        "ev-2": "Data management : import/export, déduplication et nettoyage.",
+        "ev-3": "Monitoring et résolution des incidents techniques.",
+        "ev-4": "Support quotidien et formation des utilisateurs Salesforce.",
+        "ev-5": "Configuration de Process Builder, Flows et Workflows.",
+        "ev-6": "Création de workflows automatisés avec Make et N8N.",
+        "ev-7": "Rapports et dashboards custom pour Sales, AM et Marketing.",
+        "ev-8": "Adaptation de Salesforce aux besoins métier des stakeholders.",
+        "ev-9": "Participation aux projets de system upgrades et intégrations.",
+        "uh-1": "Refonte des rapports à destination du CODIR.",
+        "uh-2": "Proposition d'une nouvelle stratégie d'attribution de portefeuille.",
+        "uh-3": "Automatisations réductrices de temps de saisie via Hubspot et Planhat.",
+        "uh-4": "Accompagnement des équipes sur l'adoption et l'optimisation des outils.",
+        "uh-5": "Implémentation de Modjo et Nomination ; co-gestion Hubspot / Planhat.",
+        "uh-6": "Cleaning des doublons (entreprises, contacts, deals).",
+        "uh-7": "Enrichissement de la donnée entreprise en volume et qualité.",
+        "uh-8": "Création de workflows, rapports et dashboards personnalisés.",
+        "uh-9": "Rédaction des process Sales, CSM et AM.",
+        "uh-10": "Formation des équipes et refonte de la base de connaissance.",
+        "uh-11": "FAQ management via canal Slack dédié.",
+        "t-1": "Analyse et segmentation du marché adressable.",
+        "t-2": "Lancement de campagnes Sales et BDR ciblées.",
+        "t-3": "Création du process des campagnes d'upsell.",
+        "t-4": "Workflows via Hubspot, Slack × Notion et Zapier.",
+        "t-5": "Mapping de comptes ; dispatching des leads inbound.",
+        "t-6": "Cleaning des données (doublons entreprises et contacts).",
+        "t-7": "Rapports et dashboards pour Sales, BDR et CSM.",
+        "t-8": "Vérification des deals closés : New biz, Renews, Upsells.",
+        "t-9": "Support aux problématiques des équipes Sales, BDR et CSM.",
+        "t-10": "Rédaction de la source d'enablement Sales et BDRs.",
+        "skills-label": "Compétences",
+        "sk-rigueur": "Rigueur", "sk-auto": "Autonomie", "sk-org": "Organisation",
+        "sk-engage": "Engagement", "sk-ambi": "Ambition", "sk-bien": "Bienveillance",
+        "sk-amel": "Amélioration continue", "sk-pro": "Proactivité",
+        "certifs-label": "Certifications",
+        "cert-sf-sub": "CRM, SQL, Power BI · En cours",
+        "extra-label": "Expériences additionnelles",
+        "extra-hackathon": "🏆 Finaliste Hackathon Mirakl",
+        "extra-hackathon-sub": "Use case : Prospection BDR",
+        "extra-rp": "Responsable de promotion",
+        "extra-pm": "Project Manager — Business Challenge",
+        "interests-label": "Centres d'intérêt"
+    },
+    en: {
+        "back": "Home", "nav-cv": "Career",
+        "hero-subtitle": "Revenue Operations & CRM Specialist",
+        "dl-cv": "Download Resume",
+        "exp-label": "Professional experience",
+        "current": "Current",
+        "title-evaneos": "Salesforce Operations Specialist",
+        "date-evaneos": "Mar 2026 — Jan 2028",
+        "desc-evaneos": "Tailor-made travel platform",
+        "title-uh": "Revenue Operations",
+        "desc-uh": "Employee engagement platform",
+        "title-tellent": "Sales Ops → Revenue Ops",
+        "desc-tellent": "HR skills development platform",
+        "see-missions": "See missions",
+        "hide-missions": "Hide",
+        "m-config": "Salesforce Configuration & Maintenance",
+        "m-auto": "Process Automation",
+        "m-report": "Reporting & Dashboards",
+        "m-collab": "Cross-functional collaboration",
+        "m-strat": "Strategy",
+        "m-tools": "Tools & Data",
+        "m-enable": "Process, Enablement & FAQ",
+        "m-strat-proc": "Strategy & Process",
+        "m-data": "Data Management",
+        "ref": "Reference contact",
+        "ev-1": "Managing user accounts, profiles, roles, workflows and permissions.",
+        "ev-2": "Data management: import/export, deduplication and clean-up.",
+        "ev-3": "Monitoring and resolving technical incidents affecting users.",
+        "ev-4": "Daily support and training for Salesforce users.",
+        "ev-5": "Setting up Process Builder, Flows and Workflows.",
+        "ev-6": "Building automated workflows with Make and N8N.",
+        "ev-7": "Custom reports and dashboards for Sales, AM and Marketing teams.",
+        "ev-8": "Adapting Salesforce to stakeholder business needs.",
+        "ev-9": "Contributing to system upgrades and tool integrations.",
+        "uh-1": "Rebuilding COMEX-level reports.",
+        "uh-2": "Proposing a new portfolio assignment strategy.",
+        "uh-3": "Implementing time-saving automations via Hubspot and Planhat.",
+        "uh-4": "Supporting teams on tool adoption and optimization.",
+        "uh-5": "Implementing Modjo and Nomination; co-managing Hubspot / Planhat.",
+        "uh-6": "Deduplication cleaning (companies, contacts, deals).",
+        "uh-7": "Enriching company data in volume and quality.",
+        "uh-8": "Building custom workflows, reports and dashboards.",
+        "uh-9": "Writing Sales, CSM and AM processes.",
+        "uh-10": "Training teams and rebuilding the knowledge base.",
+        "uh-11": "FAQ management via dedicated Slack channel.",
+        "t-1": "Analyzing and segmenting the addressable market.",
+        "t-2": "Launching targeted Sales and BDR campaigns.",
+        "t-3": "Building the upsell campaign process.",
+        "t-4": "Workflows via Hubspot, Slack × Notion and Zapier.",
+        "t-5": "Account mapping; inbound lead dispatching.",
+        "t-6": "Data cleaning (company and contact duplicates).",
+        "t-7": "Reports and dashboards for Sales, BDR and CSM teams.",
+        "t-8": "Verifying closed deals: New biz, Renews, Upsells.",
+        "t-9": "Supporting Sales, BDR and CSM teams on process issues.",
+        "t-10": "Writing the Sales and BDR enablement source post-Tellent group creation.",
+        "skills-label": "Skills",
+        "sk-rigueur": "Rigor", "sk-auto": "Autonomy", "sk-org": "Organization",
+        "sk-engage": "Engagement", "sk-ambi": "Ambition", "sk-bien": "Benevolence",
+        "sk-amel": "Continuous Improvement", "sk-pro": "Proactivity",
+        "certifs-label": "Certifications",
+        "cert-sf-sub": "CRM, SQL, Power BI · Ongoing",
+        "extra-label": "Additional experiences",
+        "extra-hackathon": "🏆 Hackathon Mirakl — Finalist",
+        "extra-hackathon-sub": "Use case: BDR Prospecting",
+        "extra-rp": "Class representative",
+        "extra-pm": "Project Manager — Business Challenge",
+        "interests-label": "Interests"
+    }
+};
 
-        document.querySelectorAll('.lang-btn').forEach(btn => {
-            btn.addEventListener('click', () => updateLanguage(btn.dataset.lang));
-        });
+let lang = localStorage.getItem('lang') || 'fr';
 
-        updateLanguage(currentLang);
+function applyLang(l) {
+    lang = l;
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+        const k = el.getAttribute('data-i18n');
+        if (T[l][k]) el.textContent = T[l][k];
+    });
+    document.querySelectorAll('.lang-btn').forEach(b =>
+        b.classList.toggle('active', b.dataset.lang === l)
+    );
+    localStorage.setItem('lang', l);
+}
 
-        // Expand / Collapse missions
-        function toggleMissions(btn) {
-            const panel = btn.nextElementSibling;
-            const isOpen = panel.classList.contains('open');
-            const label = btn.querySelector('span[data-i18n]');
+document.querySelectorAll('.lang-btn').forEach(b =>
+    b.addEventListener('click', () => applyLang(b.dataset.lang))
+);
+applyLang(lang);
 
-            panel.classList.toggle('open');
-            btn.classList.toggle('open');
-            label.setAttribute('data-i18n', isOpen ? 'see-missions' : 'hide-missions');
-            label.textContent = translations[currentLang][isOpen ? 'see-missions' : 'hide-missions'];
-        }
-    </script>
+// Theme
+const toggle = (btn) => {
+    const panel = btn.nextElementSibling;
+    const isOpen = panel.classList.contains('open');
+    panel.classList.toggle('open');
+    btn.classList.toggle('open');
+    const lbl = btn.querySelector('[data-i18n]');
+    lbl.setAttribute('data-i18n', isOpen ? 'see-missions' : 'hide-missions');
+    lbl.textContent = T[lang][isOpen ? 'see-missions' : 'hide-missions'];
+};
+
+const themeToggle = document.getElementById('themeToggle');
+const themeIcon = document.getElementById('themeIcon');
+function setTheme(t) {
+    document.documentElement.setAttribute('data-theme', t);
+    themeIcon.textContent = t === 'dark' ? '☀️' : '🌙';
+    localStorage.setItem('theme', t);
+}
+themeToggle.addEventListener('click', () =>
+    setTheme(document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark')
+);
+setTheme(localStorage.getItem('theme') || 'light');
+</script>
 </body>
 </html>
