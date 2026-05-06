@@ -30,7 +30,26 @@
         }
         body.loaded { opacity:1; }
 
-        /* ── BACKGROUND ── */
+        /* ── PLUIE EN FOND FIXE ── */
+        .rain-bg {
+            position:fixed; top:0; left:0; width:100%; height:100%;
+            z-index:0; pointer-events:none; overflow:hidden;
+            opacity:0.1; transition:opacity .5s ease;
+        }
+        [data-theme="dark"] .rain-bg { opacity:0.06; }
+        .drop {
+            position:absolute; top:-160px; left:var(--left);
+            display:flex; align-items:center; gap:10px;
+            animation:fall var(--dur) var(--delay) infinite ease-in;
+        }
+        @keyframes fall { 0%{top:-160px;opacity:0} 8%{opacity:1} 82%{opacity:1} 100%{top:calc(100% + 60px);opacity:0} }
+        .drop-img { width:72px; height:72px; object-fit:contain; flex-shrink:0; mix-blend-mode:multiply; }
+        [data-theme="dark"] .drop-img { filter:invert(1); mix-blend-mode:screen; }
+        .imsg-bubble { background:#007AFF; color:white; padding:10px 14px; font-size:13px; font-weight:500; max-width:170px; line-height:1.45; box-shadow:0 2px 10px rgba(0,122,255,.35); position:relative; }
+        .bubble-right { border-radius:16px 16px 16px 4px; }
+        .bubble-left  { border-radius:16px 16px 4px 16px; }
+
+        /* ── BACKGROUND ANIMÉ ── */
         .animated-background { position:fixed; top:0; left:0; width:100%; height:100%; z-index:0; opacity:.4; pointer-events:none; }
         .bg-shape { position:absolute; border-radius:50%; filter:blur(80px); opacity:.3; animation:float 20s infinite ease-in-out; }
         .bg-shape-1 { width:500px; height:500px; background:linear-gradient(135deg,#667eea,#764ba2); top:-10%; left:-10%; }
@@ -49,7 +68,6 @@
         .nav-content { max-width:980px; margin:0 auto; padding:0 22px; height:48px; display:flex; align-items:center; justify-content:space-between; }
         .nav-title { font-size:21px; font-weight:600; letter-spacing:-.01em; }
         .nav-controls { display:flex; gap:12px; align-items:center; }
-
         .search-btn {
             display:flex; align-items:center; gap:6px;
             background:var(--card-bg); border:1px solid var(--border);
@@ -59,9 +77,8 @@
         }
         .search-btn:hover { border-color:var(--accent); color:var(--text-primary); }
         .search-btn kbd { font-size:11px; opacity:.6; }
-        .search-btn .search-label { display:none; }
-        @media(min-width:600px){ .search-btn .search-label { display:inline; } }
-
+        .search-label { display:none; }
+        @media(min-width:600px){ .search-label { display:inline; } }
         .toggle-btn { background:none; border:none; color:var(--text-primary); font-size:20px; cursor:pointer; padding:6px; border-radius:6px; transition:background .2s; }
         .toggle-btn:hover { background:var(--card-bg); }
         .lang-switch { display:flex; background:var(--card-bg); border-radius:20px; padding:2px; }
@@ -146,25 +163,6 @@
         .section-divider::before,.section-divider::after { content:''; flex:1; height:1px; background:var(--border); }
         .section-label { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.12em; color:var(--text-secondary); white-space:nowrap; }
 
-        /* ── PLUIE DE PORTRAITS ── */
-        .rain-section { position:relative; overflow:hidden; height:480px; background:var(--card-bg); margin:32px 0; }
-        .rain-container { position:relative; height:100%; max-width:980px; margin:0 auto; }
-        .drop {
-            position:absolute; top:-160px; left:var(--left);
-            display:flex; align-items:center; gap:10px;
-            animation:fall var(--dur) var(--delay) infinite ease-in;
-        }
-        @keyframes fall { 0%{top:-160px;opacity:0} 8%{opacity:1} 82%{opacity:1} 100%{top:calc(100% + 60px);opacity:0} }
-        .drop-img { width:72px; height:72px; object-fit:contain; flex-shrink:0; mix-blend-mode:multiply; }
-        [data-theme="dark"] .drop-img { filter:invert(1); mix-blend-mode:screen; }
-        .imsg-bubble {
-            background:#007AFF; color:white; padding:10px 14px;
-            font-size:13px; font-weight:500; max-width:170px; line-height:1.45;
-            box-shadow:0 2px 10px rgba(0,122,255,.35); position:relative;
-        }
-        .bubble-right { border-radius:16px 16px 16px 4px; }
-        .bubble-left  { border-radius:16px 16px 4px 16px; }
-
         /* ── CARDS ── */
         .section { position:relative; z-index:1; max-width:980px; margin:0 auto; padding:60px 22px 80px; }
         .section-intro { text-align:center; margin-bottom:48px; }
@@ -218,31 +216,25 @@
             position:fixed; inset:0; z-index:99999;
             background:rgba(0,0,0,.55); backdrop-filter:blur(10px);
             display:flex; align-items:flex-start; justify-content:center;
-            padding-top:12vh; opacity:0; pointer-events:none;
-            transition:opacity .2s ease;
+            padding-top:12vh; opacity:0; pointer-events:none; transition:opacity .2s ease;
         }
         .search-overlay.open { opacity:1; pointer-events:all; }
         .search-modal {
             width:620px; max-width:calc(100vw - 32px);
-            background:var(--bg-primary); border-radius:18px;
-            border:1px solid var(--border);
+            background:var(--bg-primary); border-radius:18px; border:1px solid var(--border);
             box-shadow:0 32px 80px rgba(0,0,0,.4); overflow:hidden;
             transform:scale(.95) translateY(-10px); transition:transform .2s ease;
         }
         .search-overlay.open .search-modal { transform:scale(1) translateY(0); }
         .search-input-wrap { display:flex; align-items:center; gap:12px; padding:16px 20px; border-bottom:1px solid var(--border); }
         .search-icon-svg { color:var(--text-secondary); flex-shrink:0; }
-        #searchInput {
-            flex:1; background:none; border:none; outline:none;
-            font-size:17px; color:var(--text-primary);
-            font-family:-apple-system,sans-serif;
-        }
+        #searchInput { flex:1; background:none; border:none; outline:none; font-size:17px; color:var(--text-primary); font-family:-apple-system,sans-serif; }
         #searchInput::placeholder { color:var(--text-secondary); }
         .search-esc { background:var(--card-bg); border:1px solid var(--border); padding:3px 8px; border-radius:5px; font-size:11px; color:var(--text-secondary); cursor:pointer; font-family:-apple-system,sans-serif; }
         .search-results { max-height:400px; overflow-y:auto; padding:8px 0; }
         .search-group-label { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.08em; color:var(--text-secondary); padding:12px 20px 6px; }
         .search-result-item { display:block; padding:10px 20px; text-decoration:none; transition:background .15s; border-radius:10px; margin:2px 8px; }
-        .search-result-item:hover,.search-result-item.active { background:var(--card-bg); }
+        .search-result-item:hover { background:var(--card-bg); }
         .search-result-title { font-size:15px; font-weight:600; color:var(--text-primary); }
         .search-result-excerpt { font-size:13px; color:var(--text-secondary); margin-top:2px; }
         .search-empty { padding:40px; text-align:center; color:var(--text-secondary); font-size:15px; }
@@ -269,14 +261,17 @@
             .cards-grid,.contact-grid,.testimonials-grid { grid-template-columns:1fr; }
             .keyword-badge::after { display:none; }
             .section-intro h2 { font-size:32px; }
-            .rain-section { height:360px; }
             .drop-img { width:56px; height:56px; }
-            .imsg-bubble { font-size:11px; max-width:130px; padding:8px 10px; }
+            .imsg-bubble { font-size:11px; max-width:120px; padding:8px 10px; }
         }
     </style>
 </head>
 <body>
 
+<!-- ── PLUIE EN FOND FIXE ── -->
+<div class="rain-bg" id="rainContainer"></div>
+
+<!-- ── BACKGROUND ANIMÉ ── -->
 <div class="animated-background">
     <div class="bg-shape bg-shape-1"></div>
     <div class="bg-shape bg-shape-2"></div>
@@ -347,15 +342,7 @@
 </div>
 
 <!-- ── DIVIDER ── -->
-<div class="section-divider"><span class="section-label" data-i18n="div-about">À propos</span></div>
-
-<!-- ── PLUIE ── -->
-<div class="rain-section">
-    <div class="rain-container" id="rainContainer"></div>
-</div>
-
-<!-- ── DIVIDER ── -->
-<div class="section-divider" style="margin-top:32px;"><span class="section-label" data-i18n="div-work">Mon travail</span></div>
+<div class="section-divider"><span class="section-label" data-i18n="div-work">Mon travail</span></div>
 
 <!-- ── CARDS ── -->
 <div class="section">
@@ -390,7 +377,7 @@
     <div class="testimonials-inner">
         <div class="section-intro">
             <h2 data-i18n="testimonials-title">Ce qu'on dit de moi</h2>
-            <p data-i18n="testimonials-sub">Des collègues et managers qui ont travaillé avec moi</p>
+            <p data-i18n="testimonials-sub">Des collègues qui ont travaillé avec moi</p>
         </div>
         <div class="testimonials-grid">
             <div class="testimonial-card">
@@ -406,7 +393,7 @@
                 <p class="testimonial-text">Alec a fait un excellent stage au sein de notre entreprise : comportement irréprochable, motivation quotidienne. Il a su faire preuve de rigueur, de prises d'initiatives et d'aisance relationnelle. Alec est au dessus des attentes sur son rôle chez Javelo et nous a beaucoup aidé sur de nombreux projets.</p>
                 <div>
                     <div class="testimonial-author">Delphine AIM</div>
-                    <div class="testimonial-role">Manager chez Javelo</div>
+                    <div class="testimonial-role">Ancienne collègue</div>
                 </div>
             </div>
             <div class="testimonial-card">
@@ -431,7 +418,7 @@
         <a href="mailto:alecrudydiami@gmail.com" class="contact-card">
             <svg class="contact-svg" viewBox="0 0 52 52" xmlns="http://www.w3.org/2000/svg">
                 <rect width="52" height="52" rx="12" fill="#0071E3"/>
-                <path fill="white" d="M11 18h30c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H11c-1.1 0-2-.9-2-2V20c0-1.1.9-2 2-2zm0 2.8V32h30V20.8L26 30 11 20.8zm15 7.2l15-9.2v-.8H11v.8l15 9.2z"/>
+                <path fill="white" d="M11 18h30c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H11c-1.1 0-2-.9-2-2V20c0-1.1.9-2 2-2zm15 10.8L11 20.5V32h30V20.5L26 28.8zm0-2.3L41 18H11l15 8.5z"/>
             </svg>
             <div class="contact-label" data-i18n="by-email">Par mail</div>
             <div class="contact-value">alecrudydiami@gmail.com</div>
@@ -439,7 +426,7 @@
         <a href="tel:+33626638786" class="contact-card">
             <svg class="contact-svg" viewBox="0 0 52 52" xmlns="http://www.w3.org/2000/svg">
                 <rect width="52" height="52" rx="12" fill="#34C759"/>
-                <path fill="white" d="M36.5 32.3c0 .5-.1 1-.4 1.5-.3.5-.6 1-1.1 1.4-.8.9-1.8 1.3-2.9 1.3-.5 0-1-.1-1.6-.3-.6-.2-1.2-.5-1.8-.8-.6-.4-1.3-.8-1.9-1.4-.7-.6-1.3-1.2-1.8-1.8-.5-.6-1-1.3-1.4-1.9-.4-.6-.7-1.2-.9-1.8-.2-.6-.3-1.1-.3-1.6 0-.5.1-1 .3-1.5.2-.5.5-.9.9-1.3.6-.6 1.2-.9 1.9-.9.3 0 .5.1.8.2.3.1.5.3.7.6l2.4 3.4c.2.3.3.5.4.8.1.2.1.4.1.6 0 .3-.1.5-.2.7-.1.2-.3.5-.5.7l-.5.5c0 .1-.1.2-.1.2 0 .1 0 .1.1.2.2.3.5.7.8 1 .4.4.7.8 1.1 1.1.4.4.8.7 1.2 1 .3.2.6.4.9.6.1.1.2.1.3.1.1 0 .2-.1.2-.1l.5-.5c.2-.2.5-.4.7-.5.2-.1.5-.2.7-.2.2 0 .4.1.6.1.2.1.5.2.8.4l3.4 2.4c.3.2.5.4.6.7 0 .3 0 .5-.1.8z"/>
+                <path fill="white" d="M36.5 32.3c0 .5-.1 1-.4 1.5-.3.5-.6 1-1.1 1.4-.8.9-1.8 1.3-2.9 1.3-.5 0-1-.1-1.6-.3-.6-.2-1.2-.5-1.8-.8-.6-.4-1.3-.8-1.9-1.4-.7-.6-1.3-1.2-1.8-1.8-.5-.6-1-1.3-1.4-1.9-.4-.6-.7-1.2-.9-1.8-.2-.6-.3-1.1-.3-1.6 0-.5.1-1 .3-1.5.2-.5.5-.9.9-1.3.6-.6 1.2-.9 1.9-.9.3 0 .5.1.8.2.3.1.5.3.7.6l2.4 3.4c.2.3.3.5.4.8.1.2.1.4.1.6 0 .3-.1.5-.2.7-.1.2-.3.5-.5.7l-.5.5c-.1.1-.1.2-.1.2 0 .1 0 .1.1.2.2.3.5.7.8 1 .4.4.7.8 1.1 1.1.4.4.8.7 1.2 1 .3.2.6.4.9.6.1.1.2.1.3.1.1 0 .2-.1.2-.1l.5-.5c.2-.2.5-.4.7-.5.2-.1.5-.2.7-.2.2 0 .4.1.6.1.2.1.5.2.8.4l3.4 2.4c.3.2.5.4.6.7 0 .3 0 .5-.1.8z"/>
             </svg>
             <div class="contact-label" data-i18n="by-phone">Téléphone</div>
             <div class="contact-value">+33 6 26 63 87 86</div>
@@ -468,9 +455,7 @@
 </footer>
 
 <script>
-/* ════════════════════════════════════════
-   DONNÉES
-═══════════════════════════════════════ */
+/* ════════════ DONNÉES ════════════ */
 const translations = {
     fr: {
         "your-future":"Votre futur ",
@@ -485,12 +470,11 @@ const translations = {
         "contact-me":"Contactez-moi",
         "by-email":"Par mail",
         "by-phone":"Téléphone",
-        "div-about":"À propos",
         "div-work":"Mon travail",
         "div-reviews":"Recommandations",
         "div-contact":"Contact",
         "testimonials-title":"Ce qu'on dit de moi",
-        "testimonials-sub":"Des collègues et managers qui ont travaillé avec moi",
+        "testimonials-sub":"Des collègues qui ont travaillé avec moi",
         rainMessages:[
             "Profil hybride Tech / Business 🧠",
             "Spécialisé IA & RevOps",
@@ -532,12 +516,11 @@ const translations = {
         "contact-me":"Contact me",
         "by-email":"By email",
         "by-phone":"Phone",
-        "div-about":"About",
         "div-work":"My work",
         "div-reviews":"Recommendations",
         "div-contact":"Contact",
         "testimonials-title":"What people say",
-        "testimonials-sub":"Colleagues and managers I've worked with",
+        "testimonials-sub":"Colleagues I've worked with",
         rainMessages:[
             "Hybrid Tech / Business Profile 🧠",
             "Specialized in AI & RevOps",
@@ -568,88 +551,73 @@ const translations = {
     }
 };
 
-/* ── TECH STACK (vrais logos) ── */
+/* ════════════ TECH STACK ════════════ */
+const SI  = 'https://cdn.simpleicons.org/';
+const ICO = 'https://api.iconify.design/';
+
 const techStack = [
-    { name:'Make',        light:'https://cdn.simpleicons.org/make/6D00CC',          dark:'https://cdn.simpleicons.org/make/9B4DFF' },
-    { name:'HubSpot',     light:'https://cdn.simpleicons.org/hubspot/FF7A59',        dark:'https://cdn.simpleicons.org/hubspot/FF7A59' },
-    { name:'Salesforce',  light:'https://cdn.simpleicons.org/salesforce/00A1E0',     dark:'https://cdn.simpleicons.org/salesforce/00A1E0' },
-    { name:'Airtable',    light:'https://cdn.simpleicons.org/airtable/18BFFF',       dark:'https://cdn.simpleicons.org/airtable/18BFFF' },
-    { name:'Tableau',     light:'https://cdn.simpleicons.org/tableau/E97627',        dark:'https://cdn.simpleicons.org/tableau/E97627' },
-    { name:'SQL',         light:'https://cdn.simpleicons.org/postgresql/4169E1',     dark:'https://cdn.simpleicons.org/postgresql/6B93E8' },
-    { name:'Supabase',    light:'https://cdn.simpleicons.org/supabase/3ECF8E',       dark:'https://cdn.simpleicons.org/supabase/3ECF8E' },
-    { name:'Python',      light:'https://cdn.simpleicons.org/python/3776AB',         dark:'https://cdn.simpleicons.org/python/4B9CD3' },
+    { name:'Make',        light:`${SI}make/6D00CC`,                                                    dark:`${SI}make/9B4DFF` },
+    { name:'HubSpot',     light:`${SI}hubspot/FF7A59`,                                                  dark:`${SI}hubspot/FF7A59` },
+    { name:'Salesforce',  light:`${ICO}logos/salesforce.svg`,                                           dark:`${ICO}logos/salesforce.svg` },
+    { name:'Airtable',    light:`${SI}airtable/18BFFF`,                                                 dark:`${SI}airtable/18BFFF` },
+    { name:'Tableau',     light:`${ICO}logos/tableau.svg`,                                              dark:`${ICO}logos/tableau.svg` },
+    { name:'SQL',         light:`${SI}postgresql/4169E1`,                                               dark:`${SI}postgresql/6B93E8` },
+    { name:'Supabase',    light:`${SI}supabase/3ECF8E`,                                                 dark:`${SI}supabase/3ECF8E` },
+    { name:'Python',      light:`${SI}python/3776AB`,                                                   dark:`${SI}python/4B9CD3` },
     { name:'Dust',        emoji:'✨' },
-    { name:'Sheets',      light:'https://cdn.simpleicons.org/googlesheets/34A853',   dark:'https://cdn.simpleicons.org/googlesheets/34A853' },
-    { name:'BigQuery',    light:'https://cdn.simpleicons.org/googlebigquery/4285F4', dark:'https://cdn.simpleicons.org/googlebigquery/669DF6' },
-    { name:'Notion',      light:'https://cdn.simpleicons.org/notion/000000',         dark:'https://cdn.simpleicons.org/notion/ffffff' },
-    { name:'OpenAI',      light:'https://cdn.simpleicons.org/openai/000000',         dark:'https://cdn.simpleicons.org/openai/ffffff' },
-    { name:'Claude',      light:'https://cdn.simpleicons.org/anthropic/D97757',      dark:'https://cdn.simpleicons.org/anthropic/D97757' },
-    { name:'Docker',      light:'https://cdn.simpleicons.org/docker/2496ED',         dark:'https://cdn.simpleicons.org/docker/2496ED' },
-    { name:'Next.js',     light:'https://cdn.simpleicons.org/nextdotjs/000000',      dark:'https://cdn.simpleicons.org/nextdotjs/ffffff' },
-    { name:'Vercel',      light:'https://cdn.simpleicons.org/vercel/000000',         dark:'https://cdn.simpleicons.org/vercel/ffffff' },
-    { name:'Google Cloud',light:'https://cdn.simpleicons.org/googlecloud/4285F4',   dark:'https://cdn.simpleicons.org/googlecloud/669DF6' },
-    { name:'Webflow',     light:'https://cdn.simpleicons.org/webflow/4353FF',        dark:'https://cdn.simpleicons.org/webflow/4353FF' },
-    { name:'Perplexity',  light:'https://cdn.simpleicons.org/perplexity/20808D',     dark:'https://cdn.simpleicons.org/perplexity/3FBDAD' },
-    { name:'GitHub',      light:'https://cdn.simpleicons.org/github/181717',         dark:'https://cdn.simpleicons.org/github/ffffff' },
-    { name:'Mistral AI',  light:'https://cdn.simpleicons.org/mistralai/FF7000',      dark:'https://cdn.simpleicons.org/mistralai/FF7000' },
-    { name:'Looker',      light:'https://cdn.simpleicons.org/looker/4285F4',         dark:'https://cdn.simpleicons.org/looker/669DF6' },
-    { name:'Apify',       light:'https://cdn.simpleicons.org/apify/00B16A',          dark:'https://cdn.simpleicons.org/apify/00B16A' },
+    { name:'Sheets',      light:`${SI}googlesheets/34A853`,                                             dark:`${SI}googlesheets/34A853` },
+    { name:'BigQuery',    light:`${SI}googlebigquery/4285F4`,                                           dark:`${SI}googlebigquery/669DF6` },
+    { name:'Notion',      light:`${SI}notion/000000`,                                                   dark:`${SI}notion/ffffff` },
+    { name:'OpenAI',      light:`${ICO}simple-icons/openai.svg?color=%23000000`,                        dark:`${ICO}simple-icons/openai.svg?color=%23ffffff` },
+    { name:'Claude',      light:`${SI}anthropic/D97757`,                                                dark:`${SI}anthropic/D97757` },
+    { name:'Docker',      light:`${SI}docker/2496ED`,                                                   dark:`${SI}docker/2496ED` },
+    { name:'Next.js',     light:`${SI}nextdotjs/000000`,                                                dark:`${SI}nextdotjs/ffffff` },
+    { name:'Vercel',      light:`${SI}vercel/000000`,                                                   dark:`${SI}vercel/ffffff` },
+    { name:'Google Cloud',light:`${SI}googlecloud/4285F4`,                                              dark:`${SI}googlecloud/669DF6` },
+    { name:'Webflow',     light:`${SI}webflow/4353FF`,                                                  dark:`${SI}webflow/4353FF` },
+    { name:'Perplexity',  light:`${SI}perplexity/20808D`,                                               dark:`${SI}perplexity/3FBDAD` },
+    { name:'GitHub',      light:`${SI}github/181717`,                                                   dark:`${SI}github/ffffff` },
+    { name:'Mistral AI',  light:`${SI}mistralai/FF7000`,                                                dark:`${SI}mistralai/FF7000` },
+    { name:'Looker',      light:`${SI}looker/4285F4`,                                                   dark:`${SI}looker/669DF6` },
+    { name:'Apify',       light:`${ICO}simple-icons/apify.svg?color=%23006621`,                         dark:`${ICO}simple-icons/apify.svg?color=%2300B16A` },
 ];
 
-/* ── INDEX DE RECHERCHE ── */
+/* ════════════ INDEX RECHERCHE ════════════ */
 const searchIndex = [
-    { title:"Hackathon PayFit 2026", type:"Projet Pro", url:"projets-pro.html", tags:["Make","GPT-4","Claude","automation","SEO","IA","hackathon"], excerpt:"80% temps économisé · Innovation Award · 200K€/an" },
-    { title:"Eugenia School — Audit SEO/GEO/AEO", type:"Projet Pro", url:"projets-pro.html", tags:["Dust","SEMrush","IA","SEO","agents","Webflow","Perplexity"], excerpt:"4 agents IA · machine éditoriale en 3 jours" },
-    { title:"Marathon de Paris 2025", type:"Projet Pro", url:"projets-pro.html", tags:["Python","pandas","scraping","data","API","analyse"], excerpt:"50 001 runners analysés · reverse-engineering API" },
-    { title:"TheLook E-Commerce SQL Audit", type:"Projet Pro", url:"projets-pro.html", tags:["BigQuery","SQL","Looker","data","analytics","Google Cloud"], excerpt:"6 insights actionnables · 14 mois de données" },
-    { title:"Hackathon Mirakl — Connect Prospector", type:"Projet Pro", url:"projets-pro.html", tags:["Next.js","GPT-4o","Supabase","Apify","Vercel","BDR","prospection"], excerpt:"×37 plus rapide · ROI ×2400" },
-    { title:"CV", type:"Page", url:"cv.html", tags:["expérience","formation","Eugenia","Javelo","RevOps","parcours"], excerpt:"Mon parcours et mes expériences" },
-    { title:"Projets Personnels", type:"Page", url:"projets-perso.html", tags:["Dust","agents","IA","perso","créations"], excerpt:"Mes créations et projets personnels" },
-    { title:"RevOps & CRM", type:"Compétence", url:"cv.html", tags:["revenue operations","CRM","Salesforce","HubSpot","Sales"], excerpt:"Revenue Operations Specialist" },
-    { title:"IA & Agents autonomes", type:"Compétence", url:"projets-pro.html", tags:["intelligence artificielle","LLM","GPT","Claude","Dust","automation","agents"], excerpt:"Spécialisé IA & agents autonomes" },
-    { title:"Data Analytics", type:"Compétence", url:"projets-pro.html", tags:["data","SQL","Python","BigQuery","Looker","analyse"], excerpt:"Analyse de données et visualisation" },
-    { title:"Automation", type:"Compétence", url:"projets-pro.html", tags:["Make.com","automatisation","workflows","no-code","intégration"], excerpt:"Automatisation de processus métier" },
-    { title:"Python", type:"Outil", url:"projets-pro.html", tags:["scripting","data","pandas","requests","scraping","code"], excerpt:"Scripting, data processing, scraping" },
-    { title:"SQL / BigQuery", type:"Outil", url:"projets-pro.html", tags:["base de données","requêtes","analyse","Google Cloud","BQ"], excerpt:"Requêtes analytiques avancées" },
-    { title:"Make.com", type:"Outil", url:"projets-pro.html", tags:["automation","no-code","intégration","workflows","Integromat"], excerpt:"Automatisation de workflows" },
-    { title:"HubSpot", type:"Outil", url:"cv.html", tags:["CRM","marketing","sales","automation"], excerpt:"CRM & marketing automation" },
-    { title:"Salesforce", type:"Outil", url:"cv.html", tags:["CRM","sales","enterprise","cloud"], excerpt:"CRM enterprise" },
-    { title:"Supabase", type:"Outil", url:"projets-pro.html", tags:["base de données","backend","PostgreSQL","realtime"], excerpt:"Backend as a service" },
-    { title:"Dust", type:"Outil", url:"projets-pro.html", tags:["agents IA","LLM","RAG","automation","assistant"], excerpt:"Plateforme agents IA" },
-    { title:"OpenAI / GPT-4", type:"Outil", url:"projets-pro.html", tags:["LLM","IA","GPT","génération","automatisation"], excerpt:"Génération de contenu IA" },
-    { title:"Claude (Anthropic)", type:"Outil", url:"projets-pro.html", tags:["LLM","IA","Claude","Sonnet","automatisation"], excerpt:"Modèle IA Anthropic" },
-    { title:"Next.js", type:"Outil", url:"projets-pro.html", tags:["web","React","JavaScript","frontend","fullstack"], excerpt:"Développement web React" },
-    { title:"Vercel", type:"Outil", url:"projets-pro.html", tags:["déploiement","hosting","serverless","cloud"], excerpt:"Déploiement et hosting" },
-    { title:"Notion", type:"Outil", url:"index.html", tags:["organisation","docs","gestion","productivité"], excerpt:"Gestion de projets & documentation" },
-    { title:"Airtable", type:"Outil", url:"index.html", tags:["base de données","no-code","organisation","tableaux"], excerpt:"Base de données flexible" },
+    { title:"Hackathon PayFit 2026",             type:"Projet Pro",   url:"projets-pro.html",   tags:["Make","GPT-4","Claude","automation","SEO","IA","hackathon"],         excerpt:"80% temps économisé · Innovation Award · 200K€/an" },
+    { title:"Eugenia School — Audit SEO/GEO/AEO",type:"Projet Pro",   url:"projets-pro.html",   tags:["Dust","SEMrush","IA","SEO","agents","Webflow","Perplexity"],          excerpt:"4 agents IA · machine éditoriale en 3 jours" },
+    { title:"Marathon de Paris 2025",             type:"Projet Pro",   url:"projets-pro.html",   tags:["Python","pandas","scraping","data","API","analyse"],                  excerpt:"50 001 runners analysés · reverse-engineering API" },
+    { title:"TheLook E-Commerce SQL Audit",       type:"Projet Pro",   url:"projets-pro.html",   tags:["BigQuery","SQL","Looker","data","analytics","Google Cloud"],          excerpt:"6 insights actionnables · 14 mois de données" },
+    { title:"Hackathon Mirakl — Connect Prospector",type:"Projet Pro", url:"projets-pro.html",  tags:["Next.js","GPT-4o","Supabase","Apify","Vercel","BDR","prospection"],   excerpt:"×37 plus rapide · ROI ×2400" },
+    { title:"CV",                                 type:"Page",         url:"cv.html",            tags:["expérience","formation","Eugenia","Javelo","RevOps","parcours"],      excerpt:"Mon parcours et mes expériences" },
+    { title:"Projets Personnels",                 type:"Page",         url:"projets-perso.html", tags:["Dust","agents","IA","perso","créations"],                            excerpt:"Mes créations et projets personnels" },
+    { title:"RevOps & CRM",                       type:"Compétence",   url:"cv.html",            tags:["revenue operations","CRM","Salesforce","HubSpot","Sales"],           excerpt:"Revenue Operations Specialist" },
+    { title:"IA & Agents autonomes",              type:"Compétence",   url:"projets-pro.html",   tags:["intelligence artificielle","LLM","GPT","Claude","Dust","automation"],excerpt:"Spécialisé IA & agents autonomes" },
+    { title:"Data Analytics",                     type:"Compétence",   url:"projets-pro.html",   tags:["data","SQL","Python","BigQuery","Looker","analyse"],                  excerpt:"Analyse de données et visualisation" },
+    { title:"Automation",                         type:"Compétence",   url:"projets-pro.html",   tags:["Make.com","automatisation","workflows","no-code"],                   excerpt:"Automatisation de processus métier" },
+    { title:"Python",                             type:"Outil",        url:"projets-pro.html",   tags:["scripting","data","pandas","scraping","code"],                       excerpt:"Scripting, data processing, scraping" },
+    { title:"SQL / BigQuery",                     type:"Outil",        url:"projets-pro.html",   tags:["base de données","requêtes","analyse","Google Cloud","BQ"],          excerpt:"Requêtes analytiques avancées" },
+    { title:"Make.com",                           type:"Outil",        url:"projets-pro.html",   tags:["automation","no-code","intégration","workflows"],                    excerpt:"Automatisation de workflows" },
+    { title:"HubSpot",                            type:"Outil",        url:"cv.html",            tags:["CRM","marketing","sales","automation"],                              excerpt:"CRM & marketing automation" },
+    { title:"Salesforce",                         type:"Outil",        url:"cv.html",            tags:["CRM","sales","enterprise","cloud"],                                  excerpt:"CRM enterprise" },
+    { title:"Supabase",                           type:"Outil",        url:"projets-pro.html",   tags:["base de données","backend","PostgreSQL","realtime"],                 excerpt:"Backend as a service" },
+    { title:"OpenAI / GPT-4",                     type:"Outil",        url:"projets-pro.html",   tags:["LLM","IA","GPT","génération","automatisation"],                      excerpt:"Génération de contenu IA" },
+    { title:"Notion",                             type:"Outil",        url:"index.html",         tags:["organisation","docs","gestion","productivité"],                      excerpt:"Gestion de projets & documentation" },
 ];
 
-/* ════════════════════════════════════════
-   VARIABLES
-═══════════════════════════════════════ */
+/* ════════════ VARIABLES GLOBALES ════════════ */
 let currentLang = 'fr';
-let currentTitleIndex = 0;
-let currentCharIndex = 0;
-let isDeleting = false;
-
+let currentTitleIndex = 0, currentCharIndex = 0, isDeleting = false;
 const typingTextEl  = document.getElementById('typingText');
 const keywordsCloud = document.getElementById('keywordsCloud');
 const heroName      = document.getElementById('heroName');
 
-/* ════════════════════════════════════════
-   POLICES ALTERNÉES
-═══════════════════════════════════════ */
+/* ── Polices alternées ── */
 const fonts = ['font-sf-pro','font-sf-compact','font-new-york','font-sf-mono'];
 let fontIdx = 0;
-setInterval(() => {
-    heroName.className = '';
-    fontIdx = (fontIdx + 1) % fonts.length;
-    heroName.classList.add(fonts[fontIdx]);
-}, 6000);
+setInterval(() => { heroName.className = ''; fontIdx = (fontIdx+1)%fonts.length; heroName.classList.add(fonts[fontIdx]); }, 6000);
 
-/* ════════════════════════════════════════
-   KEYWORDS
-═══════════════════════════════════════ */
+/* ── Keywords ── */
 function updateKeywords() {
     keywordsCloud.innerHTML = '';
     translations[currentLang].keywords.forEach(item => {
@@ -661,34 +629,31 @@ function updateKeywords() {
     });
 }
 
-/* ════════════════════════════════════════
-   CAROUSEL (vrais logos)
-═══════════════════════════════════════ */
+/* ── Carousel (vrais logos) ── */
 function renderCarousel() {
     const theme   = document.documentElement.getAttribute('data-theme') || 'light';
     const carousel = document.getElementById('logoCarousel');
     if (!carousel) return;
-    const buildItems = () => techStack.map(tool => {
-        const iconHTML = tool.emoji
-            ? `<span style="font-size:28px;line-height:36px;display:block;text-align:center">${tool.emoji}</span>`
-            : `<img src="${tool[theme]}" alt="${tool.name}" width="32" height="32" style="object-fit:contain" loading="lazy">`;
-        return `<div class="logo-item"><div class="logo-icon">${iconHTML}</div><div class="logo-name">${tool.name}</div></div>`;
+    const buildItems = () => techStack.map(t => {
+        const icon = t.emoji
+            ? `<span style="font-size:28px;line-height:36px;display:block;text-align:center">${t.emoji}</span>`
+            : `<img src="${t[theme]}" alt="${t.name}" width="32" height="32" style="object-fit:contain" loading="lazy">`;
+        return `<div class="logo-item"><div class="logo-icon">${icon}</div><div class="logo-name">${t.name}</div></div>`;
     }).join('');
     carousel.innerHTML = buildItems() + buildItems();
 }
 
-/* ════════════════════════════════════════
-   PLUIE DE PORTRAITS
-═══════════════════════════════════════ */
+/* ── Pluie en fond ── */
 const dropConfig = [
-    { left:'3%',  delay:'0s',   dur:'6s',   dir:'row',         msgIdx:0 },
-    { left:'22%', delay:'2.5s', dur:'5s',   dir:'row',         msgIdx:1 },
-    { left:'42%', delay:'1s',   dur:'7s',   dir:'row',         msgIdx:2 },
-    { left:'62%', delay:'3.5s', dur:'5.5s', dir:'row-reverse', msgIdx:3 },
-    { left:'72%', delay:'0.5s', dur:'6.5s', dir:'row-reverse', msgIdx:4 },
+    { left:'4%',  delay:'0s',   dur:'7s',   dir:'row',         msgIdx:0 },
+    { left:'23%', delay:'2.5s', dur:'5.5s', dir:'row',         msgIdx:1 },
+    { left:'44%', delay:'1s',   dur:'8s',   dir:'row',         msgIdx:2 },
+    { left:'63%', delay:'3.5s', dur:'6s',   dir:'row-reverse', msgIdx:3 },
+    { left:'74%', delay:'0.5s', dur:'7.5s', dir:'row-reverse', msgIdx:4 },
 ];
 function renderRain() {
     const container = document.getElementById('rainContainer');
+    if (!container) return;
     const msgs = translations[currentLang].rainMessages;
     container.innerHTML = '';
     dropConfig.forEach(d => {
@@ -702,9 +667,7 @@ function renderRain() {
     });
 }
 
-/* ════════════════════════════════════════
-   TYPING EFFECT
-═══════════════════════════════════════ */
+/* ── Typing ── */
 function typeEffect() {
     const jobs = translations[currentLang].jobs;
     const cur  = jobs[currentTitleIndex];
@@ -714,18 +677,12 @@ function typeEffect() {
         setTimeout(typeEffect, 100);
     } else {
         typingTextEl.textContent = cur.substring(0, currentCharIndex--);
-        if (currentCharIndex === 0) {
-            isDeleting = false;
-            currentTitleIndex = (currentTitleIndex + 1) % jobs.length;
-            setTimeout(typeEffect, 500); return;
-        }
+        if (currentCharIndex === 0) { isDeleting = false; currentTitleIndex = (currentTitleIndex+1)%jobs.length; setTimeout(typeEffect, 500); return; }
         setTimeout(typeEffect, 50);
     }
 }
 
-/* ════════════════════════════════════════
-   I18N
-═══════════════════════════════════════ */
+/* ── i18n ── */
 function updateLanguage(lang) {
     currentLang = lang;
     document.querySelectorAll('[data-i18n]').forEach(el => {
@@ -739,23 +696,19 @@ function updateLanguage(lang) {
     typeEffect();
 }
 
-/* ════════════════════════════════════════
-   THEME
-═══════════════════════════════════════ */
+/* ── Theme ── */
 function setTheme(theme) {
     document.documentElement.setAttribute('data-theme', theme);
     document.getElementById('themeIcon').textContent = theme === 'dark' ? '☀️' : '🌙';
     localStorage.setItem('theme', theme);
-    renderCarousel(); /* adapte les logos sombres/clairs */
+    renderCarousel();
 }
 document.getElementById('themeToggle').addEventListener('click', () => {
     const cur = document.documentElement.getAttribute('data-theme') || 'light';
     setTheme(cur === 'dark' ? 'light' : 'dark');
 });
 
-/* ════════════════════════════════════════
-   LANG TOGGLE
-═══════════════════════════════════════ */
+/* ── Lang toggle ── */
 document.querySelectorAll('.lang-btn').forEach(btn => {
     btn.addEventListener('click', () => {
         document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
@@ -765,23 +718,14 @@ document.querySelectorAll('.lang-btn').forEach(btn => {
     });
 });
 
-/* ════════════════════════════════════════
-   RECHERCHE (Fuse.js + ⌘K)
-═══════════════════════════════════════ */
+/* ════════════ RECHERCHE ════════════ */
 let fuse;
-const overlay      = document.getElementById('searchOverlay');
-const searchInput  = document.getElementById('searchInput');
-const searchResults= document.getElementById('searchResults');
+const overlay       = document.getElementById('searchOverlay');
+const searchInput   = document.getElementById('searchInput');
+const searchResults = document.getElementById('searchResults');
 
-function openSearch() {
-    overlay.classList.add('open');
-    setTimeout(() => searchInput.focus(), 80);
-}
-function closeSearch() {
-    overlay.classList.remove('open');
-    searchInput.value = '';
-    searchResults.innerHTML = '';
-}
+function openSearch()  { overlay.classList.add('open'); setTimeout(() => searchInput.focus(), 80); }
+function closeSearch() { overlay.classList.remove('open'); searchInput.value = ''; searchResults.innerHTML = ''; }
 
 document.addEventListener('keydown', e => {
     if ((e.metaKey || e.ctrlKey) && e.key === 'k') { e.preventDefault(); overlay.classList.contains('open') ? closeSearch() : openSearch(); }
@@ -794,66 +738,39 @@ searchInput.addEventListener('input', () => {
     if (!fuse) return;
     const q = searchInput.value.trim();
     if (!q) { searchResults.innerHTML = ''; return; }
-
     const results = fuse.search(q).slice(0, 10);
-    if (!results.length) {
-        searchResults.innerHTML = `<div class="search-empty">Aucun résultat pour "<strong>${q}</strong>"</div>`;
-        return;
-    }
-
+    if (!results.length) { searchResults.innerHTML = `<div class="search-empty">Aucun résultat pour "<strong>${q}</strong>"</div>`; return; }
     const groups = {};
-    results.forEach(r => {
-        const t = r.item.type;
-        if (!groups[t]) groups[t] = [];
-        groups[t].push(r.item);
-    });
-
+    results.forEach(r => { const t = r.item.type; if (!groups[t]) groups[t]=[]; groups[t].push(r.item); });
     searchResults.innerHTML = Object.entries(groups).map(([type, items]) =>
-        `<div class="search-group">
-            <div class="search-group-label">${type}</div>
-            ${items.map(item =>
-                `<a href="${item.url}" class="search-result-item" onclick="closeSearch()">
-                    <div class="search-result-title">${item.title}</div>
-                    <div class="search-result-excerpt">${item.excerpt}</div>
-                </a>`
-            ).join('')}
-        </div>`
+        `<div class="search-group"><div class="search-group-label">${type}</div>${items.map(item =>
+            `<a href="${item.url}" class="search-result-item" onclick="closeSearch()">
+                <div class="search-result-title">${item.title}</div>
+                <div class="search-result-excerpt">${item.excerpt}</div>
+            </a>`).join('')}</div>`
     ).join('');
 });
 
-/* ════════════════════════════════════════
-   INIT
-═══════════════════════════════════════ */
+/* ════════════ INIT ════════════ */
 document.addEventListener('DOMContentLoaded', () => {
-    /* Fix FOUC */
     document.body.classList.add('loaded');
 
-    /* Theme */
     const savedTheme = localStorage.getItem('theme') || 'light';
     setTheme(savedTheme);
 
-    /* Lang */
     const savedLang = localStorage.getItem('lang') || 'fr';
     currentLang = savedLang;
     document.querySelector(`[data-lang="${savedLang}"]`)?.classList.add('active');
 
-    /* Contenu */
     updateKeywords();
     renderCarousel();
     renderRain();
 
-    /* Fuse.js */
     fuse = new Fuse(searchIndex, {
-        keys: [
-            { name:'title',   weight:.45 },
-            { name:'tags',    weight:.40 },
-            { name:'excerpt', weight:.15 }
-        ],
-        threshold: 0.35,
-        includeScore: true
+        keys: [{ name:'title', weight:.45 },{ name:'tags', weight:.40 },{ name:'excerpt', weight:.15 }],
+        threshold: 0.35, includeScore: true
     });
 
-    /* Typing */
     setTimeout(typeEffect, 1800);
 });
 </script>
