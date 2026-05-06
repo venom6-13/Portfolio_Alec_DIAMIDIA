@@ -30,22 +30,35 @@
         }
         body.loaded { opacity:1; }
 
-        /* ── PLUIE EN FOND FIXE ── */
+        /* ── PLUIE EN FOND FIXE (plus visible) ── */
         .rain-bg {
             position:fixed; top:0; left:0; width:100%; height:100%;
             z-index:0; pointer-events:none; overflow:hidden;
-            opacity:0.1; transition:opacity .5s ease;
+            opacity:0.22; transition:opacity .5s ease;
         }
-        [data-theme="dark"] .rain-bg { opacity:0.06; }
+        [data-theme="dark"] .rain-bg { opacity:0.1; }
+
         .drop {
             position:absolute; top:-160px; left:var(--left);
             display:flex; align-items:center; gap:10px;
             animation:fall var(--dur) var(--delay) infinite ease-in;
         }
-        @keyframes fall { 0%{top:-160px;opacity:0} 8%{opacity:1} 82%{opacity:1} 100%{top:calc(100% + 60px);opacity:0} }
-        .drop-img { width:72px; height:72px; object-fit:contain; flex-shrink:0; mix-blend-mode:multiply; }
+        @keyframes fall {
+            0%   { top:-160px; opacity:0; }
+            8%   { opacity:1; }
+            82%  { opacity:1; }
+            100% { top:calc(100% + 60px); opacity:0; }
+        }
+        .drop-img {
+            width:64px; height:64px; object-fit:contain; flex-shrink:0;
+            mix-blend-mode:multiply;
+        }
         [data-theme="dark"] .drop-img { filter:invert(1); mix-blend-mode:screen; }
-        .imsg-bubble { background:#007AFF; color:white; padding:10px 14px; font-size:13px; font-weight:500; max-width:170px; line-height:1.45; box-shadow:0 2px 10px rgba(0,122,255,.35); position:relative; }
+        .imsg-bubble {
+            background:#007AFF; color:white; padding:10px 14px;
+            font-size:13px; font-weight:500; max-width:160px; line-height:1.45;
+            box-shadow:0 2px 10px rgba(0,122,255,.35);
+        }
         .bubble-right { border-radius:16px 16px 16px 4px; }
         .bubble-left  { border-radius:16px 16px 4px 16px; }
 
@@ -68,6 +81,7 @@
         .nav-content { max-width:980px; margin:0 auto; padding:0 22px; height:48px; display:flex; align-items:center; justify-content:space-between; }
         .nav-title { font-size:21px; font-weight:600; letter-spacing:-.01em; }
         .nav-controls { display:flex; gap:12px; align-items:center; }
+
         .search-btn {
             display:flex; align-items:center; gap:6px;
             background:var(--card-bg); border:1px solid var(--border);
@@ -79,6 +93,7 @@
         .search-btn kbd { font-size:11px; opacity:.6; }
         .search-label { display:none; }
         @media(min-width:600px){ .search-label { display:inline; } }
+
         .toggle-btn { background:none; border:none; color:var(--text-primary); font-size:20px; cursor:pointer; padding:6px; border-radius:6px; transition:background .2s; }
         .toggle-btn:hover { background:var(--card-bg); }
         .lang-switch { display:flex; background:var(--card-bg); border-radius:20px; padding:2px; }
@@ -116,7 +131,7 @@
             transform:translateX(-50%) scale(.9); background:var(--text-primary);
             color:var(--bg-primary); padding:8px 12px; border-radius:8px;
             font-size:13px; white-space:nowrap; opacity:0; pointer-events:none;
-            transition:all .3s ease; font-weight:400;
+            transition:all .3s ease; font-weight:400; z-index:10;
         }
         .keyword-badge:hover::after { opacity:1; transform:translateX(-50%) scale(1); }
         .keyword-badge:nth-child(1){animation:popIn .5s ease-out .4s backwards}
@@ -154,7 +169,15 @@
         @keyframes scroll { 0%{transform:translateX(0)} 100%{transform:translateX(calc(-50% - 20px))} }
         .logo-item { display:flex; flex-direction:column; align-items:center; gap:8px; min-width:72px; opacity:.65; transition:opacity .3s ease; flex-shrink:0; }
         .logo-item:hover { opacity:1; }
-        .logo-icon { width:48px; height:48px; display:flex; align-items:center; justify-content:center; background:var(--bg-primary); border-radius:12px; padding:6px; }
+        .logo-icon {
+            width:48px; height:48px; display:flex; align-items:center; justify-content:center;
+            background:var(--bg-primary); border-radius:12px; padding:6px; overflow:hidden;
+        }
+        /* Logos à fond blanc : toujours fond blanc même en dark */
+        .logo-icon.white-bg {
+            background:#ffffff;
+            box-shadow:0 1px 4px rgba(0,0,0,0.12);
+        }
         .logo-icon img { width:32px; height:32px; object-fit:contain; }
         .logo-name { font-size:11px; font-weight:500; color:var(--text-secondary); white-space:nowrap; }
 
@@ -244,7 +267,7 @@
         footer { position:relative; z-index:1; border-top:1px solid var(--border); padding:20px 22px; }
         .footer-content { max-width:980px; margin:0 auto; text-align:center; font-size:12px; color:var(--text-secondary); }
 
-        /* ── RESPONSIVE ── */
+        /* ════════════ RESPONSIVE ════════════ */
         @media(max-width:1068px) {
             .hero h1 { font-size:72px; }
             .hero-subtitle { font-size:28px; }
@@ -253,22 +276,34 @@
             .testimonials-grid { grid-template-columns:repeat(2,1fr); }
         }
         @media(max-width:734px) {
-            .hero { padding:80px 22px 40px; }
-            .hero h1 { font-size:48px; }
-            .hero-subtitle { font-size:21px; }
-            .hero-subtitle-container { padding:16px 24px; }
-            .typing-cursor { height:24px; }
-            .cards-grid,.contact-grid,.testimonials-grid { grid-template-columns:1fr; }
+            .hero { padding:80px 16px 32px; }
+            .hero h1 { font-size:44px; }
+            .hero-subtitle { font-size:18px; }
+            .hero-subtitle-container { padding:14px 20px; white-space:normal; text-align:center; }
+            .typing-cursor { height:22px; }
+            .cards-grid { grid-template-columns:1fr; gap:12px; }
+            .contact-grid { grid-template-columns:repeat(2,1fr); gap:12px; }
+            .testimonials-grid { grid-template-columns:1fr; }
+            .keyword-badge { font-size:13px; padding:8px 16px; }
             .keyword-badge::after { display:none; }
-            .section-intro h2 { font-size:32px; }
-            .drop-img { width:56px; height:56px; }
-            .imsg-bubble { font-size:11px; max-width:120px; padding:8px 10px; }
+            .section-intro h2 { font-size:28px; }
+            .section-intro p { font-size:16px; }
+            .drop-img { width:50px; height:50px; }
+            .imsg-bubble { font-size:11px; max-width:110px; padding:7px 10px; }
+            .logo-carousel-container { padding:24px 16px; }
+            .contact-section h2 { font-size:28px; }
+            .testimonials-section { padding:60px 16px; }
+            .nav-title { font-size:17px; }
+        }
+        @media(max-width:400px) {
+            .hero h1 { font-size:36px; }
+            .contact-grid { grid-template-columns:1fr; }
         }
     </style>
 </head>
 <body>
 
-<!-- ── PLUIE EN FOND FIXE ── -->
+<!-- ── PLUIE EN FOND ── -->
 <div class="rain-bg" id="rainContainer"></div>
 
 <!-- ── BACKGROUND ANIMÉ ── -->
@@ -341,7 +376,7 @@
     </div>
 </div>
 
-<!-- ── DIVIDER ── -->
+<!-- ── DIVIDER MON TRAVAIL ── -->
 <div class="section-divider"><span class="section-label" data-i18n="div-work">Mon travail</span></div>
 
 <!-- ── CARDS ── -->
@@ -369,7 +404,7 @@
     </div>
 </div>
 
-<!-- ── DIVIDER ── -->
+<!-- ── DIVIDER RECOMMANDATIONS ── -->
 <div class="section-divider"><span class="section-label" data-i18n="div-reviews">Recommandations</span></div>
 
 <!-- ── TÉMOIGNAGES ── -->
@@ -408,7 +443,7 @@
     </div>
 </div>
 
-<!-- ── DIVIDER ── -->
+<!-- ── DIVIDER CONTACT ── -->
 <div class="section-divider" style="margin-top:0;"><span class="section-label" data-i18n="div-contact">Contact</span></div>
 
 <!-- ── CONTACT ── -->
@@ -455,7 +490,7 @@
 </footer>
 
 <script>
-/* ════════════ DONNÉES ════════════ */
+/* ════════════ DONNÉES i18n ════════════ */
 const translations = {
     fr: {
         "your-future":"Votre futur ",
@@ -552,60 +587,50 @@ const translations = {
 };
 
 /* ════════════ TECH STACK ════════════ */
+/* Docker supprimé. Salesforce/Dust/Apify/Tableau = logos locaux */
 const SI  = 'https://cdn.simpleicons.org/';
-const ICO = 'https://api.iconify.design/';
-
 const techStack = [
-    { name:'Make',        light:`${SI}make/6D00CC`,                                                    dark:`${SI}make/9B4DFF` },
-    { name:'HubSpot',     light:`${SI}hubspot/FF7A59`,                                                  dark:`${SI}hubspot/FF7A59` },
-    { name:'Salesforce',  light:`${ICO}logos/salesforce.svg`,                                           dark:`${ICO}logos/salesforce.svg` },
-    { name:'Airtable',    light:`${SI}airtable/18BFFF`,                                                 dark:`${SI}airtable/18BFFF` },
-    { name:'Tableau',     light:`${ICO}logos/tableau.svg`,                                              dark:`${ICO}logos/tableau.svg` },
-    { name:'SQL',         light:`${SI}postgresql/4169E1`,                                               dark:`${SI}postgresql/6B93E8` },
-    { name:'Supabase',    light:`${SI}supabase/3ECF8E`,                                                 dark:`${SI}supabase/3ECF8E` },
-    { name:'Python',      light:`${SI}python/3776AB`,                                                   dark:`${SI}python/4B9CD3` },
-    { name:'Dust',        emoji:'✨' },
-    { name:'Sheets',      light:`${SI}googlesheets/34A853`,                                             dark:`${SI}googlesheets/34A853` },
-    { name:'BigQuery',    light:`${SI}googlebigquery/4285F4`,                                           dark:`${SI}googlebigquery/669DF6` },
-    { name:'Notion',      light:`${SI}notion/000000`,                                                   dark:`${SI}notion/ffffff` },
-    { name:'OpenAI',      light:`${ICO}simple-icons/openai.svg?color=%23000000`,                        dark:`${ICO}simple-icons/openai.svg?color=%23ffffff` },
-    { name:'Claude',      light:`${SI}anthropic/D97757`,                                                dark:`${SI}anthropic/D97757` },
-    { name:'Docker',      light:`${SI}docker/2496ED`,                                                   dark:`${SI}docker/2496ED` },
-    { name:'Next.js',     light:`${SI}nextdotjs/000000`,                                                dark:`${SI}nextdotjs/ffffff` },
-    { name:'Vercel',      light:`${SI}vercel/000000`,                                                   dark:`${SI}vercel/ffffff` },
-    { name:'Google Cloud',light:`${SI}googlecloud/4285F4`,                                              dark:`${SI}googlecloud/669DF6` },
-    { name:'Webflow',     light:`${SI}webflow/4353FF`,                                                  dark:`${SI}webflow/4353FF` },
-    { name:'Perplexity',  light:`${SI}perplexity/20808D`,                                               dark:`${SI}perplexity/3FBDAD` },
-    { name:'GitHub',      light:`${SI}github/181717`,                                                   dark:`${SI}github/ffffff` },
-    { name:'Mistral AI',  light:`${SI}mistralai/FF7000`,                                                dark:`${SI}mistralai/FF7000` },
-    { name:'Looker',      light:`${SI}looker/4285F4`,                                                   dark:`${SI}looker/669DF6` },
-    { name:'Apify',       light:`${ICO}simple-icons/apify.svg?color=%23006621`,                         dark:`${ICO}simple-icons/apify.svg?color=%2300B16A` },
+    { name:'Make',         light:`${SI}make/6D00CC`,              dark:`${SI}make/9B4DFF` },
+    { name:'HubSpot',      light:`${SI}hubspot/FF7A59`,            dark:`${SI}hubspot/FF7A59` },
+    { name:'Salesforce',   light:'./assets/logo-salesforce.png',   dark:'./assets/logo-salesforce.png',  whiteBg:true },
+    { name:'Airtable',     light:`${SI}airtable/18BFFF`,           dark:`${SI}airtable/18BFFF` },
+    { name:'Tableau',      light:'./assets/logo-tableau.png',      dark:'./assets/logo-tableau.png',     whiteBg:true },
+    { name:'SQL',          light:`${SI}postgresql/4169E1`,         dark:`${SI}postgresql/6B93E8` },
+    { name:'Supabase',     light:`${SI}supabase/3ECF8E`,           dark:`${SI}supabase/3ECF8E` },
+    { name:'Python',       light:`${SI}python/3776AB`,             dark:`${SI}python/4B9CD3` },
+    { name:'Dust',         light:'./assets/logo-dust.png',         dark:'./assets/logo-dust.png',        whiteBg:true },
+    { name:'Sheets',       light:`${SI}googlesheets/34A853`,       dark:`${SI}googlesheets/34A853` },
+    { name:'BigQuery',     light:`${SI}googlebigquery/4285F4`,     dark:`${SI}googlebigquery/669DF6` },
+    { name:'Notion',       light:`${SI}notion/000000`,             dark:`${SI}notion/ffffff` },
+    { name:'OpenAI',       light:`${SI}openai/000000`,             dark:`${SI}openai/ffffff` },
+    { name:'Claude',       light:`${SI}anthropic/D97757`,          dark:`${SI}anthropic/D97757` },
+    { name:'Next.js',      light:`${SI}nextdotjs/000000`,          dark:`${SI}nextdotjs/ffffff` },
+    { name:'Vercel',       light:`${SI}vercel/000000`,             dark:`${SI}vercel/ffffff` },
+    { name:'Google Cloud', light:`${SI}googlecloud/4285F4`,        dark:`${SI}googlecloud/669DF6` },
+    { name:'Webflow',      light:`${SI}webflow/4353FF`,            dark:`${SI}webflow/4353FF` },
+    { name:'Perplexity',   light:`${SI}perplexity/20808D`,         dark:`${SI}perplexity/3FBDAD` },
+    { name:'GitHub',       light:`${SI}github/181717`,             dark:`${SI}github/ffffff` },
+    { name:'Mistral AI',   light:`${SI}mistralai/FF7000`,          dark:`${SI}mistralai/FF7000` },
+    { name:'Looker',       light:`${SI}looker/4285F4`,             dark:`${SI}looker/669DF6` },
+    { name:'Apify',        light:'./assets/logo-apify.png',        dark:'./assets/logo-apify.png',       whiteBg:true },
 ];
 
 /* ════════════ INDEX RECHERCHE ════════════ */
 const searchIndex = [
-    { title:"Hackathon PayFit 2026",             type:"Projet Pro",   url:"projets-pro.html",   tags:["Make","GPT-4","Claude","automation","SEO","IA","hackathon"],         excerpt:"80% temps économisé · Innovation Award · 200K€/an" },
-    { title:"Eugenia School — Audit SEO/GEO/AEO",type:"Projet Pro",   url:"projets-pro.html",   tags:["Dust","SEMrush","IA","SEO","agents","Webflow","Perplexity"],          excerpt:"4 agents IA · machine éditoriale en 3 jours" },
-    { title:"Marathon de Paris 2025",             type:"Projet Pro",   url:"projets-pro.html",   tags:["Python","pandas","scraping","data","API","analyse"],                  excerpt:"50 001 runners analysés · reverse-engineering API" },
-    { title:"TheLook E-Commerce SQL Audit",       type:"Projet Pro",   url:"projets-pro.html",   tags:["BigQuery","SQL","Looker","data","analytics","Google Cloud"],          excerpt:"6 insights actionnables · 14 mois de données" },
-    { title:"Hackathon Mirakl — Connect Prospector",type:"Projet Pro", url:"projets-pro.html",  tags:["Next.js","GPT-4o","Supabase","Apify","Vercel","BDR","prospection"],   excerpt:"×37 plus rapide · ROI ×2400" },
-    { title:"CV",                                 type:"Page",         url:"cv.html",            tags:["expérience","formation","Eugenia","Javelo","RevOps","parcours"],      excerpt:"Mon parcours et mes expériences" },
-    { title:"Projets Personnels",                 type:"Page",         url:"projets-perso.html", tags:["Dust","agents","IA","perso","créations"],                            excerpt:"Mes créations et projets personnels" },
-    { title:"RevOps & CRM",                       type:"Compétence",   url:"cv.html",            tags:["revenue operations","CRM","Salesforce","HubSpot","Sales"],           excerpt:"Revenue Operations Specialist" },
-    { title:"IA & Agents autonomes",              type:"Compétence",   url:"projets-pro.html",   tags:["intelligence artificielle","LLM","GPT","Claude","Dust","automation"],excerpt:"Spécialisé IA & agents autonomes" },
-    { title:"Data Analytics",                     type:"Compétence",   url:"projets-pro.html",   tags:["data","SQL","Python","BigQuery","Looker","analyse"],                  excerpt:"Analyse de données et visualisation" },
-    { title:"Automation",                         type:"Compétence",   url:"projets-pro.html",   tags:["Make.com","automatisation","workflows","no-code"],                   excerpt:"Automatisation de processus métier" },
-    { title:"Python",                             type:"Outil",        url:"projets-pro.html",   tags:["scripting","data","pandas","scraping","code"],                       excerpt:"Scripting, data processing, scraping" },
-    { title:"SQL / BigQuery",                     type:"Outil",        url:"projets-pro.html",   tags:["base de données","requêtes","analyse","Google Cloud","BQ"],          excerpt:"Requêtes analytiques avancées" },
-    { title:"Make.com",                           type:"Outil",        url:"projets-pro.html",   tags:["automation","no-code","intégration","workflows"],                    excerpt:"Automatisation de workflows" },
-    { title:"HubSpot",                            type:"Outil",        url:"cv.html",            tags:["CRM","marketing","sales","automation"],                              excerpt:"CRM & marketing automation" },
-    { title:"Salesforce",                         type:"Outil",        url:"cv.html",            tags:["CRM","sales","enterprise","cloud"],                                  excerpt:"CRM enterprise" },
-    { title:"Supabase",                           type:"Outil",        url:"projets-pro.html",   tags:["base de données","backend","PostgreSQL","realtime"],                 excerpt:"Backend as a service" },
-    { title:"OpenAI / GPT-4",                     type:"Outil",        url:"projets-pro.html",   tags:["LLM","IA","GPT","génération","automatisation"],                      excerpt:"Génération de contenu IA" },
-    { title:"Notion",                             type:"Outil",        url:"index.html",         tags:["organisation","docs","gestion","productivité"],                      excerpt:"Gestion de projets & documentation" },
+    { title:"Hackathon PayFit 2026",              type:"Projet Pro",  url:"projets-pro.html",   tags:["Make","GPT-4","Claude","automation","SEO","IA"],    excerpt:"80% temps économisé · Innovation Award · 200K€/an" },
+    { title:"Eugenia School — Audit SEO/GEO/AEO", type:"Projet Pro",  url:"projets-pro.html",   tags:["Dust","SEMrush","IA","SEO","agents","Webflow"],     excerpt:"4 agents IA · machine éditoriale en 3 jours" },
+    { title:"Marathon de Paris 2025",              type:"Projet Pro",  url:"projets-pro.html",   tags:["Python","pandas","scraping","data","API"],          excerpt:"50 001 runners analysés · reverse-engineering API" },
+    { title:"TheLook E-Commerce SQL Audit",        type:"Projet Pro",  url:"projets-pro.html",   tags:["BigQuery","SQL","Looker","data","analytics"],       excerpt:"6 insights actionnables · 14 mois de données" },
+    { title:"Hackathon Mirakl — Connect Prospector",type:"Projet Pro", url:"projets-pro.html",   tags:["Next.js","GPT-4o","Supabase","Apify","Vercel"],    excerpt:"×37 plus rapide · ROI ×2400" },
+    { title:"CV",                                  type:"Page",        url:"cv.html",            tags:["expérience","formation","Eugenia","Javelo","RevOps"],excerpt:"Mon parcours et mes expériences" },
+    { title:"Projets Personnels",                  type:"Page",        url:"projets-perso.html", tags:["Dust","agents","IA","perso","créations"],           excerpt:"Mes créations et projets personnels" },
+    { title:"RevOps & CRM",                        type:"Compétence",  url:"cv.html",            tags:["revenue","CRM","Salesforce","HubSpot","Sales"],     excerpt:"Revenue Operations Specialist" },
+    { title:"IA & Agents autonomes",               type:"Compétence",  url:"projets-pro.html",   tags:["IA","LLM","GPT","Claude","Dust","automation"],     excerpt:"Spécialisé IA & agents autonomes" },
+    { title:"Data Analytics",                      type:"Compétence",  url:"projets-pro.html",   tags:["data","SQL","Python","BigQuery","Looker"],          excerpt:"Analyse de données et visualisation" },
+    { title:"Automation",                          type:"Compétence",  url:"projets-pro.html",   tags:["Make.com","automatisation","workflows","no-code"],  excerpt:"Automatisation de processus métier" },
 ];
 
-/* ════════════ VARIABLES GLOBALES ════════════ */
+/* ════════════ VARIABLES ════════════ */
 let currentLang = 'fr';
 let currentTitleIndex = 0, currentCharIndex = 0, isDeleting = false;
 const typingTextEl  = document.getElementById('typingText');
@@ -615,7 +640,7 @@ const heroName      = document.getElementById('heroName');
 /* ── Polices alternées ── */
 const fonts = ['font-sf-pro','font-sf-compact','font-new-york','font-sf-mono'];
 let fontIdx = 0;
-setInterval(() => { heroName.className = ''; fontIdx = (fontIdx+1)%fonts.length; heroName.classList.add(fonts[fontIdx]); }, 6000);
+setInterval(() => { heroName.className=''; fontIdx=(fontIdx+1)%fonts.length; heroName.classList.add(fonts[fontIdx]); }, 6000);
 
 /* ── Keywords ── */
 function updateKeywords() {
@@ -629,16 +654,17 @@ function updateKeywords() {
     });
 }
 
-/* ── Carousel (vrais logos) ── */
+/* ── Carousel ── */
 function renderCarousel() {
     const theme   = document.documentElement.getAttribute('data-theme') || 'light';
     const carousel = document.getElementById('logoCarousel');
     if (!carousel) return;
     const buildItems = () => techStack.map(t => {
+        const bgClass = t.whiteBg ? ' white-bg' : '';
         const icon = t.emoji
             ? `<span style="font-size:28px;line-height:36px;display:block;text-align:center">${t.emoji}</span>`
             : `<img src="${t[theme]}" alt="${t.name}" width="32" height="32" style="object-fit:contain" loading="lazy">`;
-        return `<div class="logo-item"><div class="logo-icon">${icon}</div><div class="logo-name">${t.name}</div></div>`;
+        return `<div class="logo-item"><div class="logo-icon${bgClass}">${icon}</div><div class="logo-name">${t.name}</div></div>`;
     }).join('');
     carousel.innerHTML = buildItems() + buildItems();
 }
@@ -646,10 +672,10 @@ function renderCarousel() {
 /* ── Pluie en fond ── */
 const dropConfig = [
     { left:'4%',  delay:'0s',   dur:'7s',   dir:'row',         msgIdx:0 },
-    { left:'23%', delay:'2.5s', dur:'5.5s', dir:'row',         msgIdx:1 },
-    { left:'44%', delay:'1s',   dur:'8s',   dir:'row',         msgIdx:2 },
-    { left:'63%', delay:'3.5s', dur:'6s',   dir:'row-reverse', msgIdx:3 },
-    { left:'74%', delay:'0.5s', dur:'7.5s', dir:'row-reverse', msgIdx:4 },
+    { left:'22%', delay:'2.5s', dur:'5.5s', dir:'row',         msgIdx:1 },
+    { left:'43%', delay:'1s',   dur:'8s',   dir:'row',         msgIdx:2 },
+    { left:'62%', delay:'3.5s', dur:'6s',   dir:'row-reverse', msgIdx:3 },
+    { left:'75%', delay:'0.5s', dur:'7s',   dir:'row-reverse', msgIdx:4 },
 ];
 function renderRain() {
     const container = document.getElementById('rainContainer');
@@ -661,7 +687,8 @@ function renderRain() {
         drop.className = 'drop';
         drop.style.cssText = `--left:${d.left};--delay:${d.delay};--dur:${d.dur};flex-direction:${d.dir}`;
         const cls = d.dir === 'row' ? 'bubble-right' : 'bubble-left';
-        drop.innerHTML = `<img src="./assets/avatar-rain.png" class="drop-img" alt="">
+        drop.innerHTML = `
+            <img src="./assets/avatar-rain.png" class="drop-img" alt="">
             <div class="imsg-bubble ${cls}">${msgs[d.msgIdx]}</div>`;
         container.appendChild(drop);
     });
@@ -677,7 +704,7 @@ function typeEffect() {
         setTimeout(typeEffect, 100);
     } else {
         typingTextEl.textContent = cur.substring(0, currentCharIndex--);
-        if (currentCharIndex === 0) { isDeleting = false; currentTitleIndex = (currentTitleIndex+1)%jobs.length; setTimeout(typeEffect, 500); return; }
+        if (currentCharIndex === 0) { isDeleting=false; currentTitleIndex=(currentTitleIndex+1)%jobs.length; setTimeout(typeEffect,500); return; }
         setTimeout(typeEffect, 50);
     }
 }
@@ -691,21 +718,21 @@ function updateLanguage(lang) {
     });
     updateKeywords();
     renderRain();
-    currentTitleIndex = 0; currentCharIndex = 0; isDeleting = false;
-    typingTextEl.textContent = '';
+    currentTitleIndex=0; currentCharIndex=0; isDeleting=false;
+    typingTextEl.textContent='';
     typeEffect();
 }
 
 /* ── Theme ── */
 function setTheme(theme) {
     document.documentElement.setAttribute('data-theme', theme);
-    document.getElementById('themeIcon').textContent = theme === 'dark' ? '☀️' : '🌙';
+    document.getElementById('themeIcon').textContent = theme==='dark' ? '☀️' : '🌙';
     localStorage.setItem('theme', theme);
     renderCarousel();
 }
 document.getElementById('themeToggle').addEventListener('click', () => {
     const cur = document.documentElement.getAttribute('data-theme') || 'light';
-    setTheme(cur === 'dark' ? 'light' : 'dark');
+    setTheme(cur==='dark' ? 'light' : 'dark');
 });
 
 /* ── Lang toggle ── */
@@ -725,24 +752,24 @@ const searchInput   = document.getElementById('searchInput');
 const searchResults = document.getElementById('searchResults');
 
 function openSearch()  { overlay.classList.add('open'); setTimeout(() => searchInput.focus(), 80); }
-function closeSearch() { overlay.classList.remove('open'); searchInput.value = ''; searchResults.innerHTML = ''; }
+function closeSearch() { overlay.classList.remove('open'); searchInput.value=''; searchResults.innerHTML=''; }
 
 document.addEventListener('keydown', e => {
-    if ((e.metaKey || e.ctrlKey) && e.key === 'k') { e.preventDefault(); overlay.classList.contains('open') ? closeSearch() : openSearch(); }
-    if (e.key === 'Escape') closeSearch();
+    if ((e.metaKey||e.ctrlKey) && e.key==='k') { e.preventDefault(); overlay.classList.contains('open') ? closeSearch() : openSearch(); }
+    if (e.key==='Escape') closeSearch();
 });
-overlay.addEventListener('click', e => { if (e.target === overlay) closeSearch(); });
+overlay.addEventListener('click', e => { if (e.target===overlay) closeSearch(); });
 document.getElementById('searchBtn').addEventListener('click', openSearch);
 
 searchInput.addEventListener('input', () => {
     if (!fuse) return;
     const q = searchInput.value.trim();
-    if (!q) { searchResults.innerHTML = ''; return; }
-    const results = fuse.search(q).slice(0, 10);
-    if (!results.length) { searchResults.innerHTML = `<div class="search-empty">Aucun résultat pour "<strong>${q}</strong>"</div>`; return; }
+    if (!q) { searchResults.innerHTML=''; return; }
+    const results = fuse.search(q).slice(0,10);
+    if (!results.length) { searchResults.innerHTML=`<div class="search-empty">Aucun résultat pour "<strong>${q}</strong>"</div>`; return; }
     const groups = {};
-    results.forEach(r => { const t = r.item.type; if (!groups[t]) groups[t]=[]; groups[t].push(r.item); });
-    searchResults.innerHTML = Object.entries(groups).map(([type, items]) =>
+    results.forEach(r => { const t=r.item.type; if(!groups[t]) groups[t]=[]; groups[t].push(r.item); });
+    searchResults.innerHTML = Object.entries(groups).map(([type,items]) =>
         `<div class="search-group"><div class="search-group-label">${type}</div>${items.map(item =>
             `<a href="${item.url}" class="search-result-item" onclick="closeSearch()">
                 <div class="search-result-title">${item.title}</div>
@@ -767,8 +794,8 @@ document.addEventListener('DOMContentLoaded', () => {
     renderRain();
 
     fuse = new Fuse(searchIndex, {
-        keys: [{ name:'title', weight:.45 },{ name:'tags', weight:.40 },{ name:'excerpt', weight:.15 }],
-        threshold: 0.35, includeScore: true
+        keys:[{name:'title',weight:.45},{name:'tags',weight:.40},{name:'excerpt',weight:.15}],
+        threshold:0.35, includeScore:true
     });
 
     setTimeout(typeEffect, 1800);
