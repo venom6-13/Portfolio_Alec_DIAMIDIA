@@ -2,7 +2,7 @@
 <!--          projets-pro.html — MISSION CONTROL         -->
 <!-- ════════════════════════════════════════════════════ -->
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr" data-theme="light">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,440 +11,585 @@
 *{margin:0;padding:0;box-sizing:border-box;}
 
 :root{
-  --bg:#fafafa; --text:#1d1d1f; --muted:#6e6e73;
-  --accent:#0071E3; --accent2:#32ADE6;
-  --soft:rgba(0,113,227,.09); --card:rgba(255,255,255,.72);
-  --border:rgba(0,0,0,.07); --nav:rgba(250,250,250,.75);
-  --tag-c:#0071E3; --tag-bg:rgba(0,113,227,.1);
-  --sh:0 4px 24px rgba(0,0,0,.08);
+  --desk-bg:#dce4ed;
+  --blob1:rgba(0,113,227,.45);--blob2:rgba(50,173,230,.35);--blob3:rgba(90,200,250,.2);--blob4:rgba(0,70,180,.18);
+  --win:rgba(236,236,236,.92);
+  --tb:rgba(248,248,248,.75);
+  --sidebar:rgba(238,238,240,.85);
+  --border:rgba(0,0,0,.1);
+  --text:#1d1d1f;--muted:rgba(0,0,0,.45);
+  --accent:#0071E3;--accent2:#32ADE6;
+  --soft:rgba(0,113,227,.09);
+  --card:rgba(255,255,255,.78);
+  --card-hover:rgba(255,255,255,.95);
+  --tag-bg:rgba(0,113,227,.1);--tag-c:#0071E3;
+  --sh:0 2px 12px rgba(0,0,0,.08);
+  --menubar:rgba(255,255,255,.82);
+  --menubar-text:rgba(0,0,0,.75);
 }
 [data-theme="dark"]{
-  --bg:#080808; --text:#f5f5f7; --muted:#98989d;
-  --accent:#2997FF; --accent2:#5AC8FA;
-  --soft:rgba(41,151,255,.12); --card:rgba(22,22,24,.78);
-  --border:rgba(255,255,255,.08); --nav:rgba(8,8,8,.82);
-  --tag-c:#5EB2FF; --tag-bg:rgba(41,151,255,.13);
-  --sh:0 4px 32px rgba(0,0,0,.5);
+  --desk-bg:#090909;
+  --blob1:rgba(0,113,227,.6);--blob2:rgba(50,173,230,.5);--blob3:rgba(90,200,250,.3);--blob4:rgba(0,70,180,.25);
+  --win:rgba(24,24,26,.92);
+  --tb:rgba(38,38,40,.85);
+  --sidebar:rgba(18,18,20,.8);
+  --border:rgba(255,255,255,.1);
+  --text:#f5f5f7;--muted:rgba(255,255,255,.4);
+  --accent:#2997FF;--accent2:#5AC8FA;
+  --soft:rgba(41,151,255,.12);
+  --card:rgba(38,38,40,.8);
+  --card-hover:rgba(52,52,56,.95);
+  --tag-bg:rgba(41,151,255,.13);--tag-c:#5EB2FF;
+  --sh:0 2px 16px rgba(0,0,0,.4);
+  --menubar:rgba(20,20,22,.9);
+  --menubar-text:rgba(255,255,255,.8);
 }
 
-body{
+/* ═══ DESKTOP ═══ */
+html,body{
+  width:100%;height:100%;overflow:hidden;
   font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Helvetica Neue",sans-serif;
-  background:var(--bg);color:var(--text);
-  -webkit-font-smoothing:antialiased;overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+  background:var(--desk-bg);
+  position:relative;
 }
 
-/* ── GRAIN BACKGROUND ── */
-.bg-wrap{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden;}
-.bg-wrap::before{
-  content:'';position:absolute;inset:0;
+/* Gradient blobs — desktop wallpaper */
+body::before{
+  content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
   background:
-    radial-gradient(ellipse 75% 65% at 5% 5%,  rgba(0,113,227,.45)  0%,transparent 60%),
-    radial-gradient(ellipse 65% 65% at 95% 90%, rgba(50,173,230,.35) 0%,transparent 60%),
-    radial-gradient(ellipse 50% 50% at 70% 20%, rgba(90,200,250,.2)  0%,transparent 55%),
-    radial-gradient(ellipse 40% 40% at 10% 80%, rgba(0,70,180,.18)   0%,transparent 50%);
-  animation:blobShift 38s ease-in-out infinite;
+    radial-gradient(ellipse 70% 60% at 8% 8%,  var(--blob1) 0%,transparent 60%),
+    radial-gradient(ellipse 60% 60% at 92% 88%, var(--blob2) 0%,transparent 60%),
+    radial-gradient(ellipse 50% 45% at 65% 20%, var(--blob3) 0%,transparent 55%),
+    radial-gradient(ellipse 40% 40% at 12% 78%, var(--blob4) 0%,transparent 50%);
+  animation:wallpaper 40s ease-in-out infinite;
 }
-[data-theme="dark"] .bg-wrap::before{filter:saturate(1.4);}
-@keyframes blobShift{
-  0%,100%{transform:scale(1) translate(0,0);}
-  30%{transform:scale(1.05) translate(20px,-15px);}
-  65%{transform:scale(.96) translate(-12px,18px);}
+@keyframes wallpaper{
+  0%,100%{transform:scale(1);}
+  35%{transform:scale(1.04) translate(15px,-10px);}
+  70%{transform:scale(.97) translate(-10px,14px);}
 }
-.bg-wrap::after{
-  content:'';position:absolute;inset:0;
+
+/* Grain texture */
+body::after{
+  content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
   background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23g)'/%3E%3C/svg%3E");
-  opacity:.035;mix-blend-mode:overlay;
+  opacity:.04;mix-blend-mode:overlay;
 }
-[data-theme="dark"] .bg-wrap::after{opacity:.055;}
+[data-theme="dark"] body::after{opacity:.07;}
 
-/* ── NAV ── */
-nav{
-  position:fixed;top:0;left:0;right:0;height:44px;z-index:900;
-  background:var(--nav);backdrop-filter:saturate(180%) blur(20px);
+/* ═══ macOS MENU BAR ═══ */
+.menubar{
+  position:fixed;top:0;left:0;right:0;height:27px;z-index:1000;
+  background:var(--menubar);
+  backdrop-filter:saturate(180%) blur(20px);
   -webkit-backdrop-filter:saturate(180%) blur(20px);
-  border-bottom:1px solid var(--border);
-  display:flex;align-items:center;
+  border-bottom:0.5px solid var(--border);
+  display:flex;align-items:center;padding:0 12px;
+  font-size:13px;font-weight:400;color:var(--menubar-text);
+  justify-content:space-between;
 }
-.nav-inner{
-  width:100%;max-width:1280px;margin:0 auto;padding:0 16px;
-  display:flex;align-items:center;justify-content:space-between;
+.mb-left{display:flex;align-items:center;gap:18px;}
+.mb-apple{font-size:16px;}
+.mb-app{font-weight:600;}
+.mb-menu{display:none;gap:18px;opacity:.75;}
+@media(min-width:600px){.mb-menu{display:flex;}}
+.mb-right{display:flex;align-items:center;gap:10px;}
+.mb-ctrl{
+  display:flex;align-items:center;gap:6px;
+  background:rgba(255,255,255,.12);border:0.5px solid var(--border);
+  border-radius:12px;padding:1px 8px;
 }
-.nav-title{font-size:13.5px;font-weight:500;}
-.nav-r{display:flex;align-items:center;gap:10px;}
-.theme-btn{background:none;border:none;font-size:17px;cursor:pointer;padding:4px;border-radius:6px;}
-.ls{display:flex;background:var(--soft);border-radius:16px;padding:2px;border:1px solid var(--border);}
-.lb{background:none;border:none;padding:3px 10px;border-radius:14px;font-size:11px;font-weight:500;color:var(--muted);cursor:pointer;transition:all .2s;}
-.lb.active{background:var(--card);color:var(--text);box-shadow:0 1px 3px rgba(0,0,0,.1);}
+.mb-btn{
+  background:none;border:none;font-size:13px;font-weight:500;
+  color:var(--menubar-text);cursor:pointer;padding:1px 5px;border-radius:8px;
+  opacity:.75;transition:all .15s;
+}
+.mb-btn.active{background:rgba(255,255,255,.25);opacity:1;font-weight:600;}
+.mb-theme-btn{
+  background:none;border:none;font-size:15px;cursor:pointer;
+  padding:1px;border-radius:4px;line-height:1;
+}
+.mb-time{font-size:12px;font-weight:500;opacity:.7;}
 
-/* ── LAYOUT ── */
-.layout{
-  position:relative;z-index:1;margin-top:44px;
-  display:grid;grid-template-columns:380px 1fr;
-  height:calc(100vh - 44px);overflow:hidden;
+/* ═══ macOS WINDOW ═══ */
+.window{
+  position:fixed;
+  top:35px;left:14px;right:14px;bottom:14px;
+  z-index:100;
+  background:var(--win);
+  backdrop-filter:blur(40px) saturate(180%);
+  -webkit-backdrop-filter:blur(40px) saturate(180%);
+  border-radius:12px;
+  box-shadow:0 0 0 0.5px rgba(0,0,0,.2),0 30px 80px rgba(0,0,0,.35);
+  display:flex;flex-direction:column;overflow:hidden;
 }
 
-/* ── LEFT ── */
-.p-left{border-right:1px solid var(--border);display:flex;flex-direction:column;overflow:hidden;}
-.p-head{padding:24px 20px 16px;border-bottom:1px solid var(--border);}
-.p-eyebrow{font-size:9.5px;font-weight:700;text-transform:uppercase;letter-spacing:.14em;color:var(--accent);margin-bottom:5px;}
-.p-title{font-size:21px;font-weight:700;letter-spacing:-.02em;}
-.p-sub{font-size:12px;color:var(--muted);margin-top:3px;}
-.cards-wrap{flex:1;overflow-y:auto;padding:14px;display:flex;flex-direction:column;gap:10px;}
-.cards-wrap::-webkit-scrollbar{width:5px;}
-.cards-wrap::-webkit-scrollbar-thumb{background:var(--border);border-radius:3px;}
+/* ═══ TITLEBAR ═══ */
+.titlebar{
+  height:52px;flex-shrink:0;
+  background:var(--tb);
+  border-bottom:0.5px solid var(--border);
+  display:flex;align-items:center;padding:0 16px;
+  gap:12px;user-select:none;position:relative;
+}
+.tls{display:flex;gap:8px;}
+.tl{width:12px;height:12px;border-radius:50%;cursor:default;transition:filter .15s;flex-shrink:0;}
+.tl:hover{filter:brightness(.8);}
+.tl-r{background:#FF5F56;box-shadow:inset 0 0 0 0.5px rgba(0,0,0,.18);}
+.tl-y{background:#FFBD2E;box-shadow:inset 0 0 0 0.5px rgba(0,0,0,.18);}
+.tl-g{background:#27C93F;box-shadow:inset 0 0 0 0.5px rgba(0,0,0,.18);}
+.tb-title{
+  position:absolute;left:50%;transform:translateX(-50%);
+  font-size:13px;font-weight:600;color:var(--muted);letter-spacing:-.01em;
+  pointer-events:none;
+}
 
-/* ── CARD ── */
+/* ═══ WINDOW BODY ═══ */
+.wbody{
+  flex:1;display:grid;
+  grid-template-columns:290px 1fr;
+  overflow:hidden;
+}
+
+/* ═══ LEFT SIDEBAR ═══ */
+.sidebar{
+  background:var(--sidebar);
+  border-right:0.5px solid var(--border);
+  display:flex;flex-direction:column;overflow:hidden;
+}
+.sb-head{
+  padding:16px 16px 12px;
+  border-bottom:0.5px solid var(--border);
+}
+.sb-eyebrow{
+  font-size:9.5px;font-weight:700;text-transform:uppercase;
+  letter-spacing:.13em;color:var(--accent);margin-bottom:4px;
+}
+.sb-title{font-size:18px;font-weight:700;letter-spacing:-.02em;color:var(--text);}
+.sb-sub{font-size:11.5px;color:var(--muted);margin-top:3px;}
+.sb-scroll{
+  flex:1;overflow-y:auto;padding:10px;
+  display:flex;flex-direction:column;gap:8px;
+}
+.sb-scroll::-webkit-scrollbar{width:4px;}
+.sb-scroll::-webkit-scrollbar-thumb{background:var(--border);border-radius:2px;}
+
+/* ═══ CARDS ═══ */
 .card{
-  background:var(--card);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
-  border:1px solid var(--border);border-radius:18px;padding:18px;
-  cursor:pointer;transition:all .3s cubic-bezier(.4,0,.2,1);
+  background:var(--card);
+  backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
+  border:0.5px solid var(--border);border-radius:12px;
+  padding:14px;cursor:pointer;
+  transition:all .25s cubic-bezier(.4,0,.2,1);
   position:relative;overflow:hidden;
 }
 .card::before{
-  content:'';position:absolute;top:0;left:0;right:0;height:3px;
+  content:'';position:absolute;top:0;left:0;right:0;height:2.5px;
   background:linear-gradient(90deg,var(--accent),var(--accent2));
-  transform:scaleX(0);transform-origin:left;transition:transform .35s;
+  transform:scaleX(0);transform-origin:left;transition:transform .3s;
 }
 .card:hover::before,.card.on::before{transform:scaleX(1);}
-.card:hover,.card.on{border-color:var(--accent);box-shadow:var(--sh);transform:translateY(-2px);}
-.card.on{background:var(--soft);}
+.card:hover{background:var(--card-hover);border-color:rgba(0,113,227,.35);box-shadow:var(--sh);transform:translateY(-1px);}
+.card.on{background:var(--soft);border-color:var(--accent);}
 
-.card-top{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:12px;}
-.card-emoji{font-size:38px;line-height:1;}
-.badges{display:flex;gap:4px;flex-wrap:wrap;justify-content:flex-end;}
-.bdg{padding:2.5px 7px;border-radius:9px;font-size:9.5px;font-weight:600;}
-.bdg-g{background:rgba(52,199,89,.14);color:#34C759;}
-.bdg-aw{background:rgba(255,149,0,.14);color:#FF9500;}
-.bdg-gh{background:rgba(0,0,0,.07);color:var(--muted);}
-[data-theme="dark"] .bdg-gh{background:rgba(255,255,255,.1);}
-.card-title{font-size:15.5px;font-weight:700;letter-spacing:-.01em;margin-bottom:2px;}
-.card-sub{font-size:11.5px;color:var(--muted);font-style:italic;margin-bottom:9px;}
-.card-stats{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:9px;}
-.stat{font-size:10.5px;font-weight:600;color:var(--accent);background:var(--soft);padding:3px 9px;border-radius:8px;}
+.c-top{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:9px;}
+.c-emoji{font-size:28px;line-height:1;}
+.badges{display:flex;gap:3px;flex-wrap:wrap;justify-content:flex-end;}
+.bdg{padding:2px 6px;border-radius:8px;font-size:9px;font-weight:600;letter-spacing:.01em;}
+.b-g{background:rgba(39,201,63,.14);color:#27C93F;}
+.b-aw{background:rgba(255,149,0,.14);color:#FF9500;}
+.b-gh{background:rgba(0,0,0,.07);color:rgba(0,0,0,.55);}
+[data-theme="dark"] .b-gh{background:rgba(255,255,255,.1);color:rgba(255,255,255,.55);}
+.c-title{font-size:14px;font-weight:700;letter-spacing:-.01em;color:var(--text);margin-bottom:2px;}
+.c-sub{font-size:11px;color:var(--muted);font-style:italic;margin-bottom:7px;}
+.c-stats{display:flex;gap:4px;flex-wrap:wrap;margin-bottom:7px;}
+.c-stat{font-size:10px;font-weight:600;color:var(--accent);background:var(--soft);padding:2px 7px;border-radius:7px;}
 .tags{display:flex;flex-wrap:wrap;gap:3px;}
-.tag{background:var(--tag-bg);color:var(--tag-c);padding:2px 7px;border-radius:7px;font-size:9.5px;font-weight:500;}
+.tag{background:var(--tag-bg);color:var(--tag-c);padding:1.5px 6px;border-radius:6px;font-size:9px;font-weight:500;}
 
-/* ── RIGHT ── */
-.p-right{overflow-y:auto;position:relative;}
-.p-right::-webkit-scrollbar{width:6px;}
-.p-right::-webkit-scrollbar-thumb{background:var(--border);border-radius:3px;}
-.empty{height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;color:var(--muted);text-align:center;padding:32px;}
-.empty-icon{font-size:44px;opacity:.3;}
-.empty-hint{font-size:14px;opacity:.5;}
-.detail{display:none;padding:32px 40px 48px;}
+/* ═══ RIGHT PANEL ═══ */
+.content{overflow-y:auto;position:relative;}
+.content::-webkit-scrollbar{width:5px;}
+.content::-webkit-scrollbar-thumb{background:var(--border);border-radius:3px;}
+
+.empty-state{
+  height:100%;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  gap:10px;color:var(--muted);text-align:center;padding:32px;
+}
+.es-icon{font-size:40px;opacity:.3;}
+.es-hint{font-size:14px;opacity:.55;}
+
+.detail{display:none;padding:28px 36px 44px;animation:fadeIn .25s ease-out;}
 .detail.on{display:block;}
-.back-btn{display:inline-flex;align-items:center;gap:5px;font-size:13px;font-weight:500;color:var(--accent);background:none;border:none;cursor:pointer;margin-bottom:22px;padding:0;transition:opacity .2s;}
-.back-btn:hover{opacity:.65;}
-.d-hero{display:flex;align-items:flex-start;gap:14px;margin-bottom:18px;}
-.d-emoji{font-size:50px;line-height:1;}
-.d-title{font-size:24px;font-weight:700;letter-spacing:-.02em;margin-bottom:3px;}
-.d-sub{font-size:13px;color:var(--muted);margin-bottom:10px;}
-.d-tags{display:flex;flex-wrap:wrap;gap:4px;}
-.d-sec{font-size:9.5px;font-weight:700;text-transform:uppercase;letter-spacing:.13em;color:var(--accent);margin:22px 0 10px;padding-bottom:5px;border-bottom:1.5px solid var(--accent);}
+@keyframes fadeIn{from{opacity:0;transform:translateX(8px);}to{opacity:1;transform:translateX(0);}}
+
+.back{
+  display:inline-flex;align-items:center;gap:5px;font-size:13px;
+  font-weight:500;color:var(--accent);background:none;border:none;
+  cursor:pointer;margin-bottom:20px;padding:0;transition:opacity .2s;
+}
+.back:hover{opacity:.65;}
+
+.d-hero{display:flex;align-items:flex-start;gap:14px;margin-bottom:16px;}
+.d-emoji{font-size:46px;line-height:1;}
+.d-title{font-size:22px;font-weight:700;letter-spacing:-.02em;margin-bottom:3px;color:var(--text);}
+.d-sub{font-size:13px;color:var(--muted);margin-bottom:9px;}
+.d-badges{display:flex;flex-wrap:wrap;gap:4px;}
+
+.d-sec{
+  font-size:9.5px;font-weight:700;text-transform:uppercase;
+  letter-spacing:.12em;color:var(--accent);
+  margin:20px 0 9px;padding-bottom:5px;border-bottom:1.5px solid var(--accent);
+}
 .d-text{font-size:13.5px;line-height:1.75;color:var(--text);}
 .d-ul{padding-left:16px;}
 .d-ul li{font-size:13.5px;line-height:1.7;margin-bottom:5px;color:var(--text);}
 .d-ul li strong{color:var(--text);}
-.stats-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:10px;}
-.sbox{background:var(--soft);border-radius:12px;padding:14px 10px;text-align:center;}
-.sval{font-size:22px;font-weight:700;color:var(--accent);line-height:1;margin-bottom:4px;}
-.slbl{font-size:9.5px;color:var(--muted);line-height:1.3;}
-.demo-box{
-  background:linear-gradient(135deg,var(--soft),rgba(50,173,230,.07));
-  border:1px solid var(--border);border-left:3px solid var(--accent);
-  border-radius:12px;padding:16px 18px;margin-top:10px;
+
+.sg{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:10px;}
+.sb{background:var(--soft);border-radius:10px;padding:12px 10px;text-align:center;}
+.sv{font-size:20px;font-weight:700;color:var(--accent);line-height:1;margin-bottom:4px;}
+.sl{font-size:9px;color:var(--muted);line-height:1.35;}
+
+.proof-box{
+  background:linear-gradient(135deg,var(--soft),rgba(50,173,230,.06));
+  border:0.5px solid var(--border);border-left:3px solid var(--accent);
+  border-radius:10px;padding:14px 16px;margin-top:10px;
 }
-.demo-box p{font-size:13.5px;line-height:1.75;color:var(--text);}
-.d-link{display:inline-flex;align-items:center;gap:7px;margin-top:18px;background:var(--accent);color:white;padding:10px 18px;border-radius:11px;text-decoration:none;font-size:12.5px;font-weight:600;transition:opacity .2s,transform .2s;}
+.proof-box p{font-size:13.5px;line-height:1.75;color:var(--text);}
+
+.d-link{
+  display:inline-flex;align-items:center;gap:6px;
+  margin-top:16px;background:var(--accent);color:white;
+  padding:9px 16px;border-radius:10px;text-decoration:none;
+  font-size:12.5px;font-weight:600;transition:opacity .2s,transform .2s;
+}
 .d-link:hover{opacity:.85;transform:translateY(-1px);}
 
-/* ── MOBILE ── */
-.mob-nav{display:none;position:fixed;bottom:0;left:0;right:0;height:64px;background:var(--nav);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-top:1px solid var(--border);z-index:900;padding:0 8px 8px;align-items:flex-end;justify-content:space-around;}
-.mnb{display:flex;flex-direction:column;align-items:center;gap:2px;padding:6px 8px;border-radius:10px;text-decoration:none;background:none;border:none;cursor:pointer;transition:background .2s;}
-.mnb:hover{background:var(--soft);}
-.mnb span:first-child{font-size:20px;}
-.mnl{font-size:9.5px;font-weight:500;color:var(--muted);}
-.mob-detail{display:none;position:fixed;inset:44px 0 64px 0;background:var(--bg);z-index:500;overflow-y:auto;padding:0 16px 32px;}
+/* ═══ MOBILE NAV ═══ */
+.mob-nav{
+  display:none;position:fixed;
+  bottom:0;left:0;right:0;height:60px;
+  background:var(--menubar);
+  backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
+  border-top:0.5px solid var(--border);z-index:1000;
+  padding:0 8px 6px;align-items:flex-end;justify-content:space-around;
+}
+.mn{display:flex;flex-direction:column;align-items:center;gap:2px;padding:5px 6px;border-radius:8px;text-decoration:none;background:none;border:none;cursor:pointer;transition:background .2s;}
+.mn:hover{background:var(--soft);}
+.mn span:first-child{font-size:19px;}
+.mnl{font-size:9px;font-weight:500;color:var(--muted);}
+.mob-detail{display:none;position:fixed;inset:27px 0 60px;background:var(--win);z-index:500;overflow-y:auto;padding:0 16px 28px;}
 .mob-detail.on{display:block;}
-@media(max-width:768px){.layout{grid-template-columns:1fr;height:auto;overflow:visible;min-height:calc(100vh - 44px - 64px);}.p-left{border-right:none;height:auto;overflow:visible;}.cards-wrap{overflow:visible;}.p-right{display:none;}.mob-nav{display:flex;}body{padding-bottom:64px;}}
+
+/* ═══ RESPONSIVE ═══ */
+@media(max-width:768px){
+  .window{border-radius:0;top:27px;left:0;right:0;bottom:60px;}
+  .wbody{grid-template-columns:1fr;}
+  .content{display:none;}
+  .mob-nav{display:flex;}
+}
 @media(min-width:769px){.mob-detail{display:none !important;}}
 </style>
 </head>
 <body>
 
-<div class="bg-wrap"></div>
-
-<nav>
-  <div class="nav-inner">
-    <span style="font-size:18px">🍎</span>
-    <span class="nav-title" data-i18n="nav">Projets Pro</span>
-    <div class="nav-r">
-      <button class="theme-btn" id="thm"><span id="thmIcon">🌙</span></button>
-      <div class="ls">
-        <button class="lb active" data-lang="fr">FR</button>
-        <button class="lb" data-lang="en">EN</button>
-      </div>
+<!-- MENU BAR -->
+<div class="menubar">
+  <div class="mb-left">
+    <span class="mb-apple">🍎</span>
+    <span class="mb-app" data-i18n="appname">Projets Pro</span>
+    <div class="mb-menu">
+      <span>Finder</span><span>Présentation</span><span>Affichage</span><span>Aller</span>
     </div>
   </div>
-</nav>
-
-<div class="layout">
-
-  <!-- LEFT -->
-  <div class="p-left">
-    <div class="p-head">
-      <div class="p-eyebrow" data-i18n="eyebrow">Mission Control</div>
-      <div class="p-title" data-i18n="title">Projets Pro / Autres</div>
-      <div class="p-sub" data-i18n="sub">Cliquez sur un projet pour l'explorer</div>
+  <div class="mb-right">
+    <button class="mb-theme-btn" id="thm"><span id="thmIcon">🌙</span></button>
+    <div class="mb-ctrl">
+      <button class="mb-btn active" data-lang="fr">FR</button>
+      <button class="mb-btn" data-lang="en">EN</button>
     </div>
-    <div class="cards-wrap">
-
-      <div class="card" id="c1" onclick="openProject('p1')">
-        <div class="card-top"><div class="card-emoji">🔍</div>
-          <div class="badges"><span class="bdg bdg-g">🟢 Actif</span></div>
-        </div>
-        <div class="card-title">Eugenia — SEO/GEO/AEO</div>
-        <div class="card-sub">Stratégie contenu & agents IA · Eugenia School</div>
-        <div class="card-stats"><span class="stat">4 agents opérationnels</span><span class="stat">Machine éditoriale en 3j</span></div>
-        <div class="tags"><span class="tag">Dust</span><span class="tag">SEMrush</span><span class="tag">ChatGPT</span><span class="tag">Perplexity</span><span class="tag">Webflow</span></div>
-      </div>
-
-      <div class="card" id="c2" onclick="openProject('p2')">
-        <div class="card-top"><div class="card-emoji">⚡</div>
-          <div class="badges"><span class="bdg bdg-aw">🏆 Award</span><span class="bdg bdg-g">🟢 Actif</span></div>
-        </div>
-        <div class="card-title">Hackathon PayFit 2026</div>
-        <div class="card-sub">Content SEO automatisé · Intelligence collective</div>
-        <div class="card-stats"><span class="stat">80% temps économisé</span><span class="stat">14.3/15 qualité</span></div>
-        <div class="tags"><span class="tag">Make.com</span><span class="tag">OpenAI GPT-4</span><span class="tag">Claude Sonnet</span><span class="tag">Docker</span></div>
-      </div>
-
-      <div class="card" id="c3" onclick="openProject('p3')">
-        <div class="card-top"><div class="card-emoji">🏃</div>
-          <div class="badges"><span class="bdg bdg-gh">⌨️ GitHub</span></div>
-        </div>
-        <div class="card-title">Marathon Paris 2025</div>
-        <div class="card-sub">Data pipeline Python · 50 001 finishers</div>
-        <div class="card-stats"><span class="stat">50 001 runners</span><span class="stat">API reverse-engineering</span></div>
-        <div class="tags"><span class="tag">Python</span><span class="tag">requests</span><span class="tag">pandas</span><span class="tag">Google Sheets</span></div>
-      </div>
-
-      <div class="card" id="c4" onclick="openProject('p4')">
-        <div class="card-top"><div class="card-emoji">📊</div>
-          <div class="badges"><span class="bdg bdg-gh">⌨️ GitHub</span></div>
-        </div>
-        <div class="card-title">TheLook — SQL Audit</div>
-        <div class="card-sub">Profitability audit · BigQuery Multi-CTE</div>
-        <div class="card-stats"><span class="stat">6 insights actionnables</span><span class="stat">14 mois · BigQuery</span></div>
-        <div class="tags"><span class="tag">BigQuery</span><span class="tag">SQL</span><span class="tag">Looker Studio</span><span class="tag">Google Cloud</span></div>
-      </div>
-
-      <div class="card" id="c5" onclick="openProject('p5')">
-        <div class="card-top"><div class="card-emoji">🏆</div>
-          <div class="badges"><span class="bdg bdg-g">🟢 Déployé</span><span class="bdg bdg-gh">⌨️ GitHub</span></div>
-        </div>
-        <div class="card-title">Hackathon Mirakl</div>
-        <div class="card-sub">Pipeline BDR automatisé · Vercel · 48h</div>
-        <div class="card-stats"><span class="stat">×37 plus rapide</span><span class="stat">ROI ×2400</span></div>
-        <div class="tags"><span class="tag">Next.js</span><span class="tag">GPT-4o</span><span class="tag">Supabase</span><span class="tag">Apify</span><span class="tag">Vercel</span></div>
-      </div>
-
-    </div>
-  </div>
-
-  <!-- RIGHT -->
-  <div class="p-right">
-    <div class="empty" id="emptyState">
-      <div class="empty-icon">🎯</div>
-      <div class="empty-hint" data-i18n="hint">Cliquez sur un projet pour l'explorer</div>
-    </div>
-
-    <!-- P1 — Eugenia -->
-    <div class="detail" id="p1">
-      <button class="back-btn" onclick="closeProject()">← <span data-i18n="back">Mission Control</span></button>
-      <div class="d-hero"><div class="d-emoji">🔍</div>
-        <div>
-          <div class="d-title">Eugenia School — Audit Visibilité & Stratégie Contenu Agentique</div>
-          <div class="d-sub">Conseil stratégique + Implémentation technique</div>
-          <div class="d-tags"><span class="bdg bdg-g">🟢 Actif</span><span class="tag">Dust</span><span class="tag">SEMrush</span><span class="tag">ChatGPT</span><span class="tag">Perplexity</span><span class="tag">Webflow</span><span class="tag">Substack</span></div>
-        </div>
-      </div>
-      <div class="d-sec">Contexte</div>
-      <p class="d-text">Eugenia School était quasiment <strong>inexistante en ligne</strong> malgré un positionnement fort et des partenaires solides (Grenoble EM, Microsoft, Mistral AI). En 2026, un lycéen demande à ChatGPT « quelle école IA choisir » — et Eugenia n'apparaissait nulle part, ni sur Google, ni dans les LLMs.</p>
-      <div class="d-sec">Ce que j'ai fait</div>
-      <ul class="d-ul">
-        <li><strong>Audit 3 surfaces simultanées</strong> : SEO (Google) · GEO (ChatGPT + Perplexity) · AEO (Featured Snippets)</li>
-        <li><strong>Le paradoxe Aivancity</strong> : 954 mots-clés Google sur 5 ans → 0/6 citations LLMs. Dominer Google ne garantit plus l'existence dans l'IA.</li>
-        <li><strong>4 agents Dust déployés</strong> : Lundi Édito · Veille & Découverte · Coordinateur · Rédacteur (auto-évaluation 9 critères/15 pts, seuil 13/15)</li>
-        <li><strong>Quick win 0€</strong> : page 'Bachelor IA hors Parcoursup' non publiée → mise en ligne immédiate → Top 20 potentiel en 6 semaines</li>
-        <li><strong>Livrables opérationnels</strong> : prompts, fiche Webflow, calendrier 7 semaines, newsletter Substack recommandée</li>
-      </ul>
-      <div class="d-sec">Résultats projetés (6 mois)</div>
-      <div class="stats-grid">
-        <div class="sbox"><div class="sval">10→150</div><div class="slbl">Mots-clés positionnés</div></div>
-        <div class="sbox"><div class="sval">+1 500</div><div class="slbl">Trafic organique/mois</div></div>
-        <div class="sbox"><div class="sval">1→3/6</div><div class="slbl">Citations LLMs</div></div>
-        <div class="sbox"><div class="sval">2/sem</div><div class="slbl">Articles (vs 0)</div></div>
-        <div class="sbox"><div class="sval">13/15</div><div class="slbl">Score qualité garanti</div></div>
-        <div class="sbox"><div class="sval">2h/sem</div><div class="slbl">Effort humain requis</div></div>
-      </div>
-      <div class="d-sec">Ce que ce projet démontre</div>
-      <div class="demo-box"><p>La solution livrée n'est pas un rapport — c'est une <strong>machine opérationnelle</strong> : agents configurés, prompts rédigés, fiche Webflow prête, calendrier daté. L'équipe peut déployer le lendemain de la restitution.</p></div>
-    </div>
-
-    <!-- P2 — PayFit -->
-    <div class="detail" id="p2">
-      <button class="back-btn" onclick="closeProject()">← <span data-i18n="back">Mission Control</span></button>
-      <div class="d-hero"><div class="d-emoji">⚡</div>
-        <div>
-          <div class="d-title">Hackathon PayFit 2026 — Intelligence Collective Content SEO</div>
-          <div class="d-sub">Automatisation enterprise pour production de contenu RH/Paie</div>
-          <div class="d-tags"><span class="bdg bdg-aw">🏆 Innovation Award PayFit</span><span class="tag">Make.com</span><span class="tag">OpenAI GPT-4</span><span class="tag">Claude Sonnet</span><span class="tag">Docker</span><span class="tag">Data for SEO</span></div>
-        </div>
-      </div>
-      <div class="d-sec">Contexte</div>
-      <p class="d-text">PayFit (10 000+ clients PME) faisait face à un <strong>goulot critique</strong> : 2h par article expert, 1 rédacteur dédié, 5h/semaine de veille juridique. Scaling impossible face à une concurrence IA agressive.</p>
-      <div class="d-sec">Ce que j'ai fait</div>
-      <ul class="d-ul">
-        <li><strong>4 agents orchestrés</strong> : Info-Radar (veille URSSAF/Legifrance) · StrategicPlanner (scoring /13) · SEO Writer (14+/15 garanti) · Quality Guardian (EEAT /100)</li>
-        <li><strong>2 scénarios Make.com</strong> : Keyword Research (1 thématique → 10 mots-clés) + Question Generation (1 mot-clé → 10 questions business)</li>
-        <li><strong>APIs réglementaires temps réel</strong> : URSSAF · Legifrance · DARES — knowledge base juridique enrichie automatiquement</li>
-        <li><strong>Google Sheets Hub</strong> : SOURCE · ANALYSIS · HISTORY · METRICS — orchestration pipeline complète</li>
-        <li><strong>Export multi-format</strong> : HTML · DOCX · PDF → publication-ready en 2 minutes</li>
-      </ul>
-      <div class="d-sec">Résultats (48h hackathon)</div>
-      <div class="stats-grid">
-        <div class="sbox"><div class="sval">80%</div><div class="slbl">Temps économisé (2h→24min)</div></div>
-        <div class="sbox"><div class="sval">14.3/15</div><div class="slbl">Qualité articles moyenne</div></div>
-        <div class="sbox"><div class="sval">200K€</div><div class="slbl">Économies/an estimées</div></div>
-        <div class="sbox"><div class="sval">92%</div><div class="slbl">Automation end-to-end</div></div>
-        <div class="sbox"><div class="sval">0</div><div class="slbl">Erreurs juridiques (vs 15%)</div></div>
-        <div class="sbox"><div class="sval">4</div><div class="slbl">Articles produits en 48h</div></div>
-      </div>
-      <div class="d-sec">Ce que ce projet démontre</div>
-      <div class="demo-box"><p>4 articles produits en 48h (vs 1 semaine workflow normal). 50% de la production à 15/15. 0 erreur compliance. <strong>Innovation Award</strong> décerné par PayFit — solution immédiatement déployable en production.</p></div>
-    </div>
-
-    <!-- P3 — Marathon -->
-    <div class="detail" id="p3">
-      <button class="back-btn" onclick="closeProject()">← <span data-i18n="back">Mission Control</span></button>
-      <div class="d-hero"><div class="d-emoji">🏃</div>
-        <div>
-          <div class="d-title">Marathon de Paris 2025 — Analyse data des 50 001 finishers</div>
-          <div class="d-sub">Python · Pipeline de données complet · Google Sheets</div>
-          <div class="d-tags"><span class="bdg bdg-gh">⌨️ GitHub</span><span class="tag">Python</span><span class="tag">requests</span><span class="tag">pandas</span><span class="tag">Google Sheets</span></div>
-        </div>
-      </div>
-      <div class="d-sec">Contexte</div>
-      <p class="d-text">Le site officiel (results.timeto.com) n'offre aucune API publique. En analysant les requêtes réseau via F12, nous avons identifié une <strong>API interne non documentée</strong> et construit un pipeline Python complet de bout en bout. Projet réalisé en binôme avec Matthieu Larboullet.</p>
-      <div class="d-sec">Ce que j'ai fait</div>
-      <ul class="d-ul">
-        <li><strong>Collecte</strong> : requête GET authentifiée avec simulation navigateur (cookies PHPSESSID + headers user-agent) — récupération de 50 001 entrées</li>
-        <li><strong>Nettoyage</strong> : 9 champs utiles extraits parmi ~40 du JSON brut · renommage · 4 variables calculées</li>
-        <li><strong>Enrichissement</strong> : search_continent() (code ISO → continent) · runner_cat() (catégorie FFA → sexe, tranche d'âge)</li>
-        <li><strong>Export</strong> : JSON + CSV → import Google Sheets pour analyse et visualisation</li>
-        <li><strong>8 graphiques</strong> sur 3 axes : démographie · performance · géographie</li>
-      </ul>
-      <div class="d-sec">Insights extraits</div>
-      <div class="stats-grid">
-        <div class="sbox"><div class="sval">50 001</div><div class="slbl">Finishers analysés</div></div>
-        <div class="sbox"><div class="sval">72%</div><div class="slbl">Hommes (levier femmes)</div></div>
-        <div class="sbox"><div class="sval">100+</div><div class="slbl">Nationalités représentées</div></div>
-        <div class="sbox"><div class="sval">5:28</div><div class="slbl">min/km allure africaine</div></div>
-        <div class="sbox"><div class="sval">71.9%</div><div class="slbl">Finishers français</div></div>
-        <div class="sbox"><div class="sval">1s/km</div><div class="slbl">Écart 18-34 vs 35-44 ans</div></div>
-      </div>
-      <div class="d-sec">Ce que ce projet démontre</div>
-      <div class="demo-box"><p><strong>Reverse-engineering d'API</strong> : identifier et exploiter une API interne non documentée. Structurer un pipeline en fonctions indépendantes et réutilisables. Penser analytiquement : formuler des hypothèses, les confronter aux données, tirer des conclusions business actionnables.</p></div>
-      <a href="https://github.com/venom6-13/scraping_marathonParis" target="_blank" class="d-link">⌨️ Voir sur GitHub</a>
-    </div>
-
-    <!-- P4 — TheLook -->
-    <div class="detail" id="p4">
-      <button class="back-btn" onclick="closeProject()">← <span data-i18n="back">Mission Control</span></button>
-      <div class="d-hero"><div class="d-emoji">📊</div>
-        <div>
-          <div class="d-title">TheLook E-Commerce — Profitability & Return Rate Audit</div>
-          <div class="d-sub">BigQuery SQL · Looker Studio · Fashion Hoodies & Sweatshirts</div>
-          <div class="d-tags"><span class="bdg bdg-gh">⌨️ GitHub</span><span class="tag">BigQuery</span><span class="tag">SQL</span><span class="tag">Looker Studio</span><span class="tag">Google Cloud</span></div>
-        </div>
-      </div>
-      <div class="d-sec">Contexte</div>
-      <p class="d-text">Anomalie : malgré une croissance de <strong>+154% de CA</strong> et <strong>+163% de commandes</strong> en 14 mois, la rentabilité nette ne progresse pas. Certains segments brassent de l'air — fort volume, marge faible. Les retours érodent silencieusement le P&L.</p>
-      <div class="d-sec">Ce que j'ai fait</div>
-      <ul class="d-ul">
-        <li><strong>Architecture Multi-CTE</strong> : 1 CTE par dimension métier (financial_monthly · sessions_monthly · retention_monthly)</li>
-        <li><strong>LEFT JOIN</strong> pour garantir l'exhaustivité — aucun article exclu même sans métadonnées</li>
-        <li><strong>SAFE_DIVIDE</strong> pour la robustesse en production (NULL vs Division by zero)</li>
-        <li><strong>Marge nette estimée</strong> : intègre les coûts logistiques retours (benchmark NRF 16.9%, Zalando 12-15%)</li>
-        <li><strong>7 requêtes SQL distinctes</strong> : retours · genre · variabilité · canal Email · focus Chine · marchés anti-retours</li>
-      </ul>
-      <div class="d-sec">6 insights clés</div>
-      <div class="stats-grid">
-        <div class="sbox"><div class="sval">30%</div><div class="slbl">Return rate moyen (critique)</div></div>
-        <div class="sbox"><div class="sval">8 pts</div><div class="slbl">Marge femmes > hommes</div></div>
-        <div class="sbox"><div class="sval">42%</div><div class="slbl">CA concentré Chine (risque)</div></div>
-        <div class="sbox"><div class="sval">4.6%</div><div class="slbl">Record Brésil déc. 2025</div></div>
-        <div class="sbox"><div class="sval">~15%</div><div class="slbl">Return rate Japon (benchmark)</div></div>
-        <div class="sbox"><div class="sval">Jan ☠️</div><div class="slbl">Email : 100% rebond × 2 ans</div></div>
-      </div>
-      <div class="d-sec">Ce que ce projet démontre</div>
-      <div class="demo-box"><p>Réallouer 30% budget acquisition vers les femmes (+1.6 pts marge). Suspendre les campagnes Email de janvier. Localiser les fiches Chine en mandarin. Monitoring mensuel seuil 35%. Investiguer le <strong>blueprint Brésil Q4</strong> (4.6% — record absolu du dataset).</p></div>
-      <a href="https://github.com/venom6-13/1_sql_thelook_ecommercet_audit" target="_blank" class="d-link">⌨️ Voir sur GitHub</a>
-    </div>
-
-    <!-- P5 — Mirakl -->
-    <div class="detail" id="p5">
-      <button class="back-btn" onclick="closeProject()">← <span data-i18n="back">Mission Control</span></button>
-      <div class="d-hero"><div class="d-emoji">🏆</div>
-        <div>
-          <div class="d-title">Hackathon Mirakl — Mirakl Connect Prospector</div>
-          <div class="d-sub">Application web de prospection intelligente · Déployée en 48h sur Vercel</div>
-          <div class="d-tags"><span class="bdg bdg-g">🟢 Déployé</span><span class="bdg bdg-gh">⌨️ GitHub</span><span class="tag">Next.js</span><span class="tag">GPT-4o</span><span class="tag">Supabase</span><span class="tag">Apify</span><span class="tag">Vercel</span></div>
-        </div>
-      </div>
-      <div class="d-sec">Contexte</div>
-      <p class="d-text">Les BDRs de <strong>Mirakl Connect</strong> (700+ opérateurs : Carrefour, Leroy Merlin, Best Buy) passaient <strong>1h15 par lead</strong> en travail manuel. Ce temps n'était pas consacré à la vente. L'objectif : automatiser le pipeline BDR de bout en bout.</p>
-      <div class="d-sec">Ce que j'ai fait</div>
-      <ul class="d-ul">
-        <li><strong>UC2-A (By Seller)</strong> : URL → scraping auto → analyse catalogue → fit marketplace → séquence 3 emails (J0/J+5/J+12) en <strong>6 secondes</strong></li>
-        <li><strong>UC2-B (By Marketplace)</strong> : filtres multi-critères sur base Supabase → scoring propriétaire → liste leads priorisés</li>
-        <li><strong>Grille de scoring 100 pts</strong> : Catégorie (28) · Géographie (22) · Prix (16) · Positionnement (14) · Saisonnalité (10) · Signaux marketplace (10)</li>
-        <li><strong>Outreach personnalisé</strong> : méthode × angle × saisonnalité → GPT-4o adapte au profil du seller et à la culture marché</li>
-        <li><strong>Déployé en production</strong> sur Vercel avec screenshots réels — pas des mockups</li>
-      </ul>
-      <div class="d-sec">Impact business</div>
-      <div class="stats-grid">
-        <div class="sbox"><div class="sval">×37</div><div class="slbl">Plus rapide (1h15→2min)</div></div>
-        <div class="sbox"><div class="sval">-89%</div><div class="slbl">Coût par lead</div></div>
-        <div class="sbox"><div class="sval">6¢</div><div class="slbl">Coût pipeline complet/lead</div></div>
-        <div class="sbox"><div class="sval">+62 pts</div><div class="slbl">Temps vente libérés</div></div>
-        <div class="sbox"><div class="sval">6s</div><div class="slbl">Pipeline By Seller complet</div></div>
-        <div class="sbox"><div class="sval">×2400</div><div class="slbl">ROI estimé</div></div>
-      </div>
-      <div class="d-sec">Ce que ce projet démontre</div>
-      <div class="demo-box"><p>Conception produit de bout en bout : problématique terrain → architecture pipeline → grille de scoring → stratégie outreach → présentation jury. <strong>Pensée produit</strong> et <strong>sens business</strong> : ROI calculé, impact quantifié, solution utilisable immédiatement.</p></div>
-      <a href="https://github.com/CodeurFort/mirakl-prospector" target="_blank" class="d-link">⌨️ Voir sur GitHub</a>
-    </div>
-
+    <span class="mb-time" id="mbTime">—</span>
   </div>
 </div>
 
+<!-- WINDOW -->
+<div class="window">
+
+  <!-- TITLEBAR -->
+  <div class="titlebar">
+    <div class="tls">
+      <div class="tl tl-r"></div>
+      <div class="tl tl-y"></div>
+      <div class="tl tl-g"></div>
+    </div>
+    <div class="tb-title" data-i18n="wintitle">Mission Control — Projets Pro / Autres</div>
+  </div>
+
+  <!-- BODY -->
+  <div class="wbody">
+
+    <!-- SIDEBAR -->
+    <div class="sidebar">
+      <div class="sb-head">
+        <div class="sb-eyebrow" data-i18n="eyebrow">Mission Control</div>
+        <div class="sb-title" data-i18n="title">Projets Pro</div>
+        <div class="sb-sub" data-i18n="sub">Cliquez pour explorer</div>
+      </div>
+      <div class="sb-scroll">
+
+        <div class="card" id="c1" onclick="openProj('p1')">
+          <div class="c-top"><div class="c-emoji">🔍</div>
+            <div class="badges"><span class="bdg b-g">🟢 Actif</span></div>
+          </div>
+          <div class="c-title">Eugenia — SEO/GEO/AEO</div>
+          <div class="c-sub">Stratégie contenu & agents IA</div>
+          <div class="c-stats"><span class="c-stat">4 agents</span><span class="c-stat">Machine éditoriale 3j</span></div>
+          <div class="tags"><span class="tag">Dust</span><span class="tag">SEMrush</span><span class="tag">ChatGPT</span><span class="tag">Webflow</span></div>
+        </div>
+
+        <div class="card" id="c2" onclick="openProj('p2')">
+          <div class="c-top"><div class="c-emoji">⚡</div>
+            <div class="badges"><span class="bdg b-aw">🏆 Award</span><span class="bdg b-g">🟢 Actif</span></div>
+          </div>
+          <div class="c-title">Hackathon PayFit 2026</div>
+          <div class="c-sub">Content SEO automatisé · 48h</div>
+          <div class="c-stats"><span class="c-stat">80% temps économisé</span><span class="c-stat">14.3/15</span></div>
+          <div class="tags"><span class="tag">Make.com</span><span class="tag">GPT-4</span><span class="tag">Claude Sonnet</span></div>
+        </div>
+
+        <div class="card" id="c3" onclick="openProj('p3')">
+          <div class="c-top"><div class="c-emoji">🏃</div>
+            <div class="badges"><span class="bdg b-gh">⌨️ GitHub</span></div>
+          </div>
+          <div class="c-title">Marathon Paris 2025</div>
+          <div class="c-sub">Data pipeline Python · 50 001 runners</div>
+          <div class="c-stats"><span class="c-stat">50 001 analysés</span><span class="c-stat">API non documentée</span></div>
+          <div class="tags"><span class="tag">Python</span><span class="tag">requests</span><span class="tag">pandas</span></div>
+        </div>
+
+        <div class="card" id="c4" onclick="openProj('p4')">
+          <div class="c-top"><div class="c-emoji">📊</div>
+            <div class="badges"><span class="bdg b-gh">⌨️ GitHub</span></div>
+          </div>
+          <div class="c-title">TheLook — SQL Audit</div>
+          <div class="c-sub">Profitability audit · BigQuery</div>
+          <div class="c-stats"><span class="c-stat">6 insights</span><span class="c-stat">14 mois de data</span></div>
+          <div class="tags"><span class="tag">BigQuery</span><span class="tag">SQL</span><span class="tag">Looker Studio</span></div>
+        </div>
+
+        <div class="card" id="c5" onclick="openProj('p5')">
+          <div class="c-top"><div class="c-emoji">🏆</div>
+            <div class="badges"><span class="bdg b-g">🟢 Déployé</span><span class="bdg b-gh">⌨️ GitHub</span></div>
+          </div>
+          <div class="c-title">Hackathon Mirakl</div>
+          <div class="c-sub">Pipeline BDR · Vercel · 48h</div>
+          <div class="c-stats"><span class="c-stat">×37 plus rapide</span><span class="c-stat">ROI ×2400</span></div>
+          <div class="tags"><span class="tag">Next.js</span><span class="tag">GPT-4o</span><span class="tag">Supabase</span><span class="tag">Vercel</span></div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- CONTENT PANEL -->
+    <div class="content">
+
+      <div class="empty-state" id="emptyState">
+        <div class="es-icon">🎯</div>
+        <div class="es-hint" data-i18n="hint">Cliquez sur un projet pour l'explorer</div>
+      </div>
+
+      <!-- P1 -->
+      <div class="detail" id="p1">
+        <button class="back" onclick="closeProj()">← <span data-i18n="back">Mission Control</span></button>
+        <div class="d-hero"><div class="d-emoji">🔍</div>
+          <div>
+            <div class="d-title">Eugenia School — Audit Visibilité & Stratégie Contenu Agentique</div>
+            <div class="d-sub">Conseil stratégique + Implémentation technique · 2026</div>
+            <div class="d-badges"><span class="bdg b-g">🟢 Actif</span><span class="tag">Dust</span><span class="tag">SEMrush</span><span class="tag">ChatGPT</span><span class="tag">Perplexity</span><span class="tag">Webflow</span></div>
+          </div>
+        </div>
+        <div class="d-sec">Contexte</div>
+        <p class="d-text">Eugenia School était quasiment <strong>inexistante en ligne</strong> malgré un positionnement fort et des partenaires solides (Grenoble EM, Microsoft, Mistral AI). En 2026, un lycéen demande à ChatGPT « quelle école IA choisir » — et Eugenia n'apparaissait nulle part, ni sur Google, ni dans les LLMs.</p>
+        <div class="d-sec">Ce que j'ai fait</div>
+        <ul class="d-ul">
+          <li><strong>Audit 3 surfaces simultanées</strong> : SEO (Google) · GEO (ChatGPT + Perplexity) · AEO (Featured Snippets) — cadre encore rare en 2026</li>
+          <li><strong>Le paradoxe Aivancity</strong> : 954 mots-clés Google sur 5 ans → 0/6 citations LLMs. Dominer Google ne garantit plus l'existence dans l'IA.</li>
+          <li><strong>4 agents Dust déployés</strong> : Lundi Édito · Veille & Découverte · Coordinateur · Rédacteur (auto-évaluation 9 critères/15 pts, seuil 13/15)</li>
+          <li><strong>Quick win 0€</strong> : page 'Bachelor IA hors Parcoursup' non publiée → mise en ligne immédiate → Top 20 potentiel en 6 semaines</li>
+          <li><strong>Livrables opérationnels</strong> : prompts, fiche Webflow, calendrier 7 semaines, newsletter Substack</li>
+        </ul>
+        <div class="d-sec">Résultats projetés (6 mois)</div>
+        <div class="sg">
+          <div class="sb"><div class="sv">10→150</div><div class="sl">Mots-clés positionnés</div></div>
+          <div class="sb"><div class="sv">+1 500</div><div class="sl">Trafic organique/mois</div></div>
+          <div class="sb"><div class="sv">1→3/6</div><div class="sl">Citations LLMs</div></div>
+          <div class="sb"><div class="sv">2/sem</div><div class="sl">Articles (vs 0)</div></div>
+          <div class="sb"><div class="sv">13/15</div><div class="sl">Score qualité garanti</div></div>
+          <div class="sb"><div class="sv">2h/sem</div><div class="sl">Effort humain requis</div></div>
+        </div>
+        <div class="d-sec">Ce que ce projet démontre</div>
+        <div class="proof-box"><p>La solution livrée n'est pas un rapport — c'est une <strong>machine opérationnelle</strong> : agents configurés, prompts rédigés, fiche Webflow prête, calendrier daté. L'équipe peut déployer le lendemain de la restitution.</p></div>
+      </div>
+
+      <!-- P2 -->
+      <div class="detail" id="p2">
+        <button class="back" onclick="closeProj()">← <span data-i18n="back">Mission Control</span></button>
+        <div class="d-hero"><div class="d-emoji">⚡</div>
+          <div>
+            <div class="d-title">Hackathon PayFit 2026 — Intelligence Collective Content SEO</div>
+            <div class="d-sub">Automatisation enterprise pour production de contenu RH/Paie</div>
+            <div class="d-badges"><span class="bdg b-aw">🏆 Innovation Award PayFit</span><span class="tag">Make.com</span><span class="tag">OpenAI GPT-4</span><span class="tag">Claude Sonnet</span><span class="tag">Docker</span></div>
+          </div>
+        </div>
+        <div class="d-sec">Contexte</div>
+        <p class="d-text">PayFit (10 000+ clients PME) faisait face à un <strong>goulot critique</strong> : 2h par article expert, 1 rédacteur dédié, 5h/semaine de veille juridique. Scaling impossible face à une concurrence IA agressive.</p>
+        <div class="d-sec">Ce que j'ai fait</div>
+        <ul class="d-ul">
+          <li><strong>4 agents orchestrés</strong> : Info-Radar (veille URSSAF/Legifrance) · StrategicPlanner (scoring /13) · SEO Writer (14+/15 garanti) · Quality Guardian (EEAT /100)</li>
+          <li><strong>2 scénarios Make.com</strong> : Keyword Research (1 thématique → 10 mots-clés) + Question Generation (1 mot-clé → 10 questions business)</li>
+          <li><strong>APIs réglementaires temps réel</strong> : URSSAF · Legifrance · DARES — knowledge base juridique enrichie automatiquement</li>
+          <li><strong>Google Sheets Hub central</strong> : SOURCE · ANALYSIS · HISTORY · METRICS — orchestration pipeline complète</li>
+          <li><strong>Export multi-format</strong> : HTML · DOCX · PDF → publication-ready en 2 minutes</li>
+        </ul>
+        <div class="d-sec">Résultats (48h hackathon)</div>
+        <div class="sg">
+          <div class="sb"><div class="sv">80%</div><div class="sl">Temps économisé (2h→24min)</div></div>
+          <div class="sb"><div class="sv">14.3/15</div><div class="sl">Qualité articles moyenne</div></div>
+          <div class="sb"><div class="sv">200K€</div><div class="sl">Économies/an estimées</div></div>
+          <div class="sb"><div class="sv">92%</div><div class="sl">Automation end-to-end</div></div>
+          <div class="sb"><div class="sv">0</div><div class="sl">Erreurs juridiques (vs 15%)</div></div>
+          <div class="sb"><div class="sv">4</div><div class="sl">Articles en 48h (vs 1 semaine)</div></div>
+        </div>
+        <div class="d-sec">Ce que ce projet démontre</div>
+        <div class="proof-box"><p>50% de la production à 15/15. 0 erreur compliance. <strong>Innovation Award</strong> décerné par PayFit — solution immédiatement déployable en production.</p></div>
+      </div>
+
+      <!-- P3 -->
+      <div class="detail" id="p3">
+        <button class="back" onclick="closeProj()">← <span data-i18n="back">Mission Control</span></button>
+        <div class="d-hero"><div class="d-emoji">🏃</div>
+          <div>
+            <div class="d-title">Marathon de Paris 2025 — Analyse data des 50 001 finishers</div>
+            <div class="d-sub">Python · Pipeline de données complet · Google Sheets</div>
+            <div class="d-badges"><span class="bdg b-gh">⌨️ GitHub</span><span class="tag">Python</span><span class="tag">requests</span><span class="tag">pandas</span><span class="tag">Google Sheets</span></div>
+          </div>
+        </div>
+        <div class="d-sec">Contexte</div>
+        <p class="d-text">Le site officiel (results.timeto.com) n'offre aucune API publique. En analysant les requêtes réseau via F12, nous avons identifié une <strong>API interne non documentée</strong> et construit un pipeline Python complet. Projet réalisé en binôme avec Matthieu Larboullet.</p>
+        <div class="d-sec">Ce que j'ai fait</div>
+        <ul class="d-ul">
+          <li><strong>Collecte</strong> : requête GET authentifiée avec simulation navigateur (cookies PHPSESSID + headers user-agent) — récupération de 50 001 entrées</li>
+          <li><strong>Nettoyage</strong> : 9 champs utiles extraits parmi ~40 du JSON brut · renommage · 4 variables calculées</li>
+          <li><strong>Enrichissement</strong> : search_continent() (code ISO → continent) · runner_cat() (catégorie FFA → sexe, tranche d'âge)</li>
+          <li><strong>Export</strong> : JSON + CSV → import Google Sheets pour analyse et visualisation</li>
+          <li><strong>8 graphiques</strong> sur 3 axes : démographie · performance · géographie</li>
+        </ul>
+        <div class="d-sec">Insights extraits</div>
+        <div class="sg">
+          <div class="sb"><div class="sv">50 001</div><div class="sl">Finishers analysés</div></div>
+          <div class="sb"><div class="sv">72%</div><div class="sl">Hommes (27,9% femmes)</div></div>
+          <div class="sb"><div class="sv">100+</div><div class="sl">Nationalités représentées</div></div>
+          <div class="sb"><div class="sv">5:28</div><div class="sl">min/km allure africaine</div></div>
+          <div class="sb"><div class="sv">71.9%</div><div class="sl">Finishers français</div></div>
+          <div class="sb"><div class="sv">1s/km</div><div class="sl">Écart 18-34 vs 35-44 ans</div></div>
+        </div>
+        <div class="d-sec">Ce que ce projet démontre</div>
+        <div class="proof-box"><p><strong>Reverse-engineering d'API</strong> : identifier et exploiter une API interne non documentée. Structurer un pipeline en fonctions indépendantes et réutilisables. Penser analytiquement : formuler des hypothèses, les confronter aux données.</p></div>
+        <a href="https://github.com/venom6-13/scraping_marathonParis" target="_blank" class="d-link">⌨️ Voir sur GitHub</a>
+      </div>
+
+      <!-- P4 -->
+      <div class="detail" id="p4">
+        <button class="back" onclick="closeProj()">← <span data-i18n="back">Mission Control</span></button>
+        <div class="d-hero"><div class="d-emoji">📊</div>
+          <div>
+            <div class="d-title">TheLook E-Commerce — Profitability & Return Rate Audit</div>
+            <div class="d-sub">BigQuery SQL · Looker Studio · Fashion Hoodies & Sweatshirts</div>
+            <div class="d-badges"><span class="bdg b-gh">⌨️ GitHub</span><span class="tag">BigQuery</span><span class="tag">SQL</span><span class="tag">Looker Studio</span></div>
+          </div>
+        </div>
+        <div class="d-sec">Contexte</div>
+        <p class="d-text">Anomalie : malgré une croissance de <strong>+154% de CA</strong> et <strong>+163% de commandes</strong> en 14 mois, la rentabilité nette ne progresse pas. Les retours érodent silencieusement le P&L.</p>
+        <div class="d-sec">Ce que j'ai fait</div>
+        <ul class="d-ul">
+          <li><strong>Architecture Multi-CTE</strong> : 1 CTE par dimension métier (financial_monthly · sessions_monthly · retention_monthly)</li>
+          <li><strong>LEFT JOIN</strong> pour garantir l'exhaustivité — aucun article exclu même sans métadonnées</li>
+          <li><strong>SAFE_DIVIDE</strong> pour la robustesse en production (NULL vs Division by zero)</li>
+          <li><strong>Marge nette estimée</strong> : intègre les coûts logistiques retours (benchmark NRF 16.9%, Zalando 12-15%)</li>
+          <li><strong>7 requêtes SQL distinctes</strong> : retours · genre · variabilité · canal Email · focus Chine · marchés anti-retours</li>
+        </ul>
+        <div class="d-sec">6 insights clés</div>
+        <div class="sg">
+          <div class="sb"><div class="sv">30%</div><div class="sl">Return rate moyen (critique)</div></div>
+          <div class="sb"><div class="sv">8 pts</div><div class="sl">Marge femmes > hommes</div></div>
+          <div class="sb"><div class="sv">42%</div><div class="sl">CA concentré Chine</div></div>
+          <div class="sb"><div class="sv">4.6%</div><div class="sl">Record Brésil déc. 2025</div></div>
+          <div class="sb"><div class="sv">~15%</div><div class="sl">Return rate Japon</div></div>
+          <div class="sb"><div class="sv">Jan ☠️</div><div class="sl">Email : 100% rebond × 2 ans</div></div>
+        </div>
+        <div class="d-sec">Ce que ce projet démontre</div>
+        <div class="proof-box"><p>Réallouer 30% budget vers les femmes (+1.6 pts marge). Suspendre les campagnes Email de janvier. Localiser les fiches Chine en mandarin. Investiguer le <strong>blueprint Brésil Q4</strong>.</p></div>
+        <a href="https://github.com/venom6-13/1_sql_thelook_ecommercet_audit" target="_blank" class="d-link">⌨️ Voir sur GitHub</a>
+      </div>
+
+      <!-- P5 -->
+      <div class="detail" id="p5">
+        <button class="back" onclick="closeProj()">← <span data-i18n="back">Mission Control</span></button>
+        <div class="d-hero"><div class="d-emoji">🏆</div>
+          <div>
+            <div class="d-title">Hackathon Mirakl — Mirakl Connect Prospector</div>
+            <div class="d-sub">Application web de prospection intelligente · Déployée en 48h sur Vercel</div>
+            <div class="d-badges"><span class="bdg b-g">🟢 Déployé</span><span class="bdg b-gh">⌨️ GitHub</span><span class="tag">Next.js</span><span class="tag">GPT-4o</span><span class="tag">Supabase</span><span class="tag">Vercel</span></div>
+          </div>
+        </div>
+        <div class="d-sec">Contexte</div>
+        <p class="d-text">Les BDRs de <strong>Mirakl Connect</strong> (700+ opérateurs : Carrefour, Leroy Merlin, Best Buy) passaient <strong>1h15 par lead</strong> en travail manuel. L'objectif : automatiser le pipeline BDR de bout en bout.</p>
+        <div class="d-sec">Ce que j'ai fait</div>
+        <ul class="d-ul">
+          <li><strong>UC2-A (By Seller)</strong> : URL → scraping auto → analyse catalogue → fit marketplace → séquence 3 emails en <strong>6 secondes</strong></li>
+          <li><strong>UC2-B (By Marketplace)</strong> : filtres multi-critères sur base Supabase → scoring propriétaire → leads priorisés</li>
+          <li><strong>Grille de scoring 100 pts</strong> : Catégorie (28) · Géographie (22) · Prix (16) · Positionnement (14) · Saisonnalité (10) · Signaux (10)</li>
+          <li><strong>Outreach personnalisé</strong> : méthode × angle × saisonnalité → GPT-4o adapte au profil du seller</li>
+          <li><strong>Déployé en production</strong> sur Vercel avec screenshots réels — pas des mockups</li>
+        </ul>
+        <div class="d-sec">Impact business</div>
+        <div class="sg">
+          <div class="sb"><div class="sv">×37</div><div class="sl">Plus rapide (1h15→2min)</div></div>
+          <div class="sb"><div class="sv">-89%</div><div class="sl">Coût par lead</div></div>
+          <div class="sb"><div class="sv">6¢</div><div class="sl">Coût pipeline/lead</div></div>
+          <div class="sb"><div class="sv">+62 pts</div><div class="sl">Temps vente libérés</div></div>
+          <div class="sb"><div class="sv">6s</div><div class="sl">Pipeline complet/lead</div></div>
+          <div class="sb"><div class="sv">×2400</div><div class="sl">ROI estimé</div></div>
+        </div>
+        <div class="d-sec">Ce que ce projet démontre</div>
+        <div class="proof-box"><p>Conception produit de bout en bout : problématique terrain → architecture pipeline → grille de scoring → stratégie outreach → présentation jury. <strong>Pensée produit</strong> et <strong>sens business</strong> : ROI calculé, impact quantifié, solution utilisable immédiatement.</p></div>
+        <a href="https://github.com/CodeurFort/mirakl-prospector" target="_blank" class="d-link">⌨️ Voir sur GitHub</a>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- MOBILE DETAIL OVERLAY -->
 <div class="mob-detail" id="mobDetail"></div>
 
+<!-- MOBILE NAV -->
 <nav class="mob-nav">
-  <a href="index.html" class="mnb"><span>🏠</span><span class="mnl" data-i18n="home">Accueil</span></a>
-  <a href="cv.html" class="mnb"><span>📄</span><span class="mnl">CV</span></a>
-  <a href="projets-perso.html" class="mnb"><span>🎨</span><span class="mnl" data-i18n="perso">Perso</span></a>
-  <button class="mnb" style="color:inherit"><span>💡</span><span class="mnl" data-i18n="pro">Pro</span></button>
-  <a href="https://linkedin.com/in/alec-diamidia" target="_blank" class="mnb"><span>💼</span><span class="mnl">LinkedIn</span></a>
-  <a href="https://github.com/venom6-13" target="_blank" class="mnb"><span>⌨️</span><span class="mnl">GitHub</span></a>
+  <a href="index.html" class="mn"><span>🏠</span><span class="mnl" data-i18n="home">Accueil</span></a>
+  <a href="cv.html" class="mn"><span>📄</span><span class="mnl">CV</span></a>
+  <a href="projets-perso.html" class="mn"><span>🎨</span><span class="mnl" data-i18n="perso">Perso</span></a>
+  <button class="mn" style="color:inherit"><span>💡</span><span class="mnl" data-i18n="pro">Pro</span></button>
+  <a href="https://linkedin.com/in/alec-diamidia" target="_blank" class="mn"><span>💼</span><span class="mnl">LinkedIn</span></a>
+  <a href="https://github.com/venom6-13" target="_blank" class="mn"><span>⌨️</span><span class="mnl">GitHub</span></a>
 </nav>
 
 <script>
-const i18n={
-  fr:{"nav":"Projets Pro","eyebrow":"Mission Control","title":"Projets Pro / Autres","sub":"Cliquez sur un projet pour l'explorer","hint":"Cliquez sur un projet pour l'explorer","back":"Mission Control","home":"Accueil","perso":"Perso","pro":"Pro"},
-  en:{"nav":"Pro Projects","eyebrow":"Mission Control","title":"Pro / Other Projects","sub":"Click a project to explore it","hint":"Click a project to explore it","back":"Mission Control","home":"Home","perso":"Personal","pro":"Pro"}
+const T={
+  fr:{appname:"Projets Pro",wintitle:"Mission Control — Projets Pro / Autres",eyebrow:"Mission Control",title:"Projets Pro",sub:"Cliquez pour explorer",hint:"Cliquez sur un projet pour l'explorer",back:"Mission Control",home:"Accueil",perso:"Perso",pro:"Pro"},
+  en:{appname:"Pro Projects",wintitle:"Mission Control — Pro / Other Projects",eyebrow:"Mission Control",title:"Pro Projects",sub:"Click to explore",hint:"Click a project to explore",back:"Mission Control",home:"Home",perso:"Personal",pro:"Pro"}
 };
 let lang='fr';
 
@@ -452,9 +597,9 @@ function applyLang(l){
   lang=l;
   document.querySelectorAll('[data-i18n]').forEach(el=>{
     const k=el.getAttribute('data-i18n');
-    if(i18n[l][k]) el.textContent=i18n[l][k];
+    if(T[l][k]) el.textContent=T[l][k];
   });
-  document.querySelectorAll('.lb').forEach(b=>b.classList.toggle('active',b.dataset.lang===l));
+  document.querySelectorAll('.mb-btn').forEach(b=>b.classList.toggle('active',b.dataset.lang===l));
   localStorage.setItem('lang',l);
 }
 
@@ -464,14 +609,21 @@ function setTheme(t){
   localStorage.setItem('theme',t);
 }
 
+// Clock
+function updateClock(){
+  const now=new Date();
+  document.getElementById('mbTime').textContent=
+    now.toLocaleTimeString(lang==='fr'?'fr-FR':'en-US',{hour:'2-digit',minute:'2-digit'});
+}
+setInterval(updateClock,1000);updateClock();
+
 document.getElementById('thm').addEventListener('click',()=>{
-  const cur=document.documentElement.getAttribute('data-theme')||'light';
-  setTheme(cur==='dark'?'light':'dark');
+  setTheme((document.documentElement.getAttribute('data-theme')||'light')==='dark'?'light':'dark');
 });
-document.querySelectorAll('.lb').forEach(b=>b.addEventListener('click',()=>applyLang(b.dataset.lang)));
+document.querySelectorAll('.mb-btn').forEach(b=>b.addEventListener('click',()=>applyLang(b.dataset.lang)));
 
 let cur=null;
-function openProject(id){
+function openProj(id){
   if(cur){
     document.getElementById(cur).classList.remove('on');
     document.getElementById('c'+cur.replace('p','')).classList.remove('on');
@@ -481,32 +633,33 @@ function openProject(id){
   document.getElementById(id).classList.add('on');
   document.getElementById('c'+id.replace('p','')).classList.add('on');
   cur=id;
+  // Scroll to top
+  document.querySelector('.content').scrollTop=0;
   // Mobile
-  const content=document.getElementById(id).cloneNode(true);
-  content.classList.add('on');
-  content.querySelector('.back-btn').setAttribute('onclick','closeMob()');
-  content.querySelectorAll('[data-i18n]').forEach(el=>{
+  const clone=document.getElementById(id).cloneNode(true);
+  clone.classList.add('on');
+  clone.querySelector('.back').setAttribute('onclick','closeMob()');
+  clone.querySelectorAll('[data-i18n]').forEach(el=>{
     const k=el.getAttribute('data-i18n');
-    if(i18n[lang][k]) el.textContent=i18n[lang][k];
+    if(T[lang][k]) el.textContent=T[lang][k];
   });
   const mob=document.getElementById('mobDetail');
-  mob.innerHTML='';mob.appendChild(content);mob.classList.add('on');
+  mob.innerHTML='';mob.appendChild(clone);mob.classList.add('on');
+  mob.scrollTop=0;
 }
-
-function closeProject(){
+function closeProj(){
   document.querySelectorAll('.detail').forEach(d=>d.classList.remove('on'));
   document.querySelectorAll('.card').forEach(c=>c.classList.remove('on'));
   document.getElementById('emptyState').style.display='';
   cur=null;
 }
-
 function closeMob(){
   document.getElementById('mobDetail').classList.remove('on');
   document.querySelectorAll('.card').forEach(c=>c.classList.remove('on'));
   cur=null;
 }
 
-window.addEventListener('DOMContentLoaded',()=>{
+document.addEventListener('DOMContentLoaded',()=>{
   setTheme(localStorage.getItem('theme')||'light');
   applyLang(localStorage.getItem('lang')||'fr');
 });
