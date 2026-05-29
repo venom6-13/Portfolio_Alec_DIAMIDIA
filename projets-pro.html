@@ -1,394 +1,923 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr" data-theme="light">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Projets Pro — Alec DIAMIDIA</title>
-    <style>
-        * { margin:0; padding:0; box-sizing:border-box; }
-        body {
-            font-family:-apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif;
-            width:100vw; height:100vh; overflow:hidden;
-            user-select:none; -webkit-font-smoothing:antialiased;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Projets — Alec DIAMIDIA</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --wall-from:#1a2a4a;--wall-to:#0d1b35;
+  --blob1:rgba(0,113,227,.5);--blob2:rgba(88,86,214,.4);--blob3:rgba(100,180,255,.2);
+  --mb:rgba(255,255,255,.18);--mb-text:rgba(255,255,255,.85);
+  --win:rgba(235,235,237,.94);--win-dark:rgba(28,28,30,.94);
+  --sb:rgba(225,225,230,.7);--sb-dark:rgba(22,22,24,.75);
+  --border:rgba(0,0,0,.1);--border-dark:rgba(255,255,255,.09);
+  --text:#1d1d1f;--muted:#6e6e73;
+  --accent:#0071E3;--accent2:#5856D6;
+  --soft:rgba(0,113,227,.09);--tag-bg:rgba(0,113,227,.1);--tag-c:#0071E3;
+}
+[data-theme="dark"]{
+  --wall-from:#050510;--wall-to:#080820;
+  --blob1:rgba(88,86,214,.6);--blob2:rgba(0,113,227,.4);--blob3:rgba(175,82,222,.3);
+  --mb:rgba(0,0,0,.55);--mb-text:rgba(255,255,255,.82);
+  --border:rgba(255,255,255,.09);
+  --text:#f5f5f7;--muted:#98989d;--accent:#2997FF;--accent2:#7B79E8;
+  --soft:rgba(41,151,255,.12);--tag-bg:rgba(41,151,255,.13);--tag-c:#5EB2FF;
+}
 
-        /* ── AURORA WALLPAPER ── */
-        .aurora { position:fixed; inset:0; z-index:0; background:#1a0533; overflow:hidden; }
-        .blob { position:absolute; border-radius:50%; filter:blur(90px); opacity:0.75; }
-        .blob:nth-child(1) { width:650px; height:650px; top:-150px; left:-150px; background:radial-gradient(circle,#6e40c9 0%,transparent 70%); animation:b1 20s ease-in-out infinite; }
-        .blob:nth-child(2) { width:550px; height:550px; top:10%; right:-100px; background:radial-gradient(circle,#c84b97 0%,transparent 70%); animation:b2 24s ease-in-out infinite; }
-        .blob:nth-child(3) { width:450px; height:450px; bottom:-80px; left:25%; background:radial-gradient(circle,#f4845f 0%,transparent 70%); animation:b3 18s ease-in-out infinite; }
-        .blob:nth-child(4) { width:380px; height:380px; bottom:5%; right:5%; background:radial-gradient(circle,#4facfe 0%,transparent 70%); animation:b4 22s ease-in-out infinite; }
-        @keyframes b1 { 0%,100%{transform:translate(0,0) scale(1)} 25%{transform:translate(100px,70px) scale(1.1)} 50%{transform:translate(140px,-50px) scale(0.9)} 75%{transform:translate(-50px,90px) scale(1.05)} }
-        @keyframes b2 { 0%,100%{transform:translate(0,0) scale(1)} 33%{transform:translate(-120px,90px) scale(1.12)} 66%{transform:translate(70px,-70px) scale(0.88)} }
-        @keyframes b3 { 0%,100%{transform:translate(0,0) scale(1)} 50%{transform:translate(90px,-120px) scale(1.2)} }
-        @keyframes b4 { 0%,100%{transform:translate(0,0) scale(1)} 40%{transform:translate(-90px,-70px) scale(1.1)} 80%{transform:translate(50px,50px) scale(0.9)} }
+html,body{width:100%;height:100%;overflow:hidden;font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Helvetica Neue",sans-serif;-webkit-font-smoothing:antialiased;}
 
-        /* ── MENU BAR ── */
-        .menubar { position:fixed; top:0; left:0; right:0; height:28px; background:rgba(0,0,0,0.4); backdrop-filter:blur(24px); z-index:2000; display:flex; align-items:center; justify-content:space-between; padding:0 14px; color:white; font-size:13px; border-bottom:1px solid rgba(255,255,255,0.07); }
-        .mb-l { display:flex; align-items:center; gap:18px; }
-        .mb-r { display:flex; align-items:center; gap:10px; }
-        .mb-apple { font-size:17px; }
-        .mb-bold { font-weight:600; }
-        .mb-dim { opacity:0.5; cursor:default; }
-        .mb-time { font-weight:500; }
-        .lang-sw { display:flex; background:rgba(255,255,255,0.12); border-radius:10px; padding:1px; }
-        .lang-btn { background:none; border:none; color:rgba(255,255,255,0.6); padding:2px 8px; border-radius:9px; font-size:11px; cursor:pointer; font-family:inherit; transition:all 0.2s; }
-        .lang-btn.active { background:rgba(255,255,255,0.22); color:white; }
+/* ── WALLPAPER ── */
+.wallpaper{position:fixed;inset:0;z-index:0;background:linear-gradient(160deg,var(--wall-from),var(--wall-to));}
+.wallpaper::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 70% 60% at 15% 20%,var(--blob1) 0%,transparent 55%),radial-gradient(ellipse 55% 55% at 85% 75%,var(--blob2) 0%,transparent 55%),radial-gradient(ellipse 45% 45% at 60% 10%,var(--blob3) 0%,transparent 50%);animation:wp 40s ease-in-out infinite;}
+@keyframes wp{0%,100%{transform:scale(1);}40%{transform:scale(1.04) translate(12px,-8px);}70%{transform:scale(.97) translate(-8px,10px);}}
+.wallpaper::after{content:'';position:absolute;inset:0;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23g)'/%3E%3C/svg%3E");opacity:.06;mix-blend-mode:overlay;}
 
-        /* ── MISSION CONTROL ── */
-        .mc { position:fixed; top:28px; left:0; right:0; bottom:80px; z-index:1; display:flex; flex-direction:column; align-items:center; justify-content:center; padding:20px; transition:opacity 0.4s, filter 0.4s; }
-        .mc.blurred { opacity:0; filter:blur(10px); pointer-events:none; }
-        .mc-label { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.13em; color:rgba(255,255,255,0.35); margin-bottom:28px; }
-        .mc-grid { display:flex; flex-wrap:wrap; justify-content:center; gap:16px; max-width:920px; }
-        .mc-hint { margin-top:22px; font-size:12px; color:rgba(255,255,255,0.28); }
+/* ── MENU BAR ── */
+.menubar{position:fixed;top:0;left:0;right:0;height:27px;z-index:2000;background:var(--mb);backdrop-filter:blur(20px) saturate(180%);-webkit-backdrop-filter:blur(20px) saturate(180%);border-bottom:0.5px solid rgba(255,255,255,.1);display:flex;align-items:center;padding:0 14px;gap:0;color:var(--mb-text);font-size:13px;}
+.mb-l{display:flex;align-items:center;gap:18px;}
+.mb-apple{font-size:16px;cursor:default;}
+.mb-appname{font-weight:600;}
+.mb-items{display:flex;gap:18px;opacity:.8;}
+@media(max-width:600px){.mb-items{display:none;}}
+.mb-r{display:flex;align-items:center;gap:10px;margin-left:auto;}
+.mb-ctrl{display:flex;background:rgba(255,255,255,.1);border:0.5px solid rgba(255,255,255,.15);border-radius:12px;padding:1px 8px;gap:2px;}
+.mb-btn{background:none;border:none;color:var(--mb-text);font-size:13px;font-weight:500;cursor:pointer;padding:1px 5px;border-radius:8px;opacity:.8;transition:all .15s;font-family:-apple-system,sans-serif;}
+.mb-btn.active{background:rgba(255,255,255,.2);opacity:1;font-weight:600;}
+.mb-tbtn{background:none;border:none;color:var(--mb-text);font-size:15px;cursor:pointer;padding:1px;}
+.mb-time{font-size:12px;font-weight:500;opacity:.7;}
+.mb-siri-btn{background:none;border:none;cursor:pointer;padding:2px 5px;border-radius:5px;opacity:.8;transition:opacity .2s;font-family:-apple-system,sans-serif;font-size:12px;color:var(--mb-text);}
+.mb-siri-btn:hover{opacity:1;background:rgba(255,255,255,.1);}
+.mb-spotlight-btn{background:none;border:none;cursor:pointer;padding:2px 6px;border-radius:5px;opacity:.75;font-size:12px;color:var(--mb-text);font-family:-apple-system,sans-serif;}
+.mb-spotlight-btn:hover{opacity:1;background:rgba(255,255,255,.1);}
 
-        /* ── MINI WINDOWS ── */
-        .mc-win { width:256px; height:168px; background:rgba(255,255,255,0.06); backdrop-filter:blur(20px); border:1px solid rgba(255,255,255,0.11); border-radius:14px; cursor:pointer; overflow:hidden; display:flex; flex-direction:column; transition:all 0.3s cubic-bezier(0.4,0,0.2,1); }
-        .mc-win:hover { transform:scale(1.05) translateY(-5px); border-color:rgba(255,255,255,0.26); box-shadow:0 22px 44px rgba(0,0,0,0.45); }
-        .mc-accent { height:3px; flex-shrink:0; }
-        .mc-titlebar { height:26px; background:rgba(0,0,0,0.28); display:flex; align-items:center; padding:0 9px; gap:5px; flex-shrink:0; }
-        .tl { width:10px; height:10px; border-radius:50%; }
-        .tl.r{background:#ff5f57} .tl.y{background:#febc2e} .tl.g{background:#28c840}
-        .mc-wtitle { font-size:11px; color:rgba(255,255,255,0.65); font-weight:500; margin-left:5px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
-        .mc-body { flex:1; padding:10px 13px; display:flex; flex-direction:column; gap:6px; }
-        .mc-ico { font-size:20px; }
-        .mc-k1 { font-size:14px; font-weight:700; color:white; line-height:1.2; }
-        .mc-k2 { font-size:10.5px; color:rgba(255,255,255,0.5); }
-        .mc-tags { display:flex; flex-wrap:wrap; gap:4px; margin-top:auto; }
-        .mc-tag { background:rgba(255,255,255,0.09); border:1px solid rgba(255,255,255,0.1); padding:2px 6px; border-radius:20px; font-size:9.5px; color:rgba(255,255,255,0.55); }
+/* ── DESKTOP ── */
+.desktop{position:fixed;top:27px;left:0;right:0;bottom:82px;z-index:1;overflow:hidden;padding:20px 16px;}
+.icons-grid{display:grid;grid-template-columns:repeat(auto-fill,90px);grid-auto-rows:100px;gap:16px;justify-content:center;align-content:start;padding:10px;}
 
-        /* ── PROJECT OVERLAY ── */
-        .ov { position:fixed; inset:0; z-index:1500; display:none; flex-direction:column; background:rgba(15,0,30,0.97); backdrop-filter:blur(40px); }
-        .ov.open { display:flex; animation:ovIn 0.38s cubic-bezier(0.4,0,0.2,1); }
-        @keyframes ovIn { from{opacity:0;transform:scale(0.96)} to{opacity:1;transform:scale(1)} }
+/* ── ICONE PROJET ── */
+.proj-icon{display:flex;flex-direction:column;align-items:center;gap:6px;cursor:pointer;padding:8px;border-radius:10px;transition:background .15s;position:relative;user-select:none;-webkit-user-select:none;}
+.proj-icon:hover{background:rgba(255,255,255,.1);}
+.proj-icon.selected{background:rgba(0,122,255,.25);}
+.proj-icon.selected .picon-img{outline:2.5px solid rgba(0,122,255,.7);outline-offset:2px;}
+.picon-img{width:68px;height:68px;border-radius:15px;display:flex;align-items:center;justify-content:center;font-size:34px;transition:transform .15s;flex-shrink:0;box-shadow:0 4px 16px rgba(0,0,0,.3);}
+.proj-icon:hover .picon-img{transform:scale(1.05);}
+.proj-icon:active .picon-img{transform:scale(.94);}
+.picon-name{font-size:11px;font-weight:500;color:rgba(255,255,255,.92);text-align:center;text-shadow:0 1px 3px rgba(0,0,0,.6);line-height:1.3;max-width:80px;word-break:break-word;}
+.picon-badges{position:absolute;top:6px;right:4px;display:flex;flex-direction:column;gap:2px;align-items:flex-end;}
+.picon-bdg{font-size:11px;line-height:1;}
+.picon-cat{position:absolute;top:6px;left:6px;width:8px;height:8px;border-radius:50%;}
+.cat-pro{background:#007AFF;}
+.cat-perso{background:#AF52DE;}
 
-        /* ── OVERLAY TITLE BAR ── */
-        .ov-bar { height:46px; background:rgba(0,0,0,0.4); border-bottom:1px solid rgba(255,255,255,0.07); display:flex; align-items:center; padding:0 16px; flex-shrink:0; position:relative; }
-        .ov-traffic { display:flex; gap:7px; }
-        .ovtl { width:12px; height:12px; border-radius:50%; cursor:pointer; transition:filter 0.15s; }
-        .ovtl:hover { filter:brightness(0.75); }
-        .ovtl.r{background:#ff5f57} .ovtl.y{background:#febc2e} .ovtl.g{background:#28c840}
-        .ov-bartitle { position:absolute; left:50%; transform:translateX(-50%); color:rgba(255,255,255,0.75); font-size:14px; font-weight:600; }
+/* ── FINDER WINDOW ── */
+.finder-win{
+  position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);
+  width:min(900px,calc(100vw - 32px));height:min(560px,calc(100vh - 140px));
+  z-index:500;
+  background:var(--win);backdrop-filter:blur(40px) saturate(180%);-webkit-backdrop-filter:blur(40px) saturate(180%);
+  border-radius:12px;overflow:hidden;
+  box-shadow:0 0 0 0.5px rgba(0,0,0,.2),0 32px 80px rgba(0,0,0,.45);
+  display:none;flex-direction:column;
+  animation:winOpen .22s cubic-bezier(.4,0,.2,1);
+}
+[data-theme="dark"] .finder-win{background:var(--win-dark);}
+.finder-win.open{display:flex;}
+@keyframes winOpen{from{opacity:0;transform:translate(-50%,-50%) scale(.94);}to{opacity:1;transform:translate(-50%,-50%) scale(1);}}
 
-        /* ── BOUTON RETOUR (haut) — plus visible ── */
-        .ov-back {
-            margin-left:auto;
-            background:rgba(255,255,255,0.15);
-            border:1px solid rgba(255,255,255,0.3);
-            color:white;
-            padding:7px 16px;
-            border-radius:20px;
-            font-size:13px;
-            font-weight:600;
-            cursor:pointer;
-            font-family:inherit;
-            transition:all 0.2s;
-            display:flex;
-            align-items:center;
-            gap:6px;
-        }
-        .ov-back:hover { background:rgba(255,255,255,0.28); }
-        .ov-back-esc { opacity:0.45; font-size:11px; }
+.finder-titlebar{height:52px;flex-shrink:0;background:rgba(255,255,255,.6);border-bottom:0.5px solid rgba(0,0,0,.1);display:flex;align-items:center;padding:0 16px;gap:12px;position:relative;user-select:none;}
+[data-theme="dark"] .finder-titlebar{background:rgba(44,44,46,.7);border-bottom-color:rgba(255,255,255,.1);}
+.tls{display:flex;gap:8px;}
+.tl{width:12px;height:12px;border-radius:50%;cursor:default;transition:filter .15s;flex-shrink:0;}
+.tl:hover{filter:brightness(.75);}
+.tl-r{background:#FF5F56;box-shadow:inset 0 0 0 .5px rgba(0,0,0,.15);}
+.tl-y{background:#FFBD2E;box-shadow:inset 0 0 0 .5px rgba(0,0,0,.15);}
+.tl-g{background:#27C93F;box-shadow:inset 0 0 0 .5px rgba(0,0,0,.15);}
+.finder-tb-title{position:absolute;left:50%;transform:translateX(-50%);font-size:13px;font-weight:600;color:var(--muted);pointer-events:none;}
+.finder-tb-r{margin-left:auto;display:flex;gap:10px;align-items:center;}
+.finder-cat-pill{padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;cursor:pointer;border:0.5px solid rgba(0,0,0,.1);transition:all .15s;background:rgba(0,0,0,.04);color:var(--muted);}
+[data-theme="dark"] .finder-cat-pill{border-color:rgba(255,255,255,.1);background:rgba(255,255,255,.05);color:var(--muted);}
+.finder-cat-pill.active{background:var(--accent);color:white;border-color:transparent;}
 
-        /* ── OVERLAY BODY ── */
-        .ov-body { flex:1; overflow-y:auto; padding:40px 64px 0; max-width:880px; margin:0 auto; width:100%; }
-        .ov-body::-webkit-scrollbar { width:5px; }
-        .ov-body::-webkit-scrollbar-thumb { background:rgba(255,255,255,0.14); border-radius:3px; }
+.finder-body{flex:1;display:grid;grid-template-columns:200px 1fr;overflow:hidden;}
 
-        .ov-hero { display:flex; align-items:center; gap:16px; margin-bottom:22px; }
-        .ov-emoji { font-size:50px; }
-        .ov-name { font-size:30px; font-weight:700; color:white; margin-bottom:4px; letter-spacing:-0.02em; }
-        .ov-sub { font-size:14px; color:rgba(255,255,255,0.45); }
-        .ov-tags { display:flex; flex-wrap:wrap; gap:7px; margin-bottom:26px; }
-        .ov-tag { background:rgba(255,255,255,0.07); border:1px solid rgba(255,255,255,0.11); padding:4px 12px; border-radius:20px; font-size:12px; color:rgba(255,255,255,0.6); }
-        .ov-h { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.1em; color:rgba(255,255,255,0.32); margin:22px 0 9px; }
-        .ov-p { font-size:13.5px; color:rgba(255,255,255,0.68); line-height:1.75; }
-        .ov-p strong { color:white; font-weight:600; }
-        .ov-list { list-style:none; display:flex; flex-direction:column; gap:8px; }
-        .ov-list li { font-size:13px; color:rgba(255,255,255,0.62); padding-left:16px; position:relative; line-height:1.65; }
-        .ov-list li::before { content:'·'; position:absolute; left:3px; font-size:22px; line-height:0.9; color:#bf5af2; }
-        .ov-list li strong { color:white; }
-        .ov-metrics { display:grid; grid-template-columns:repeat(auto-fit, minmax(130px,1fr)); gap:10px; margin-top:8px; }
-        .ov-metric { background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.09); border-radius:12px; padding:14px; text-align:center; }
-        .ov-mval { font-size:22px; font-weight:700; }
-        .ov-mlbl { font-size:11px; color:rgba(255,255,255,0.42); margin-top:4px; line-height:1.3; }
-        .ov-btn { display:inline-flex; align-items:center; gap:7px; background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.15); color:white; padding:9px 18px; border-radius:22px; text-decoration:none; font-size:13px; font-weight:500; margin-top:20px; margin-right:10px; transition:all 0.2s; }
-        .ov-btn:hover { background:rgba(255,255,255,0.17); }
+.finder-sidebar{background:var(--sb);border-right:0.5px solid rgba(0,0,0,.1);display:flex;flex-direction:column;overflow-y:auto;padding:10px 0;}
+[data-theme="dark"] .finder-sidebar{background:var(--sb-dark);border-right-color:rgba(255,255,255,.08);}
+.finder-sidebar::-webkit-scrollbar{width:4px;}
+.finder-sidebar::-webkit-scrollbar-thumb{background:rgba(0,0,0,.12);border-radius:2px;}
+.sb-section-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);padding:10px 14px 4px;margin-top:4px;}
+.sb-row{display:flex;align-items:center;gap:9px;padding:6px 14px;cursor:pointer;border-radius:7px;margin:1px 6px;transition:background .12s;font-size:13px;color:var(--text);}
+.sb-row:hover{background:rgba(0,0,0,.05);}
+[data-theme="dark"] .sb-row:hover{background:rgba(255,255,255,.06);}
+.sb-row.active{background:var(--accent);color:white!important;}
+.sb-row.active .sb-icon{filter:brightness(2);}
+.sb-icon{font-size:16px;flex-shrink:0;}
+.sb-label{font-size:12.5px;font-weight:500;flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.sb-count{font-size:10px;background:rgba(0,0,0,.1);color:var(--muted);padding:1px 6px;border-radius:8px;}
+.sb-row.active .sb-count{background:rgba(255,255,255,.25);color:white;}
+.sb-sep{height:0.5px;background:rgba(0,0,0,.08);margin:8px 10px;}
+[data-theme="dark"] .sb-sep{background:rgba(255,255,255,.07);}
 
-        /* ── BOUTON RETOUR (bas) — bien visible en fin de scroll ── */
-        .ov-footer {
-            position:sticky;
-            bottom:0;
-            padding:20px 0 28px;
-            display:flex;
-            justify-content:center;
-            background:linear-gradient(transparent, rgba(15,0,30,0.98));
-            margin-top:24px;
-        }
-        .ov-footer-btn {
-            display:flex;
-            align-items:center;
-            gap:10px;
-            background:rgba(255,255,255,0.1);
-            border:1px solid rgba(255,255,255,0.22);
-            color:white;
-            padding:12px 32px;
-            border-radius:28px;
-            font-size:14px;
-            font-weight:600;
-            cursor:pointer;
-            font-family:inherit;
-            transition:all 0.2s;
-        }
-        .ov-footer-btn:hover { background:rgba(255,255,255,0.2); transform:translateY(-2px); box-shadow:0 8px 20px rgba(0,0,0,0.4); }
+.finder-content{overflow-y:auto;background:rgba(255,255,255,.5);}
+[data-theme="dark"] .finder-content{background:rgba(18,18,20,.6);}
+.finder-content::-webkit-scrollbar{width:6px;}
+.finder-content::-webkit-scrollbar-thumb{background:rgba(0,0,0,.12);border-radius:3px;}
+.finder-empty{height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;color:var(--muted);text-align:center;padding:32px;}
+.finder-empty-icon{font-size:48px;opacity:.3;}
+.finder-empty-hint{font-size:14px;opacity:.55;}
 
-        /* ── DOCK ── */
-        .dock-wrap { position:fixed; bottom:8px; left:50%; transform:translateX(-50%); z-index:2000; }
-        .dock { display:flex; align-items:flex-end; gap:8px; background:rgba(255,255,255,0.13); backdrop-filter:blur(24px) saturate(180%); border:1px solid rgba(255,255,255,0.19); border-radius:18px; padding:8px 12px; box-shadow:0 8px 32px rgba(0,0,0,0.5); }
-        .di { display:flex; flex-direction:column; align-items:center; gap:3px; cursor:pointer; position:relative; }
-        .di-ico { width:48px; height:48px; border-radius:12px; display:flex; align-items:center; justify-content:center; font-size:26px; box-shadow:0 2px 8px rgba(0,0,0,0.3); transition:transform 0.2s cubic-bezier(0.4,0,0.2,1); }
-        .di:hover .di-ico { transform:translateY(-10px) scale(1.15); }
-        .di-dot { width:4px; height:4px; background:rgba(255,255,255,0.5); border-radius:50%; }
-        .di-tip { position:absolute; bottom:72px; left:50%; transform:translateX(-50%); background:rgba(15,15,15,0.85); backdrop-filter:blur(10px); color:white; padding:4px 10px; border-radius:7px; font-size:12px; white-space:nowrap; opacity:0; pointer-events:none; transition:opacity 0.18s; }
-        .di:hover .di-tip { opacity:1; }
-        .dsep { width:1px; height:44px; background:rgba(255,255,255,0.18); align-self:center; margin:0 2px; }
+.proj-detail{display:none;padding:28px 32px 40px;animation:fadeSlide .22s ease-out;}
+.proj-detail.show{display:block;}
+@keyframes fadeSlide{from{opacity:0;transform:translateX(10px);}to{opacity:1;transform:translateX(0);}}
+.pd-hero{display:flex;align-items:flex-start;gap:16px;margin-bottom:20px;}
+.pd-icon{width:56px;height:56px;border-radius:13px;display:flex;align-items:center;justify-content:center;font-size:28px;flex-shrink:0;box-shadow:0 4px 16px rgba(0,0,0,.2);}
+.pd-title{font-size:22px;font-weight:700;letter-spacing:-.02em;margin-bottom:3px;color:var(--text);}
+.pd-sub{font-size:13px;color:var(--muted);margin-bottom:10px;}
+.pd-badges{display:flex;flex-wrap:wrap;gap:4px;}
+.pd-bdg{padding:2.5px 8px;border-radius:8px;font-size:9.5px;font-weight:600;}
+.b-aw{background:rgba(255,149,0,.14);color:#FF9500;}
+.b-act{background:rgba(39,201,63,.14);color:#27C93F;}
+.b-gh{background:rgba(0,0,0,.07);color:#555;}
+[data-theme="dark"] .b-gh{background:rgba(255,255,255,.1);color:#aaa;}
+.b-ds{background:rgba(88,86,214,.12);color:var(--accent2);}
+.pd-tags{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:16px;}
+.pd-tag{background:var(--tag-bg);color:var(--tag-c);padding:2px 8px;border-radius:6px;font-size:10px;font-weight:500;}
+.pd-sec{font-size:9.5px;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:var(--accent);margin:16px 0 8px;padding-bottom:4px;border-bottom:1.5px solid var(--accent);}
+.pd-text{font-size:13.5px;line-height:1.75;color:var(--text);}
+.pd-ul{padding-left:16px;}
+.pd-ul li{font-size:13.5px;line-height:1.7;margin-bottom:5px;color:var(--text);}
+.pd-ul li strong{color:var(--text);}
+.pd-kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:10px 0;}
+.pd-kpi{border-radius:10px;padding:12px 10px;text-align:center;background:var(--soft);}
+.pd-kval{font-size:20px;font-weight:700;color:var(--accent);line-height:1;margin-bottom:3px;}
+.pd-klbl{font-size:9px;color:var(--muted);line-height:1.3;}
+.pd-proof{background:linear-gradient(135deg,var(--soft),rgba(88,86,214,.05));border:0.5px solid rgba(0,0,0,.07);border-left:3px solid var(--accent);border-radius:10px;padding:14px 16px;margin:10px 0;}
+[data-theme="dark"] .pd-proof{border-color:rgba(255,255,255,.06);}
+.pd-proof p{font-size:13.5px;line-height:1.75;color:var(--text);}
+.pd-link{display:inline-flex;align-items:center;gap:6px;margin-top:14px;background:var(--accent);color:white;padding:9px 16px;border-radius:10px;text-decoration:none;font-size:12.5px;font-weight:600;transition:opacity .2s,transform .2s;}
+.pd-link:hover{opacity:.85;transform:translateY(-1px);}
 
-        @media(max-width:768px) {
-            .mc-win{width:220px;height:150px;}
-            .ov-body{padding:24px 24px 0;}
-            .ov-name{font-size:22px;}
-            .mb-dim{display:none;}
-        }
-    </style>
+/* ── QUICKLOOK ── */
+.ql-overlay{position:fixed;inset:0;z-index:800;background:rgba(0,0,0,.7);backdrop-filter:blur(20px);display:none;align-items:center;justify-content:center;}
+.ql-overlay.open{display:flex;animation:fadeIn .2s ease-out;}
+@keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
+.ql-card{width:360px;background:rgba(28,28,30,.95);border-radius:20px;overflow:hidden;box-shadow:0 0 0 0.5px rgba(255,255,255,.1),0 32px 80px rgba(0,0,0,.6);}
+.ql-header{padding:20px 20px 16px;display:flex;align-items:center;gap:14px;}
+.ql-title{font-size:16px;font-weight:700;color:white;}
+.ql-sub{font-size:12px;color:rgba(255,255,255,.5);}
+.ql-kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(255,255,255,.06);}
+.ql-kpi{background:rgba(28,28,30,.95);padding:16px 12px;text-align:center;}
+.ql-kval{font-size:22px;font-weight:700;color:#2997FF;line-height:1;}
+.ql-klbl{font-size:9px;color:rgba(255,255,255,.4);margin-top:4px;}
+.ql-tags{padding:14px 20px;display:flex;flex-wrap:wrap;gap:4px;}
+.ql-tag{background:rgba(255,255,255,.1);color:rgba(255,255,255,.7);padding:3px 9px;border-radius:7px;font-size:10px;}
+.ql-hint{padding:0 20px 14px;font-size:11px;color:rgba(255,255,255,.3);text-align:center;}
+
+/* ── SIRI OVERLAY ── */
+.siri-overlay{position:fixed;inset:0;z-index:1500;background:rgba(0,0,0,.88);backdrop-filter:blur(40px);-webkit-backdrop-filter:blur(40px);display:none;flex-direction:column;align-items:center;justify-content:center;gap:0;}
+.siri-overlay.open{display:flex;animation:fadeIn .3s ease-out;}
+.siri-msgs-area{width:min(460px,90vw);flex:1;display:flex;flex-direction:column;justify-content:flex-end;padding:80px 0 24px;gap:10px;overflow-y:auto;}
+.siri-bubble{padding:12px 18px;border-radius:20px;font-size:15px;line-height:1.6;max-width:90%;white-space:pre-wrap;}
+.siri-bubble.alec{background:rgba(255,255,255,.12);color:rgba(255,255,255,.9);border-radius:20px 20px 20px 5px;align-self:flex-start;}
+.siri-bubble.user{background:#007AFF;color:white;border-radius:20px 20px 5px 20px;align-self:flex-end;}
+
+.siri-circle{width:80px;height:80px;border-radius:50%;position:relative;margin-bottom:24px;flex-shrink:0;}
+.siri-ring{position:absolute;inset:0;border-radius:50%;animation:siriPulse 2s ease-in-out infinite;}
+.siri-ring:nth-child(1){background:conic-gradient(from 0deg,#FF375F,#FF9F0A,#34C759,#007AFF,#AF52DE,#FF375F);animation-delay:0s;}
+.siri-ring:nth-child(2){inset:6px;background:conic-gradient(from 120deg,#007AFF,#AF52DE,#FF375F,#FF9F0A,#34C759,#007AFF);animation-delay:.7s;opacity:.7;}
+.siri-ring:nth-child(3){inset:12px;background:conic-gradient(from 240deg,#34C759,#007AFF,#AF52DE,#FF375F,#FF9F0A,#34C759);animation-delay:1.4s;opacity:.4;}
+.siri-inner{position:absolute;inset:18px;background:rgba(0,0,0,.8);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:20px;}
+@keyframes siriPulse{0%,100%{transform:scale(1) rotate(0deg);opacity:.9;}50%{transform:scale(1.05) rotate(180deg);opacity:1;}}
+
+.siri-wave{width:100%;height:60px;flex-shrink:0;background:linear-gradient(90deg,#FF375F,#FF9F0A,#34C759,#007AFF,#AF52DE,#5856D6,#FF375F);background-size:400% 100%;animation:siriWaveAnim 3s linear infinite;opacity:.7;}
+@keyframes siriWaveAnim{0%{background-position:0% 50%;}100%{background-position:400% 50%;}}
+
+.siri-input-area{width:min(460px,90vw);padding:12px 0 28px;display:flex;gap:8px;align-items:center;flex-shrink:0;}
+.siri-input{flex:1;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);border-radius:22px;padding:12px 20px;font-size:15px;color:white;outline:none;font-family:-apple-system,sans-serif;transition:border-color .2s;}
+.siri-input::placeholder{color:rgba(255,255,255,.4);}
+.siri-input:focus{border-color:rgba(255,255,255,.35);}
+.siri-send{width:44px;height:44px;border-radius:50%;background:#007AFF;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:opacity .2s;flex-shrink:0;}
+.siri-send:hover{opacity:.85;}
+.siri-close{position:fixed;top:20px;right:24px;background:rgba(255,255,255,.12);border:none;color:white;font-size:18px;cursor:pointer;width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;transition:background .2s;}
+.siri-close:hover{background:rgba(255,255,255,.2);}
+.siri-suggs{width:min(460px,90vw);display:flex;gap:6px;flex-wrap:wrap;padding-bottom:10px;flex-shrink:0;}
+.siri-sugg{background:rgba(255,255,255,.1);color:rgba(255,255,255,.8);border:0.5px solid rgba(255,255,255,.15);padding:6px 14px;border-radius:14px;font-size:12px;cursor:pointer;transition:background .15s;font-family:-apple-system,sans-serif;}
+.siri-sugg:hover{background:rgba(255,255,255,.18);}
+
+/* ── SPOTLIGHT ── */
+.spotlight-overlay{position:fixed;inset:0;z-index:1800;background:rgba(0,0,0,.4);backdrop-filter:blur(12px);display:none;align-items:flex-start;justify-content:center;padding-top:15vh;}
+.spotlight-overlay.open{display:flex;animation:fadeIn .15s ease-out;}
+.spotlight-box{width:min(640px,90vw);background:rgba(40,40,44,.95);border-radius:18px;overflow:hidden;box-shadow:0 0 0 0.5px rgba(255,255,255,.1),0 32px 80px rgba(0,0,0,.6);}
+.spot-input-wrap{display:flex;align-items:center;gap:12px;padding:14px 18px;}
+.spot-icon{font-size:18px;opacity:.6;}
+.spot-input{flex:1;background:none;border:none;outline:none;font-size:17px;color:white;font-family:-apple-system,sans-serif;}
+.spot-input::placeholder{color:rgba(255,255,255,.35);}
+.spot-results{padding:6px 0;max-height:360px;overflow-y:auto;}
+.spot-results::-webkit-scrollbar{width:4px;}
+.spot-results::-webkit-scrollbar-thumb{background:rgba(255,255,255,.1);border-radius:2px;}
+.spot-section{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.35);padding:10px 18px 4px;}
+.spot-item{display:flex;align-items:center;gap:12px;padding:9px 18px;cursor:pointer;transition:background .12s;}
+.spot-item:hover,.spot-item.hover{background:rgba(0,122,255,.6);}
+.spot-item-icon{width:30px;height:30px;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;}
+.spot-item-title{font-size:14px;font-weight:500;color:rgba(255,255,255,.9);}
+.spot-item-sub{font-size:11px;color:rgba(255,255,255,.45);}
+.spot-empty{padding:24px;text-align:center;color:rgba(255,255,255,.35);font-size:14px;}
+.spot-footer{padding:8px 18px;border-top:0.5px solid rgba(255,255,255,.08);font-size:11px;color:rgba(255,255,255,.3);display:flex;gap:16px;}
+
+/* ── CONTEXT MENU ── */
+.ctx-menu{position:fixed;z-index:1600;background:rgba(40,40,44,.95);backdrop-filter:blur(20px);border-radius:12px;overflow:hidden;box-shadow:0 0 0 0.5px rgba(255,255,255,.1),0 8px 32px rgba(0,0,0,.5);min-width:180px;display:none;animation:fadeIn .1s ease-out;}
+.ctx-item{padding:8px 14px;font-size:13px;color:rgba(255,255,255,.85);cursor:pointer;display:flex;align-items:center;gap:8px;transition:background .1s;}
+.ctx-item:hover{background:rgba(0,122,255,.7);}
+.ctx-sep{height:0.5px;background:rgba(255,255,255,.1);margin:2px 0;}
+
+/* ── DOCK ── */
+.dock-wrap{position:fixed;bottom:10px;left:50%;transform:translateX(-50%);z-index:2000;}
+.dock{display:flex;align-items:flex-end;gap:5px;padding:9px 16px;background:rgba(255,255,255,.2);backdrop-filter:blur(24px) saturate(200%);-webkit-backdrop-filter:blur(24px) saturate(200%);border-radius:20px;border:0.5px solid rgba(255,255,255,.28);box-shadow:0 8px 32px rgba(0,0,0,.3),0 0 0 0.5px rgba(0,0,0,.1);}
+.di{position:relative;display:flex;flex-direction:column;align-items:center;text-decoration:none;transition:transform 0.12s ease;cursor:pointer;}
+.di-icon{width:52px;height:52px;border-radius:13px;display:flex;align-items:center;justify-content:center;font-size:30px;box-shadow:0 3px 10px rgba(0,0,0,.25);}
+.di-lbl{position:absolute;bottom:calc(100% + 10px);left:50%;transform:translateX(-50%);background:rgba(28,28,30,.88);color:#fff;font-size:11px;font-weight:500;padding:4px 9px;border-radius:7px;white-space:nowrap;opacity:0;transition:opacity .12s;pointer-events:none;font-family:-apple-system,sans-serif;}
+.di:hover .di-lbl{opacity:1;}
+.di-dot{width:4px;height:4px;border-radius:50%;background:rgba(255,255,255,.7);margin-top:4px;display:none;}
+.di.active .di-dot{display:block;}
+.dock-sep{width:0.5px;height:36px;background:rgba(255,255,255,.2);align-self:center;margin:0 3px;}
+@media(max-width:500px){.di-icon{width:40px;height:40px;font-size:22px;}.dock{gap:3px;padding:7px 10px;}}
+
+/* ── RESPONSIVE ── */
+@media(max-width:768px){
+  .finder-win{width:calc(100vw - 20px);height:calc(100vh - 140px);top:50%;left:50%;transform:translate(-50%,-50%);}
+  .finder-body{grid-template-columns:1fr;}
+  .finder-sidebar{display:none;}
+  .finder-titlebar .finder-cat-pill{font-size:9.5px;padding:2px 7px;}
+}
+@media(max-width:500px){
+  .picon-img{width:58px;height:58px;font-size:28px;}
+  .icons-grid{grid-template-columns:repeat(auto-fill,78px);gap:12px;}
+}
+</style>
 </head>
 <body>
 
-<!-- AURORA -->
-<div class="aurora">
-    <div class="blob"></div>
-    <div class="blob"></div>
-    <div class="blob"></div>
-    <div class="blob"></div>
-</div>
+<!-- WALLPAPER -->
+<div class="wallpaper"></div>
 
 <!-- MENU BAR -->
 <div class="menubar">
-    <div class="mb-l">
-        <span class="mb-apple">🍎</span>
-        <span class="mb-bold" data-i18n="mb-title">Projets Pro</span>
-        <span class="mb-dim">Finder</span>
-        <span class="mb-dim">Présentation</span>
-        <span class="mb-dim">Affichage</span>
-        <span class="mb-dim">Aller</span>
+  <div class="mb-l">
+    <span class="mb-apple">🍎</span>
+    <span class="mb-appname" data-i18n="appname">Projets</span>
+    <div class="mb-items">
+      <span>Finder</span><span>Affichage</span><span>Aller</span>
     </div>
-    <div class="mb-r">
-        <div class="lang-sw">
-            <button class="lang-btn active" onclick="setLang('fr')">FR</button>
-            <button class="lang-btn" onclick="setLang('en')">EN</button>
-        </div>
-        <span style="opacity:.55;font-size:14px;">🔋</span>
-        <span style="opacity:.55;font-size:14px;">📶</span>
-        <span class="mb-time" id="mbTime">--:--</span>
+  </div>
+  <div class="mb-r">
+    <button class="mb-siri-btn" onclick="siriToggle()" title="Dis-sir (assistant IA)">◉ dis-sir</button>
+    <button class="mb-spotlight-btn" onclick="spotlightOpen()" title="⌘ Espace">🔍</button>
+    <button class="mb-tbtn" id="thm" onclick="toggleTheme()"><span id="thmIcon">🌙</span></button>
+    <div class="mb-ctrl">
+      <button class="mb-btn active" data-lang="fr">FR</button>
+      <button class="mb-btn" data-lang="en">EN</button>
     </div>
+    <span class="mb-time" id="mbTime">—</span>
+  </div>
 </div>
 
-<!-- MISSION CONTROL -->
-<div class="mc" id="mc">
-    <p class="mc-label" data-i18n="mc-label">Mission Control — Projets Pro</p>
-    <div class="mc-grid" id="mcGrid"></div>
-    <p class="mc-hint" data-i18n="mc-hint">Cliquez sur un projet pour l'explorer</p>
+<!-- DESKTOP -->
+<div class="desktop" id="desktop" onclick="deselectAll(event)" oncontextmenu="handleDesktopCtx(event)">
+  <div class="icons-grid" id="iconsGrid"></div>
 </div>
 
-<!-- OVERLAYS -->
-<div id="ovContainer"></div>
+<!-- FINDER WINDOW -->
+<div class="finder-win" id="finderWin">
+  <div class="finder-titlebar">
+    <div class="tls">
+      <div class="tl tl-r" onclick="closeFinder()" title="Fermer"></div>
+      <div class="tl tl-y" title="Réduire"></div>
+      <div class="tl tl-g" title="Plein écran"></div>
+    </div>
+    <div class="finder-tb-title" id="finderTitle">Projets — Alec DIAMIDIA</div>
+    <div class="finder-tb-r">
+      <button class="finder-cat-pill active" data-cat="all">Tous</button>
+      <button class="finder-cat-pill" data-cat="pro">Pro</button>
+      <button class="finder-cat-pill" data-cat="perso">Perso</button>
+    </div>
+  </div>
+  <div class="finder-body">
+    <div class="finder-sidebar" id="finderSidebar"></div>
+    <div class="finder-content" id="finderContent">
+      <div class="finder-empty" id="finderEmpty">
+        <div class="finder-empty-icon">📁</div>
+        <div class="finder-empty-hint" data-i18n="finder-hint">Double-cliquez sur un projet pour l'explorer</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- QUICK LOOK -->
+<div class="ql-overlay" id="qlOverlay" onclick="closeQL()">
+  <div class="ql-card" id="qlCard" onclick="e=>e.stopPropagation()"></div>
+</div>
+
+<!-- SIRI (DIS-SIR) -->
+<div class="siri-overlay" id="siriOverlay">
+  <button class="siri-close" onclick="siriToggle()">✕</button>
+  <div class="siri-circle">
+    <div class="siri-ring"></div>
+    <div class="siri-ring"></div>
+    <div class="siri-ring"></div>
+    <div class="siri-inner">⬡</div>
+  </div>
+  <div class="siri-msgs-area" id="siriMsgs"></div>
+  <div class="siri-suggs" id="siriSuggs"></div>
+  <div class="siri-input-area">
+    <input class="siri-input" id="siriInput" placeholder="Pose-moi une question..." onkeydown="if(event.key==='Enter')siriSend()">
+    <button class="siri-send" onclick="siriSend()">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="white"><path d="M2 21l21-9L2 3v7l15 2-15 2z"/></svg>
+    </button>
+  </div>
+  <div class="siri-wave"></div>
+</div>
+
+<!-- SPOTLIGHT -->
+<div class="spotlight-overlay" id="spotlightOverlay" onclick="e=>{if(e.target===document.getElementById('spotlightOverlay'))spotlightClose();}">
+  <div class="spotlight-box">
+    <div class="spot-input-wrap">
+      <span class="spot-icon">🔍</span>
+      <input class="spot-input" id="spotInput" placeholder="Rechercher un projet, une compétence..." autocomplete="off" oninput="spotSearch()">
+    </div>
+    <div class="spot-results" id="spotResults"></div>
+    <div class="spot-footer"><span>⏎ Ouvrir</span><span>Esc Fermer</span><span>⌘K Raccourci</span></div>
+  </div>
+</div>
+
+<!-- CONTEXT MENU -->
+<div class="ctx-menu" id="ctxMenu">
+  <div class="ctx-item" onclick="ctxOpen()">📂 Ouvrir</div>
+  <div class="ctx-item" onclick="ctxQL()">👁️ Aperçu rapide</div>
+  <div class="ctx-sep"></div>
+  <div class="ctx-item" onclick="ctxInfo()">ℹ️ Obtenir des infos</div>
+  <div class="ctx-sep"></div>
+  <div class="ctx-item" onclick="ctxClose()">✕ Fermer le menu</div>
+</div>
 
 <!-- DOCK -->
 <div class="dock-wrap">
-    <div class="dock">
-        <div class="di" onclick="go('index.html')">
-            <div class="di-ico" style="background:linear-gradient(145deg,#667eea,#764ba2);">🏠</div>
-            <div class="di-dot"></div>
-            <div class="di-tip" data-i18n="d-home">Accueil</div>
-        </div>
-        <div class="di" onclick="go('cv.html')">
-            <div class="di-ico" style="background:linear-gradient(145deg,#f093fb,#f5576c);">📄</div>
-            <div class="di-dot"></div>
-            <div class="di-tip">CV</div>
-        </div>
-        <div class="dsep"></div>
-        <div class="di" onclick="go('projets-perso.html')">
-            <div class="di-ico" style="background:linear-gradient(145deg,#4facfe,#1971c2);">🎨</div>
-            <div class="di-dot"></div>
-            <div class="di-tip" data-i18n="d-perso">Projets Perso</div>
-        </div>
-        <div class="di">
-            <div class="di-ico" style="background:linear-gradient(145deg,#9775fa,#6741d9);">💡</div>
-            <div class="di-dot"></div>
-            <div class="di-tip" data-i18n="d-pro">Projets Pro</div>
-        </div>
-        <div class="dsep"></div>
-        <div class="di" onclick="window.open('https://linkedin.com/in/alec-diamidia','_blank')">
-            <div class="di-ico" style="background:#0a66c2;">💼</div>
-            <div class="di-tip">LinkedIn</div>
-        </div>
-        <div class="di" onclick="window.open('https://github.com/venom6-13','_blank')">
-            <div class="di-ico" style="background:#161b22;">⌨️</div>
-            <div class="di-tip">GitHub</div>
-        </div>
-        <div class="di" onclick="location.href='mailto:alecrudydiami@gmail.com'">
-            <div class="di-ico" style="background:linear-gradient(145deg,#4facfe,#00f2fe);">📧</div>
-            <div class="di-tip">Mail</div>
-        </div>
-    </div>
+  <div class="dock" id="mainDock">
+    <a href="index.html" class="di">
+      <div class="di-icon" style="background:linear-gradient(135deg,#4facfe,#00f2fe);">🏠</div>
+      <span class="di-lbl">Accueil</span><div class="di-dot"></div>
+    </a>
+    <a href="cv.html" class="di">
+      <div class="di-icon" style="background:linear-gradient(135deg,#f093fb,#f5576c);">📄</div>
+      <span class="di-lbl">CV</span><div class="di-dot"></div>
+    </a>
+    <button class="di" style="background:none;border:none;" onclick="siriToggle()">
+      <div class="di-icon" style="background:conic-gradient(from 0deg,#FF375F,#FF9F0A,#34C759,#007AFF,#AF52DE,#FF375F);animation:spinEgg 8s linear infinite;">⬡</div>
+      <span class="di-lbl">dis-sir</span><div class="di-dot"></div>
+    </button>
+    <div class="dock-sep"></div>
+    <a href="https://linkedin.com/in/alec-diamidia" target="_blank" class="di">
+      <div class="di-icon" style="background:#0A66C2;color:white;font-size:22px;font-weight:900;">in</div>
+      <span class="di-lbl">LinkedIn</span><div class="di-dot"></div>
+    </a>
+    <a href="https://github.com/venom6-13" target="_blank" class="di">
+      <div class="di-icon" style="background:#24292f;display:flex;align-items:center;justify-content:center;">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="white"><path d="M12 2C6.48 2 2 6.48 2 12c0 4.42 2.87 8.17 6.84 9.5.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.61.07-.61 1 .07 1.53 1.03 1.53 1.03.89 1.52 2.34 1.08 2.91.83.09-.65.35-1.08.63-1.33-2.22-.25-4.56-1.11-4.56-4.95 0-1.09.39-1.99 1.03-2.69-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02A9.56 9.56 0 0 1 12 6.8c.85 0 1.71.11 2.51.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.38.2 2.4.1 2.65.64.7 1.03 1.6 1.03 2.69 0 3.85-2.34 4.7-4.57 4.94.36.31.68.92.68 1.85v2.74c0 .27.18.58.69.48C19.13 20.17 22 16.42 22 12c0-5.52-4.48-10-10-10z"/></svg>
+      </div>
+      <span class="di-lbl">GitHub</span><div class="di-dot"></div>
+    </a>
+    <a href="mailto:alecrudydiami@gmail.com" class="di">
+      <div class="di-icon" style="background:linear-gradient(135deg,#64D3F5,#1179F5);">📧</div>
+      <span class="di-lbl">Mail</span><div class="di-dot"></div>
+    </a>
+  </div>
+</div>
+
+<style>@keyframes spinEgg{to{transform:rotate(360deg);}}</style>
+
+<!-- EASTER EGG KONAMI -->
+<div id="eggModal" style="display:none;position:fixed;inset:0;z-index:99999;background:rgba(0,0,0,.85);align-items:center;justify-content:center;flex-direction:column;gap:16px;backdrop-filter:blur(20px);">
+  <div style="font-size:60px;animation:spinEgg 1s linear infinite">🕹️</div>
+  <div style="color:white;font-size:22px;font-weight:700;font-family:-apple-system,sans-serif;">Easter egg découvert !</div>
+  <div style="color:rgba(255,255,255,.7);font-size:14px;text-align:center;max-width:320px;line-height:1.7;font-family:-apple-system,sans-serif;">↑↑↓↓←→←→BA — tu connais les codes 🤫</div>
+  <button onclick="document.getElementById('eggModal').style.display='none'" style="margin-top:8px;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.2);color:white;padding:10px 24px;border-radius:12px;font-size:14px;cursor:pointer;font-family:-apple-system,sans-serif;">Fermer</button>
 </div>
 
 <script>
-const P = {
-    seo:{icon:"🔍",color:"#0071e3",tags:["Dust","SEMrush","ChatGPT","Perplexity","Webflow","Substack"],github:null,fr:{wt:"Eugenia — SEO/GEO/AEO",k1:"4 agents IA opérationnels",k2:"Machine éditoriale en 3 jours",title:"Eugenia School — Audit Visibilité & Stratégie Contenu Agentique",sub:"Conseil stratégique + Implémentation technique",ctx:"Eugenia School était quasiment <strong>inexistante en ligne</strong> malgré un positionnement fort et des partenaires solides (Grenoble EM, Microsoft, Mistral AI). En 2026, un lycéen demande à ChatGPT « quelle école IA choisir » — et Eugenia n'apparaissait nulle part, ni sur Google, ni dans les LLMs.",mission:["<strong>Audit 3 surfaces simultanées</strong> : SEO (Google) · GEO (ChatGPT + Perplexity) · AEO (Featured Snippets) — cadre encore rare en 2026","<strong>Le paradoxe Aivancity</strong> : 954 mots-clés Google construits sur 5 ans → 0/6 citations LLMs. Dominer Google ne garantit plus l'existence dans l'IA","<strong>4 agents Dust déployés</strong> : Lundi Édito · Veille & Découverte · Coordinateur · Rédacteur (auto-évaluation 9 critères/15 pts, seuil 13/15)","<strong>Quick win 0€</strong> : page 'Bachelor IA hors Parcoursup' déjà en CMS mais non publiée → mise en ligne immédiate → Top 20 potentiel en 6 semaines","<strong>Livrables opérationnels</strong> : prompts, fiche Webflow, calendrier 7 semaines, recommandation newsletter Substack"],rh:"Baseline → Projections 6 mois",metrics:[{v:"10→150",l:"Mots-clés positionnés"},{v:"+1 500",l:"Trafic organique/mois"},{v:"1→3/6",l:"Citations LLMs"},{v:"2/sem",l:"Articles (vs 0)"},{v:"2h/sem",l:"Effort humain requis"},{v:"13/15",l:"Score qualité garanti"}],lh:"Ce que ce projet démontre",learned:"La solution livrée n'est pas un rapport — c'est une <strong>machine opérationnelle</strong> : agents configurés, prompts rédigés, fiche Webflow prête, calendrier daté. L'équipe peut déployer le lendemain de la restitution."},en:{wt:"Eugenia — SEO/GEO/AEO",k1:"4 operational AI agents",k2:"Editorial machine in 3 days",title:"Eugenia School — Visibility Audit & Agentic Content Strategy",sub:"Strategic consulting + Technical implementation",ctx:"Eugenia School was virtually <strong>non-existent online</strong> despite strong positioning and solid partners (Grenoble EM, Microsoft, Mistral AI). In 2026, a student asks ChatGPT 'which AI school should I choose' — and Eugenia appeared nowhere, neither on Google nor in LLMs.",mission:["<strong>3-surface simultaneous audit</strong>: SEO (Google) · GEO (ChatGPT + Perplexity) · AEO (Featured Snippets) — still rare in 2026","<strong>The Aivancity paradox</strong>: 954 Google keywords built over 5 years → 0/6 LLM citations. Dominating Google no longer guarantees AI visibility","<strong>4 Dust agents deployed</strong>: Monday Editorial · Watch & Discovery · Coordinator · Writer (self-eval 9 criteria/15 pts, threshold 13/15)","<strong>€0 quick win</strong>: 'Bachelor AI outside Parcoursup' page already in CMS but unpublished → immediate go-live → Top 20 potential in 6 weeks","<strong>Operational deliverables</strong>: prompts, Webflow sheet, 7-week calendar, Substack newsletter recommendation"],rh:"Baseline → 6-month Projections",metrics:[{v:"10→150",l:"Ranked keywords"},{v:"+1,500",l:"Monthly organic traffic"},{v:"1→3/6",l:"LLM citations"},{v:"2/week",l:"Articles (vs 0)"},{v:"2h/week",l:"Human effort required"},{v:"13/15",l:"Guaranteed quality score"}],lh:"What this project demonstrates",learned:"The delivered solution isn't a report — it's an <strong>operational machine</strong>: configured agents, written prompts, ready Webflow sheet, dated calendar. The team can deploy the day after the presentation."}},
-    payfit:{icon:"⚡",color:"#FF6B35",tags:["Make.com","OpenAI GPT-4","Claude Sonnet","Google Sheets","Docker","Data for SEO"],github:null,fr:{wt:"Hackathon PayFit 2026",k1:"80% temps économisé",k2:"14.3/15 qualité · Innovation Award",title:"Hackathon PayFit 2026 — Intelligence Collective Content SEO",sub:"Automatisation enterprise pour production de contenu RH/Paie",ctx:"PayFit (10 000+ clients PME, leader SaaS RH/Paie) faisait face à un <strong>goulot d'étranglement critique</strong> : 2h par article expert, 1 rédacteur dédié, 5h/semaine de veille juridique. Résultat : scaling impossible face à une concurrence IA agressive.",mission:["<strong>4 agents orchestrés</strong> : Info-Radar (veille URSSAF/Legifrance) · StrategicPlanner (scoring /13, anti-duplication) · SEO Writer (14+/15 garanti) · Quality Guardian (EEAT /100)","<strong>2 scénarios Make.com</strong> : Keyword Research (1 thématique → 10 mots-clés) + Question Generation (1 mot-clé → 10 questions business)","<strong>APIs réglementaires temps réel</strong> : URSSAF · Legifrance · DARES — knowledge base juridique enrichie automatiquement","<strong>Google Sheets Hub central</strong> : SOURCE · ANALYSIS · HISTORY · METRICS — orchestration pipeline complète","<strong>Export multi-format</strong> : HTML · DOCX · PDF → publication-ready en 2 minutes"],rh:"Résultats concrets (48h hackathon)",metrics:[{v:"80%",l:"Temps économisé (2h→24min)"},{v:"14.3/15",l:"Qualité articles moyenne"},{v:"200K€",l:"Économies/an estimées"},{v:"92%",l:"Automation end-to-end"},{v:"0",l:"Erreurs juridiques (vs 15% manuel)"},{v:"🏆",l:"Innovation Award PayFit"}],lh:"Impact",learned:"4 articles produits en 48h (vs 1 semaine workflow normal). 50% de la production à 15/15. 0 erreur compliance. <strong>Innovation Award</strong> décerné par PayFit — solution immédiatement déployable en production."},en:{wt:"PayFit Hackathon 2026",k1:"80% time saved",k2:"14.3/15 quality · Innovation Award",title:"PayFit Hackathon 2026 — Collective Intelligence Content SEO",sub:"Enterprise automation for HR/Payroll content production",ctx:"PayFit (10,000+ SME clients, French SaaS HR/Payroll leader) faced a <strong>critical bottleneck</strong>: 2h per expert article, 1 dedicated writer, 5h/week of legal monitoring. Result: impossible to scale against aggressive AI competition.",mission:["<strong>4 orchestrated agents</strong>: Info-Radar (URSSAF/Legifrance watch) · StrategicPlanner (scoring /13, anti-duplication) · SEO Writer (14+/15 guaranteed) · Quality Guardian (EEAT /100)","<strong>2 Make.com scenarios</strong>: Keyword Research (1 theme → 10 keywords) + Question Generation (1 keyword → 10 business questions)","<strong>Real-time regulatory APIs</strong>: URSSAF · Legifrance · DARES — legal knowledge base auto-enriched","<strong>Central Google Sheets Hub</strong>: SOURCE · ANALYSIS · HISTORY · METRICS — full pipeline orchestration","<strong>Multi-format export</strong>: HTML · DOCX · PDF → publication-ready in 2 minutes"],rh:"Concrete results (48h hackathon)",metrics:[{v:"80%",l:"Time saved (2h→24min)"},{v:"14.3/15",l:"Average article quality"},{v:"€200K",l:"Estimated annual savings"},{v:"92%",l:"End-to-end automation"},{v:"0",l:"Legal errors (vs 15% manual)"},{v:"🏆",l:"PayFit Innovation Award"}],lh:"Impact",learned:"4 articles produced in 48h (vs 1 week normal workflow). 50% of production at 15/15. 0 compliance errors. <strong>Innovation Award</strong> granted by PayFit — immediately deployable in production."}},
-    marathon:{icon:"🏃",color:"#30d158",tags:["Python","requests","pandas","Google Sheets","GitHub"],github:"https://github.com/venom6-13/scraping_marathonParis",fr:{wt:"Marathon Paris 2025",k1:"50 001 runners analysés",k2:"Reverse-engineering API non documentée",title:"Marathon de Paris 2025 — Analyse data des 50 001 finishers",sub:"Python · Pipeline de données complet · Google Sheets",ctx:"Le site officiel (results.timeto.com) n'offre aucune API publique. En analysant les requêtes réseau via F12, nous avons identifié une <strong>API interne non documentée</strong> et construit un pipeline Python complet de bout en bout. Projet réalisé en binôme avec Matthieu Larboullet.",mission:["<strong>Collecte</strong> : requête GET authentifiée avec simulation navigateur (cookies PHPSESSID + headers user-agent) — récupération de 50 001 entrées","<strong>Nettoyage</strong> : 9 champs utiles extraits parmi ~40 du JSON brut · renommage · 4 variables calculées","<strong>Enrichissement</strong> : search_continent() (code ISO → continent) · runner_cat() (catégorie FFA → sexe, tranche d'âge, étiquette combinée)","<strong>Export</strong> : JSON + CSV → import Google Sheets pour analyse et visualisation","<strong>8 graphiques</strong> sur 3 axes : démographie · performance · géographie"],rh:"Insights extraits des données",metrics:[{v:"50 001",l:"Finishers analysés"},{v:"72%",l:"Hommes (27,9% femmes = levier)"},{v:"100+",l:"Nationalités représentées"},{v:"5:28",l:"min/km (allure africaine)"},{v:"71,9%",l:"Finishers français"},{v:"1s/km",l:"Écart 18-34 vs 35-44 ans"}],lh:"Ce que ce projet m'a appris",learned:"<strong>Reverse-engineering d'API</strong> : identifier et exploiter une API interne non documentée. Structurer un pipeline en fonctions indépendantes et réutilisables. Penser analytiquement : formuler des hypothèses, les confronter aux données, tirer des conclusions business actionnables."},en:{wt:"Paris Marathon 2025",k1:"50,001 runners analyzed",k2:"Undocumented API reverse-engineering",title:"Paris Marathon 2025 — Data Analysis of 50,001 Finishers",sub:"Python · Full data pipeline · Google Sheets",ctx:"The official site (results.timeto.com) offers no public API. By analyzing network requests via F12, we identified an <strong>undocumented internal API</strong> and built a complete end-to-end Python pipeline. Project done in a pair with Matthieu Larboullet.",mission:["<strong>Collection</strong>: authenticated GET request with browser simulation (PHPSESSID cookies + user-agent headers) — 50,001 entries retrieved","<strong>Cleaning</strong>: 9 useful fields extracted from ~40 in raw JSON · renaming · 4 calculated variables","<strong>Enrichment</strong>: search_continent() (ISO code → continent) · runner_cat() (FFA category → gender, age group, combined label)","<strong>Export</strong>: JSON + CSV → Google Sheets import for analysis and visualization","<strong>8 charts</strong> on 3 axes: demographics · performance · geography"],rh:"Key insights from data",metrics:[{v:"50,001",l:"Finishers analyzed"},{v:"72%",l:"Male (27.9% female = growth lever)"},{v:"100+",l:"Nationalities represented"},{v:"5:28",l:"min/km (African pace)"},{v:"71.9%",l:"French finishers"},{v:"1s/km",l:"Gap 18-34 vs 35-44 years"}],lh:"What this project taught me",learned:"<strong>API reverse-engineering</strong>: identifying and exploiting an undocumented internal API. Structuring a pipeline with independent, reusable functions. Analytical thinking: formulating hypotheses, confronting them with data, drawing actionable business conclusions."}},
-    thelook:{icon:"📊",color:"#bf5af2",tags:["BigQuery","SQL","Looker Studio","Google Cloud"],github:"https://github.com/venom6-13/1_sql_thelook_ecommercet_audit",fr:{wt:"TheLook — SQL Audit",k1:"6 insights actionnables",k2:"14 mois · BigQuery Multi-CTE",title:"TheLook E-Commerce — Profitability & Return Rate Audit",sub:"BigQuery SQL · Looker Studio · Fashion Hoodies & Sweatshirts",ctx:"Anomalie : malgré une croissance de <strong>+154% de CA</strong> et <strong>+163% de commandes</strong> en 14 mois, la rentabilité nette ne progresse pas. Certains segments brassent de l'air — fort volume, marge faible. Les retours érodent silencieusement le P&L.",mission:["<strong>Architecture Multi-CTE</strong> : 1 CTE par dimension métier (financial_monthly · sessions_monthly · retention_monthly)","<strong>LEFT JOIN</strong> pour garantir l'exhaustivité — aucun article exclu même sans métadonnées","<strong>SAFE_DIVIDE</strong> pour la robustesse en production (NULL vs Division by zero)","<strong>Marge nette estimée</strong> : intègre les coûts logistiques retours (benchmark NRF 16.9%, Zalando 12-15%)","<strong>7 requêtes SQL distinctes</strong> : retours · genre · variabilité · canal Email jan. · focus Chine · marchés anti-retours"],rh:"6 insights clés",metrics:[{v:"30%",l:"Return rate moyen (critique)"},{v:"8 pts",l:"Marge femmes > hommes"},{v:"42%",l:"CA concentré Chine (risque)"},{v:"4.6%",l:"Record Brésil déc. 2025"},{v:"~15%",l:"Return rate Japon (benchmark)"},{v:"Jan ☠️",l:"Email : 100% rebond × 2 ans"}],lh:"Recommandations phares",learned:"Réallouer 30% budget acquisition vers les femmes (+1.6 pts marge). Suspendre les campagnes Email de janvier. Localiser les fiches Chine en mandarin. Monitoring mensuel seuil 35%. Investiguer le <strong>blueprint Brésil Q4</strong> (4.6% — record absolu du dataset)."},en:{wt:"TheLook — SQL Audit",k1:"6 actionable insights",k2:"14 months · BigQuery Multi-CTE",title:"TheLook E-Commerce — Profitability & Return Rate Audit",sub:"BigQuery SQL · Looker Studio · Fashion Hoodies & Sweatshirts",ctx:"Anomaly: despite <strong>+154% revenue growth</strong> and <strong>+163% orders</strong> over 14 months, net profitability isn't improving. Some segments generate high volume with low margin. Return rates silently erode the P&L.",mission:["<strong>Multi-CTE architecture</strong>: 1 CTE per business dimension (financial_monthly · sessions_monthly · retention_monthly)","<strong>LEFT JOIN</strong> to guarantee completeness — no article excluded even without metadata","<strong>SAFE_DIVIDE</strong> for production robustness (NULL vs Division by zero)","<strong>Estimated net margin</strong>: includes reverse logistics costs (NRF 16.9% benchmark, Zalando 12-15%)","<strong>7 distinct SQL queries</strong>: returns · gender · variability · Jan Email channel · China focus · anti-return markets"],rh:"6 key insights",metrics:[{v:"30%",l:"Average return rate (critical)"},{v:"8 pts",l:"Women's margin > men's"},{v:"42%",l:"Revenue concentrated in China (risk)"},{v:"4.6%",l:"Brazil record Dec. 2025"},{v:"~15%",l:"Japan return rate (benchmark)"},{v:"Jan ☠️",l:"Email: 100% bounce × 2 years"}],lh:"Key recommendations",learned:"Reallocate 30% acquisition budget to women (+1.6 margin pts). Suspend January Email campaigns. Localize China pages in Mandarin. Monthly monitoring with 35% threshold. Investigate the <strong>Brazil Q4 blueprint</strong> (4.6% — dataset absolute record)."}},
-    mirakl:{icon:"🏆",color:"#ff375f",tags:["Next.js","GPT-4o","Supabase","Apify","Vercel","Better Contact"],github:"https://github.com/CodeurFort/mirakl-prospector",fr:{wt:"Hackathon Mirakl",k1:"1h15 → 2 min par lead",k2:"×37 plus rapide · ×2400 ROI",title:"Hackathon Mirakl — Mirakl Connect Prospector",sub:"Application web de prospection intelligente · Déployée en 48h sur Vercel",ctx:"Les BDRs de <strong>Mirakl Connect</strong> (700+ opérateurs : Carrefour, Leroy Merlin, Best Buy) passaient <strong>1h15 par lead</strong> en travail manuel. Ce temps n'était pas consacré à la vente. L'objectif : automatiser le pipeline BDR de bout en bout.",mission:["<strong>UC2-A (By Seller)</strong> : URL → scraping auto → analyse catalogue → fit marketplace → séquence 3 emails (J0/J+5/J+12) en <strong>6 secondes</strong>","<strong>UC2-B (By Marketplace)</strong> : filtres multi-critères sur base Supabase → scoring propriétaire → liste leads priorisés","<strong>Grille de scoring 100 pts</strong> : Catégorie (28) · Géographie (22) · Prix (16) · Positionnement (14) · Saisonnalité (10) · Signaux marketplace (10)","<strong>Outreach personnalisé</strong> : méthode × angle × saisonnalité → GPT-4o adapte au profil du seller et à la culture marché","<strong>Déployé en production</strong> sur Vercel avec screenshots réels — pas des mockups"],rh:"Impact business",metrics:[{v:"×37",l:"Plus rapide (1h15→2min)"},{v:"-89%",l:"Coût par lead"},{v:"6¢",l:"Coût pipeline complet/lead"},{v:"+62 pts",l:"Temps vente libérés"},{v:"6s",l:"Pipeline By Seller complet"},{v:"×2400",l:"ROI estimé"}],lh:"Mon rôle & ce que ça démontre",learned:"Conception produit de bout en bout : problématique terrain → architecture pipeline → grille de scoring → stratégie outreach → présentation jury. <strong>Pensée produit</strong> et <strong>sens business</strong> : ROI calculé, impact quantifié, solution utilisable immédiatement."},en:{wt:"Mirakl Hackathon",k1:"1h15 → 2 min per lead",k2:"×37 faster · ×2400 ROI",title:"Mirakl Hackathon — Mirakl Connect Prospector",sub:"Intelligent prospecting web app · Deployed in 48h on Vercel",ctx:"<strong>Mirakl Connect</strong> BDRs (700+ operators: Carrefour, Leroy Merlin, Best Buy) spent <strong>1h15 per lead</strong> on manual work — time not spent selling. Objective: automate the full BDR pipeline.",mission:["<strong>UC2-A (By Seller)</strong>: URL → auto scraping → catalog analysis → marketplace fit → 3-email sequence (D0/D+5/D+12) in <strong>6 seconds</strong>","<strong>UC2-B (By Marketplace)</strong>: multi-criteria filters on Supabase database → proprietary scoring → prioritized lead list","<strong>100-point scoring grid</strong>: Category (28) · Geography (22) · Price (16) · Positioning (14) · Seasonality (10) · Marketplace signals (10)","<strong>Personalized outreach</strong>: method × angle × seasonality → GPT-4o adapts to seller profile and market culture","<strong>Deployed in production</strong> on Vercel with real screenshots — not mockups"],rh:"Business impact",metrics:[{v:"×37",l:"Faster (1h15→2min)"},{v:"-89%",l:"Cost per lead"},{v:"6¢",l:"Full pipeline cost/lead"},{v:"+62 pts",l:"Sales time freed"},{v:"6s",l:"Full By Seller pipeline"},{v:"×2400",l:"Estimated ROI"}],lh:"My role & what it demonstrates",learned:"End-to-end product design: field problem → pipeline architecture → scoring grid → outreach strategy → jury presentation. <strong>Product thinking</strong> and <strong>business sense</strong>: calculated ROI, quantified impact, immediately usable solution."}}
+/* ══ DATA ══ */
+const PROJECTS=[
+  {id:'mirakl',name:'Mirakl Connect',sub:'Pipeline BDR automatisé · Vercel · 48h',emoji:'🏆',cat:'pro',
+   grad:'linear-gradient(135deg,#0071E3,#32ADE6)',
+   badges:[{t:'aw',l:'🏆 Award'},{t:'act',l:'🟢 Déployé'},{t:'gh',l:'⌨️ GitHub'}],
+   tags:['Next.js','GPT-4o','Supabase','Apify','Vercel'],
+   kpis:[{v:'×37',l:'plus rapide'},{v:'-89%',l:'coût/lead'},{v:'×2400',l:'ROI'}],
+   ctx:"Les BDRs de Mirakl Connect passaient 1h15 par lead en travail manuel. Objectif : automatiser le pipeline BDR de bout en bout en 48h.",
+   bullets:['UC2-A (By Seller) : URL → scraping auto → analyse catalogue → 3 emails personnalisés en 6 secondes','Grille de scoring 100 pts : Catégorie (28) · Géographie (22) · Prix (16) · Positionnement (14)','Outreach GPT-4o : adapte le message au profil seller et à la culture marché','Déployé en production sur Vercel — pas des mockups'],
+   proof:"Conception produit de bout en bout. ROI calculé, impact quantifié, solution utilisable immédiatement.",
+   gh:'https://github.com/CodeurFort/mirakl-prospector'},
+
+  {id:'payfit',name:'Hackathon PayFit',sub:'Intelligence Collective Content SEO · 2026',emoji:'⚡',cat:'pro',
+   grad:'linear-gradient(135deg,#5856D6,#AF52DE)',
+   badges:[{t:'aw',l:'🏆 Innovation Award'},{t:'act',l:'🟢 Actif'}],
+   tags:['Make.com','OpenAI GPT-4','Claude Sonnet','Docker'],
+   kpis:[{v:'-80%',l:'temps (2h→24min)'},{v:'14.3/15',l:'qualité moy.'},{v:'200K€',l:'/an éco.'}],
+   ctx:"PayFit (10 000+ clients) : 2h par article, 1 rédacteur dédié, 5h/semaine de veille juridique. Scaling impossible face à la concurrence IA.",
+   bullets:['4 agents orchestrés : Info-Radar · StrategicPlanner · SEO Writer · Quality Guardian','2 scénarios Make.com : Keyword Research + Question Generation (10 résultats chacun)','APIs réglementaires temps réel : URSSAF · Legifrance · DARES','Export multi-format : HTML · DOCX · PDF → publication-ready en 2 minutes'],
+   proof:"4 articles produits en 48h. 50% de la production à 15/15. 0 erreur compliance. Innovation Award décerné par PayFit.",
+   gh:null},
+
+  {id:'eugenia',name:'Eugenia SEO/GEO/AEO',sub:'Audit Visibilité & Machine Éditoriale Agentique',emoji:'🔍',cat:'pro',
+   grad:'linear-gradient(135deg,#34C759,#30D158)',
+   badges:[{t:'act',l:'🟢 Actif'}],
+   tags:['Dust','SEMrush','ChatGPT','Perplexity','Webflow'],
+   kpis:[{v:'4',l:'agents IA'},{v:'3 jours',l:'livrable opéra.'},{v:'13/15',l:'qualité garantie'}],
+   ctx:"Eugenia School : inexistante sur Google, nulle part dans les LLMs malgré Microsoft, Mistral AI, Grenoble EM comme partenaires.",
+   bullets:['Audit 3 surfaces : SEO (Google) · GEO (ChatGPT + Perplexity) · AEO (Snippets)','4 agents Dust déployés : Lundi Édito · Veille & Découverte · Coordinateur · Rédacteur','Quick win 0€ : page Bachelor IA hors Parcoursup → Top 20 potentiel en 6 semaines','Livrables : prompts rédigés, fiche Webflow, calendrier 7 semaines, newsletter Substack'],
+   proof:"Machine opérationnelle livrée : agents configurés, prompts rédigés, calendrier daté. Déployable le lendemain de la restitution.",
+   gh:null},
+
+  {id:'thelook',name:'TheLook SQL Audit',sub:'Profitability & Return Rate · BigQuery',emoji:'📊',cat:'pro',
+   grad:'linear-gradient(135deg,#FF9500,#FF6B00)',
+   badges:[{t:'gh',l:'⌨️ GitHub'}],
+   tags:['BigQuery','SQL','Looker Studio','Google Cloud'],
+   kpis:[{v:'6',l:'insights clés'},{v:'14 mois',l:'de data'},{v:'30%',l:'return rate critique'}],
+   ctx:"+154% CA et +163% commandes en 14 mois, mais rentabilité nette stagnante. Les retours érodent silencieusement le P&L.",
+   bullets:['Architecture Multi-CTE : 1 CTE par dimension métier (financial · sessions · retention)','LEFT JOIN pour exhaustivité · SAFE_DIVIDE pour robustesse en production','7 requêtes SQL distinctes : retours · genre · variabilité · canal Email · focus Chine','Recommandations chiffrées : réallocation budget, suspension campagnes, localisation fiches'],
+   proof:"Réallouer 30% budget vers les femmes (+1.6 pts marge). Suspendre les Email de janvier (100% rebond × 2 ans). Blueprint Brésil Q4 à investiguer.",
+   gh:'https://github.com/venom6-13/1_sql_thelook_ecommercet_audit'},
+
+  {id:'marathon',name:'Marathon Paris 2025',sub:'Analyse data des 50 001 finishers',emoji:'🏃',cat:'pro',
+   grad:'linear-gradient(135deg,#FF3B30,#FF6961)',
+   badges:[{t:'gh',l:'⌨️ GitHub'}],
+   tags:['Python','requests','pandas','Google Sheets'],
+   kpis:[{v:'50 001',l:'finishers'},{v:'100+',l:'nationalités'},{v:'8',l:'visualisations'}],
+   ctx:"Le site officiel n'a aucune API publique. Via F12, nous avons identifié une API interne non documentée et construit un pipeline complet.",
+   bullets:['Collecte : requête GET authentifiée (cookies PHPSESSID + headers user-agent)','Nettoyage : 9 champs utiles extraits parmi ~40 · 4 variables calculées','Enrichissement : search_continent() · runner_cat() (sexe + tranche d\'âge FFA)','8 graphiques sur 3 axes : démographie · performance · géographie'],
+   proof:"Reverse-engineering d'API non documentée. Pipeline en fonctions indépendantes réutilisables. Insight : 72% d'hommes, levier acquisition femmes inexploité.",
+   gh:'https://github.com/venom6-13/scraping_marathonParis'},
+
+  {id:'taskmaster',name:'Weekly Task Master',sub:'Automatisation personnelle · Google Workspace',emoji:'📅',cat:'perso',
+   grad:'linear-gradient(135deg,#00C7BE,#30B0C7)',
+   badges:[{t:'act',l:'🟢 Actif'},{t:'gh',l:'⌨️ GitHub'}],
+   tags:['Apps Script','JavaScript ES6','GmailApp','CalendarApp','Web App'],
+   kpis:[{v:'4',l:'piliers auto.'},{v:'0',l:'dépendance ext.'},{v:'100%',l:'Google Workspace'}],
+   ctx:"Planifier sa semaine est chronophage. L'idée : un outil entièrement intégré à Google Workspace, sans aucune dépendance externe.",
+   bullets:['Planification : formulaire HTML depuis Sheets, Task Library personnalisable, création auto dans Agenda','Vérification auto : trigger 23h comparant tâches planifiées vs événements — marquage ✅/❌','Email hebdo : dimanche 20h — taux complétion, XP, rang, bouton relance vers la Web App','Briefing matinal : email 8h avec tâches accomplies, programme du jour, conseil motivant'],
+   proof:"Concevoir un système de bout en bout, gérer front-end ↔ serveur sans framework, construire un email HTML cross-client, penser architecture.",
+   gh:'https://github.com/venom6-13/weekly-task-master_appscript'},
+
+  {id:'aiagents',name:'AI Agent Ecosystem',sub:'9 agents spécialisés · Dust × Claude Anthropic',emoji:'🤖',cat:'perso',
+   grad:'linear-gradient(135deg,#5856D6,#BF5AF2)',
+   badges:[{t:'act',l:'🟢 Actif'},{t:'ds',l:'✨ Dust'}],
+   tags:['Prompt Engineering','Dust','Claude','Chain-of-thought','XML structuring'],
+   kpis:[{v:'9',l:'agents'},{v:'<3h',l:'brief complet'},{v:'Go ✅',l:'go/no-go justifié'}],
+   ctx:"Les outils IA généralistes produisent des résultats superficiels. Principe : la spécialisation produit de la profondeur. Un agent = une expertise = un livrable.",
+   bullets:['9 agents : ProjectMaster · Benchmark · CTO Tech · ProductCraft · FinanceMaster · MarketingMaster · RoadmapManager · NotionMaster · StrategyMaster CEO','Cas test CoachConnect : brief SMART, analyse concurrents, stack technique, wireframes, budget, roadmap 12 semaines, workspace Notion','Outputs structurés via XML + chain-of-thought pour des résultats stables et reproductibles','Workspace Notion généré automatiquement par NotionMaster'],
+   proof:"De l'idée au go/no-go complet en moins de 3h. Spécialisation des agents, prompt engineering avancé, orchestration multi-agents sans outil dédié.",
+   gh:null},
+];
+
+/* ══ STATE ══ */
+let selected=null, currentProject=null, finderFilter='all', ctxTarget=null, lastClick=0, siriOpen=false, siriInited=false;
+let lang=localStorage.getItem('lang')||'fr';
+
+const i18n={
+  fr:{'appname':'Projets','finder-hint':'Double-cliquez sur un projet pour l\'explorer'},
+  en:{'appname':'Projects','finder-hint':'Double-click a project to explore it'},
 };
 
-const ORDER = ['seo','payfit','marathon','thelook','mirakl'];
-let lang = localStorage.getItem('lang') || 'fr';
-let openId = null;
-
-function tick() {
-    const n = new Date();
-    document.getElementById('mbTime').textContent =
-        `${String(n.getHours()).padStart(2,'0')}:${String(n.getMinutes()).padStart(2,'0')}`;
+/* ══ RENDER ICONS ══ */
+function renderIcons(){
+  const grid=document.getElementById('iconsGrid');
+  const filtered=finderFilter==='all'?PROJECTS:PROJECTS.filter(p=>p.cat===finderFilter);
+  grid.innerHTML='';
+  filtered.forEach(p=>{
+    const el=document.createElement('div');
+    el.className='proj-icon';
+    el.id='icon-'+p.id;
+    el.setAttribute('data-id',p.id);
+    const bdgHtml=p.badges.slice(0,2).map(b=>`<span class="picon-bdg">${b.l.split(' ')[0]}</span>`).join('');
+    el.innerHTML=`
+      <div class="picon-badges">${bdgHtml}</div>
+      <div class="picon-img" style="background:${p.grad}">${p.emoji}</div>
+      <div class="picon-name">${p.name}</div>`;
+    el.addEventListener('click',e=>{e.stopPropagation();handleIconClick(p.id);});
+    el.addEventListener('dblclick',e=>{e.stopPropagation();openProject(p.id);});
+    el.addEventListener('contextmenu',e=>{e.preventDefault();e.stopPropagation();showCtx(e,p.id);});
+    grid.appendChild(el);
+  });
 }
-tick(); setInterval(tick, 10000);
 
-function renderGrid() {
-    const g = document.getElementById('mcGrid');
-    g.innerHTML = '';
-    ORDER.forEach(id => {
-        const p = P[id], d = p[lang];
-        const w = document.createElement('div');
-        w.className = 'mc-win';
-        w.onclick = () => openProj(id);
-        w.innerHTML = `
-            <div class="mc-accent" style="background:${p.color}"></div>
-            <div class="mc-titlebar">
-                <div class="tl r"></div><div class="tl y"></div><div class="tl g"></div>
-                <span class="mc-wtitle">${d.wt}</span>
-            </div>
-            <div class="mc-body">
-                <div class="mc-ico">${p.icon}</div>
-                <div class="mc-k1">${d.k1}</div>
-                <div class="mc-k2">${d.k2}</div>
-                <div class="mc-tags">${p.tags.slice(0,3).map(t=>`<span class="mc-tag">${t}</span>`).join('')}</div>
-            </div>`;
-        g.appendChild(w);
+function handleIconClick(id){
+  const now=Date.now();
+  if(selected===id&&(now-lastClick)<500){openProject(id);return;}
+  lastClick=now;
+  document.querySelectorAll('.proj-icon').forEach(el=>el.classList.remove('selected'));
+  document.getElementById('icon-'+id)?.classList.add('selected');
+  selected=id;
+}
+
+function deselectAll(e){
+  if(e.target===document.getElementById('desktop')||e.target===document.getElementById('iconsGrid')){
+    document.querySelectorAll('.proj-icon').forEach(el=>el.classList.remove('selected'));
+    selected=null;
+  }
+  closeCtxMenu();
+}
+
+/* ══ FINDER WINDOW ══ */
+function openProject(id){
+  const p=PROJECTS.find(x=>x.id===id);
+  if(!p)return;
+  currentProject=id;
+  document.getElementById('finderTitle').textContent=p.name;
+  renderSidebar();
+  showDetail(id);
+  document.getElementById('finderWin').classList.add('open');
+  document.getElementById('finderEmpty').style.display='none';
+}
+
+function closeFinder(){
+  document.getElementById('finderWin').classList.remove('open');
+  currentProject=null;
+}
+
+function renderSidebar(){
+  const sb=document.getElementById('finderSidebar');
+  sb.innerHTML=`
+    <div class="sb-section-label">Favoris</div>
+    <div class="sb-row" onclick="closeFinder()">
+      <span class="sb-icon">🏠</span><span class="sb-label">Accueil</span>
+    </div>
+    <div class="sb-sep"></div>
+    <div class="sb-section-label">Catégories</div>
+    <div class="sb-row ${finderFilter==='all'?'active':''}" onclick="setFilter('all')">
+      <span class="sb-icon">📁</span><span class="sb-label">Tous les projets</span>
+      <span class="sb-count">7</span>
+    </div>
+    <div class="sb-row ${finderFilter==='pro'?'active':''}" onclick="setFilter('pro')">
+      <span class="sb-icon">💼</span><span class="sb-label">Pro</span>
+      <span class="sb-count">5</span>
+    </div>
+    <div class="sb-row ${finderFilter==='perso'?'active':''}" onclick="setFilter('perso')">
+      <span class="sb-icon">🎨</span><span class="sb-label">Perso</span>
+      <span class="sb-count">2</span>
+    </div>
+    <div class="sb-sep"></div>
+    <div class="sb-section-label">Projets</div>
+    ${PROJECTS.map(p=>`
+      <div class="sb-row ${currentProject===p.id?'active':''}" onclick="showDetail('${p.id}')">
+        <span class="sb-icon">${p.emoji}</span>
+        <span class="sb-label">${p.name}</span>
+      </div>`).join('')}
+  `;
+}
+
+function setFilter(cat){
+  finderFilter=cat;
+  document.querySelectorAll('.finder-cat-pill').forEach(el=>el.classList.toggle('active',el.dataset.cat===cat));
+  renderSidebar();
+  if(cat!=='all')renderIcons();
+  else renderIcons();
+}
+
+function showDetail(id){
+  const p=PROJECTS.find(x=>x.id===id);
+  if(!p)return;
+  currentProject=id;
+  document.getElementById('finderTitle').textContent=p.name;
+  renderSidebar();
+
+  const bdgMap={aw:'b-aw',act:'b-act',gh:'b-gh',ds:'b-ds'};
+  const bdgsHtml=p.badges.map(b=>`<span class="pd-bdg ${bdgMap[b.t]||''}">${b.l}</span>`).join('');
+  const kpiHtml=p.kpis.map(k=>`<div class="pd-kpi"><div class="pd-kval">${k.v}</div><div class="pd-klbl">${k.l}</div></div>`).join('');
+  const tagsHtml=p.tags.map(t=>`<span class="pd-tag">${t}</span>`).join('');
+  const bulletsHtml=p.bullets.map(b=>`<li><strong></strong>${b}</li>`).join('');
+  const ghBtn=p.gh?`<a href="${p.gh}" target="_blank" class="pd-link">⌨️ Voir sur GitHub</a>`:'';
+  const catBadge=p.cat==='pro'?'<span class="pd-bdg" style="background:rgba(0,122,255,.12);color:#007AFF;">💼 Pro</span>':'<span class="pd-bdg" style="background:rgba(175,82,222,.12);color:#AF52DE;">🎨 Perso</span>';
+
+  const content=document.getElementById('finderContent');
+  content.innerHTML=`
+    <div class="proj-detail show">
+      <div class="pd-hero">
+        <div class="pd-icon" style="background:${p.grad}">${p.emoji}</div>
+        <div>
+          <div class="pd-title">${p.name}</div>
+          <div class="pd-sub">${p.sub}</div>
+          <div class="pd-badges">${catBadge}${bdgsHtml}</div>
+        </div>
+      </div>
+      <div class="pd-tags">${tagsHtml}</div>
+      <div class="pd-sec">Contexte</div>
+      <p class="pd-text">${p.ctx}</p>
+      <div class="pd-sec">Ce que j'ai fait</div>
+      <ul class="pd-ul">${bulletsHtml}</ul>
+      <div class="pd-sec">KPIs</div>
+      <div class="pd-kpis">${kpiHtml}</div>
+      <div class="pd-sec">Ce que ça démontre</div>
+      <div class="pd-proof"><p>${p.proof}</p></div>
+      ${ghBtn}
+    </div>`;
+}
+
+/* ══ FILTER PILLS HEADER ══ */
+document.querySelectorAll('.finder-cat-pill').forEach(btn=>{
+  btn.addEventListener('click',()=>setFilter(btn.dataset.cat));
+});
+
+/* ══ QUICKLOOK ══ */
+function showQL(id){
+  const p=PROJECTS.find(x=>x.id===id)||PROJECTS.find(x=>x.id===selected);
+  if(!p)return;
+  const kpiHtml=p.kpis.map(k=>`<div class="ql-kpi"><div class="ql-kval">${k.v}</div><div class="ql-klbl">${k.l}</div></div>`).join('');
+  const tagsHtml=p.tags.slice(0,4).map(t=>`<span class="ql-tag">${t}</span>`).join('');
+  document.getElementById('qlCard').innerHTML=`
+    <div class="ql-header">
+      <div style="width:44px;height:44px;border-radius:10px;background:${p.grad};display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0;">${p.emoji}</div>
+      <div><div class="ql-title">${p.name}</div><div class="ql-sub">${p.sub}</div></div>
+    </div>
+    <div class="ql-kpis">${kpiHtml}</div>
+    <div class="ql-tags">${tagsHtml}</div>
+    <div class="ql-hint">Appuie sur Espace pour fermer · Double-clic pour ouvrir</div>`;
+  document.getElementById('qlOverlay').classList.add('open');
+}
+function closeQL(){document.getElementById('qlOverlay').classList.remove('open');}
+
+/* ══ CONTEXT MENU ══ */
+function showCtx(e,id){
+  ctxTarget=id;
+  const menu=document.getElementById('ctxMenu');
+  menu.style.display='block';
+  const x=Math.min(e.clientX,window.innerWidth-200);
+  const y=Math.min(e.clientY,window.innerHeight-160);
+  menu.style.left=x+'px';menu.style.top=y+'px';
+}
+function closeCtxMenu(){document.getElementById('ctxMenu').style.display='none';}
+function ctxOpen(){if(ctxTarget)openProject(ctxTarget);closeCtxMenu();}
+function ctxQL(){if(ctxTarget)showQL(ctxTarget);closeCtxMenu();}
+function ctxInfo(){if(ctxTarget)showQL(ctxTarget);closeCtxMenu();}
+function ctxClose(){closeCtxMenu();}
+function handleDesktopCtx(e){e.preventDefault();closeCtxMenu();}
+
+/* ══ SPOTLIGHT ══ */
+let spotHover=0;
+function spotlightOpen(){
+  document.getElementById('spotlightOverlay').classList.add('open');
+  setTimeout(()=>document.getElementById('spotInput').focus(),80);
+}
+function spotlightClose(){document.getElementById('spotlightOverlay').classList.remove('open');document.getElementById('spotResults').innerHTML='';}
+function spotSearch(){
+  const q=document.getElementById('spotInput').value.trim().toLowerCase();
+  const el=document.getElementById('spotResults');
+  if(!q){el.innerHTML='';return;}
+  const matches=PROJECTS.filter(p=>
+    p.name.toLowerCase().includes(q)||p.sub.toLowerCase().includes(q)||
+    p.tags.some(t=>t.toLowerCase().includes(q))||p.ctx.toLowerCase().includes(q)
+  );
+  if(!matches.length){el.innerHTML=`<div class="spot-empty">Aucun résultat pour "${q}"</div>`;return;}
+  el.innerHTML=`<div class="spot-section">Projets</div>`+matches.map(p=>`
+    <div class="spot-item" onclick="spotlightClose();openProject('${p.id}')">
+      <div class="spot-item-icon" style="background:${p.grad}">${p.emoji}</div>
+      <div><div class="spot-item-title">${p.name}</div><div class="spot-item-sub">${p.sub}</div></div>
+    </div>`).join('');
+}
+
+/* ══ SIRI (DIS-SIR) ══ */
+const SIRI_KB=[
+  {r:/\b(tous|tout|all|liste|les 7|ensemble)\b/,
+   rep:"Voici mes 7 projets :\n\n🏆 Mirakl — Pipeline BDR ×37 plus rapide\n⚡ PayFit — 🏆 Innovation Award, -80% temps\n🔍 Eugenia — SEO/GEO/AEO + 4 agents IA\n📊 TheLook — SQL Audit BigQuery\n🏃 Marathon Paris — 50 001 runners\n📅 Weekly Task Master — Automatisation perso\n🤖 AI Agents — 9 agents Dust × Claude\n\nLequel veux-tu explorer ?",
+   suggs:["Mirakl 🏆","PayFit ⚡","Marathon 🏃"]},
+
+  {r:/montre.*(data|donnée|sql|python|analyse)|data.*(projet|work)/i,
+   rep:"Voici mes 3 projets data :\n\n📊 TheLook SQL Audit — audit rentabilité BigQuery\n🏃 Marathon Paris — pipeline Python 50k runners\n🔍 Eugenia — analyse SEO/GEO/AEO\n\nJ'ouvre TheLook pour toi ?",
+   act:'thelook',
+   suggs:["Ouvrir TheLook 📊","Marathon 🏃","Eugenia 🔍"]},
+
+  {r:/montre.*(ia|intelligence artificielle|agent|gpt|llm|machine learning)|ia.*(projet|work)/i,
+   rep:"Mes projets IA :\n\n⚡ PayFit — 4 agents orchestrés, Innovation Award\n🤖 AI Agent Ecosystem — 9 agents Dust × Claude\n🔍 Eugenia — 4 agents SEO/GEO/AEO\n🏆 Mirakl — GPT-4o pour l'outreach\n\nJ'ouvre AI Agents ?",
+   act:'aiagents',
+   suggs:["Ouvrir AI Agents 🤖","PayFit ⚡","Mirakl 🏆"]},
+
+  {r:/award|prix|récompense|meilleur|gagné|won/i,
+   rep:"🏆 Le Hackathon PayFit 2026 m'a valu l'Innovation Award ! \n\n4 agents IA + Make.com pour automatiser le contenu SEO RH. -80% temps, 14.3/15 qualité, 200K€/an économisés. 0 erreur juridique.\n\nJ'ouvre PayFit ?",
+   act:'payfit',
+   suggs:["Ouvrir PayFit ⚡","Mirakl 🏆","Tous les projets 📋"]},
+
+  {r:/mirakl|bdr|pipeline|lead|prospection|vente/i,
+   rep:"🏆 Hackathon Mirakl Connect Prospector\n\n48h pour construire un pipeline BDR complet :\n• 1h15 → 2 min/lead (×37 plus rapide)\n• -89% coût/lead, ROI ×2400\n• Déployé sur Vercel en production",
+   act:'mirakl',
+   suggs:["Ouvrir Mirakl 🏆","PayFit ⚡","Tous 📋"]},
+
+  {r:/payfit|seo|contenu|content/i,
+   rep:"⚡ Hackathon PayFit — Innovation Award 🏆\n\n4 agents IA + Make.com, -80% temps, 14.3/15 qualité.",
+   act:'payfit',
+   suggs:["Ouvrir PayFit ⚡","Mirakl 🏆"]},
+
+  {r:/marathon|paris|runner|python|sport/i,
+   rep:"🏃 Marathon Paris 2025 — 50 001 finishers analysés.\n\nReverse-engineering d'API non documentée, 8 visualisations, 100+ nationalités.",
+   act:'marathon',
+   suggs:["Ouvrir Marathon 🏃","TheLook 📊"]},
+
+  {r:/thelook|sql|bigquery|e.?commerce|retail/i,
+   rep:"📊 TheLook SQL Audit\n\n14 mois de data, return rate 30% critique, 6 insights actionnables.",
+   act:'thelook',
+   suggs:["Ouvrir TheLook 📊","Marathon 🏃"]},
+
+  {r:/eugenia|seo|aeo|geo|llm|visibilité/i,
+   rep:"🔍 Eugenia School — Audit SEO/GEO/AEO\n\n4 agents Dust, machine éditoriale opérationnelle en 3 jours.",
+   act:'eugenia',
+   suggs:["Ouvrir Eugenia 🔍","Tous les projets 📋"]},
+
+  {r:/weekly|task|agenda|automatisation perso/i,
+   rep:"📅 Weekly Task Master\n\n4 piliers automatisés dans Google Workspace. 0 dépendance externe, 100% Apps Script.",
+   act:'taskmaster',
+   suggs:["Ouvrir Task Master 📅","AI Agents 🤖"]},
+
+  {r:/agent|ecosystem|dust|claude|9 agent/i,
+   rep:"🤖 AI Agent Ecosystem\n\n9 agents spécialisés Dust × Claude. Cas test CoachConnect : brief complet en <3h.",
+   act:'aiagents',
+   suggs:["Ouvrir AI Agents 🤖","PayFit ⚡"]},
+
+  {r:/qui|toi|tu es|alec|profil|présente/i,
+   rep:"Je suis l'assistant IA d'Alec DIAMIDIA — Revenue Operations Specialist & IA Enthusiast.\n\nEtudiant Eugenia School × Grenoble EM (Master 2027).\n\nTu peux me demander de t'ouvrir un projet, chercher par technologie, ou me poser n'importe quelle question !",
+   suggs:["Ses projets 📋","Ses compétences 🛠️","Le contacter 📬"]},
+
+  {r:/stack|compétence|outil|technologie|maîtrise/i,
+   rep:"La stack d'Alec :\n\n💼 CRM : Salesforce · HubSpot\n📊 Data : SQL · BigQuery · Python · Looker\n🤖 IA : Dust · GPT-4 · Claude\n⚙️ Automation : Make.com · N8N\n🛠️ Dev : Next.js · Vercel · Supabase",
+   suggs:["Ses projets 📋","Le contacter 📬"]},
+
+  {r:/contact|email|linkedin|disponible|freelance/i,
+   rep:"Pour contacter Alec :\n\n✉️ alecrudydiami@gmail.com\n💼 linkedin.com/in/alec-diamidia\n⌨️ github.com/venom6-13\n\nDisponible pour alternance ou freelance dès septembre 2026 !"},
+
+  {r:/actif|live|déployé|en ligne|disponible/i,
+   rep:"Mes projets actifs :\n\n🟢 Mirakl — déployé sur Vercel\n🟢 Eugenia — agents actifs en production\n🟢 Task Master — automatisations Google actives\n🟢 AI Agent Ecosystem — agents Dust disponibles",
+   suggs:["Ouvrir Mirakl 🏆","Ouvrir Task Master 📅"]},
+
+  {r:/bonjour|hello|salut|hi|hey/i,
+   rep:"Bonjour ! 👋 Je suis l'assistant dis-sir d'Alec.\n\nDis-moi ce que tu cherches — je peux t'ouvrir un projet, filtrer par technologie, ou répondre à toutes tes questions sur le portfolio.",
+   suggs:["Ses projets 📋","Ses projets data 📊","Quel projet a gagné un award ? 🏆"]},
+];
+
+function siriToggle(){
+  siriOpen=!siriOpen;
+  document.getElementById('siriOverlay').classList.toggle('open',siriOpen);
+  if(siriOpen){
+    if(!siriInited){
+      siriInited=true;
+      siriBot("Bonjour ! Je suis dis-sir, l'assistant d'Alec. Que puis-je faire pour toi ?");
+      setTimeout(()=>siriRenderSuggs(["Ses projets 📋","Projets data 📊","Quel award ? 🏆","Le contacter 📬"]),1200);
+    }
+    setTimeout(()=>document.getElementById('siriInput').focus(),300);
+  }
+}
+
+function siriBot(text,noDelay=false){
+  const msgs=document.getElementById('siriMsgs');
+  const delay=noDelay?0:800+Math.random()*500;
+  if(!noDelay){
+    const t=document.createElement('div');t.className='siri-bubble alec';t.textContent='…';
+    msgs.appendChild(t);msgs.scrollTop=msgs.scrollHeight;
+    setTimeout(()=>{t.textContent=text;msgs.scrollTop=msgs.scrollHeight;},delay);
+  } else {
+    const t=document.createElement('div');t.className='siri-bubble alec';t.textContent=text;
+    msgs.appendChild(t);msgs.scrollTop=msgs.scrollHeight;
+  }
+}
+
+function siriUser(text){
+  document.getElementById('siriSuggs').innerHTML='';
+  const msgs=document.getElementById('siriMsgs');
+  const b=document.createElement('div');b.className='siri-bubble user';b.textContent=text;
+  msgs.appendChild(b);msgs.scrollTop=msgs.scrollHeight;
+}
+
+function siriRenderSuggs(suggs){
+  const el=document.getElementById('siriSuggs');el.innerHTML='';
+  suggs.forEach(s=>{
+    const b=document.createElement('button');b.className='siri-sugg';b.textContent=s;
+    b.onclick=()=>siriProcess(s.replace(/[📋📊🏆📬💼🛠️📅🤖🏃🔍⚡🏆🟢]/g,'').trim());
+    el.appendChild(b);
+  });
+}
+
+function siriSend(){
+  const inp=document.getElementById('siriInput');
+  const t=inp.value.trim();if(!t)return;
+  inp.value='';siriProcess(t);
+}
+
+function siriProcess(text){
+  siriUser(text);
+  const lower=text.toLowerCase();
+  // Check for "ouvrir X" commands first
+  if(/ouvrir?\s+(\w+)/i.test(lower)){
+    const match=lower.match(/ouvrir?\s+(\w+)/i);
+    const keyword=match?match[1]:'';
+    const proj=PROJECTS.find(p=>p.id.includes(keyword)||p.name.toLowerCase().includes(keyword));
+    if(proj){
+      setTimeout(()=>{
+        siriBot(`Je t'ouvre ${proj.name} !`,false);
+        setTimeout(()=>{siriToggle();openProject(proj.id);},1500);
+      },200);
+      return;
+    }
+  }
+  for(const item of SIRI_KB){
+    if(item.r.test(lower)){
+      setTimeout(()=>{
+        siriBot(item.rep);
+        if(item.act){
+          setTimeout(()=>{
+            const suggs=item.suggs||["Tous les projets 📋","Le contacter 📬"];
+            siriRenderSuggs(suggs);
+            // Auto-open if direct match
+            if(text.toLowerCase().includes('ouvrir')||text.toLowerCase().includes('montre')){
+              setTimeout(()=>{siriToggle();openProject(item.act);},1800);
+            }
+          },1400);
+        } else {
+          setTimeout(()=>siriRenderSuggs(item.suggs||["Ses projets 📋","Le contacter 📬"]),1400);
+        }
+      },200);
+      return;
+    }
+  }
+  setTimeout(()=>{
+    siriBot("Je n'ai pas bien compris 😅 Essaie : 'Montre-moi tes projets data' ou 'Ouvre Mirakl'");
+    setTimeout(()=>siriRenderSuggs(["Ses projets 📋","Projets data 📊","Award 🏆","Le contacter 📬"]),1400);
+  },200);
+}
+
+/* ══ KEYBOARD SHORTCUTS ══ */
+document.addEventListener('keydown',e=>{
+  // Esc
+  if(e.key==='Escape'){closeQL();spotlightClose();if(siriOpen)siriToggle();closeCtxMenu();closeFinder();return;}
+  // Space → Quick Look
+  if(e.key===' '&&selected&&!siriOpen&&!document.getElementById('spotlightOverlay').classList.contains('open')){e.preventDefault();showQL(selected);return;}
+  // ⌘+Space ou ⌘+K → Spotlight
+  if((e.metaKey||e.ctrlKey)&&(e.key==='k'||e.key===' ')){e.preventDefault();spotlightOpen();return;}
+  // Enter → open selected
+  if(e.key==='Enter'&&selected&&!document.getElementById('finderWin').classList.contains('open')){openProject(selected);return;}
+  // Konami
+  konami(e.key);
+});
+
+/* ══ KONAMI ══ */
+const konamiCode=['ArrowUp','ArrowUp','ArrowDown','ArrowDown','ArrowLeft','ArrowRight','ArrowLeft','ArrowRight','b','a'];
+let konamiPos=0;
+function konami(key){
+  if(key===konamiCode[konamiPos]){konamiPos++;if(konamiPos===konamiCode.length){konamiPos=0;document.getElementById('eggModal').style.display='flex';}}
+  else konamiPos=key===konamiCode[0]?1:0;
+}
+
+/* ══ THEME ══ */
+function toggleTheme(){
+  const t=(document.documentElement.getAttribute('data-theme')||'light')==='dark'?'light':'dark';
+  document.documentElement.setAttribute('data-theme',t);
+  document.getElementById('thmIcon').textContent=t==='dark'?'☀️':'🌙';
+  localStorage.setItem('theme',t);
+}
+
+/* ══ LANG ══ */
+function applyLang(l){
+  lang=l;
+  document.querySelectorAll('[data-i18n]').forEach(el=>{const k=el.getAttribute('data-i18n');if(i18n[l][k])el.textContent=i18n[l][k];});
+  document.querySelectorAll('.mb-btn').forEach(b=>b.classList.toggle('active',b.dataset.lang===l));
+  localStorage.setItem('lang',l);
+}
+document.querySelectorAll('.mb-btn').forEach(b=>b.addEventListener('click',()=>applyLang(b.dataset.lang)));
+
+/* ══ DOCK MAGNIFICATION ══ */
+(function(){
+  const items=[...document.querySelectorAll('#mainDock .di')];
+  const dock=document.getElementById('mainDock');
+  items.forEach((item,i)=>{
+    item.addEventListener('mousemove',()=>{
+      items.forEach((el,j)=>{
+        const d=Math.abs(i-j);
+        el.style.transform=d===0?'scale(1.4) translateY(-12px)':d===1?'scale(1.2) translateY(-6px)':d===2?'scale(1.08) translateY(-2px)':'';
+      });
     });
-}
+  });
+  dock.addEventListener('mouseleave',()=>items.forEach(el=>el.style.transform=''));
+})();
 
-function renderOverlays() {
-    const c = document.getElementById('ovContainer');
-    c.innerHTML = '';
-    const L = lang;
-    const backLbl  = L==='fr' ? 'Mission Control' : 'Mission Control';
-    const escLbl   = L==='fr' ? 'Échap'           : 'Esc';
-    const ctxLbl   = L==='fr' ? 'Contexte'        : 'Context';
-    const mLbl     = L==='fr' ? "Ce que j'ai fait": 'What I built';
-    const ghLbl    = L==='fr' ? 'Voir sur GitHub'  : 'View on GitHub';
+/* ══ CLOCK ══ */
+function tick(){document.getElementById('mbTime').textContent=new Date().toLocaleTimeString(lang==='fr'?'fr-FR':'en-US',{hour:'2-digit',minute:'2-digit'});}
+setInterval(tick,1000);tick();
 
-    ORDER.forEach(id => {
-        const p = P[id], d = p[L];
-        const ov = document.createElement('div');
-        ov.className = 'ov'; ov.id = `ov-${id}`;
+/* ══ INIT ══ */
+document.addEventListener('DOMContentLoaded',()=>{
+  const t=localStorage.getItem('theme')||'light';
+  document.documentElement.setAttribute('data-theme',t);
+  document.getElementById('thmIcon').textContent=t==='dark'?'☀️':'🌙';
+  applyLang(lang);
+  renderIcons();
+});
 
-        const metrics = d.metrics.map(m=>`
-            <div class="ov-metric">
-                <div class="ov-mval" style="color:${p.color}">${m.v}</div>
-                <div class="ov-mlbl">${m.l}</div>
-            </div>`).join('');
-        const tags    = p.tags.map(t=>`<span class="ov-tag">${t}</span>`).join('');
-        const mission = d.mission.map(m=>`<li>${m}</li>`).join('');
-        const links   = p.github ? `<a href="${p.github}" target="_blank" class="ov-btn">⌨️ ${ghLbl}</a>` : '';
-
-        ov.innerHTML = `
-            <div class="ov-bar">
-                <div class="ov-traffic">
-                    <div class="ovtl r" onclick="closeProj()" title="${L==='fr'?'Fermer':'Close'}"></div>
-                    <div class="ovtl y"></div>
-                    <div class="ovtl g"></div>
-                </div>
-                <span class="ov-bartitle">${d.wt}</span>
-                <button class="ov-back" onclick="closeProj()">
-                    ← ${backLbl}
-                    <span class="ov-back-esc">${escLbl}</span>
-                </button>
-            </div>
-            <div class="ov-body">
-                <div class="ov-hero">
-                    <div class="ov-emoji">${p.icon}</div>
-                    <div>
-                        <div class="ov-name">${d.title}</div>
-                        <div class="ov-sub">${d.sub}</div>
-                    </div>
-                </div>
-                <div class="ov-tags">${tags}</div>
-                <div class="ov-h">${ctxLbl}</div>
-                <p class="ov-p">${d.ctx}</p>
-                <div class="ov-h">${mLbl}</div>
-                <ul class="ov-list">${mission}</ul>
-                <div class="ov-h">${d.rh}</div>
-                <div class="ov-metrics">${metrics}</div>
-                <div class="ov-h">${d.lh}</div>
-                <p class="ov-p">${d.learned}</p>
-                ${links}
-                <div class="ov-footer">
-                    <button class="ov-footer-btn" onclick="closeProj()">← ${backLbl}</button>
-                </div>
-            </div>`;
-        c.appendChild(ov);
-    });
-}
-
-function openProj(id) {
-    openId = id;
-    document.getElementById('mc').classList.add('blurred');
-    document.getElementById(`ov-${id}`).classList.add('open');
-}
-
-function closeProj() {
-    if (!openId) return;
-    document.getElementById(`ov-${openId}`).classList.remove('open');
-    document.getElementById('mc').classList.remove('blurred');
-    openId = null;
-}
-
-document.addEventListener('keydown', e => { if (e.key === 'Escape') closeProj(); });
-
-const UI = {
-    fr:{"mb-title":"Projets Pro","mc-label":"Mission Control — Projets Pro","mc-hint":"Cliquez sur un projet pour l'explorer","d-home":"Accueil","d-perso":"Projets Perso","d-pro":"Projets Pro"},
-    en:{"mb-title":"Pro Projects","mc-label":"Mission Control — Pro Projects","mc-hint":"Click on a project to explore it","d-home":"Home","d-perso":"Personal Projects","d-pro":"Pro Projects"}
-};
-
-function setLang(l) {
-    lang = l; localStorage.setItem('lang', l);
-    document.querySelectorAll('[data-i18n]').forEach(el => {
-        if (UI[l][el.dataset.i18n]) el.textContent = UI[l][el.dataset.i18n];
-    });
-    document.querySelectorAll('.lang-btn').forEach(b =>
-        b.classList.toggle('active', b.textContent.toLowerCase() === l)
-    );
-    const was = openId;
-    if (was) closeProj();
-    renderGrid(); renderOverlays();
-    if (was) openProj(was);
-}
-
-function go(url) { location.href = url; }
-
-renderGrid();
-renderOverlays();
-setLang(lang);
+/* Close context menu on scroll */
+document.addEventListener('scroll',closeCtxMenu);
+document.getElementById('desktop').addEventListener('scroll',closeCtxMenu);
 </script>
 </body>
 </html>
