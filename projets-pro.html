@@ -1,935 +1,1219 @@
 <!DOCTYPE html>
-<html lang="fr" data-theme="dark">
+<html lang="fr">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 <title>Projets — Alec DIAMIDIA</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box;}
-:root{
-  --wall-from:#0d1545;--wall-to:#070d2a;
-  --blob1:rgba(0,100,210,.55);--blob2:rgba(80,60,200,.45);--blob3:rgba(140,80,255,.25);
-  --mb:rgba(10,10,30,.65);--mb-text:rgba(255,255,255,.88);
-  --win:rgba(232,232,237,.94);--win-sb:rgba(218,218,226,.8);
-  --wdark:rgba(26,26,30,.94);--wdark-sb:rgba(20,20,24,.8);
-  --border:rgba(0,0,0,.1);--bdark:rgba(255,255,255,.09);
-  --text:#1d1d1f;--muted:#6e6e73;
-  --accent:#0071E3;--accent2:#5856D6;
-  --soft:rgba(0,113,227,.09);--tag-bg:rgba(0,113,227,.1);--tag-c:#0071E3;
+body{
+  font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display",sans-serif;
+  width:100vw;height:100vh;overflow:hidden;
+  -webkit-font-smoothing:antialiased;user-select:none;
 }
-[data-theme="light"]{--wall-from:#2a4a8a;--wall-to:#1a3070;--blob1:rgba(0,130,255,.4);--blob2:rgba(80,60,200,.3);--blob3:rgba(140,80,255,.2);}
-
-html,body{width:100%;height:100%;overflow:hidden;font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Helvetica Neue",sans-serif;-webkit-font-smoothing:antialiased;}
 
 /* ── WALLPAPER ── */
-.wallpaper{position:fixed;inset:0;z-index:0;background:linear-gradient(155deg,var(--wall-from) 0%,var(--wall-to) 100%);}
-.wallpaper::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 65% 55% at 15% 25%,var(--blob1) 0%,transparent 55%),radial-gradient(ellipse 55% 55% at 85% 70%,var(--blob2) 0%,transparent 55%),radial-gradient(ellipse 45% 45% at 55% 5%,var(--blob3) 0%,transparent 50%);animation:wp 45s ease-in-out infinite;}
-@keyframes wp{0%,100%{transform:scale(1);}40%{transform:scale(1.04) translate(10px,-7px);}70%{transform:scale(.97) translate(-8px,10px);}}
-.wallpaper::after{content:'';position:absolute;inset:0;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23g)'/%3E%3C/svg%3E");opacity:.055;mix-blend-mode:overlay;}
+.aurora{position:fixed;inset:0;z-index:0;background:#0d001f;overflow:hidden;}
+.blob{position:absolute;border-radius:50%;filter:blur(100px);opacity:.7;}
+.b1{width:700px;height:700px;top:-200px;left:-150px;
+    background:radial-gradient(circle,#6e40c9 0%,transparent 70%);
+    animation:b1 22s ease-in-out infinite;}
+.b2{width:600px;height:600px;top:5%;right:-120px;
+    background:radial-gradient(circle,#c84b97 0%,transparent 70%);
+    animation:b2 26s ease-in-out infinite;}
+.b3{width:500px;height:500px;bottom:-100px;left:20%;
+    background:radial-gradient(circle,#f4845f 0%,transparent 70%);
+    animation:b3 20s ease-in-out infinite;}
+.b4{width:420px;height:420px;bottom:0%;right:0%;
+    background:radial-gradient(circle,#4facfe 0%,transparent 70%);
+    animation:b4 24s ease-in-out infinite;}
+@keyframes b1{0%,100%{transform:translate(0,0) scale(1)}25%{transform:translate(120px,80px) scale(1.1)}50%{transform:translate(160px,-60px) scale(.9)}75%{transform:translate(-60px,100px) scale(1.05)}}
+@keyframes b2{0%,100%{transform:translate(0,0) scale(1)}33%{transform:translate(-130px,100px) scale(1.12)}66%{transform:translate(80px,-80px) scale(.88)}}
+@keyframes b3{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(100px,-130px) scale(1.2)}}
+@keyframes b4{0%,100%{transform:translate(0,0) scale(1)}40%{transform:translate(-100px,-80px) scale(1.1)}80%{transform:translate(60px,60px) scale(.9)}}
 
-/* ── MENU BAR ── */
-.menubar{position:fixed;top:0;left:0;right:0;height:27px;z-index:2000;background:var(--mb);backdrop-filter:blur(24px) saturate(180%);-webkit-backdrop-filter:blur(24px) saturate(180%);border-bottom:0.5px solid rgba(255,255,255,.08);display:flex;align-items:center;padding:0 14px;color:var(--mb-text);font-size:13px;gap:0;}
-.mb-l{display:flex;align-items:center;gap:18px;}
-.mb-app{font-weight:600;}
-.mb-items{display:flex;gap:18px;opacity:.75;}
-@media(max-width:600px){.mb-items{display:none;}}
-.mb-r{display:flex;align-items:center;gap:8px;margin-left:auto;}
-.mb-icon-btn{background:none;border:none;color:var(--mb-text);cursor:pointer;padding:2px 7px;border-radius:5px;font-size:12px;opacity:.8;transition:all .15s;font-family:-apple-system,sans-serif;display:flex;align-items:center;gap:4px;}
-.mb-icon-btn:hover{opacity:1;background:rgba(255,255,255,.12);}
-.mb-ctrl{display:flex;background:rgba(255,255,255,.1);border:0.5px solid rgba(255,255,255,.15);border-radius:12px;padding:1px 8px;gap:2px;}
-.mb-btn{background:none;border:none;color:var(--mb-text);font-size:13px;font-weight:500;cursor:pointer;padding:1px 5px;border-radius:8px;opacity:.75;transition:all .15s;font-family:-apple-system,sans-serif;}
-.mb-btn.active{background:rgba(255,255,255,.2);opacity:1;font-weight:600;}
-.mb-tbtn{background:none;border:none;color:var(--mb-text);font-size:15px;cursor:pointer;padding:1px;}
-.mb-time{font-size:12px;font-weight:500;opacity:.65;}
+/* Grain */
+.grain{
+  position:fixed;inset:0;z-index:1;pointer-events:none;opacity:.035;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+  background-size:200px 200px;
+}
+
+/* ── MENU BAR — plus haute ── */
+.menubar{
+  position:fixed;top:0;left:0;right:0;height:36px;
+  background:rgba(0,0,0,.55);backdrop-filter:blur(28px) saturate(180%);
+  z-index:5000;display:flex;align-items:center;
+  justify-content:space-between;padding:0 18px;
+  color:white;font-size:14px;
+  border-bottom:1px solid rgba(255,255,255,.08);
+}
+.mb-l{display:flex;align-items:center;gap:20px;}
+.mb-r{display:flex;align-items:center;gap:12px;}
+.mb-apple{font-size:18px;cursor:pointer;}
+.mb-bold{font-weight:700;font-size:14px;}
+.mb-item{opacity:.55;cursor:default;font-size:13px;}
+.mb-time{font-weight:600;font-size:13px;font-variant-numeric:tabular-nums;}
+.mb-icon{opacity:.6;font-size:15px;}
+
+/* Lang switch */
+.lang-sw{display:flex;background:rgba(255,255,255,.12);border-radius:10px;padding:2px;}
+.lang-btn{
+  background:none;border:none;color:rgba(255,255,255,.6);
+  padding:3px 10px;border-radius:8px;font-size:12px;font-weight:500;
+  cursor:pointer;font-family:inherit;transition:all .2s;
+}
+.lang-btn.active{background:rgba(255,255,255,.25);color:white;}
+
+/* Siri btn in menubar */
+.mb-siri{
+  background:none;border:none;color:rgba(255,255,255,.7);
+  font-size:14px;cursor:pointer;padding:4px 8px;border-radius:6px;
+  font-family:inherit;transition:all .2s;display:flex;align-items:center;gap:4px;
+}
+.mb-siri:hover{background:rgba(255,255,255,.12);color:white;}
 
 /* ── DESKTOP ── */
-.desktop{position:fixed;top:27px;left:0;right:0;bottom:82px;z-index:1;overflow:hidden;display:flex;align-items:center;justify-content:center;padding:24px;}
-.icons-grid{display:grid;grid-template-columns:repeat(4,96px);grid-auto-rows:106px;gap:12px;justify-items:center;align-items:start;}
+.desktop{
+  position:fixed;top:36px;left:0;right:0;bottom:96px;
+  z-index:2;
+}
 
-/* ── APP ICONS (style macOS) ── */
-.proj-icon{display:flex;flex-direction:column;align-items:center;gap:6px;cursor:pointer;padding:8px 6px;border-radius:10px;transition:background .15s;position:relative;user-select:none;-webkit-user-select:none;}
-.proj-icon:hover{background:rgba(255,255,255,.08);}
-.proj-icon.selected{background:rgba(0,122,255,.25);}
+/* ── FOLDER ICONS (draggable) ── */
+.folder-icon{
+  position:absolute;
+  display:flex;flex-direction:column;align-items:center;gap:8px;
+  cursor:pointer;
+  transition:transform .15s ease,filter .15s ease;
+  width:120px;
+}
+.folder-icon:hover .fi-img{transform:scale(1.06) translateY(-4px);}
+.folder-icon.dragging{opacity:.85;z-index:100;transition:none;}
 
-.picon-wrap{position:relative;width:76px;height:76px;flex-shrink:0;}
-.picon-wrap:hover .picon-img{transform:scale(1.06) translateY(-2px);}
-.proj-icon:active .picon-img{transform:scale(.94)!important;}
-
-.picon-img{
-  width:76px;height:76px;border-radius:17px;
+.fi-img{
+  width:112px;height:96px;
   display:flex;align-items:center;justify-content:center;
-  position:relative;overflow:hidden;
-  box-shadow:
-    0 0 0 0.5px rgba(0,0,0,.22),
-    0 10px 28px rgba(0,0,0,.45),
-    inset 0 1px 0 rgba(255,255,255,.28),
-    inset 0 -1px 0 rgba(0,0,0,.08);
-  transition:transform .18s cubic-bezier(.4,0,.2,1),box-shadow .18s;
+  font-size:72px;
+  filter:drop-shadow(0 10px 24px rgba(0,0,0,.6));
+  transition:transform .2s cubic-bezier(.34,1.56,.64,1);
+  position:relative;
 }
-.picon-img:hover{box-shadow:0 0 0 .5px rgba(0,0,0,.22),0 18px 40px rgba(0,0,0,.55),inset 0 1px 0 rgba(255,255,255,.28);}
-.selected .picon-img{outline:2.5px solid rgba(0,122,255,.8);outline-offset:2px;}
+/* Folder tint overlay */
+.fi-img::after{
+  content:'';
+  position:absolute;inset:0;border-radius:8px;
+  background:linear-gradient(135deg,rgba(255,255,255,.15) 0%,transparent 60%);
+  pointer-events:none;
+}
 
-/* Inner highlight / shine */
-.picon-img::before{
-  content:'';position:absolute;top:0;left:0;right:0;height:46%;
-  background:linear-gradient(180deg,rgba(255,255,255,.28) 0%,transparent 100%);
-  border-radius:17px 17px 50% 50%;z-index:2;pointer-events:none;
+.fi-label{
+  color:white;font-size:12px;font-weight:600;
+  text-shadow:0 1px 4px rgba(0,0,0,1);
+  text-align:center;line-height:1.3;
+  background:rgba(0,0,0,.4);
+  padding:3px 10px;border-radius:6px;
+  border:1px solid rgba(255,255,255,.08);
+  backdrop-filter:blur(8px);
 }
-/* Inner depth at bottom */
-.picon-img::after{
-  content:'';position:absolute;bottom:0;left:0;right:0;height:28%;
-  background:linear-gradient(0deg,rgba(0,0,0,.18) 0%,transparent 100%);
-  z-index:2;pointer-events:none;
+.fi-badge{
+  position:absolute;top:-6px;right:-6px;
+  background:#ff3b30;color:white;
+  font-size:10px;font-weight:700;
+  width:20px;height:20px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  border:2px solid rgba(255,255,255,.3);
 }
-.picon-emoji{font-size:38px;position:relative;z-index:3;filter:drop-shadow(0 2px 5px rgba(0,0,0,.35));}
 
-.picon-name{font-size:11.5px;font-weight:500;color:rgba(255,255,255,.92);text-align:center;text-shadow:0 1px 4px rgba(0,0,0,.7),0 0 8px rgba(0,0,0,.5);line-height:1.3;max-width:84px;word-break:break-word;}
-.picon-bdgs{position:absolute;top:4px;right:2px;display:flex;flex-direction:column;gap:1px;}
-.picon-bdg{font-size:11px;line-height:1;filter:drop-shadow(0 1px 2px rgba(0,0,0,.5));}
+/* Hint text on desktop */
+.desktop-hint{
+  position:absolute;bottom:16px;left:50%;transform:translateX(-50%);
+  color:rgba(255,255,255,.2);font-size:11px;font-weight:500;
+  letter-spacing:.08em;text-transform:uppercase;white-space:nowrap;
+  pointer-events:none;
+}
 
 /* ── FINDER WINDOW ── */
-.finder-win{
-  position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);
-  width:min(900px,calc(100vw - 24px));height:min(560px,calc(100vh - 140px));
-  z-index:500;border-radius:12px;overflow:hidden;
-  box-shadow:0 0 0 0.5px rgba(0,0,0,.25),0 32px 80px rgba(0,0,0,.55);
-  display:none;flex-direction:column;
+.finder{
+  position:fixed;
+  width:84vw;max-width:1040px;
+  height:74vh;max-height:680px;
+  background:rgba(22,22,28,.97);
+  backdrop-filter:blur(50px) saturate(180%);
+  border:1px solid rgba(255,255,255,.14);
+  border-radius:14px;
+  z-index:1000;
+  display:flex;flex-direction:column;
+  box-shadow:0 50px 120px rgba(0,0,0,.9);
+  opacity:0;pointer-events:none;
+  /* Start hidden, will be positioned by JS */
+  top:50%;left:50%;
+  transform:translate(-50%,-50%) scale(.94) translateY(20px);
+  transition:opacity .35s ease, transform .35s cubic-bezier(.34,1.2,.64,1);
+  overflow:hidden;
 }
-.finder-win.open{display:flex;animation:winOpen .22s cubic-bezier(.4,0,.2,1);}
-@keyframes winOpen{from{opacity:0;transform:translate(-50%,-50%) scale(.93);}to{opacity:1;transform:translate(-50%,-50%) scale(1);}}
-[data-theme="dark"] .finder-win{background:var(--wdark);}
-[data-theme="light"] .finder-win{background:var(--win);}
-
-.finder-titlebar{
-  height:52px;flex-shrink:0;
-  display:flex;align-items:center;padding:0 16px;gap:12px;position:relative;user-select:none;
-  border-bottom:0.5px solid rgba(0,0,0,.12);
+.finder.open{
+  opacity:1;pointer-events:all;
+  transform:translate(-50%,-50%) scale(1) translateY(0);
 }
-[data-theme="dark"] .finder-titlebar{background:rgba(42,42,46,.75);border-bottom-color:rgba(255,255,255,.08);}
-[data-theme="light"] .finder-titlebar{background:rgba(245,245,247,.75);border-bottom-color:rgba(0,0,0,.1);}
-.tls{display:flex;gap:8px;}
-.tl{width:12px;height:12px;border-radius:50%;cursor:default;transition:filter .15s;}
-.tl:hover{filter:brightness(.75);}
-.tl-r{background:#FF5F56;}
-.tl-y{background:#FFBD2E;}
-.tl-g{background:#27C93F;}
-.tb-title{position:absolute;left:50%;transform:translateX(-50%);font-size:13px;font-weight:600;pointer-events:none;}
-[data-theme="dark"] .tb-title{color:rgba(255,255,255,.5);}
-[data-theme="light"] .tb-title{color:rgba(0,0,0,.45);}
-.tb-r{margin-left:auto;display:flex;gap:8px;}
-.cat-pill{padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;cursor:pointer;border:0.5px solid rgba(0,0,0,.1);transition:all .15s;background:rgba(0,0,0,.04);}
-[data-theme="dark"] .cat-pill{border-color:rgba(255,255,255,.12);background:rgba(255,255,255,.06);color:rgba(255,255,255,.6);}
-[data-theme="light"] .cat-pill{background:rgba(0,0,0,.05);color:rgba(0,0,0,.6);}
-.cat-pill.on{background:var(--accent);color:white;border-color:transparent;}
 
-.finder-body{flex:1;display:grid;grid-template-columns:200px 1fr;overflow:hidden;}
-.finder-sb{
-  display:flex;flex-direction:column;overflow-y:auto;padding:10px 0;
-  border-right:0.5px solid rgba(0,0,0,.1);
+/* Finder titlebar */
+.finder-bar{
+  height:44px;background:rgba(0,0,0,.35);
+  border-bottom:1px solid rgba(255,255,255,.08);
+  display:flex;align-items:center;padding:0 16px;
+  flex-shrink:0;position:relative;gap:8px;
+  cursor:default;
 }
-[data-theme="dark"] .finder-sb{background:var(--wdark-sb);border-right-color:rgba(255,255,255,.07);}
-[data-theme="light"] .finder-sb{background:var(--win-sb);border-right-color:rgba(0,0,0,.08);}
-.finder-sb::-webkit-scrollbar{width:4px;}
-.finder-sb::-webkit-scrollbar-thumb{background:rgba(0,0,0,.1);border-radius:2px;}
-.sb-sec{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;padding:10px 14px 4px;margin-top:4px;}
-[data-theme="dark"] .sb-sec{color:rgba(255,255,255,.35);}
-[data-theme="light"] .sb-sec{color:rgba(0,0,0,.35);}
-.sb-row{display:flex;align-items:center;gap:9px;padding:6px 14px;cursor:pointer;border-radius:7px;margin:1px 6px;transition:background .12s;font-size:12.5px;font-weight:500;}
-[data-theme="dark"] .sb-row{color:rgba(255,255,255,.8);}
-[data-theme="light"] .sb-row{color:rgba(0,0,0,.75);}
-.sb-row:hover{background:rgba(0,0,0,.06);}
-[data-theme="dark"] .sb-row:hover{background:rgba(255,255,255,.06);}
-.sb-row.on{background:var(--accent)!important;color:white;}
-.sb-icon{font-size:16px;flex-shrink:0;}
-.sb-label{flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
-.sb-cnt{font-size:10px;background:rgba(0,0,0,.1);color:inherit;padding:1px 6px;border-radius:8px;opacity:.7;}
-.sb-row.on .sb-cnt{background:rgba(255,255,255,.25);opacity:1;}
-.sb-sep{height:0.5px;margin:8px 10px;}
-[data-theme="dark"] .sb-sep{background:rgba(255,255,255,.07);}
-[data-theme="light"] .sb-sep{background:rgba(0,0,0,.08);}
-
-.finder-main{overflow-y:auto;}
-[data-theme="dark"] .finder-main{background:rgba(16,16,18,.5);}
-[data-theme="light"] .finder-main{background:rgba(255,255,255,.45);}
-.finder-main::-webkit-scrollbar{width:6px;}
-.finder-main::-webkit-scrollbar-thumb{background:rgba(0,0,0,.1);border-radius:3px;}
-.finder-empty{height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;text-align:center;padding:32px;}
-[data-theme="dark"] .finder-empty{color:rgba(255,255,255,.35);}
-[data-theme="light"] .finder-empty{color:rgba(0,0,0,.35);}
-.finder-empty-icon{font-size:48px;opacity:.3;}
-
-/* ── PROJECT DETAIL ── */
-.proj-detail{display:none;padding:28px 32px 40px;}
-.proj-detail.show{display:block;animation:slideIn .22s ease-out;}
-@keyframes slideIn{from{opacity:0;transform:translateX(8px);}to{opacity:1;transform:translateX(0);}}
-.pd-hero{display:flex;gap:14px;margin-bottom:18px;align-items:flex-start;}
-.pd-icon{width:54px;height:54px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:26px;flex-shrink:0;box-shadow:0 4px 14px rgba(0,0,0,.25);position:relative;overflow:hidden;}
-.pd-icon::before{content:'';position:absolute;top:0;left:0;right:0;height:45%;background:linear-gradient(180deg,rgba(255,255,255,.2) 0%,transparent 100%);z-index:1;}
-.pd-title{font-size:21px;font-weight:700;letter-spacing:-.02em;margin-bottom:3px;}
-[data-theme="dark"] .pd-title{color:#f5f5f7;}
-[data-theme="light"] .pd-title{color:#1d1d1f;}
-.pd-sub{font-size:12.5px;margin-bottom:9px;}
-[data-theme="dark"] .pd-sub{color:rgba(255,255,255,.5);}
-[data-theme="light"] .pd-sub{color:rgba(0,0,0,.45);}
-.pd-badges{display:flex;flex-wrap:wrap;gap:4px;}
-.pd-bdg{padding:2.5px 8px;border-radius:8px;font-size:9.5px;font-weight:600;}
-.b-aw{background:rgba(255,149,0,.15);color:#FF9500;}
-.b-act{background:rgba(39,201,63,.14);color:#27C93F;}
-.b-gh{background:rgba(0,0,0,.08);color:#555;}
-[data-theme="dark"] .b-gh{background:rgba(255,255,255,.1);color:#aaa;}
-.b-ds{background:rgba(88,86,214,.12);color:#7B79E8;}
-.pd-tags{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:16px;}
-.pd-tag{background:var(--tag-bg);color:var(--tag-c);padding:2px 8px;border-radius:6px;font-size:10px;font-weight:500;}
-.pd-sec{font-size:9.5px;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:var(--accent);margin:16px 0 8px;padding-bottom:4px;border-bottom:1.5px solid var(--accent);}
-.pd-text{font-size:13.5px;line-height:1.75;}
-[data-theme="dark"] .pd-text{color:rgba(255,255,255,.82);}
-[data-theme="light"] .pd-text{color:#1d1d1f;}
-.pd-ul{padding-left:16px;}
-.pd-ul li{font-size:13.5px;line-height:1.7;margin-bottom:5px;}
-[data-theme="dark"] .pd-ul li{color:rgba(255,255,255,.82);}
-[data-theme="light"] .pd-ul li{color:#1d1d1f;}
-.pd-kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:10px 0;}
-.pd-kpi{border-radius:10px;padding:12px 10px;text-align:center;background:var(--soft);}
-.pd-kval{font-size:20px;font-weight:700;color:var(--accent);line-height:1;margin-bottom:3px;}
-.pd-klbl{font-size:9px;line-height:1.3;}
-[data-theme="dark"] .pd-klbl{color:rgba(255,255,255,.45);}
-[data-theme="light"] .pd-klbl{color:rgba(0,0,0,.45);}
-.pd-proof{border-left:3px solid var(--accent);border-radius:0 10px 10px 0;padding:14px 16px;margin:10px 0;background:var(--soft);}
-.pd-proof p{font-size:13.5px;line-height:1.75;}
-[data-theme="dark"] .pd-proof p{color:rgba(255,255,255,.82);}
-[data-theme="light"] .pd-proof p{color:#1d1d1f;}
-.pd-link{display:inline-flex;align-items:center;gap:6px;margin-top:14px;background:var(--accent);color:white;padding:9px 16px;border-radius:10px;text-decoration:none;font-size:12.5px;font-weight:600;transition:opacity .2s,transform .2s;}
-.pd-link:hover{opacity:.85;transform:translateY(-1px);}
-
-/* ── CONTACT WINDOW ── */
-.contact-win{
-  position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);
-  width:min(560px,calc(100vw - 24px));
-  z-index:600;border-radius:12px;overflow:hidden;
-  box-shadow:0 0 0 0.5px rgba(0,0,0,.25),0 28px 70px rgba(0,0,0,.55);
-  display:none;flex-direction:column;
+.ftl-group{display:flex;gap:7px;align-items:center;}
+.ftl{width:13px;height:13px;border-radius:50%;cursor:pointer;transition:filter .15s;}
+.ftl:hover{filter:brightness(.75);}
+.ftl.r{background:#ff5f57;}
+.ftl.y{background:#febc2e;}
+.ftl.g{background:#28c840;}
+.finder-title{
+  position:absolute;left:50%;transform:translateX(-50%);
+  color:rgba(255,255,255,.85);font-size:14px;font-weight:600;
+  display:flex;align-items:center;gap:8px;
 }
-.contact-win.open{display:flex;animation:winOpen .22s cubic-bezier(.4,0,.2,1);}
-[data-theme="dark"] .contact-win{background:rgba(26,26,30,.96);}
-[data-theme="light"] .contact-win{background:rgba(240,240,242,.96);}
-.cw-tb{height:50px;flex-shrink:0;display:flex;align-items:center;padding:0 16px;gap:12px;position:relative;}
-[data-theme="dark"] .cw-tb{background:rgba(40,40,44,.8);border-bottom:0.5px solid rgba(255,255,255,.08);}
-[data-theme="light"] .cw-tb{background:rgba(248,248,250,.8);border-bottom:0.5px solid rgba(0,0,0,.08);}
-.cw-title{position:absolute;left:50%;transform:translateX(-50%);font-size:13px;font-weight:600;pointer-events:none;}
-[data-theme="dark"] .cw-title{color:rgba(255,255,255,.5);}
-[data-theme="light"] .cw-title{color:rgba(0,0,0,.5);}
-.cw-body{padding:20px 24px 24px;display:flex;flex-direction:column;gap:12px;}
-.cw-to{font-size:13px;padding:10px 14px;border-radius:8px;display:flex;align-items:center;gap:8px;}
-[data-theme="dark"] .cw-to{background:rgba(255,255,255,.06);color:rgba(255,255,255,.5);}
-[data-theme="light"] .cw-to{background:rgba(0,0,0,.04);color:rgba(0,0,0,.45);}
-.cw-sep{height:0.5px;}
-[data-theme="dark"] .cw-sep{background:rgba(255,255,255,.08);}
-[data-theme="light"] .cw-sep{background:rgba(0,0,0,.08);}
-.cw-row{display:flex;align-items:center;gap:12px;padding:4px 0;}
-.cw-label{font-size:13px;font-weight:500;width:70px;flex-shrink:0;}
-[data-theme="dark"] .cw-label{color:rgba(255,255,255,.5);}
-[data-theme="light"] .cw-label{color:rgba(0,0,0,.45);}
-.cw-input{flex:1;background:none;border:none;outline:none;font-size:14px;font-family:-apple-system,sans-serif;}
-[data-theme="dark"] .cw-input{color:#f5f5f7;}
-[data-theme="dark"] .cw-input::placeholder{color:rgba(255,255,255,.3);}
-[data-theme="light"] .cw-input{color:#1d1d1f;}
-[data-theme="light"] .cw-input::placeholder{color:rgba(0,0,0,.3);}
-.cw-msg{padding:12px 0;border-top:0.5px solid;}
-[data-theme="dark"] .cw-msg{border-top-color:rgba(255,255,255,.08);}
-[data-theme="light"] .cw-msg{border-top-color:rgba(0,0,0,.08);}
-.cw-textarea{width:100%;background:none;border:none;outline:none;font-size:14px;font-family:-apple-system,sans-serif;resize:none;min-height:100px;line-height:1.6;}
-[data-theme="dark"] .cw-textarea{color:#f5f5f7;}
-[data-theme="dark"] .cw-textarea::placeholder{color:rgba(255,255,255,.3);}
-[data-theme="light"] .cw-textarea{color:#1d1d1f;}
-[data-theme="light"] .cw-textarea::placeholder{color:rgba(0,0,0,.3);}
-.cw-footer{padding:12px 24px;display:flex;align-items:center;justify-content:space-between;border-top:0.5px solid;}
-[data-theme="dark"] .cw-footer{border-top-color:rgba(255,255,255,.08);}
-[data-theme="light"] .cw-footer{border-top-color:rgba(0,0,0,.08);}
-.cw-hint{font-size:11px;}
-[data-theme="dark"] .cw-hint{color:rgba(255,255,255,.35);}
-[data-theme="light"] .cw-hint{color:rgba(0,0,0,.35);}
-.cw-send{background:var(--accent);color:white;border:none;padding:8px 18px;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;display:flex;align-items:center;gap:6px;transition:opacity .2s;}
-.cw-send:hover{opacity:.85;}
+.finder-title span{font-size:18px;}
 
-/* ── QUICKLOOK ── */
-.ql-overlay{position:fixed;inset:0;z-index:800;background:rgba(0,0,0,.65);backdrop-filter:blur(20px);display:none;align-items:center;justify-content:center;}
-.ql-overlay.open{display:flex;animation:fadeIn .18s ease-out;}
-@keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
-.ql-card{width:340px;background:rgba(28,28,30,.96);border-radius:20px;overflow:hidden;box-shadow:0 0 0 .5px rgba(255,255,255,.08),0 28px 70px rgba(0,0,0,.65);}
-.ql-h{padding:18px 18px 14px;display:flex;align-items:center;gap:12px;}
-.ql-icon{width:42px;height:42px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:22px;position:relative;overflow:hidden;}
-.ql-icon::before{content:'';position:absolute;top:0;left:0;right:0;height:45%;background:linear-gradient(180deg,rgba(255,255,255,.2) 0%,transparent 100%);}
-.ql-title{font-size:15px;font-weight:700;color:white;}
-.ql-sub{font-size:11.5px;color:rgba(255,255,255,.45);margin-top:2px;}
-.ql-kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(255,255,255,.05);}
-.ql-kpi{background:rgba(28,28,30,.96);padding:14px 10px;text-align:center;}
-.ql-kval{font-size:21px;font-weight:700;color:#2997FF;}
-.ql-klbl{font-size:9px;color:rgba(255,255,255,.35);margin-top:3px;}
-.ql-tags{padding:12px 18px;display:flex;flex-wrap:wrap;gap:4px;}
-.ql-tag{background:rgba(255,255,255,.1);color:rgba(255,255,255,.65);padding:3px 8px;border-radius:6px;font-size:10px;}
-.ql-hint{padding:4px 18px 14px;font-size:10.5px;color:rgba(255,255,255,.25);text-align:center;}
+/* Finder sidebar + content */
+.finder-body{display:flex;flex:1;overflow:hidden;}
+.finder-sidebar{
+  width:200px;flex-shrink:0;
+  background:rgba(0,0,0,.25);
+  border-right:1px solid rgba(255,255,255,.07);
+  padding:16px 0;display:flex;flex-direction:column;gap:4px;
+}
+.finder-sidebar-title{
+  font-size:10px;font-weight:700;color:rgba(255,255,255,.3);
+  letter-spacing:.1em;text-transform:uppercase;
+  padding:0 16px;margin-bottom:4px;
+}
+.finder-proj-item{
+  padding:9px 16px;cursor:pointer;
+  display:flex;align-items:center;gap:10px;
+  border-radius:8px;margin:0 8px;
+  transition:background .15s;
+  color:rgba(255,255,255,.75);font-size:13px;
+}
+.finder-proj-item:hover{background:rgba(255,255,255,.08);}
+.finder-proj-item.active{background:rgba(99,102,241,.25);color:white;}
+.finder-proj-item .pico{font-size:16px;}
 
-/* ── SIRI ── */
-.siri-overlay{position:fixed;inset:0;z-index:1500;background:rgba(0,0,0,.87);backdrop-filter:blur(40px);display:none;flex-direction:column;align-items:center;justify-content:flex-end;padding-bottom:0;}
-.siri-overlay.open{display:flex;animation:fadeIn .3s ease-out;}
-.siri-msgs{width:min(440px,90vw);flex:1;display:flex;flex-direction:column;justify-content:flex-end;padding:80px 0 20px;gap:8px;overflow-y:auto;}
-.siri-bubble{padding:11px 16px;border-radius:20px;font-size:14.5px;line-height:1.6;max-width:85%;white-space:pre-wrap;}
-.siri-bubble.bot{background:rgba(255,255,255,.1);color:rgba(255,255,255,.88);border-radius:20px 20px 20px 5px;align-self:flex-start;}
-.siri-bubble.me{background:#007AFF;color:white;border-radius:20px 20px 5px 20px;align-self:flex-end;}
-.siri-circle-wrap{display:flex;justify-content:center;margin:16px 0;}
-.siri-circle{width:68px;height:68px;border-radius:50%;position:relative;flex-shrink:0;}
-.siri-ring{position:absolute;inset:0;border-radius:50%;animation:siriSpin 2.5s ease-in-out infinite;}
-.siri-ring:nth-child(1){background:conic-gradient(from 0deg,#FF375F,#FF9F0A,#34C759,#007AFF,#AF52DE,#FF375F);}
-.siri-ring:nth-child(2){inset:5px;background:conic-gradient(from 120deg,#007AFF,#AF52DE,#FF375F,#FF9F0A,#34C759,#007AFF);animation-delay:.8s;opacity:.75;}
-.siri-ring:nth-child(3){inset:11px;background:conic-gradient(from 240deg,#34C759,#007AFF,#AF52DE,#FF375F,#FF9F0A,#34C759);animation-delay:1.6s;opacity:.45;}
-.siri-inner{position:absolute;inset:17px;background:rgba(0,0,0,.85);border-radius:50%;display:flex;align-items:center;justify-content:center;color:white;font-size:14px;}
-@keyframes siriSpin{0%,100%{transform:scale(1) rotate(0deg);}50%{transform:scale(1.06) rotate(180deg);}}
+/* Finder main content - project detail */
+.finder-content{
+  flex:1;overflow-y:auto;padding:32px 40px;
+}
+.finder-content::-webkit-scrollbar{width:6px;}
+.finder-content::-webkit-scrollbar-thumb{background:rgba(255,255,255,.12);border-radius:3px;}
 
-.siri-suggs{width:min(440px,90vw);display:flex;gap:6px;flex-wrap:wrap;padding:8px 0 12px;flex-shrink:0;}
-.siri-sugg{background:rgba(255,255,255,.1);color:rgba(255,255,255,.8);border:0.5px solid rgba(255,255,255,.15);padding:6px 13px;border-radius:14px;font-size:12px;cursor:pointer;transition:background .15s;font-family:-apple-system,sans-serif;}
-.siri-sugg:hover{background:rgba(255,255,255,.18);}
-.siri-in{width:min(440px,90vw);display:flex;gap:8px;padding-bottom:28px;align-items:center;flex-shrink:0;}
-.siri-input{flex:1;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);border-radius:22px;padding:11px 18px;font-size:15px;color:white;outline:none;font-family:-apple-system,sans-serif;transition:border-color .2s;}
-.siri-input::placeholder{color:rgba(255,255,255,.35);}
-.siri-input:focus{border-color:rgba(255,255,255,.3);}
-.siri-send{width:42px;height:42px;border-radius:50%;background:#007AFF;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
-.siri-close{position:fixed;top:18px;right:20px;background:rgba(255,255,255,.1);border:none;color:white;font-size:17px;cursor:pointer;width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;}
-.siri-wave{width:100%;height:4px;background:linear-gradient(90deg,#FF375F,#FF9F0A,#34C759,#007AFF,#AF52DE,#5856D6,#FF375F);background-size:400% 100%;animation:siriWave 2.5s linear infinite;flex-shrink:0;}
-@keyframes siriWave{0%{background-position:0%;}100%{background-position:400%;}}
+/* Empty state */
+.finder-empty{
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  height:100%;gap:16px;color:rgba(255,255,255,.25);
+}
+.finder-empty .e-ico{font-size:64px;opacity:.4;}
+.finder-empty p{font-size:14px;font-weight:500;}
 
-/* ── SPOTLIGHT ── */
-.spotlight-overlay{position:fixed;inset:0;z-index:1800;background:rgba(0,0,0,.35);backdrop-filter:blur(12px);display:none;align-items:flex-start;justify-content:center;padding-top:15vh;}
-.spotlight-overlay.open{display:flex;animation:fadeIn .15s ease-out;}
-.spot-box{width:min(640px,90vw);background:rgba(40,40,44,.96);border-radius:18px;overflow:hidden;box-shadow:0 0 0 .5px rgba(255,255,255,.08),0 28px 70px rgba(0,0,0,.6);}
-.spot-inp-wrap{display:flex;align-items:center;gap:12px;padding:14px 18px;}
-.spot-inp{flex:1;background:none;border:none;outline:none;font-size:17px;color:white;font-family:-apple-system,sans-serif;}
-.spot-inp::placeholder{color:rgba(255,255,255,.3);}
-.spot-res{padding:6px 0;max-height:340px;overflow-y:auto;}
-.spot-item{display:flex;align-items:center;gap:12px;padding:9px 18px;cursor:pointer;transition:background .1s;}
-.spot-item:hover{background:rgba(0,122,255,.6);}
-.spot-iicon{width:30px;height:30px;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:16px;position:relative;overflow:hidden;}
-.spot-iicon::before{content:'';position:absolute;top:0;left:0;right:0;height:45%;background:linear-gradient(180deg,rgba(255,255,255,.18) 0%,transparent 100%);}
-.spot-ititle{font-size:14px;font-weight:500;color:rgba(255,255,255,.9);}
-.spot-isub{font-size:11px;color:rgba(255,255,255,.4);}
-.spot-empty{padding:24px;text-align:center;color:rgba(255,255,255,.3);font-size:14px;}
-.spot-footer{padding:8px 18px;border-top:.5px solid rgba(255,255,255,.07);font-size:10.5px;color:rgba(255,255,255,.28);display:flex;gap:16px;}
+/* Project detail inside finder */
+.proj-detail{display:flex;flex-direction:column;gap:20px;}
 
-/* ── CONTEXT MENU ── */
-.ctx-menu{position:fixed;z-index:1600;background:rgba(40,40,44,.96);backdrop-filter:blur(20px);border-radius:12px;overflow:hidden;box-shadow:0 0 0 .5px rgba(255,255,255,.1),0 8px 28px rgba(0,0,0,.5);min-width:175px;display:none;animation:fadeIn .1s ease-out;}
-.ctx-item{padding:8px 14px;font-size:13px;color:rgba(255,255,255,.85);cursor:pointer;display:flex;align-items:center;gap:8px;transition:background .1s;}
-.ctx-item:hover{background:rgba(0,122,255,.7);}
-.ctx-sep{height:.5px;background:rgba(255,255,255,.1);margin:2px 0;}
+.pd-hero{
+  display:flex;align-items:flex-start;gap:18px;
+  padding-bottom:20px;
+  border-bottom:1px solid rgba(255,255,255,.08);
+}
+.pd-emoji{
+  font-size:52px;flex-shrink:0;
+  filter:drop-shadow(0 4px 12px rgba(0,0,0,.5));
+}
+.pd-titles{flex:1;}
+.pd-name{
+  font-size:26px;font-weight:700;color:white;
+  letter-spacing:-.02em;margin-bottom:6px;line-height:1.2;
+}
+.pd-sub{font-size:13px;color:rgba(255,255,255,.45);margin-bottom:12px;}
+.pd-tags{display:flex;flex-wrap:wrap;gap:6px;}
+.pd-tag{
+  background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1);
+  padding:4px 12px;border-radius:20px;font-size:11px;color:rgba(255,255,255,.6);
+}
+
+.pd-section-h{
+  font-size:10px;font-weight:700;text-transform:uppercase;
+  letter-spacing:.12em;color:rgba(255,255,255,.28);
+  margin-top:4px;margin-bottom:8px;
+}
+.pd-text{font-size:13px;color:rgba(255,255,255,.65);line-height:1.8;}
+.pd-text strong{color:white;font-weight:600;}
+
+.pd-list{list-style:none;display:flex;flex-direction:column;gap:8px;}
+.pd-list li{
+  font-size:12.5px;color:rgba(255,255,255,.62);
+  padding-left:18px;position:relative;line-height:1.65;
+}
+.pd-list li::before{
+  content:'▸';position:absolute;left:0;
+  color:#bf5af2;font-size:11px;top:1px;
+}
+.pd-list li strong{color:white;}
+
+.pd-metrics{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(120px,1fr));
+  gap:10px;
+}
+.pd-metric{
+  background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);
+  border-radius:12px;padding:14px;text-align:center;
+}
+.pd-mval{font-size:20px;font-weight:700;}
+.pd-mlbl{font-size:10px;color:rgba(255,255,255,.38);margin-top:4px;line-height:1.3;}
+
+.pd-btn{
+  display:inline-flex;align-items:center;gap:7px;
+  background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);
+  color:white;padding:9px 18px;border-radius:22px;
+  text-decoration:none;font-size:12px;font-weight:500;
+  margin-top:4px;margin-right:8px;transition:all .2s;cursor:pointer;
+}
+.pd-btn:hover{background:rgba(255,255,255,.16);}
+
+/* ── SIRI OVERLAY — AU-DESSUS du dock ── */
+.siri-ov{
+  position:fixed;
+  bottom:106px; /* au-dessus du dock (~96px) */
+  left:50%;
+  transform:translateX(-50%) translateY(16px);
+  width:min(500px,88vw);
+  background:rgba(14,14,22,.95);
+  backdrop-filter:blur(40px) saturate(200%);
+  border:1px solid rgba(255,255,255,.18);
+  border-radius:24px;
+  z-index:4000;
+  padding:22px 24px 20px;
+  box-shadow:0 24px 70px rgba(0,0,0,.7),0 0 0 1px rgba(255,255,255,.04);
+  opacity:0;pointer-events:none;
+  transition:opacity .3s ease,transform .3s ease;
+}
+.siri-ov.open{
+  opacity:1;pointer-events:all;
+  transform:translateX(-50%) translateY(0);
+}
+
+/* Siri arc-en-ciel ring */
+.siri-ring-wrap{
+  display:flex;justify-content:center;align-items:center;
+  margin-bottom:14px;position:relative;
+}
+.siri-ring{
+  width:56px;height:56px;border-radius:50%;
+  background:conic-gradient(
+    #ff375f 0deg,#ff9f0a 60deg,#30d158 120deg,
+    #0a84ff 180deg,#bf5af2 240deg,#ff375f 360deg
+  );
+  animation:siriSpin 3s linear infinite;
+  display:flex;align-items:center;justify-content:center;
+}
+.siri-ring::after{
+  content:'';width:44px;height:44px;border-radius:50%;
+  background:rgba(14,14,22,.95);
+  display:flex;align-items:center;justify-content:center;
+}
+.siri-inner-text{
+  position:absolute;font-size:18px;
+}
+@keyframes siriSpin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+
+/* Siri wave bars */
+.siri-wave{
+  display:flex;align-items:center;justify-content:center;gap:3px;
+  height:28px;margin-bottom:12px;
+}
+.siri-bar{
+  width:3px;border-radius:3px;
+  background:linear-gradient(to top,#0a84ff,#bf5af2);
+}
+.siri-bar:nth-child(1){animation:wave 1.2s ease-in-out infinite .0s;}
+.siri-bar:nth-child(2){animation:wave 1.2s ease-in-out infinite .1s;}
+.siri-bar:nth-child(3){animation:wave 1.2s ease-in-out infinite .2s;}
+.siri-bar:nth-child(4){animation:wave 1.2s ease-in-out infinite .3s;}
+.siri-bar:nth-child(5){animation:wave 1.2s ease-in-out infinite .4s;}
+.siri-bar:nth-child(6){animation:wave 1.2s ease-in-out infinite .5s;}
+.siri-bar:nth-child(7){animation:wave 1.2s ease-in-out infinite .4s;}
+.siri-bar:nth-child(8){animation:wave 1.2s ease-in-out infinite .3s;}
+.siri-bar:nth-child(9){animation:wave 1.2s ease-in-out infinite .2s;}
+@keyframes wave{
+  0%,100%{height:6px;opacity:.5}
+  50%{height:22px;opacity:1}
+}
+
+/* Siri typing area */
+.siri-input-wrap{
+  display:flex;align-items:center;gap:10px;
+  background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);
+  border-radius:14px;padding:10px 14px;margin-bottom:10px;
+}
+.siri-input{
+  flex:1;background:none;border:none;outline:none;
+  color:white;font-size:14px;font-family:inherit;
+}
+.siri-input::placeholder{color:rgba(255,255,255,.3);}
+.siri-send{
+  background:rgba(99,102,241,.4);border:none;color:white;
+  width:28px;height:28px;border-radius:8px;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;font-size:13px;
+  transition:background .2s;flex-shrink:0;
+}
+.siri-send:hover{background:rgba(99,102,241,.7);}
+
+.siri-output{
+  font-size:13px;color:rgba(255,255,255,.7);line-height:1.65;
+  min-height:20px;max-height:140px;overflow-y:auto;
+  padding:2px 0;
+}
+.siri-output::-webkit-scrollbar{width:3px;}
+.siri-output::-webkit-scrollbar-thumb{background:rgba(255,255,255,.15);}
+
+/* Siri chips */
+.siri-chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px;}
+.siri-chip{
+  background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);
+  color:rgba(255,255,255,.6);padding:5px 12px;border-radius:20px;
+  font-size:11px;cursor:pointer;transition:all .15s;font-family:inherit;
+}
+.siri-chip:hover{background:rgba(255,255,255,.16);color:white;}
+
+/* Close siri */
+.siri-close{
+  position:absolute;top:14px;right:14px;
+  background:rgba(255,255,255,.08);border:none;
+  color:rgba(255,255,255,.5);width:26px;height:26px;
+  border-radius:50%;cursor:pointer;font-size:14px;
+  display:flex;align-items:center;justify-content:center;
+  transition:all .2s;font-family:inherit;
+}
+.siri-close:hover{background:rgba(255,255,255,.18);color:white;}
 
 /* ── DOCK ── */
-.dock-wrap{position:fixed;bottom:10px;left:50%;transform:translateX(-50%);z-index:2000;}
-.dock{display:flex;align-items:flex-end;gap:5px;padding:9px 16px;background:rgba(255,255,255,.18);backdrop-filter:blur(24px) saturate(200%);-webkit-backdrop-filter:blur(24px) saturate(200%);border-radius:20px;border:.5px solid rgba(255,255,255,.26);box-shadow:0 8px 32px rgba(0,0,0,.3),0 0 0 .5px rgba(0,0,0,.12);}
-.di{position:relative;display:flex;flex-direction:column;align-items:center;text-decoration:none;transition:transform .12s ease;cursor:pointer;background:none;border:none;}
-.di-icon{width:52px;height:52px;border-radius:13px;display:flex;align-items:center;justify-content:center;font-size:28px;box-shadow:0 3px 10px rgba(0,0,0,.28);position:relative;overflow:hidden;}
-.di-icon::before{content:'';position:absolute;top:0;left:0;right:0;height:45%;background:linear-gradient(180deg,rgba(255,255,255,.2) 0%,transparent 100%);z-index:1;pointer-events:none;}
-.di-lbl{position:absolute;bottom:calc(100% + 10px);left:50%;transform:translateX(-50%);background:rgba(28,28,30,.88);color:#fff;font-size:11px;font-weight:500;padding:4px 9px;border-radius:7px;white-space:nowrap;opacity:0;transition:opacity .12s;pointer-events:none;font-family:-apple-system,sans-serif;}
-.di:hover .di-lbl{opacity:1;}
-.di-dot{width:4px;height:4px;border-radius:50%;background:rgba(255,255,255,.7);margin-top:4px;display:none;}
-.di.active .di-dot{display:block;}
-.dock-sep{width:.5px;height:36px;background:rgba(255,255,255,.18);align-self:center;margin:0 4px;}
-@media(max-width:500px){.di-icon{width:40px;height:40px;font-size:22px;}.dock{gap:3px;padding:7px 10px;}}
+.dock-wrap{
+  position:fixed;bottom:10px;left:50%;
+  transform:translateX(-50%);z-index:4500;
+}
+.dock{
+  display:flex;align-items:flex-end;gap:8px;
+  background:rgba(255,255,255,.12);
+  backdrop-filter:blur(28px) saturate(180%);
+  border:1px solid rgba(255,255,255,.18);
+  border-radius:18px;padding:8px 12px;
+  box-shadow:0 10px 36px rgba(0,0,0,.6);
+}
+.di{
+  display:flex;flex-direction:column;align-items:center;gap:3px;
+  cursor:pointer;position:relative;
+}
+.di-ico{
+  width:50px;height:50px;border-radius:13px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:28px;
+  box-shadow:0 2px 10px rgba(0,0,0,.35);
+  transition:transform .22s cubic-bezier(.34,1.56,.64,1);
+  position:relative;overflow:hidden;
+}
+.di-ico::before{
+  content:'';position:absolute;
+  top:0;left:0;right:0;height:50%;
+  background:linear-gradient(to bottom,rgba(255,255,255,.18),transparent);
+  border-radius:13px 13px 0 0;pointer-events:none;
+}
+.di:hover .di-ico{transform:translateY(-12px) scale(1.18);}
+.di-dot{width:4px;height:4px;background:rgba(255,255,255,.5);border-radius:50%;}
+.di-tip{
+  position:absolute;bottom:78px;left:50%;transform:translateX(-50%);
+  background:rgba(15,15,15,.88);backdrop-filter:blur(12px);
+  color:white;padding:5px 12px;border-radius:8px;
+  font-size:12px;white-space:nowrap;
+  opacity:0;pointer-events:none;transition:opacity .18s;border:1px solid rgba(255,255,255,.08);
+}
+.di:hover .di-tip{opacity:1;}
+.dsep{width:1px;height:46px;background:rgba(255,255,255,.16);align-self:center;margin:0 2px;}
+
+/* ── RESPONSIVE ── */
 @media(max-width:768px){
-  .finder-win{width:calc(100vw - 16px);height:calc(100vh - 130px);}
-  .finder-body{grid-template-columns:1fr;}
-  .finder-sb{display:none;}
-  .icons-grid{grid-template-columns:repeat(3,88px);}
+  .menubar{height:34px;padding:0 12px;font-size:13px;}
+  .mb-item{display:none;}
+  .desktop{bottom:88px;}
+  .folder-icon{width:90px;}
+  .fi-img{width:80px;height:70px;font-size:52px;}
+  .fi-label{font-size:11px;}
+  .finder{width:96vw;height:82vh;border-radius:12px;}
+  .finder-sidebar{width:150px;}
+  .finder-sidebar-title,.finder-proj-item{font-size:11px;}
+  .finder-content{padding:20px;}
+  .pd-name{font-size:20px;}
+  .pd-text{font-size:12px;}
+  .pd-metrics{grid-template-columns:repeat(2,1fr);}
+  .siri-ov{width:92vw;padding:18px;}
+  .dock .di-ico{width:42px;height:42px;font-size:24px;}
+  .dock{padding:6px 8px;gap:6px;}
+}
+@media(max-width:480px){
+  .finder-body{flex-direction:column;}
+  .finder-sidebar{width:100%;height:52px;flex-direction:row;padding:0 8px;gap:0;overflow-x:auto;overflow-y:hidden;}
+  .finder-sidebar-title{display:none;}
+  .finder-proj-item{flex-direction:row;padding:8px 10px;white-space:nowrap;border-radius:8px;margin:auto 2px;}
+  .pd-metrics{grid-template-columns:repeat(2,1fr);}
 }
 </style>
 </head>
 <body>
 
-<div class="wallpaper"></div>
+<!-- WALLPAPER -->
+<div class="aurora">
+  <div class="blob b1"></div>
+  <div class="blob b2"></div>
+  <div class="blob b3"></div>
+  <div class="blob b4"></div>
+</div>
+<div class="grain"></div>
 
 <!-- MENU BAR -->
 <div class="menubar">
   <div class="mb-l">
-    <span style="font-size:16px">🍎</span>
-    <span class="mb-app" data-i18n="appname">Projets</span>
-    <div class="mb-items">
-      <span>Finder</span><span>Présentation</span><span>Affichage</span><span>Aller</span>
-    </div>
+    <span class="mb-apple">🍎</span>
+    <span class="mb-bold" id="mb-title">Projets</span>
+    <span class="mb-item">Finder</span>
+    <span class="mb-item">Affichage</span>
+    <span class="mb-item">Aller</span>
   </div>
   <div class="mb-r">
-    <button class="mb-icon-btn" onclick="siriToggle()">
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5" opacity=".6"/><circle cx="12" cy="12" r="5" fill="currentColor" opacity=".8"/></svg>
-      Siri
-    </button>
-    <button class="mb-icon-btn" onclick="openContact()">✉️ Message</button>
-    <button class="mb-icon-btn" onclick="spotlightOpen()">🔍</button>
-    <button class="mb-tbtn" id="thm" onclick="toggleTheme()"><span id="thmIcon">☀️</span></button>
-    <div class="mb-ctrl">
-      <button class="mb-btn active" data-lang="fr">FR</button>
-      <button class="mb-btn" data-lang="en">EN</button>
+    <button class="mb-siri" id="siriBtn" title="Siri">✦ Siri</button>
+    <div class="lang-sw">
+      <button class="lang-btn active" onclick="setLang('fr')">FR</button>
+      <button class="lang-btn" onclick="setLang('en')">EN</button>
     </div>
-    <span class="mb-time" id="mbTime">—</span>
+    <span class="mb-icon">🔋</span>
+    <span class="mb-icon">📶</span>
+    <span class="mb-time" id="mbTime">--:--</span>
   </div>
 </div>
 
 <!-- DESKTOP -->
-<div class="desktop" id="desktop" onclick="deselectAll(event)" oncontextmenu="handleDesktopCtx(event)">
-  <div class="icons-grid" id="iconsGrid"></div>
+<div class="desktop" id="desktop">
+
+  <!-- DOSSIER PROJETS PRO -->
+  <div class="folder-icon" id="folder-pro"
+       style="top:50%;left:30%;transform:translate(-50%,-50%);"
+       onclick="openFolder('pro')"
+       data-x="30" data-y="50">
+    <div class="fi-img">
+      📁
+      <div class="fi-badge">5</div>
+    </div>
+    <div class="fi-label" id="flabel-pro">📊 Projets Pro</div>
+  </div>
+
+  <!-- DOSSIER PROJETS PERSO -->
+  <div class="folder-icon" id="folder-perso"
+       style="top:50%;left:70%;transform:translate(-50%,-50%);"
+       onclick="openFolder('perso')"
+       data-x="70" data-y="50">
+    <div class="fi-img">
+      📂
+      <div class="fi-badge">2</div>
+    </div>
+    <div class="fi-label" id="flabel-perso">🎨 Projets Perso</div>
+  </div>
+
+  <div class="desktop-hint" id="desktopHint">Double-cliquez pour ouvrir • Glissez pour déplacer</div>
 </div>
 
 <!-- FINDER WINDOW -->
-<div class="finder-win" id="finderWin">
-  <div class="finder-titlebar">
-    <div class="tls">
-      <div class="tl tl-r" onclick="closeFinder()" title="Fermer"></div>
-      <div class="tl tl-y"></div>
-      <div class="tl tl-g"></div>
+<div class="finder" id="finder">
+  <div class="finder-bar">
+    <div class="ftl-group">
+      <div class="ftl r" onclick="closeFolder()" title="Fermer"></div>
+      <div class="ftl y"></div>
+      <div class="ftl g"></div>
     </div>
-    <div class="tb-title" id="finderTitle">Projets</div>
-    <div class="tb-r">
-      <button class="cat-pill on" data-cat="all">Tous</button>
-      <button class="cat-pill" data-cat="pro">Pro</button>
-      <button class="cat-pill" data-cat="perso">Perso</button>
+    <div class="finder-title">
+      <span id="finder-ico">📁</span>
+      <span id="finder-name">Projets</span>
     </div>
   </div>
   <div class="finder-body">
-    <div class="finder-sb" id="finderSb"></div>
-    <div class="finder-main" id="finderMain">
-      <div class="finder-empty" id="finderEmpty">
-        <div class="finder-empty-icon">📁</div>
-        <div style="font-size:14px" data-i18n="finder-hint">Double-cliquez sur un projet pour l'explorer</div>
+    <div class="finder-sidebar" id="finderSidebar">
+      <div class="finder-sidebar-title" data-i18n="projects">Projets</div>
+      <!-- Filled by JS -->
+    </div>
+    <div class="finder-content" id="finderContent">
+      <div class="finder-empty">
+        <div class="e-ico">📂</div>
+        <p data-i18n="select-proj">Sélectionnez un projet</p>
       </div>
     </div>
   </div>
 </div>
 
-<!-- CONTACT WINDOW -->
-<div class="contact-win" id="contactWin">
-  <div class="cw-tb">
-    <div class="tls">
-      <div class="tl tl-r" onclick="closeContact()"></div>
-      <div class="tl tl-y"></div>
-      <div class="tl tl-g"></div>
+<!-- SIRI OVERLAY -->
+<div class="siri-ov" id="siriOv">
+  <button class="siri-close" onclick="closeSiri()">✕</button>
+  <div class="siri-ring-wrap">
+    <div class="siri-ring">
+      <div></div>
     </div>
-    <div class="cw-title" data-i18n="new-msg">Nouveau message</div>
+    <div class="siri-inner-text">✦</div>
   </div>
-  <div class="cw-body">
-    <div class="cw-to">✉️ À : <strong style="margin-left:4px">alecrudydiami@gmail.com</strong></div>
-    <div class="cw-sep"></div>
-    <div class="cw-row">
-      <span class="cw-label" data-i18n="from-label">De :</span>
-      <input class="cw-input" id="cwName" placeholder="Votre nom">
-    </div>
-    <div class="cw-sep"></div>
-    <div class="cw-row">
-      <span class="cw-label" data-i18n="email-label">Email :</span>
-      <input class="cw-input" id="cwEmail" type="email" placeholder="Votre email (pour qu'Alec vous réponde)">
-    </div>
-    <div class="cw-msg">
-      <textarea class="cw-textarea" id="cwMsg" placeholder="Bonjour Alec, je suis intéressé(e) par votre profil..."></textarea>
-    </div>
+  <div class="siri-wave" id="siriWave">
+    <div class="siri-bar"></div>
+    <div class="siri-bar"></div>
+    <div class="siri-bar"></div>
+    <div class="siri-bar"></div>
+    <div class="siri-bar"></div>
+    <div class="siri-bar"></div>
+    <div class="siri-bar"></div>
+    <div class="siri-bar"></div>
+    <div class="siri-bar"></div>
   </div>
-  <div class="cw-footer">
-    <span class="cw-hint" data-i18n="mail-hint">Ouvrira votre client mail</span>
-    <button class="cw-send" onclick="submitContact()">
-      <svg width="13" height="13" viewBox="0 0 24 24" fill="white"><path d="M2 21l21-9L2 3v7l15 2-15 2z"/></svg>
-      <span data-i18n="send-btn">Envoyer</span>
-    </button>
+  <div class="siri-output" id="siriOutput">Bonjour ! Je suis Siri. Demande-moi quelque chose sur Alec.</div>
+  <div class="siri-input-wrap">
+    <input type="text" class="siri-input" id="siriInput" placeholder="Dis quelque chose à Siri…" />
+    <button class="siri-send" onclick="siriSend()" title="Envoyer">↑</button>
   </div>
-</div>
-
-<!-- QUICKLOOK -->
-<div class="ql-overlay" id="qlOverlay" onclick="closeQL()">
-  <div class="ql-card" id="qlCard" onclick="e=>e.stopPropagation()"></div>
-</div>
-
-<!-- SIRI -->
-<div class="siri-overlay" id="siriOverlay">
-  <button class="siri-close" onclick="siriToggle()">✕</button>
-  <div class="siri-msgs" id="siriMsgs"></div>
-  <div class="siri-circle-wrap">
-    <div class="siri-circle">
-      <div class="siri-ring"></div>
-      <div class="siri-ring"></div>
-      <div class="siri-ring"></div>
-      <div class="siri-inner">◉</div>
-    </div>
+  <div class="siri-chips">
+    <button class="siri-chip" onclick="siriAsk('projets')">Ses projets</button>
+    <button class="siri-chip" onclick="siriAsk('stack')">Son stack</button>
+    <button class="siri-chip" onclick="siriAsk('contact')">Le contacter</button>
+    <button class="siri-chip" onclick="siriAsk('hackathon')">Hackathons</button>
   </div>
-  <div class="siri-suggs" id="siriSuggs"></div>
-  <div class="siri-in">
-    <input class="siri-input" id="siriInput" placeholder="Demandez quelque chose..." onkeydown="if(event.key==='Enter')siriSend()">
-    <button class="siri-send" onclick="siriSend()">
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="white"><path d="M2 21l21-9L2 3v7l15 2-15 2z"/></svg>
-    </button>
-  </div>
-  <div class="siri-wave"></div>
-</div>
-
-<!-- SPOTLIGHT -->
-<div class="spotlight-overlay" id="spotlightOverlay" onclick="e=>{if(e.target.id==='spotlightOverlay')spotlightClose();}">
-  <div class="spot-box">
-    <div class="spot-inp-wrap">
-      <span style="font-size:18px;opacity:.6">🔍</span>
-      <input class="spot-inp" id="spotInput" placeholder="Rechercher un projet..." autocomplete="off" oninput="spotSearch()">
-    </div>
-    <div class="spot-res" id="spotResults"></div>
-    <div class="spot-footer"><span>⏎ Ouvrir</span><span>⌘K raccourci</span><span>Esc Fermer</span></div>
-  </div>
-</div>
-
-<!-- CONTEXT MENU -->
-<div class="ctx-menu" id="ctxMenu">
-  <div class="ctx-item" onclick="ctxOpen()">📂 Ouvrir</div>
-  <div class="ctx-item" onclick="ctxQL()">👁️ Aperçu rapide</div>
-  <div class="ctx-sep"></div>
-  <div class="ctx-item" onclick="openContact()">✉️ Contacter Alec</div>
-  <div class="ctx-sep"></div>
-  <div class="ctx-item" onclick="closeCtxMenu()">✕ Fermer</div>
 </div>
 
 <!-- DOCK -->
 <div class="dock-wrap">
-  <div class="dock" id="mainDock">
-    <a href="index.html" class="di">
-      <div class="di-icon" style="background:linear-gradient(135deg,#4facfe,#00f2fe);">🏠</div>
-      <span class="di-lbl">Accueil</span><div class="di-dot"></div>
-    </a>
-    <a href="cv.html" class="di">
-      <div class="di-icon" style="background:linear-gradient(135deg,#f093fb,#f5576c);">📄</div>
-      <span class="di-lbl">CV</span><div class="di-dot"></div>
-    </a>
-    <button class="di" onclick="siriToggle()">
-      <div class="di-icon" style="background:conic-gradient(from 0deg,#FF375F,#FF9F0A,#34C759,#007AFF,#AF52DE,#FF375F);animation:dockSpin 8s linear infinite;">◉</div>
-      <span class="di-lbl">Siri</span><div class="di-dot"></div>
-    </button>
-    <button class="di" onclick="openContact()">
-      <div class="di-icon" style="background:linear-gradient(135deg,#64D3F5,#1179F5);">✉️</div>
-      <span class="di-lbl" data-i18n="contact-lbl">Message</span><div class="di-dot"></div>
-    </button>
-    <div class="dock-sep"></div>
-    <a href="https://linkedin.com/in/alec-diamidia" target="_blank" class="di">
-      <div class="di-icon" style="background:#0A66C2;color:white;font-size:22px;font-weight:900;">in</div>
-      <span class="di-lbl">LinkedIn</span><div class="di-dot"></div>
-    </a>
-    <a href="https://github.com/venom6-13" target="_blank" class="di">
-      <div class="di-icon" style="background:#24292f;display:flex;align-items:center;justify-content:center;">
-        <svg width="26" height="26" viewBox="0 0 24 24" fill="white"><path d="M12 2C6.48 2 2 6.48 2 12c0 4.42 2.87 8.17 6.84 9.5.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.61.07-.61 1 .07 1.53 1.03 1.53 1.03.89 1.52 2.34 1.08 2.91.83.09-.65.35-1.08.63-1.33-2.22-.25-4.56-1.11-4.56-4.95 0-1.09.39-1.99 1.03-2.69-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02A9.56 9.56 0 0 1 12 6.8c.85 0 1.71.11 2.51.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.38.2 2.4.1 2.65.64.7 1.03 1.6 1.03 2.69 0 3.85-2.34 4.7-4.57 4.94.36.31.68.92.68 1.85v2.74c0 .27.18.58.69.48C19.13 20.17 22 16.42 22 12c0-5.52-4.48-10-10-10z"/></svg>
-      </div>
-      <span class="di-lbl">GitHub</span><div class="di-dot"></div>
-    </a>
+  <div class="dock">
+    <div class="di" onclick="location.href='index.html'">
+      <div class="di-ico" style="background:linear-gradient(145deg,#667eea,#764ba2)">🏠</div>
+      <div class="di-dot"></div>
+      <div class="di-tip" data-i18n="d-home">Accueil</div>
+    </div>
+    <div class="di" onclick="location.href='cv.html'">
+      <div class="di-ico" style="background:linear-gradient(145deg,#f093fb,#f5576c)">📄</div>
+      <div class="di-dot"></div>
+      <div class="di-tip">CV</div>
+    </div>
+    <div class="dsep"></div>
+    <div class="di" onclick="openFolder('pro')">
+      <div class="di-ico" style="background:linear-gradient(145deg,#9775fa,#6741d9)">💡</div>
+      <div class="di-dot"></div>
+      <div class="di-tip" data-i18n="d-pro">Projets Pro</div>
+    </div>
+    <div class="di" onclick="openFolder('perso')">
+      <div class="di-ico" style="background:linear-gradient(145deg,#4facfe,#1971c2)">🎨</div>
+      <div class="di-dot"></div>
+      <div class="di-tip" data-i18n="d-perso">Projets Perso</div>
+    </div>
+    <div class="dsep"></div>
+    <div class="di" onclick="toggleSiri()">
+      <div class="di-ico" style="background:linear-gradient(145deg,#30d158,#007aff)">✦</div>
+      <div class="di-tip">Siri</div>
+    </div>
+    <div class="di" onclick="window.open('https://linkedin.com/in/alec-diamidia','_blank')">
+      <div class="di-ico" style="background:#0a66c2">💼</div>
+      <div class="di-tip">LinkedIn</div>
+    </div>
+    <div class="di" onclick="window.open('https://github.com/venom6-13','_blank')">
+      <div class="di-ico" style="background:#161b22">⌨️</div>
+      <div class="di-tip">GitHub</div>
+    </div>
+    <div class="di" onclick="location.href='mailto:alecrudydiami@gmail.com'">
+      <div class="di-ico" style="background:linear-gradient(145deg,#4facfe,#00f2fe)">📧</div>
+      <div class="di-tip">Mail</div>
+    </div>
   </div>
 </div>
 
-<!-- EASTER EGG -->
-<div id="eggModal" style="display:none;position:fixed;inset:0;z-index:99999;background:rgba(0,0,0,.85);align-items:center;justify-content:center;flex-direction:column;gap:16px;backdrop-filter:blur(20px);">
-  <div style="font-size:60px;animation:dockSpin 1s linear infinite">🕹️</div>
-  <div style="color:white;font-size:22px;font-weight:700;font-family:-apple-system,sans-serif;">Easter egg !</div>
-  <div style="color:rgba(255,255,255,.6);font-size:14px;text-align:center;font-family:-apple-system,sans-serif;">↑↑↓↓←→←→BA — tu connais les codes 🤫</div>
-  <button onclick="document.getElementById('eggModal').style.display='none'" style="background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.2);color:white;padding:10px 24px;border-radius:12px;font-size:14px;cursor:pointer;font-family:-apple-system,sans-serif;margin-top:8px;">Fermer</button>
-</div>
-<style>@keyframes dockSpin{to{transform:rotate(360deg);}}</style>
-
 <script>
-/* ══ DATA ══ */
-const P=[
-  {id:'mirakl',name:'Mirakl Connect',sub:'Pipeline BDR · Vercel · 48h',e:'🏆',cat:'pro',
-   g:'linear-gradient(150deg,#0064D2,#34ADE6)',
-   bdg:[{t:'aw',l:'🏆 Award'},{t:'act',l:'🟢 Déployé'},{t:'gh',l:'⌨️ GitHub'}],
-   tags:['Next.js','GPT-4o','Supabase','Apify','Vercel'],
-   kpis:[{v:'×37',l:'plus rapide'},{v:'-89%',l:'coût/lead'},{v:'×2400',l:'ROI'}],
-   ctx:"Les BDRs de Mirakl Connect passaient 1h15 par lead en travail manuel. Objectif : automatiser le pipeline de bout en bout en 48h.",
-   bullets:['UC2-A : URL → scraping auto → analyse catalogue → 3 emails personnalisés en 6 secondes','Grille de scoring 100 pts : Catégorie (28) · Géographie (22) · Prix (16) · Positionnement (14)','Outreach GPT-4o : adapte message au profil seller et à la culture marché','Déployé en production sur Vercel — pas des mockups'],
-   proof:"Conception produit de bout en bout. ROI calculé, impact quantifié, solution immédiatement utilisable.",
-   gh:'https://github.com/CodeurFort/mirakl-prospector'},
+/* ════════════════════════════════
+   DATA — PROJETS
+   ════════════════════════════════ */
+const PROJECTS = {
+  // ── PRO ──
+  seo:{
+    cat:'pro',icon:'🔍',color:'#0071e3',
+    github:null,
+    fr:{
+      name:'Eugenia School — SEO/GEO/AEO',
+      sub:'Conseil stratégique + Implémentation technique · Avril 2026',
+      tags:['Dust','SEMrush','ChatGPT','Perplexity','Webflow','Substack'],
+      ctx:'Eugenia School était quasiment <strong>inexistante en ligne</strong> malgré un positionnement fort. En 2026, les lycéens demandent à ChatGPT "quelle école IA choisir" — et Eugenia n\'apparaissait nulle part, ni sur Google, ni dans les LLMs.',
+      what:[
+        '<strong>Audit 3 surfaces</strong> : SEO · GEO (ChatGPT + Perplexity) · AEO (Featured Snippets)',
+        '<strong>Paradoxe Aivancity</strong> : 954 mots-clés Google, 0/6 citations LLMs — dominer Google ne suffit plus',
+        '<strong>4 agents Dust déployés</strong> : Lundi Édito · Veille · Coordinateur · Rédacteur (seuil 13/15)',
+        '<strong>Quick win 0€</strong> : page Bachelor IA non publiée → Top 20 potentiel en 6 semaines',
+        '<strong>Machine opérationnelle</strong> : prompts, fiche Webflow, calendrier 7 semaines'
+      ],
+      rh:'Baseline → Projections 6 mois',
+      metrics:[{v:'10→150',l:'Mots-clés'},{v:'+1 500',l:'Trafic/mois'},{v:'1→3/6',l:'Citations LLMs'},{v:'2/sem',l:'Articles'},{v:'2h/sem',l:'Effort humain'},{v:'13/15',l:'Qualité garantie'}],
+      end:'La solution livrée n\'est pas un rapport — c\'est une <strong>machine opérationnelle</strong> déployable le lendemain.'
+    },
+    en:{
+      name:'Eugenia School — SEO/GEO/AEO',
+      sub:'Strategic consulting + Technical implementation · April 2026',
+      tags:['Dust','SEMrush','ChatGPT','Perplexity','Webflow','Substack'],
+      ctx:'Eugenia School was virtually <strong>invisible online</strong> despite a strong positioning. In 2026, students ask ChatGPT "which AI school should I choose" — Eugenia appeared nowhere.',
+      what:[
+        '<strong>3-surface audit</strong>: SEO · GEO (ChatGPT + Perplexity) · AEO (Featured Snippets)',
+        '<strong>Aivancity paradox</strong>: 954 Google keywords, 0/6 LLM citations — dominating Google is no longer enough',
+        '<strong>4 Dust agents deployed</strong>: Monday Editorial · Watch · Coordinator · Writer (threshold 13/15)',
+        '<strong>€0 quick win</strong>: unpublished AI Bachelor page → Top 20 potential in 6 weeks',
+        '<strong>Operational machine</strong>: prompts, Webflow sheet, 7-week calendar'
+      ],
+      rh:'Baseline → 6-month Projections',
+      metrics:[{v:'10→150',l:'Keywords'},{v:'+1,500',l:'Monthly traffic'},{v:'1→3/6',l:'LLM citations'},{v:'2/week',l:'Articles'},{v:'2h/week',l:'Human effort'},{v:'13/15',l:'Quality guaranteed'}],
+      end:'The delivered solution is not a report — it\'s an <strong>operational machine</strong> deployable the next day.'
+    }
+  },
+  payfit:{
+    cat:'pro',icon:'⚡',color:'#FF6B35',
+    github:null,
+    fr:{
+      name:'Hackathon PayFit 2026 — SEO Content IA',
+      sub:'Automatisation enterprise · 🏆 Innovation Award · 48h',
+      tags:['Make.com','GPT-4o','Claude Sonnet','Google Sheets','Docker','Data for SEO'],
+      ctx:'PayFit face à un <strong>goulot critique</strong> : 2h par article expert, 1 rédacteur, 5h/sem de veille juridique. Impossible de scaler face à la concurrence IA.',
+      what:[
+        '<strong>4 agents orchestrés</strong> : Info-Radar · StrategicPlanner (scoring /13) · SEO Writer (14+/15) · Quality Guardian (EEAT /100)',
+        '<strong>2 scénarios Make.com</strong> : Keyword Research + Question Generation',
+        '<strong>APIs réglementaires</strong> : URSSAF · Legifrance · DARES — enrichies automatiquement',
+        '<strong>Google Sheets Hub</strong> : SOURCE · ANALYSIS · HISTORY · METRICS',
+        '<strong>Export multi-format</strong> : HTML · DOCX · PDF en 2 minutes'
+      ],
+      rh:'Résultats (48h hackathon)',
+      metrics:[{v:'80%',l:'Temps économisé'},{v:'14.3/15',l:'Qualité moyenne'},{v:'200K€',l:'Économies/an'},{v:'92%',l:'Automation'},{v:'0',l:'Erreurs juridiques'},{v:'🏆',l:'Innovation Award'}],
+      end:'4 articles en 48h (vs 1 semaine normal). 50% à 15/15. 0 erreur compliance. <strong>Innovation Award</strong> PayFit.'
+    },
+    en:{
+      name:'PayFit Hackathon 2026 — IA SEO Content',
+      sub:'Enterprise automation · 🏆 Innovation Award · 48h',
+      tags:['Make.com','GPT-4o','Claude Sonnet','Google Sheets','Docker','Data for SEO'],
+      ctx:'PayFit facing a <strong>critical bottleneck</strong>: 2h per expert article, 1 writer, 5h/week legal monitoring. Impossible to scale.',
+      what:[
+        '<strong>4 orchestrated agents</strong>: Info-Radar · StrategicPlanner (scoring /13) · SEO Writer (14+/15) · Quality Guardian (EEAT /100)',
+        '<strong>2 Make.com scenarios</strong>: Keyword Research + Question Generation',
+        '<strong>Regulatory APIs</strong>: URSSAF · Legifrance · DARES — auto-enriched',
+        '<strong>Central Google Sheets Hub</strong>: SOURCE · ANALYSIS · HISTORY · METRICS',
+        '<strong>Multi-format export</strong>: HTML · DOCX · PDF in 2 minutes'
+      ],
+      rh:'Results (48h hackathon)',
+      metrics:[{v:'80%',l:'Time saved'},{v:'14.3/15',l:'Avg quality'},{v:'€200K',l:'Annual savings'},{v:'92%',l:'Automation'},{v:'0',l:'Legal errors'},{v:'🏆',l:'Innovation Award'}],
+      end:'4 articles in 48h (vs 1 week normally). 50% at 15/15. 0 compliance errors. <strong>Innovation Award</strong> by PayFit.'
+    }
+  },
+  marathon:{
+    cat:'pro',icon:'🏃',color:'#30d158',
+    github:'https://github.com/venom6-13/scraping_marathonParis',
+    fr:{
+      name:'Marathon de Paris 2025 — 50 001 Finishers',
+      sub:'Python · Pipeline data complet · Février 2026',
+      tags:['Python','requests','pandas','Google Sheets','GitHub'],
+      ctx:'Le site officiel n\'offre aucune API publique. Via l\'inspecteur réseau (F12), nous avons <strong>reverse-engineeré une API interne non documentée</strong> pour collecter 50 001 coureurs.',
+      what:[
+        '<strong>Collecte</strong> : GET authentifié avec cookies PHPSESSID + headers user-agent',
+        '<strong>Nettoyage</strong> : 9 champs utiles sur ~40 du JSON brut · 4 variables calculées',
+        '<strong>Enrichissement</strong> : search_continent() · runner_cat() (catégorie FFA → sexe, âge)',
+        '<strong>Export</strong> : JSON + CSV → Google Sheets · 8 graphiques · 3 axes',
+        '<strong>Insight clé</strong> : les Africains courent 25min plus vite que les Asiatiques sur marathon'
+      ],
+      rh:'Chiffres clés',
+      metrics:[{v:'50 001',l:'Finishers analysés'},{v:'72%',l:'Hommes (levier: femmes)'},{v:'100+',l:'Nationalités'},{v:'5:28',l:'min/km africains'},{v:'71,9%',l:'Finishers FR'},{v:'1s/km',l:'Écart 18-34 vs 35-44'}],
+      end:'<strong>Reverse-engineering API</strong> : identifier et exploiter une API interne. Pipeline structuré en fonctions réutilisables. Conclusions business actionnables.'
+    },
+    en:{
+      name:'Paris Marathon 2025 — 50,001 Finishers',
+      sub:'Python · Full data pipeline · February 2026',
+      tags:['Python','requests','pandas','Google Sheets','GitHub'],
+      ctx:'The official site offers no public API. Through network inspector (F12), we <strong>reverse-engineered an undocumented internal API</strong> to collect 50,001 runners.',
+      what:[
+        '<strong>Collection</strong>: Authenticated GET with PHPSESSID cookies + user-agent headers',
+        '<strong>Cleaning</strong>: 9 useful fields from ~40 in raw JSON · 4 calculated variables',
+        '<strong>Enrichment</strong>: search_continent() · runner_cat() (FFA category → gender, age)',
+        '<strong>Export</strong>: JSON + CSV → Google Sheets · 8 charts · 3 axes',
+        '<strong>Key insight</strong>: African runners are 25min faster than Asians over a marathon'
+      ],
+      rh:'Key figures',
+      metrics:[{v:'50,001',l:'Finishers analyzed'},{v:'72%',l:'Male (female = growth lever)'},{v:'100+',l:'Nationalities'},{v:'5:28',l:'min/km African pace'},{v:'71.9%',l:'French finishers'},{v:'1s/km',l:'Gap 18-34 vs 35-44'}],
+      end:'<strong>API reverse-engineering</strong>: identifying and exploiting an undocumented internal API. Reusable pipeline. Actionable business conclusions.'
+    }
+  },
+  thelook:{
+    cat:'pro',icon:'📊',color:'#bf5af2',
+    github:'https://github.com/venom6-13/1_sql_thelook_ecommercet_audit',
+    fr:{
+      name:'TheLook E-Commerce — SQL Audit',
+      sub:'BigQuery Multi-CTE · 14 mois de données · 6 insights actionnables',
+      tags:['BigQuery','SQL','Looker Studio','Google Cloud'],
+      ctx:'Anomalie : <strong>+154% de CA</strong> et <strong>+163% de commandes</strong> en 14 mois, mais la rentabilité nette ne progresse pas. Les retours érodent silencieusement le P&L.',
+      what:[
+        '<strong>Multi-CTE</strong> : financial_monthly · sessions_monthly · retention_monthly',
+        '<strong>LEFT JOIN</strong> : exhaustivité garantie — aucun article exclu',
+        '<strong>SAFE_DIVIDE</strong> : robustesse production (NULL vs Division by zero)',
+        '<strong>Marge nette estimée</strong> : coûts logistiques retours (benchmark NRF 16.9%)',
+        '<strong>7 requêtes SQL</strong> : retours · genre · canal Email jan · focus Chine · Japon/Brésil'
+      ],
+      rh:'6 insights clés',
+      metrics:[{v:'30%',l:'Return rate moyen'},{v:'8 pts',l:'Marge femmes > hommes'},{v:'42%',l:'CA concentré Chine'},{v:'4.6%',l:'Record Brésil déc.'},{v:'~15%',l:'Japon (benchmark)'},{v:'Jan ☠️',l:'Email: 100% rebond ×2 ans'}],
+      end:'Réallouer 30% budget acquisition vers les femmes (+1.6 pts marge). Suspendre Email janvier. Localiser fiches Chine. <strong>Blueprint Brésil Q4</strong> à investiguer.'
+    },
+    en:{
+      name:'TheLook E-Commerce — SQL Audit',
+      sub:'BigQuery Multi-CTE · 14 months of data · 6 actionable insights',
+      tags:['BigQuery','SQL','Looker Studio','Google Cloud'],
+      ctx:'Anomaly: <strong>+154% revenue</strong> and <strong>+163% orders</strong> over 14 months, but net profitability isn\'t improving. Return rates silently erode P&L.',
+      what:[
+        '<strong>Multi-CTE</strong>: financial_monthly · sessions_monthly · retention_monthly',
+        '<strong>LEFT JOIN</strong>: complete data — no item excluded',
+        '<strong>SAFE_DIVIDE</strong>: production robustness (NULL vs Division by zero)',
+        '<strong>Estimated net margin</strong>: return logistics costs (NRF 16.9% benchmark)',
+        '<strong>7 SQL queries</strong>: returns · gender · Jan Email · China focus · Japan/Brazil'
+      ],
+      rh:'6 key insights',
+      metrics:[{v:'30%',l:'Avg return rate'},{v:'8 pts',l:'Women\'s margin > men\'s'},{v:'42%',l:'Revenue concentrated in China'},{v:'4.6%',l:'Brazil record Dec.'},{v:'~15%',l:'Japan (benchmark)'},{v:'Jan ☠️',l:'Email: 100% bounce ×2 years'}],
+      end:'Reallocate 30% acquisition budget to women (+1.6 margin pts). Suspend January Email. Localize China pages. Investigate <strong>Brazil Q4 blueprint</strong>.'
+    }
+  },
+  mirakl:{
+    cat:'pro',icon:'🏆',color:'#ff375f',
+    github:'https://github.com/CodeurFort/mirakl-prospector',
+    fr:{
+      name:'Hackathon Mirakl — Connect Prospector',
+      sub:'Next.js · GPT-4o · Supabase · Déployé sur Vercel en 48h',
+      tags:['Next.js','GPT-4o','Supabase','Apify','Vercel','Better Contact'],
+      ctx:'Les BDRs de <strong>Mirakl Connect</strong> (700+ opérateurs) passaient <strong>1h15 par lead</strong> en recherche manuelle. Ce temps n\'était pas consacré à la vente.',
+      what:[
+        '<strong>UC2-A (By Seller)</strong> : URL → scraping → catalogue → fit → 3 emails en <strong>6 secondes</strong>',
+        '<strong>UC2-B (By Marketplace)</strong> : filtres → scoring → liste leads priorisés',
+        '<strong>Grille 100 pts</strong> : Catégorie (28) · Géo (22) · Prix (16) · Positionnement (14) · Saisonnalité (10) · Signaux (10)',
+        '<strong>Outreach</strong> : méthode × angle × saisonnalité → GPT-4o personnalise selon culture marché',
+        '<strong>Déployé Vercel</strong> avec screenshots réels — pas des mockups'
+      ],
+      rh:'Impact business',
+      metrics:[{v:'×37',l:'Plus rapide (1h15→2min)'},{v:'-89%',l:'Coût/lead'},{v:'6¢',l:'Coût pipeline/lead'},{v:'+62 pts',l:'Temps vente'},{v:'6s',l:'Pipeline By Seller'},{v:'×2400',l:'ROI estimé'}],
+      end:'Conception produit de bout en bout : problème terrain → pipeline → scoring → outreach → jury. <strong>Sens business</strong> et impact quantifié.'
+    },
+    en:{
+      name:'Mirakl Hackathon — Connect Prospector',
+      sub:'Next.js · GPT-4o · Supabase · Deployed on Vercel in 48h',
+      tags:['Next.js','GPT-4o','Supabase','Apify','Vercel','Better Contact'],
+      ctx:'<strong>Mirakl Connect</strong> BDRs (700+ operators) spent <strong>1h15 per lead</strong> on manual research — time not spent selling.',
+      what:[
+        '<strong>UC2-A (By Seller)</strong>: URL → scraping → catalog → fit → 3 emails in <strong>6 seconds</strong>',
+        '<strong>UC2-B (By Marketplace)</strong>: filters → scoring → prioritized lead list',
+        '<strong>100-point grid</strong>: Category (28) · Geo (22) · Price (16) · Positioning (14) · Seasonality (10) · Signals (10)',
+        '<strong>Outreach</strong>: method × angle × seasonality → GPT-4o personalizes by market culture',
+        '<strong>Deployed Vercel</strong> with real screenshots — not mockups'
+      ],
+      rh:'Business impact',
+      metrics:[{v:'×37',l:'Faster (1h15→2min)'},{v:'-89%',l:'Cost/lead'},{v:'6¢',l:'Pipeline cost/lead'},{v:'+62 pts',l:'Sales time freed'},{v:'6s',l:'By Seller pipeline'},{v:'×2400',l:'Estimated ROI'}],
+      end:'End-to-end product design: field problem → pipeline → scoring → outreach → jury. <strong>Business thinking</strong> and quantified impact.'
+    }
+  },
 
-  {id:'payfit',name:'Hackathon PayFit',sub:'Content SEO automatisé · 2026',e:'⚡',cat:'pro',
-   g:'linear-gradient(150deg,#4A35C0,#9B4DDB)',
-   bdg:[{t:'aw',l:'🏆 Innovation Award'},{t:'act',l:'🟢 Actif'}],
-   tags:['Make.com','OpenAI GPT-4','Claude Sonnet','Docker'],
-   kpis:[{v:'-80%',l:'temps (2h→24min)'},{v:'14.3/15',l:'qualité moy.'},{v:'200K€',l:'/an éco.'}],
-   ctx:"PayFit : 2h par article expert, 1 rédacteur, 5h/semaine de veille juridique. Scaling impossible face à la concurrence IA.",
-   bullets:['4 agents orchestrés : Info-Radar · StrategicPlanner · SEO Writer · Quality Guardian','2 scénarios Make.com : Keyword Research + Question Generation','APIs réglementaires temps réel : URSSAF · Legifrance · DARES','Export multi-format : HTML · DOCX · PDF en 2 minutes'],
-   proof:"4 articles produits en 48h. 50% à 15/15. 0 erreur compliance. Innovation Award décerné par PayFit.",
-   gh:null},
-
-  {id:'eugenia',name:'Eugenia SEO/GEO/AEO',sub:'Audit Visibilité & Agents IA',e:'🔍',cat:'pro',
-   g:'linear-gradient(150deg,#1A8A3C,#30D158)',
-   bdg:[{t:'act',l:'🟢 Actif'}],
-   tags:['Dust','SEMrush','ChatGPT','Webflow'],
-   kpis:[{v:'4',l:'agents IA'},{v:'3 jours',l:'livrable'},{v:'13/15',l:'qualité garantie'}],
-   ctx:"Eugenia School : inexistante sur Google et dans les LLMs malgré Microsoft, Mistral AI, Grenoble EM comme partenaires.",
-   bullets:['Audit 3 surfaces : SEO · GEO (ChatGPT/Perplexity) · AEO (Featured Snippets)','4 agents Dust : Lundi Édito · Veille & Découverte · Coordinateur · Rédacteur','Quick win 0€ : page Bachelor IA → Top 20 potentiel en 6 semaines','Livrables : prompts, fiche Webflow, calendrier 7 semaines'],
-   proof:"Machine opérationnelle livrée en 3 jours : agents configurés, prompts rédigés, calendrier daté.",
-   gh:null},
-
-  {id:'thelook',name:'TheLook SQL Audit',sub:'Profitability & Return Rate · BigQuery',e:'📊',cat:'pro',
-   g:'linear-gradient(150deg,#C05A00,#FF9F0A)',
-   bdg:[{t:'gh',l:'⌨️ GitHub'}],
-   tags:['BigQuery','SQL','Looker Studio'],
-   kpis:[{v:'6',l:'insights clés'},{v:'14 mois',l:'de data'},{v:'30%',l:'return rate'}],
-   ctx:"+154% CA sur 14 mois mais rentabilité stagnante. Les retours érodent silencieusement le P&L.",
-   bullets:['Architecture Multi-CTE : 1 CTE par dimension métier','LEFT JOIN pour exhaustivité · SAFE_DIVIDE pour robustesse production','7 requêtes SQL : retours · genre · Email · focus Chine','Recommandations chiffrées et actionnables'],
-   proof:"Réallouer 30% budget vers les femmes (+1.6 pts marge). Suspendre les Email de janvier. Blueprint Brésil Q4.",
-   gh:'https://github.com/venom6-13/1_sql_thelook_ecommercet_audit'},
-
-  {id:'marathon',name:'Marathon Paris 2025',sub:'Data pipeline · 50 001 finishers',e:'🏃',cat:'pro',
-   g:'linear-gradient(150deg,#B01010,#FF453A)',
-   bdg:[{t:'gh',l:'⌨️ GitHub'}],
-   tags:['Python','requests','pandas','Google Sheets'],
-   kpis:[{v:'50 001',l:'finishers'},{v:'100+',l:'nationalités'},{v:'8',l:'visualisations'}],
-   ctx:"Le site officiel n'a aucune API publique. Via F12 : identification d'une API interne non documentée.",
-   bullets:['Collecte : requête GET authentifiée (cookies PHPSESSID + headers)','Nettoyage : 9 champs utiles · 4 variables calculées','Enrichissement : continent, sexe, tranche d\'âge (normes FFA)','8 graphiques sur 3 axes : démographie · performance · géographie'],
-   proof:"Reverse-engineering d'API. Insight : 72% d'hommes, levier acquisition femmes inexploité.",
-   gh:'https://github.com/venom6-13/scraping_marathonParis'},
-
-  {id:'taskmaster',name:'Weekly Task Master',sub:'Automatisation · Google Workspace',e:'📅',cat:'perso',
-   g:'linear-gradient(150deg,#007A78,#30D5C8)',
-   bdg:[{t:'act',l:'🟢 Actif'},{t:'gh',l:'⌨️ GitHub'}],
-   tags:['Apps Script','JavaScript ES6','GmailApp','CalendarApp'],
-   kpis:[{v:'4',l:'piliers auto.'},{v:'0',l:'dépendance ext.'},{v:'100%',l:'Workspace'}],
-   ctx:"Planifier sa semaine est chronophage. L'idée : un outil entièrement Google Workspace, sans dépendance externe.",
-   bullets:['Planification : formulaire HTML depuis Sheets, Task Library, création auto Agenda','Vérification : trigger 23h, marquage ✅/❌, archivage avec déduplication','Email hebdo : dimanche 20h — taux, XP, rang, bouton relance','Briefing matinal : 8h — tâches accomplies + programme du jour'],
-   proof:"Système de bout en bout, front-end ↔ serveur sans framework, email HTML cross-client, architecture modulaire.",
-   gh:'https://github.com/venom6-13/weekly-task-master_appscript'},
-
-  {id:'aiagents',name:'AI Agent Ecosystem',sub:'9 agents Dust × Claude Anthropic',e:'🤖',cat:'perso',
-   g:'linear-gradient(150deg,#3D35A0,#BF5AF2)',
-   bdg:[{t:'act',l:'🟢 Actif'},{t:'ds',l:'✨ Dust'}],
-   tags:['Prompt Engineering','Dust','Claude','Chain-of-thought'],
-   kpis:[{v:'9',l:'agents'},{v:'<3h',l:'brief complet'},{v:'Go ✅',l:'go/no-go'}],
-   ctx:"Principe : la spécialisation produit de la profondeur. Un agent = une expertise = un livrable.",
-   bullets:['9 agents : ProjectMaster · Benchmark · CTO Tech · ProductCraft · FinanceMaster · MarketingMaster · RoadmapManager · NotionMaster · StrategyMaster CEO','Cas test CoachConnect : brief, concurrents, stack, wireframes, budget, roadmap 12 semaines, workspace Notion','Outputs structurés via XML + chain-of-thought','De l\'idée au go/no-go complet en <3h'],
-   proof:"Spécialisation des agents, prompt engineering avancé, orchestration multi-agents sans outil dédié.",
-   gh:null},
-];
-
-const i18n={
-  fr:{'appname':'Projets','finder-hint':'Double-cliquez sur un projet pour l\'explorer','new-msg':'Nouveau message','from-label':'De :','email-label':'Email :','mail-hint':'Ouvrira votre client mail','send-btn':'Envoyer','contact-lbl':'Message'},
-  en:{'appname':'Projects','finder-hint':'Double-click a project to explore it','new-msg':'New message','from-label':'From:','email-label':'Email:','mail-hint':'Will open your mail client','send-btn':'Send','contact-lbl':'Message'},
+  // ── PERSO ──
+  taskmaster:{
+    cat:'perso',icon:'✅',color:'#30d158',
+    github:null,
+    fr:{
+      name:'Weekly Task Master',
+      sub:'Automatisation Google Workspace · 0 dépendances externes',
+      tags:['Google Apps Script','Google Sheets','Gmail','Google Calendar','Notion'],
+      ctx:'Face à l\'accumulation de tâches non suivies et de réunions sans action concrète, j\'ai conçu un système d\'automatisation <strong>entièrement auto-hébergé</strong> sur Google Workspace — sans aucun outil tiers payant.',
+      what:[
+        '<strong>Pilier 1 — Capture</strong> : formulaire Google auto-injecté chaque lundi matin dans Gmail',
+        '<strong>Pilier 2 — Organisation</strong> : Google Sheet central avec statuts, priorités, deadlines',
+        '<strong>Pilier 3 — Rappels</strong> : script Apps Script envoie des résumés automatiques vendredi 18h',
+        '<strong>Pilier 4 — Revue</strong> : dashboard hebdomadaire auto-généré avec KPIs et taux de complétion',
+        '<strong>0 dépendances</strong> : pas de Zapier, pas de Make — 100% Google natif'
+      ],
+      rh:'Résultats personnels',
+      metrics:[{v:'0€',l:'Coût infra'},{v:'4',l:'Piliers système'},{v:'100%',l:'Tâches trackées'},{v:'0',l:'Outils externes'},{v:'-60%',l:'Tâches oubliées'},{v:'∞',l:'Scalable'}],
+      end:'Un système de productivité <strong>réellement utilisé au quotidien</strong>, entièrement construit sur des outils déjà disponibles. Zéro friction, zéro coût.'
+    },
+    en:{
+      name:'Weekly Task Master',
+      sub:'Google Workspace automation · 0 external dependencies',
+      tags:['Google Apps Script','Google Sheets','Gmail','Google Calendar','Notion'],
+      ctx:'To tackle accumulating untracked tasks and meetings without follow-up, I designed a <strong>fully self-hosted</strong> automation system on Google Workspace — with no paid third-party tools.',
+      what:[
+        '<strong>Pillar 1 — Capture</strong>: Google form auto-injected every Monday morning in Gmail',
+        '<strong>Pillar 2 — Organization</strong>: Central Google Sheet with statuses, priorities, deadlines',
+        '<strong>Pillar 3 — Reminders</strong>: Apps Script sends auto summaries every Friday at 6pm',
+        '<strong>Pillar 4 — Review</strong>: Auto-generated weekly dashboard with KPIs and completion rate',
+        '<strong>0 dependencies</strong>: no Zapier, no Make — 100% native Google'
+      ],
+      rh:'Personal results',
+      metrics:[{v:'€0',l:'Infra cost'},{v:'4',l:'System pillars'},{v:'100%',l:'Tasks tracked'},{v:'0',l:'External tools'},{v:'-60%',l:'Forgotten tasks'},{v:'∞',l:'Scalable'}],
+      end:'A productivity system <strong>actually used daily</strong>, built entirely on already-available tools. Zero friction, zero cost.'
+    }
+  },
+  aiagent:{
+    cat:'perso',icon:'🤖',color:'#bf5af2',
+    github:null,
+    fr:{
+      name:'AI Agent Ecosystem — 9 agents Dust × Claude',
+      sub:'Écosystème d\'agents spécialisés · Usage quotidien',
+      tags:['Dust','Claude Sonnet','Anthropic','Prompt Engineering','RAG'],
+      ctx:'J\'ai conçu et déployé un écosystème de <strong>9 agents IA spécialisés</strong> sur Dust, chacun expert dans un domaine précis de mon activité quotidienne — du brainstorming à la production de contenu en passant par l\'analyse de données.',
+      what:[
+        '<strong>Agent Stratège</strong> : analyse de problématiques business et recommandations actionnables',
+        '<strong>Agent Rédacteur</strong> : production de contenu long-format avec grille qualité auto-évaluée',
+        '<strong>Agent Data</strong> : interprétation de datasets SQL/CSV et insights visuels',
+        '<strong>Agent RevOps</strong> : optimisation de processus CRM et workflows Salesforce',
+        '<strong>Agent Veille</strong> : monitoring concurrentiel et synthèse d\'actualités IA'
+      ],
+      rh:'Architecture de l\'écosystème',
+      metrics:[{v:'9',l:'Agents spécialisés'},{v:'Daily',l:'Usage quotidien'},{v:'Claude',l:'Moteur IA'},{v:'RAG',l:'Knowledge enrichie'},{v:'0€',l:'Coût (plan Dust)'}],
+      end:'Un <strong>assistant personnel augmenté</strong> qui remplace 5 outils différents. Chaque agent a sa propre personnalité, ses propres instructions, et son propre corpus de connaissances.'
+    },
+    en:{
+      name:'AI Agent Ecosystem — 9 Dust × Claude Agents',
+      sub:'Specialized agent ecosystem · Daily use',
+      tags:['Dust','Claude Sonnet','Anthropic','Prompt Engineering','RAG'],
+      ctx:'I designed and deployed an ecosystem of <strong>9 specialized AI agents</strong> on Dust, each expert in a specific domain of my daily work — from brainstorming to content production and data analysis.',
+      what:[
+        '<strong>Strategy Agent</strong>: business problem analysis and actionable recommendations',
+        '<strong>Writer Agent</strong>: long-form content production with auto-evaluated quality grid',
+        '<strong>Data Agent</strong>: SQL/CSV dataset interpretation and visual insights',
+        '<strong>RevOps Agent</strong>: CRM process optimization and Salesforce workflows',
+        '<strong>Watch Agent</strong>: competitive monitoring and AI news synthesis'
+      ],
+      rh:'Ecosystem architecture',
+      metrics:[{v:'9',l:'Specialized agents'},{v:'Daily',l:'Daily usage'},{v:'Claude',l:'AI engine'},{v:'RAG',l:'Enriched knowledge'},{v:'€0',l:'Cost (Dust plan)'}],
+      end:'An <strong>augmented personal assistant</strong> that replaces 5 different tools. Each agent has its own personality, instructions, and knowledge corpus.'
+    }
+  }
 };
 
-let sel=null, cur=null, fFilter='all', ctxTarget=null, lastClick=0;
-let lang=localStorage.getItem('lang')||'fr';
-let siriOpen=false, siriInited=false;
+/* ════════════════════════════════
+   STATE
+   ════════════════════════════════ */
+let lang = localStorage.getItem('lang') || 'fr';
+let currentFolder = null; // 'pro' | 'perso' | null
+let currentProj = null;
+let siriOpen = false;
 
-/* ══ ICONS ══ */
-function renderIcons(){
-  const grid=document.getElementById('iconsGrid');
-  grid.innerHTML='';
-  P.forEach(p=>{
-    const el=document.createElement('div');
-    el.className='proj-icon';el.id='icon-'+p.id;el.dataset.id=p.id;
-    const topBdg=p.bdg.find(b=>b.t==='aw')||p.bdg[0];
-    el.innerHTML=`
-      <div class="picon-wrap">
-        <div class="picon-img" style="background:${p.g}">
-          <span class="picon-emoji">${p.e}</span>
-        </div>
-      </div>
-      <div class="picon-name">${p.name}</div>`;
-    el.addEventListener('click',e=>{e.stopPropagation();handleClick(p.id);});
-    el.addEventListener('dblclick',e=>{e.stopPropagation();openProj(p.id);});
-    el.addEventListener('contextmenu',e=>{e.preventDefault();e.stopPropagation();showCtx(e,p.id);});
-    grid.appendChild(el);
+/* ════════════════════════════════
+   CLOCK
+   ════════════════════════════════ */
+function tick(){
+  const n = new Date();
+  document.getElementById('mbTime').textContent =
+    `${String(n.getHours()).padStart(2,'0')}:${String(n.getMinutes()).padStart(2,'0')}`;
+}
+tick(); setInterval(tick,10000);
+
+/* ════════════════════════════════
+   DRAG & DROP — FOLDER ICONS
+   ════════════════════════════════ */
+function makeDraggable(el){
+  let dragging=false, ox=0, oy=0, startX=0, startY=0, moved=false;
+  const desk = document.getElementById('desktop');
+
+  const start = (cx,cy) => {
+    dragging=true; moved=false;
+    const rect = el.getBoundingClientRect();
+    ox = cx - rect.left - rect.width/2;
+    oy = cy - rect.top - rect.height/2;
+    startX=cx; startY=cy;
+    el.classList.add('dragging');
+    el.style.transition='none';
+    el.style.zIndex=100;
+  };
+  const move = (cx,cy) => {
+    if(!dragging)return;
+    const dx=cx-startX, dy=cy-startY;
+    if(Math.abs(dx)+Math.abs(dy)>4) moved=true;
+    const dr = desk.getBoundingClientRect();
+    const x = ((cx - ox - dr.left) / dr.width * 100);
+    const y = ((cy - oy - dr.top) / dr.height * 100);
+    const clampX = Math.max(6, Math.min(94, x));
+    const clampY = Math.max(6, Math.min(94, y));
+    el.style.left = clampX+'%';
+    el.style.top = clampY+'%';
+    el.style.transform='translate(-50%,-50%)';
+  };
+  const end = (cx,cy) => {
+    if(!dragging)return;
+    dragging=false;
+    el.classList.remove('dragging');
+    el.style.transition='';
+    el.style.zIndex='';
+    if(!moved){
+      // Was a click → open folder
+      const id = el.id.replace('folder-','');
+      openFolder(id);
+    }
+  };
+
+  el.addEventListener('mousedown', e=>{e.preventDefault(); start(e.clientX,e.clientY);});
+  document.addEventListener('mousemove', e=>{ if(dragging) move(e.clientX,e.clientY); });
+  document.addEventListener('mouseup', e=>{ end(e.clientX,e.clientY); });
+
+  el.addEventListener('touchstart', e=>{
+    const t=e.touches[0];
+    e.preventDefault();
+    start(t.clientX,t.clientY);
+  },{passive:false});
+  document.addEventListener('touchmove', e=>{
+    if(!dragging)return;
+    const t=e.touches[0];
+    move(t.clientX,t.clientY);
+  },{passive:true});
+  document.addEventListener('touchend', e=>{
+    const t=e.changedTouches[0];
+    end(t.clientX,t.clientY);
   });
 }
 
-function handleClick(id){
-  const now=Date.now();
-  if(sel===id&&now-lastClick<500){openProj(id);return;}
-  lastClick=now;
-  document.querySelectorAll('.proj-icon').forEach(el=>el.classList.remove('selected'));
-  document.getElementById('icon-'+id)?.classList.add('selected');
-  sel=id;
-}
+makeDraggable(document.getElementById('folder-pro'));
+makeDraggable(document.getElementById('folder-perso'));
 
-function deselectAll(e){
-  if(['desktop','iconsGrid'].includes(e.target.id)){
-    document.querySelectorAll('.proj-icon').forEach(el=>el.classList.remove('selected'));
-    sel=null;
+/* ════════════════════════════════
+   FOLDER OPEN / CLOSE
+   ════════════════════════════════ */
+const FOLDER_DATA = {
+  pro:{
+    icon:'📁',
+    fr:'Projets Pro',
+    en:'Pro Projects',
+    projects:['mirakl','payfit','seo','marathon','thelook']
+  },
+  perso:{
+    icon:'📂',
+    fr:'Projets Perso',
+    en:'Personal Projects',
+    projects:['taskmaster','aiagent']
   }
-  closeCtxMenu();
+};
+
+function openFolder(cat){
+  currentFolder = cat;
+  currentProj = null;
+  const fd = FOLDER_DATA[cat];
+  const finder = document.getElementById('finder');
+  document.getElementById('finder-ico').textContent = fd.icon;
+  document.getElementById('finder-name').textContent = fd[lang];
+  renderSidebar(cat);
+  renderEmptyContent();
+  finder.classList.add('open');
 }
 
-/* ══ FINDER ══ */
-function openProj(id){
-  const p=P.find(x=>x.id===id);if(!p)return;
-  cur=id;
-  document.getElementById('finderTitle').textContent=p.name;
-  renderSb();showDetail(id);
-  document.getElementById('finderWin').classList.add('open');
-  document.getElementById('finderEmpty').style.display='none';
+function closeFolder(){
+  document.getElementById('finder').classList.remove('open');
+  currentFolder = null;
+  currentProj = null;
 }
 
-function closeFinder(){document.getElementById('finderWin').classList.remove('open');cur=null;}
-
-function renderSb(){
-  const sb=document.getElementById('finderSb');
-  sb.innerHTML=`
-    <div class="sb-sec">Favoris</div>
-    <div class="sb-row" onclick="closeFinder()"><span class="sb-icon">🏠</span><span class="sb-label">Accueil</span></div>
-    <div class="sb-sep"></div>
-    <div class="sb-sec">Catégories</div>
-    <div class="sb-row ${fFilter==='all'?'on':''}" onclick="setFFilter('all')"><span class="sb-icon">📁</span><span class="sb-label">Tous</span><span class="sb-cnt">7</span></div>
-    <div class="sb-row ${fFilter==='pro'?'on':''}" onclick="setFFilter('pro')"><span class="sb-icon">💼</span><span class="sb-label">Pro</span><span class="sb-cnt">5</span></div>
-    <div class="sb-row ${fFilter==='perso'?'on':''}" onclick="setFFilter('perso')"><span class="sb-icon">🎨</span><span class="sb-label">Perso</span><span class="sb-cnt">2</span></div>
-    <div class="sb-sep"></div>
-    <div class="sb-sec">Projets</div>
-    ${P.map(p=>`<div class="sb-row ${cur===p.id?'on':''}" onclick="showDetail('${p.id}')"><span class="sb-icon">${p.e}</span><span class="sb-label">${p.name}</span></div>`).join('')}`;
+function renderSidebar(cat){
+  const sidebar = document.getElementById('finderSidebar');
+  const fd = FOLDER_DATA[cat];
+  const lbl = lang==='fr' ? 'Projets' : 'Projects';
+  let html = `<div class="finder-sidebar-title">${lbl}</div>`;
+  fd.projects.forEach(pid=>{
+    const p = PROJECTS[pid];
+    const d = p[lang];
+    const short = d.name.length>22 ? d.name.substring(0,22)+'…' : d.name;
+    html += `<div class="finder-proj-item${currentProj===pid?' active':''}" onclick="selectProject('${pid}')" id="si-${pid}">
+      <span class="pico">${p.icon}</span>
+      <span>${short}</span>
+    </div>`;
+  });
+  sidebar.innerHTML = html;
 }
 
-function setFFilter(cat){
-  fFilter=cat;
-  document.querySelectorAll('.cat-pill').forEach(el=>el.classList.toggle('on',el.dataset.cat===cat));
-  renderSb();
+function renderEmptyContent(){
+  const lbl = lang==='fr' ? 'Sélectionnez un projet' : 'Select a project';
+  document.getElementById('finderContent').innerHTML = `
+    <div class="finder-empty">
+      <div class="e-ico">📂</div>
+      <p>${lbl}</p>
+    </div>`;
 }
 
-function showDetail(id){
-  const p=P.find(x=>x.id===id);if(!p)return;
-  cur=id;document.getElementById('finderTitle').textContent=p.name;renderSb();
-  const bm={aw:'b-aw',act:'b-act',gh:'b-gh',ds:'b-ds'};
-  const main=document.getElementById('finderMain');
-  main.innerHTML=`<div class="proj-detail show">
-    <div class="pd-hero">
-      <div class="pd-icon" style="background:${p.g}">${p.e}</div>
-      <div>
-        <div class="pd-title">${p.name}</div>
-        <div class="pd-sub">${p.sub}</div>
-        <div class="pd-badges">
-          <span class="pd-bdg" style="background:${p.cat==='pro'?'rgba(0,122,255,.12);color:#007AFF':'rgba(175,82,222,.12);color:#AF52DE'}">${p.cat==='pro'?'💼 Pro':'🎨 Perso'}</span>
-          ${p.bdg.map(b=>`<span class="pd-bdg ${bm[b.t]||''}">${b.l}</span>`).join('')}
+function selectProject(pid){
+  currentProj = pid;
+  // Update sidebar active
+  document.querySelectorAll('.finder-proj-item').forEach(el=>{
+    el.classList.toggle('active', el.id===`si-${pid}`);
+  });
+  renderProjectDetail(pid);
+}
+
+function renderProjectDetail(pid){
+  const p = PROJECTS[pid];
+  const d = p[lang];
+  const ctxH = lang==='fr'?'Contexte':'Context';
+  const whatH = lang==='fr'?'Ce que j\'ai fait':'What I built';
+  const endH = lang==='fr'?'Impact':'Impact';
+  const ghLbl = lang==='fr'?'Voir sur GitHub':'View on GitHub';
+
+  const metrics = d.metrics.map(m=>`
+    <div class="pd-metric">
+      <div class="pd-mval" style="color:${p.color}">${m.v}</div>
+      <div class="pd-mlbl">${m.l}</div>
+    </div>`).join('');
+  const tags = d.tags.map(t=>`<span class="pd-tag">${t}</span>`).join('');
+  const what = d.what.map(w=>`<li>${w}</li>`).join('');
+  const gh = p.github ? `<a href="${p.github}" target="_blank" class="pd-btn">⌨️ ${ghLbl}</a>` : '';
+
+  document.getElementById('finderContent').innerHTML = `
+    <div class="proj-detail">
+      <div class="pd-hero">
+        <div class="pd-emoji">${p.icon}</div>
+        <div class="pd-titles">
+          <div class="pd-name">${d.name}</div>
+          <div class="pd-sub">${d.sub}</div>
+          <div class="pd-tags">${tags}</div>
         </div>
       </div>
-    </div>
-    <div class="pd-tags">${p.tags.map(t=>`<span class="pd-tag">${t}</span>`).join('')}</div>
-    <div class="pd-sec">Contexte</div>
-    <p class="pd-text">${p.ctx}</p>
-    <div class="pd-sec">Ce que j'ai fait</div>
-    <ul class="pd-ul">${p.bullets.map(b=>`<li>${b}</li>`).join('')}</ul>
-    <div class="pd-sec">KPIs</div>
-    <div class="pd-kpis">${p.kpis.map(k=>`<div class="pd-kpi"><div class="pd-kval">${k.v}</div><div class="pd-klbl">${k.l}</div></div>`).join('')}</div>
-    <div class="pd-sec">Ce que ça démontre</div>
-    <div class="pd-proof"><p>${p.proof}</p></div>
-    ${p.gh?`<a href="${p.gh}" target="_blank" class="pd-link">⌨️ Voir sur GitHub</a>`:''}
-  </div>`;
+
+      <div class="pd-section-h">${ctxH}</div>
+      <p class="pd-text">${d.ctx}</p>
+
+      <div class="pd-section-h">${whatH}</div>
+      <ul class="pd-list">${what}</ul>
+
+      <div class="pd-section-h">${d.rh}</div>
+      <div class="pd-metrics">${metrics}</div>
+
+      <div class="pd-section-h">${endH}</div>
+      <p class="pd-text">${d.end}</p>
+      ${gh}
+    </div>`;
 }
 
-document.querySelectorAll('.cat-pill').forEach(btn=>{
-  btn.addEventListener('click',()=>setFFilter(btn.dataset.cat));
+/* ════════════════════════════════
+   SIRI
+   ════════════════════════════════ */
+const SIRI_KB = {
+  fr:{
+    projets:'Alec a 7 projets : 5 pro (Mirakl, PayFit, Eugenia SEO, Marathon Paris, TheLook SQL) et 2 perso (Weekly Task Master, AI Agent Ecosystem). Clique sur un dossier pour explorer ! 📁',
+    stack:'Son stack : Salesforce, HubSpot, Make.com, N8N, Dust, GPT-4o, Claude, SQL, BigQuery, Python, Next.js, Supabase, Vercel. Un vrai couteau suisse RevOps + IA ! 🛠️',
+    contact:'Tu peux contacter Alec par email : alecrudydiami@gmail.com, sur LinkedIn : linkedin.com/in/alec-diamidia, ou sur GitHub : github.com/venom6-13. 📬',
+    hackathon:'Alec a participé à 2 hackathons récents : Mirakl (pipeline BDR ×37 plus rapide, ROI ×2400) et PayFit 2026 (🏆 Innovation Award, 80% temps économisé, 14.3/15 qualité). Impressionnant non ? 🏆',
+    default:'Je suis Siri. Je connais tout sur Alec DIAMIDIA. Pose-moi une question sur ses projets, son stack, ses hackathons ou comment le contacter ! ✦'
+  },
+  en:{
+    projets:'Alec has 7 projects: 5 pro (Mirakl, PayFit, Eugenia SEO, Paris Marathon, TheLook SQL) and 2 personal (Weekly Task Master, AI Agent Ecosystem). Click a folder to explore! 📁',
+    stack:'His stack: Salesforce, HubSpot, Make.com, N8N, Dust, GPT-4o, Claude, SQL, BigQuery, Python, Next.js, Supabase, Vercel. A true RevOps + AI Swiss army knife! 🛠️',
+    contact:'You can reach Alec by email: alecrudydiami@gmail.com, on LinkedIn: linkedin.com/in/alec-diamidia, or GitHub: github.com/venom6-13. 📬',
+    hackathon:'Alec joined 2 recent hackathons: Mirakl (BDR pipeline ×37 faster, ×2400 ROI) and PayFit 2026 (🏆 Innovation Award, 80% time saved, 14.3/15 quality). Impressive right? 🏆',
+    default:'I\'m Siri. I know everything about Alec DIAMIDIA. Ask me about his projects, stack, hackathons or how to contact him! ✦'
+  }
+};
+
+function siriAsk(topic){
+  const kb = SIRI_KB[lang];
+  const resp = kb[topic] || kb.default;
+  document.getElementById('siriOutput').textContent = resp;
+}
+
+function siriSend(){
+  const input = document.getElementById('siriInput');
+  const q = input.value.trim().toLowerCase();
+  if(!q) return;
+  const kb = SIRI_KB[lang];
+  let resp = kb.default;
+  if(/projet|project/i.test(q)) resp = kb.projets;
+  else if(/stack|outil|tool|techno/i.test(q)) resp = kb.stack;
+  else if(/contact|email|linkedin|joindre|reach/i.test(q)) resp = kb.contact;
+  else if(/hackathon|mirakl|payfit|award/i.test(q)) resp = kb.hackathon;
+  document.getElementById('siriOutput').textContent = resp;
+  input.value = '';
+}
+
+function toggleSiri(){
+  siriOpen = !siriOpen;
+  document.getElementById('siriOv').classList.toggle('open', siriOpen);
+  if(siriOpen) document.getElementById('siriInput').focus();
+}
+function closeSiri(){
+  siriOpen = false;
+  document.getElementById('siriOv').classList.remove('open');
+}
+
+document.getElementById('siriBtn').addEventListener('click', toggleSiri);
+document.getElementById('siriInput').addEventListener('keydown', e=>{
+  if(e.key==='Enter') siriSend();
 });
 
-/* ══ CONTACT ══ */
-function openContact(){
-  document.getElementById('contactWin').classList.add('open');
-  closeCtxMenu();
-}
-function closeContact(){document.getElementById('contactWin').classList.remove('open');}
-function submitContact(){
-  const name=document.getElementById('cwName').value.trim();
-  const email=document.getElementById('cwEmail').value.trim();
-  const msg=document.getElementById('cwMsg').value.trim();
-  if(!msg){alert('Merci d\'écrire un message.');return;}
-  const subject=encodeURIComponent(`Message de${name?' '+name:''} — Portfolio Alec DIAMIDIA`);
-  const body=encodeURIComponent(`${name?'Nom : '+name+'\n':''}${email?'Email : '+email+'\n':''}${name||email?'\n':''}Message :\n${msg}`);
-  window.location.href=`mailto:alecrudydiami@gmail.com?subject=${subject}&body=${body}`;
-  closeContact();
-}
+/* ════════════════════════════════
+   LANG
+   ════════════════════════════════ */
+const UI = {
+  fr:{'d-home':'Accueil','d-pro':'Projets Pro','d-perso':'Projets Perso','desktopHint':'Double-cliquez pour ouvrir • Glissez pour déplacer','flabel-pro':'📊 Projets Pro','flabel-perso':'🎨 Projets Perso'},
+  en:{'d-home':'Home','d-pro':'Pro Projects','d-perso':'Personal Projects','desktopHint':'Double-click to open • Drag to move','flabel-pro':'📊 Pro Projects','flabel-perso':'🎨 Personal Projects'}
+};
 
-/* ══ QUICKLOOK ══ */
-function showQL(id){
-  const p=P.find(x=>x.id===id||x.id===sel);if(!p)return;
-  document.getElementById('qlCard').innerHTML=`
-    <div class="ql-h">
-      <div class="ql-icon" style="background:${p.g}">${p.e}</div>
-      <div><div class="ql-title">${p.name}</div><div class="ql-sub">${p.sub}</div></div>
-    </div>
-    <div class="ql-kpis">${p.kpis.map(k=>`<div class="ql-kpi"><div class="ql-kval">${k.v}</div><div class="ql-klbl">${k.l}</div></div>`).join('')}</div>
-    <div class="ql-tags">${p.tags.slice(0,4).map(t=>`<span class="ql-tag">${t}</span>`).join('')}</div>
-    <div class="ql-hint">Espace pour fermer · Double-clic pour ouvrir</div>`;
-  document.getElementById('qlOverlay').classList.add('open');
-}
-function closeQL(){document.getElementById('qlOverlay').classList.remove('open');}
-
-/* ══ CONTEXT MENU ══ */
-function showCtx(e,id){
-  ctxTarget=id;
-  const m=document.getElementById('ctxMenu');
-  m.style.display='block';
-  m.style.left=Math.min(e.clientX,window.innerWidth-190)+'px';
-  m.style.top=Math.min(e.clientY,window.innerHeight-160)+'px';
-}
-function closeCtxMenu(){document.getElementById('ctxMenu').style.display='none';}
-function ctxOpen(){if(ctxTarget)openProj(ctxTarget);closeCtxMenu();}
-function ctxQL(){if(ctxTarget)showQL(ctxTarget);closeCtxMenu();}
-function handleDesktopCtx(e){e.preventDefault();closeCtxMenu();}
-
-/* ══ SPOTLIGHT ══ */
-function spotlightOpen(){
-  document.getElementById('spotlightOverlay').classList.add('open');
-  setTimeout(()=>document.getElementById('spotInput').focus(),80);
-}
-function spotlightClose(){document.getElementById('spotlightOverlay').classList.remove('open');document.getElementById('spotResults').innerHTML='';}
-function spotSearch(){
-  const q=document.getElementById('spotInput').value.trim().toLowerCase();
-  const el=document.getElementById('spotResults');
-  if(!q){el.innerHTML='';return;}
-  const matches=P.filter(p=>p.name.toLowerCase().includes(q)||p.sub.toLowerCase().includes(q)||p.tags.some(t=>t.toLowerCase().includes(q)));
-  el.innerHTML=matches.length
-    ?`<div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.3);padding:10px 18px 4px;">Projets</div>`+matches.map(p=>`
-      <div class="spot-item" onclick="spotlightClose();openProj('${p.id}')">
-        <div class="spot-iicon" style="background:${p.g}">${p.e}</div>
-        <div><div class="spot-ititle">${p.name}</div><div class="spot-isub">${p.sub}</div></div>
-      </div>`).join('')
-    :`<div class="spot-empty">Aucun résultat pour "${q}"</div>`;
-}
-
-/* ══ SIRI (simplifié) ══ */
-const SIRI_INTENTS=[
-  {r:/mirakl|bdr|pipeline|lead|prospection|rocket/i, pid:'mirakl'},
-  {r:/payfit|award|innovation|seo.*auto/i, pid:'payfit'},
-  {r:/eugenia|seo|geo|aeo|llm|visibilité/i, pid:'eugenia'},
-  {r:/thelook|sql|bigquery|retail|ecommerce/i, pid:'thelook'},
-  {r:/marathon|paris|runner|50.?001/i, pid:'marathon'},
-  {r:/task|agenda|apps script|automatisation perso/i, pid:'taskmaster'},
-  {r:/agent|ecosystem|dust|claude|9 agent/i, pid:'aiagents'},
-];
-
-function siriToggle(){
-  siriOpen=!siriOpen;
-  document.getElementById('siriOverlay').classList.toggle('open',siriOpen);
+function setLang(l){
+  lang = l;
+  localStorage.setItem('lang', l);
+  document.querySelectorAll('.lang-btn').forEach(b=>
+    b.classList.toggle('active', b.textContent.toLowerCase()===l)
+  );
+  // Update i18n elements
+  document.querySelectorAll('[data-i18n]').forEach(el=>{
+    const k = el.getAttribute('data-i18n');
+    if(UI[l][k]) el.textContent = UI[l][k];
+  });
+  // Update folder labels
+  ['pro','perso'].forEach(c=>{
+    const el = document.getElementById(`flabel-${c}`);
+    if(el && UI[l][`flabel-${c}`]) el.textContent = UI[l][`flabel-${c}`];
+  });
+  // Update Siri output
   if(siriOpen){
-    if(!siriInited){
-      siriInited=true;
-      siriBot("Bonjour ! Je suis Siri. Demandez-moi d'ouvrir un projet, ou posez une question sur Alec.");
-      setTimeout(()=>siriSuggs(["Ouvre Mirakl 🏆","Projets data 📊","Qui est Alec ?","Le contacter ✉️"]),1100);
-    }
-    setTimeout(()=>document.getElementById('siriInput').focus(),300);
+    document.getElementById('siriOutput').textContent =
+      l==='fr' ? 'Bonjour ! Je suis Siri. Demande-moi quelque chose sur Alec.' : 'Hello! I\'m Siri. Ask me anything about Alec.';
+  }
+  // Re-render finder if open
+  if(currentFolder){
+    document.getElementById('finder-name').textContent = FOLDER_DATA[currentFolder][l];
+    renderSidebar(currentFolder);
+    if(currentProj) renderProjectDetail(currentProj);
+    else renderEmptyContent();
   }
 }
 
-function siriBot(text){
-  const msgs=document.getElementById('siriMsgs');
-  const b=document.createElement('div');b.className='siri-bubble bot';
-  b.textContent='…';msgs.appendChild(b);msgs.scrollTop=msgs.scrollHeight;
-  setTimeout(()=>{b.textContent=text;msgs.scrollTop=msgs.scrollHeight;},700+Math.random()*400);
-}
+/* ════════════════════════════════
+   ESCAPE KEY
+   ════════════════════════════════ */
+document.addEventListener('keydown', e=>{
+  if(e.key==='Escape'){
+    if(siriOpen){ closeSiri(); return; }
+    if(currentFolder){ closeFolder(); return; }
+  }
+});
 
-function siriUser(text){
-  document.getElementById('siriSuggs').innerHTML='';
-  const msgs=document.getElementById('siriMsgs');
-  const b=document.createElement('div');b.className='siri-bubble me';
-  b.textContent=text;msgs.appendChild(b);msgs.scrollTop=msgs.scrollHeight;
-}
-
-function siriSuggs(arr){
-  const el=document.getElementById('siriSuggs');el.innerHTML='';
-  arr.forEach(s=>{
-    const btn=document.createElement('button');btn.className='siri-sugg';btn.textContent=s;
-    btn.onclick=()=>siriProcess(s.replace(/[🏆📊✉️📋💼🎨🤖📅🏃🔍⚡🟢⌨️✨]/g,'').trim());
-    el.appendChild(btn);
-  });
-}
-
-function siriSend(){const inp=document.getElementById('siriInput');const t=inp.value.trim();if(!t)return;inp.value='';siriProcess(t);}
-
-function siriProcess(text){
-  siriUser(text);
-  const lower=text.toLowerCase();
-  // Commande "ouvrir X"
-  if(/ouvrir?|open|montre|show|lance/i.test(lower)){
-    for(const intent of SIRI_INTENTS){
-      if(intent.r.test(lower)){
-        const p=P.find(x=>x.id===intent.pid);
-        setTimeout(()=>{
-          siriBot(`J'ouvre ${p.name} pour toi ! 📂`);
-          setTimeout(()=>{siriToggle();openProj(intent.pid);},1200);
-        },200);
-        return;
-      }
-    }
-  }
-  // Match direct sur nom de projet
-  for(const intent of SIRI_INTENTS){
-    if(intent.r.test(lower)){
-      const p=P.find(x=>x.id===intent.pid);
-      setTimeout(()=>{
-        siriBot(`${p.name} — ${p.kpis.map(k=>k.v+' '+k.l).join(' · ')}\n\nTu veux que je l'ouvre ?`);
-        setTimeout(()=>siriSuggs([`Ouvrir ${p.name}`,`Tous les projets`,`Contacter Alec ✉️`]),1200);
-      },200);
-      return;
-    }
-  }
-  // Intents spéciaux
-  if(/data|analyse|sql|python/i.test(lower)){
-    setTimeout(()=>{siriBot("Projets data : TheLook SQL (BigQuery) et Marathon Paris (Python). J'ouvre lequel ?");setTimeout(()=>siriSuggs(["TheLook 📊","Marathon 🏃","Les deux 📋"]),1200);},200);return;
-  }
-  if(/ia|intelligence artificielle|agent|gpt|llm/i.test(lower)){
-    setTimeout(()=>{siriBot("Projets IA : PayFit (4 agents, Innovation Award), AI Ecosystem (9 agents Dust), Mirakl (GPT-4o). J'ouvre lequel ?");setTimeout(()=>siriSuggs(["PayFit ⚡","AI Agents 🤖","Mirakl 🏆"]),1200);},200);return;
-  }
-  if(/contact|email|message|joindre|recruter/i.test(lower)){
-    setTimeout(()=>{siriBot("Tu veux envoyer un message à Alec ?");setTimeout(()=>{siriToggle();openContact();},1200);},200);return;
-  }
-  if(/qui|alec|profil|présente|toi/i.test(lower)){
-    setTimeout(()=>{siriBot("Alec DIAMIDIA — Revenue Operations & IA Specialist. Etudiant Eugenia School × Grenoble EM. 3 expériences RevOps, 7 projets data/IA, profil hybride tech × business. Contact : alecrudydiami@gmail.com");setTimeout(()=>siriSuggs(["Ses projets 📋","Le contacter ✉️"]),1400);},200);return;
-  }
-  if(/tous|all|liste|projets/i.test(lower)){
-    const names=P.map(p=>`${p.e} ${p.name}`).join('\n');
-    setTimeout(()=>{siriBot(`Ses 7 projets :\n\n${names}\n\nLequel veux-tu explorer ?`);setTimeout(()=>siriSuggs(["Mirakl 🏆","PayFit ⚡","Marathon 🏃"]),1400);},200);return;
-  }
-  setTimeout(()=>{siriBot("Essaie : 'Ouvre [nom du projet]', 'Projets data', 'Qui est Alec' ou 'Contacter Alec' 👋");setTimeout(()=>siriSuggs(["Ouvre Mirakl","Projets data 📊","Qui est Alec ?","Contacter ✉️"]),1200);},200);
-}
-
-/* ══ KEYBOARD ══ */
+/* ════════════════════════════════
+   KONAMI EASTER EGG
+   ════════════════════════════════ */
+let konamiSeq=[], konamiCode=[38,38,40,40,37,39,37,39,66,65];
 document.addEventListener('keydown',e=>{
-  if(e.key==='Escape'){closeQL();spotlightClose();if(siriOpen)siriToggle();closeCtxMenu();closeFinder();closeContact();return;}
-  if(e.key===' '&&sel&&!siriOpen&&!document.getElementById('spotlightOverlay').classList.contains('open')){e.preventDefault();showQL(sel);return;}
-  if((e.metaKey||e.ctrlKey)&&(e.key==='k'||e.key===' ')){e.preventDefault();spotlightOpen();return;}
-  if(e.key==='Enter'&&sel){openProj(sel);return;}
-  konami(e.key);
+  konamiSeq.push(e.keyCode);
+  if(konamiSeq.length>10) konamiSeq.shift();
+  if(konamiSeq.join(',')===konamiCode.join(',')){
+    document.body.style.animation='konami 0.8s ease';
+    setTimeout(()=>document.body.style.animation='',800);
+    alert('🎮 Konami Code ! Bravo, tu as trouvé l\'Easter Egg d\'Alec !');
+  }
 });
 
-/* ══ KONAMI ══ */
-const KC=['ArrowUp','ArrowUp','ArrowDown','ArrowDown','ArrowLeft','ArrowRight','ArrowLeft','ArrowRight','b','a'];
-let kp=0;
-function konami(k){
-  if(k===KC[kp]){kp++;if(kp===KC.length){kp=0;document.getElementById('eggModal').style.display='flex';}}
-  else kp=k===KC[0]?1:0;
-}
-
-/* ══ THEME ══ */
-function toggleTheme(){
-  const t=(document.documentElement.getAttribute('data-theme')||'dark')==='dark'?'light':'dark';
-  document.documentElement.setAttribute('data-theme',t);
-  document.getElementById('thmIcon').textContent=t==='dark'?'☀️':'🌙';
-  localStorage.setItem('theme',t);
-}
-
-/* ══ LANG ══ */
-function applyLang(l){
-  lang=l;
-  document.querySelectorAll('[data-i18n]').forEach(el=>{const k=el.getAttribute('data-i18n');if(i18n[l]&&i18n[l][k])el.textContent=i18n[l][k];});
-  document.querySelectorAll('.mb-btn').forEach(b=>b.classList.toggle('active',b.dataset.lang===l));
-  localStorage.setItem('lang',l);
-}
-document.querySelectorAll('.mb-btn').forEach(b=>b.addEventListener('click',()=>applyLang(b.dataset.lang)));
-
-/* ══ DOCK MAGNIFICATION ══ */
-(function(){
-  const items=[...document.querySelectorAll('#mainDock .di')];
-  const dock=document.getElementById('mainDock');
-  items.forEach((item,i)=>{item.addEventListener('mousemove',()=>{items.forEach((el,j)=>{const d=Math.abs(i-j);el.style.transform=d===0?'scale(1.42) translateY(-12px)':d===1?'scale(1.2) translateY(-6px)':d===2?'scale(1.08) translateY(-2px)':'';});});});
-  dock.addEventListener('mouseleave',()=>items.forEach(el=>el.style.transform=''));
-})();
-
-/* ══ CLOCK ══ */
-function tick(){document.getElementById('mbTime').textContent=new Date().toLocaleTimeString(lang==='fr'?'fr-FR':'en-US',{hour:'2-digit',minute:'2-digit'});}
-setInterval(tick,1000);tick();
-
-/* ══ INIT ══ */
-document.addEventListener('DOMContentLoaded',()=>{
-  const t=localStorage.getItem('theme')||'dark';
-  document.documentElement.setAttribute('data-theme',t);
-  document.getElementById('thmIcon').textContent=t==='dark'?'☀️':'🌙';
-  applyLang(lang);renderIcons();
-});
-document.addEventListener('scroll',closeCtxMenu);
+/* ════════════════════════════════
+   INIT
+   ════════════════════════════════ */
+setLang(lang);
 </script>
 </body>
 </html>
