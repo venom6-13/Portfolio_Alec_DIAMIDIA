@@ -9,24 +9,13 @@
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@7.0.0/dist/fuse.min.js"></script>
 <style>
 *{margin:0;padding:0;box-sizing:border-box;}
-:root{
-  --bg-primary:#ffffff;--bg-secondary:#fbfbfd;
-  --text-primary:#1d1d1f;--text-secondary:#86868b;
-  --accent:#0071e3;--border:#d2d2d7;
-  --card-bg:#f5f5f7;--apple-blue:#007AFF;
-}
-[data-theme="dark"]{
-  --bg-primary:#000000;--bg-secondary:#0a0a0a;
-  --text-primary:#f5f5f7;--text-secondary:#86868b;
-  --accent:#2997ff;--border:#424245;
-  --card-bg:#1d1d1f;--apple-blue:#0A84FF;
-}
+:root{--bg-primary:#ffffff;--bg-secondary:#fbfbfd;--text-primary:#1d1d1f;--text-secondary:#86868b;--accent:#0071e3;--border:#d2d2d7;--card-bg:#f5f5f7;--apple-blue:#007AFF;}
+[data-theme="dark"]{--bg-primary:#000000;--bg-secondary:#0a0a0a;--text-primary:#f5f5f7;--text-secondary:#86868b;--accent:#2997ff;--border:#424245;--card-bg:#1d1d1f;--apple-blue:#0A84FF;}
 body{font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Helvetica Neue",Arial,sans-serif;background:var(--bg-primary);color:var(--text-primary);-webkit-font-smoothing:antialiased;overflow-x:hidden;opacity:0;transition:background-color .5s,color .5s,opacity .4s;}
 body.loaded{opacity:1;}
 body::after{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23g)'/%3E%3C/svg%3E");opacity:.03;mix-blend-mode:overlay;}
 [data-theme="dark"] body::after{opacity:.055;}
 
-/* RAIN */
 .rain-bg{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden;opacity:.28;}
 [data-theme="dark"] .rain-bg{opacity:.2;}
 .drop{position:absolute;bottom:-130px;left:var(--left);display:flex;align-items:center;gap:8px;animation:rise var(--dur) var(--delay) infinite ease-out;}
@@ -37,7 +26,6 @@ body::after{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;back
 .bubble-right{border-radius:12px 12px 12px 3px;}
 .bubble-left{border-radius:12px 12px 3px 12px;}
 
-/* BACKGROUND */
 .animated-background{position:fixed;inset:0;z-index:0;opacity:.4;pointer-events:none;}
 .bg-shape{position:absolute;border-radius:50%;filter:blur(80px);opacity:.3;animation:float 20s infinite ease-in-out;}
 .bg-shape-1{width:500px;height:500px;background:linear-gradient(135deg,#667eea,#764ba2);top:-10%;left:-10%;}
@@ -46,7 +34,6 @@ body::after{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;back
 @keyframes float{0%,100%{transform:translate(0,0) scale(1)}33%{transform:translate(50px,-50px) scale(1.1)}66%{transform:translate(-30px,30px) scale(.9)}}
 [data-theme="dark"] .animated-background{opacity:.15;}
 
-/* NAV */
 nav{position:fixed;top:0;left:0;right:0;background:rgba(255,255,255,.72);backdrop-filter:saturate(180%) blur(20px);z-index:9999;border-bottom:1px solid var(--border);transition:all .3s;}
 [data-theme="dark"] nav{background:rgba(0,0,0,.8);}
 .nav-content{max-width:980px;margin:0 auto;padding:0 22px;height:48px;display:flex;align-items:center;justify-content:space-between;}
@@ -62,7 +49,6 @@ nav{position:fixed;top:0;left:0;right:0;background:rgba(255,255,255,.72);backdro
 .lang-btn{background:none;border:none;padding:4px 12px;border-radius:18px;font-size:12px;font-weight:500;color:var(--text-secondary);cursor:pointer;transition:all .2s;}
 .lang-btn.active{background:var(--bg-primary);color:var(--text-primary);box-shadow:0 1px 3px rgba(0,0,0,.1);}
 
-/* HERO */
 .hero{position:relative;z-index:1;margin-top:48px;padding:100px 22px 40px;text-align:center;max-width:980px;margin-left:auto;margin-right:auto;display:flex;flex-direction:column;align-items:center;}
 .hero h1{font-size:96px;font-weight:600;letter-spacing:-.015em;line-height:1.05;margin-bottom:24px;opacity:0;animation:fadeInUp 1s ease-out forwards;}
 @keyframes fadeInUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
@@ -71,7 +57,6 @@ nav{position:fixed;top:0;left:0;right:0;background:rgba(255,255,255,.72);backdro
 .font-new-york{font-family:"New York","Times New Roman",serif;}
 .font-sf-mono{font-family:"SF Mono","Monaco",monospace;}
 
-/* KEYWORDS */
 .keywords-section{width:100%;margin:32px 0;opacity:0;animation:fadeInUp 1s ease-out .2s forwards;}
 .keywords-title{font-size:17px;font-weight:600;color:var(--text-secondary);margin-bottom:24px;text-align:center;}
 .keywords-cloud{display:flex;flex-wrap:wrap;justify-content:center;gap:12px;max-width:800px;margin:0 auto;}
@@ -79,28 +64,15 @@ nav{position:fixed;top:0;left:0;right:0;background:rgba(255,255,255,.72);backdro
 .keyword-badge:hover{transform:translateY(-4px) scale(1.05);box-shadow:0 8px 20px rgba(0,122,255,.4);}
 .keyword-badge::after{content:attr(data-tooltip);position:absolute;bottom:120%;left:50%;transform:translateX(-50%) scale(.9);background:var(--text-primary);color:var(--bg-primary);padding:8px 12px;border-radius:8px;font-size:13px;white-space:nowrap;opacity:0;pointer-events:none;transition:all .3s;z-index:10;font-weight:400;}
 .keyword-badge:hover::after{opacity:1;transform:translateX(-50%) scale(1);}
-.keyword-badge:nth-child(1){animation:popIn .5s .4s ease-out backwards}
-.keyword-badge:nth-child(2){animation:popIn .5s .5s ease-out backwards}
-.keyword-badge:nth-child(3){animation:popIn .5s .6s ease-out backwards}
-.keyword-badge:nth-child(4){animation:popIn .5s .7s ease-out backwards}
-.keyword-badge:nth-child(5){animation:popIn .5s .8s ease-out backwards}
-.keyword-badge:nth-child(6){animation:popIn .5s .9s ease-out backwards}
-.keyword-badge:nth-child(7){animation:popIn .5s 1.0s ease-out backwards}
-.keyword-badge:nth-child(8){animation:popIn .5s 1.1s ease-out backwards}
-.keyword-badge:nth-child(9){animation:popIn .5s 1.2s ease-out backwards}
-.keyword-badge:nth-child(10){animation:popIn .5s 1.3s ease-out backwards}
-.keyword-badge:nth-child(11){animation:popIn .5s 1.4s ease-out backwards}
-.keyword-badge:nth-child(12){animation:popIn .5s 1.5s ease-out backwards}
+.keyword-badge:nth-child(1){animation:popIn .5s .4s ease-out backwards}.keyword-badge:nth-child(2){animation:popIn .5s .5s ease-out backwards}.keyword-badge:nth-child(3){animation:popIn .5s .6s ease-out backwards}.keyword-badge:nth-child(4){animation:popIn .5s .7s ease-out backwards}.keyword-badge:nth-child(5){animation:popIn .5s .8s ease-out backwards}.keyword-badge:nth-child(6){animation:popIn .5s .9s ease-out backwards}.keyword-badge:nth-child(7){animation:popIn .5s 1.0s ease-out backwards}.keyword-badge:nth-child(8){animation:popIn .5s 1.1s ease-out backwards}.keyword-badge:nth-child(9){animation:popIn .5s 1.2s ease-out backwards}.keyword-badge:nth-child(10){animation:popIn .5s 1.3s ease-out backwards}.keyword-badge:nth-child(11){animation:popIn .5s 1.4s ease-out backwards}.keyword-badge:nth-child(12){animation:popIn .5s 1.5s ease-out backwards}
 @keyframes popIn{from{opacity:0;transform:scale(.5)}to{opacity:1;transform:scale(1)}}
 
-/* TYPING */
 .hero-subtitle-container{display:inline-flex;align-items:center;justify-content:center;margin-top:40px;opacity:0;animation:fadeInUp 1s ease-out 1.6s forwards;background:var(--card-bg);padding:20px 40px;border-radius:24px;box-shadow:0 4px 12px rgba(0,0,0,.05);}
 .hero-subtitle{font-size:32px;line-height:1.25;font-weight:400;color:var(--text-secondary);white-space:nowrap;}
 .hero-subtitle .prefix{color:var(--text-primary);}
 .typing-cursor{display:inline-block;width:3px;height:36px;background:var(--accent);margin-left:4px;animation:blink 1s step-end infinite;vertical-align:middle;}
 @keyframes blink{0%,50%{opacity:1}51%,100%{opacity:0}}
 
-/* LOGO CAROUSEL */
 .logo-carousel-wrapper{width:100%;margin:48px 0;opacity:0;animation:fadeInUp 1s ease-out 1.8s forwards;}
 .logo-carousel-container{background:var(--card-bg);border:1px solid var(--border);border-radius:18px;padding:32px 24px;box-shadow:0 4px 12px rgba(0,0,0,.05);}
 .logo-carousel-title{font-size:14px;font-weight:600;color:var(--text-secondary);text-align:center;margin-bottom:24px;text-transform:uppercase;letter-spacing:.08em;}
@@ -129,33 +101,32 @@ nav{position:fixed;top:0;left:0;right:0;background:rgba(255,255,255,.72);backdro
 .ai-card-cta-btn{margin-top:8px;padding:8px 22px;border-radius:20px;font-size:13px;font-weight:600;background:rgba(0,113,227,.1);border:1px solid rgba(0,113,227,.2);color:var(--accent);transition:all .2s;}
 .ai-card-new:hover .ai-card-cta-btn{background:var(--accent);border-color:var(--accent);color:#fff;}
 
-/* SINGLE CARD BUREAU */
-.single-card-wrap{max-width:680px;margin:0 auto;}
+/* SINGLE CARD BUREAU — photo ronde */
+.single-card-wrap{max-width:500px;margin:0 auto;}
 .single-card{display:block;background:var(--card-bg);border:1px solid var(--border);border-radius:22px;overflow:hidden;text-decoration:none;color:inherit;transition:all .4s cubic-bezier(.4,0,.2,1);position:relative;}
 .single-card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,#667eea,var(--accent),#764ba2);transform:scaleX(0);transform-origin:left;transition:transform .4s;}
 .single-card:hover::before{transform:scaleX(1);}
 .single-card:hover{transform:translateY(-10px) scale(1.01);box-shadow:0 32px 64px rgba(0,0,0,.15);}
 [data-theme="dark"] .single-card:hover{box-shadow:0 32px 64px rgba(255,255,255,.06);}
-.single-card-img{width:100%;height:200px;object-fit:cover;object-position:center top;display:block;}
-.single-card-body{padding:28px 32px 32px;}
+.single-card-photo-wrap{display:flex;justify-content:center;padding:36px 32px 0;}
+.single-card-photo{width:130px;height:130px;border-radius:50%;object-fit:cover;object-position:center top;border:3px solid rgba(0,113,227,.25);box-shadow:0 8px 28px rgba(0,0,0,.18);transition:transform .3s;}
+.single-card:hover .single-card-photo{transform:scale(1.06);}
+.single-card-body{padding:24px 32px 32px;text-align:center;}
 .single-card-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:var(--accent);margin-bottom:8px;}
-.single-card-title{font-size:28px;font-weight:700;letter-spacing:-.02em;margin-bottom:8px;}
-.single-card-desc{font-size:15px;color:var(--text-secondary);line-height:1.6;margin-bottom:22px;}
+.single-card-title{font-size:26px;font-weight:700;letter-spacing:-.02em;margin-bottom:8px;}
+.single-card-desc{font-size:14px;color:var(--text-secondary);line-height:1.6;margin-bottom:22px;}
 .single-card-btn{display:inline-flex;align-items:center;gap:8px;background:var(--accent);color:#fff;padding:12px 26px;border-radius:22px;font-size:14px;font-weight:600;transition:all .2s;}
 .single-card:hover .single-card-btn{background:#0077ed;transform:translateX(4px);}
 
-/* DIVIDERS */
 .section-divider{position:relative;z-index:1;max-width:980px;margin:0 auto;padding:0 22px;display:flex;align-items:center;gap:16px;}
 .section-divider::before,.section-divider::after{content:'';flex:1;height:1px;background:var(--border);}
 .section-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:var(--text-secondary);white-space:nowrap;}
 
-/* SECTION */
 .section{position:relative;z-index:1;max-width:980px;margin:0 auto;padding:60px 22px 80px;}
 .section-intro{text-align:center;margin-bottom:48px;}
 .section-intro h2{font-size:40px;font-weight:600;letter-spacing:-.015em;margin-bottom:12px;}
 .section-intro p{font-size:19px;color:var(--text-secondary);max-width:600px;margin:0 auto;}
 
-/* TESTIMONIALS */
 .testimonials-section{position:relative;z-index:1;padding:0 22px 80px;}
 .testimonials-inner{max-width:780px;margin:0 auto;}
 .testi-carousel{position:relative;margin-top:48px;}
@@ -177,7 +148,6 @@ nav{position:fixed;top:0;left:0;right:0;background:rgba(255,255,255,.72);backdro
 .testi-dot{width:8px;height:8px;border-radius:50%;background:var(--border);border:none;cursor:pointer;transition:all .3s;padding:0;}
 .testi-dot.active{width:24px;border-radius:4px;background:var(--accent);}
 
-/* CONTACT */
 .contact-section{position:relative;z-index:1;max-width:980px;margin:0 auto;padding:80px 22px 100px;text-align:center;}
 .contact-section h2{font-size:40px;font-weight:600;letter-spacing:-.015em;margin-bottom:48px;}
 .contact-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;max-width:660px;margin:0 auto;}
@@ -188,7 +158,6 @@ nav{position:fixed;top:0;left:0;right:0;background:rgba(255,255,255,.72);backdro
 .contact-label{font-size:13px;font-weight:700;color:var(--text-primary);}
 .contact-value{font-size:11px;color:var(--text-secondary);word-break:break-all;}
 
-/* SEARCH */
 .search-overlay{position:fixed;inset:0;z-index:99999;background:rgba(0,0,0,.55);backdrop-filter:blur(10px);display:flex;align-items:flex-start;justify-content:center;padding-top:12vh;opacity:0;pointer-events:none;transition:opacity .2s;}
 .search-overlay.open{opacity:1;pointer-events:all;}
 .search-modal{width:620px;max-width:calc(100vw - 32px);background:var(--bg-primary);border-radius:18px;border:1px solid var(--border);box-shadow:0 32px 80px rgba(0,0,0,.4);overflow:hidden;transform:scale(.95) translateY(-10px);transition:transform .2s;}
@@ -207,11 +176,9 @@ nav{position:fixed;top:0;left:0;right:0;background:rgba(255,255,255,.72);backdro
 .search-empty{padding:40px;text-align:center;color:var(--text-secondary);font-size:15px;}
 .search-footer{padding:10px 20px;border-top:1px solid var(--border);font-size:11px;color:var(--text-secondary);text-align:center;}
 
-/* FOOTER */
 footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:20px 22px;}
 .footer-content{max-width:980px;margin:0 auto;text-align:center;font-size:12px;color:var(--text-secondary);}
 
-/* CHATBOT */
 .imsg-trigger{position:fixed;right:20px;bottom:24px;z-index:9998;width:56px;height:56px;border-radius:50%;background:linear-gradient(135deg,#34C759,#28a745);border:none;cursor:pointer;box-shadow:0 4px 20px rgba(52,199,89,.5);display:flex;align-items:center;justify-content:center;transition:transform .2s,box-shadow .2s;}
 .imsg-trigger:hover{transform:scale(1.08);box-shadow:0 6px 28px rgba(52,199,89,.7);}
 .imsg-notif{position:absolute;top:-3px;right:-3px;width:18px;height:18px;border-radius:50%;background:#FF3B30;color:white;font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;border:2px solid white;line-height:1;}
@@ -232,8 +199,7 @@ footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:20
 .imsg-msgs::-webkit-scrollbar{width:3px;}
 .imsg-msgs::-webkit-scrollbar-thumb{background:rgba(0,0,0,.12);border-radius:2px;}
 .bw{display:flex;flex-direction:column;margin:1px 0;}
-.bw.alec{align-items:flex-start;}
-.bw.me{align-items:flex-end;}
+.bw.alec{align-items:flex-start;}.bw.me{align-items:flex-end;}
 .bb{max-width:80%;padding:9px 13px;font-size:13.5px;line-height:1.55;word-break:break-word;}
 .bw.alec .bb{background:rgba(0,0,0,.08);color:#1d1d1f;border-radius:18px 18px 18px 4px;}
 [data-theme="dark"] .bw.alec .bb{background:rgba(255,255,255,.12);color:#f5f5f7;}
@@ -244,8 +210,7 @@ footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:20
 [data-theme="dark"] .typing-bubbles{background:rgba(255,255,255,.12);}
 .td{width:7px;height:7px;border-radius:50%;background:rgba(0,0,0,.3);animation:td 1.2s infinite;}
 [data-theme="dark"] .td{background:rgba(255,255,255,.4);}
-.td:nth-child(2){animation-delay:.2s;}
-.td:nth-child(3){animation-delay:.4s;}
+.td:nth-child(2){animation-delay:.2s;}.td:nth-child(3){animation-delay:.4s;}
 @keyframes td{0%,60%,100%{transform:translateY(0);}30%{transform:translateY(-6px);}}
 .imsg-suggs{padding:6px 10px 0;display:flex;gap:5px;flex-wrap:wrap;}
 .isug{background:rgba(0,122,255,.1);color:#007AFF;border:1px solid rgba(0,122,255,.2);border-radius:14px;padding:5px 12px;font-size:12px;cursor:pointer;transition:background .15s;font-family:-apple-system,sans-serif;}
@@ -258,25 +223,18 @@ footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:20
 .imsg-send-btn{width:32px;height:32px;border-radius:50%;background:#007AFF;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:opacity .2s;flex-shrink:0;}
 .imsg-send-btn:hover{opacity:.85;}
 
-/* RESPONSIVE */
 @media(max-width:1068px){.hero h1{font-size:72px;}.hero-subtitle{font-size:28px;}}
 @media(max-width:734px){
-  .hero{padding:80px 16px 32px;}
-  .hero h1{font-size:44px;}
+  .hero{padding:80px 16px 32px;}.hero h1{font-size:44px;}
   .hero-subtitle{font-size:18px;white-space:normal;text-align:center;}
-  .hero-subtitle-container{padding:14px 20px;}
-  .typing-cursor{height:22px;}
+  .hero-subtitle-container{padding:14px 20px;}.typing-cursor{height:22px;}
   .contact-grid{grid-template-columns:1fr;gap:12px;}
-  .keyword-badge{font-size:13px;padding:8px 16px;}
-  .keyword-badge::after{display:none;}
-  .section-intro h2{font-size:28px;}
-  .section-intro p{font-size:16px;}
-  .testi-card{padding:32px 24px;}
-  .testi-text{font-size:15px;}
-  .contact-section h2{font-size:28px;}
-  .logo-carousel-container{padding:24px 16px;}
+  .keyword-badge{font-size:13px;padding:8px 16px;}.keyword-badge::after{display:none;}
+  .section-intro h2{font-size:28px;}.section-intro p{font-size:16px;}
+  .testi-card{padding:32px 24px;}.testi-text{font-size:15px;}
+  .contact-section h2{font-size:28px;}.logo-carousel-container{padding:24px 16px;}
   .ai-cards-grid{grid-template-columns:1fr;max-width:400px;}
-  .single-card-body{padding:20px 22px 24px;}
+  .single-card-body{padding:18px 20px 24px;}
   .single-card-title{font-size:22px;}
 }
 @media(max-width:400px){.hero h1{font-size:34px;}}
@@ -291,7 +249,6 @@ footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:20
   <div class="bg-shape bg-shape-3"></div>
 </div>
 
-<!-- SEARCH -->
 <div class="search-overlay" id="searchOverlay">
   <div class="search-modal">
     <div class="search-input-wrap">
@@ -304,7 +261,6 @@ footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:20
   </div>
 </div>
 
-<!-- NAV -->
 <nav>
   <div class="nav-content">
     <span style="font-size:15px;font-weight:700;letter-spacing:-.01em;color:var(--text-primary)">Alec DIAMIDIA</span>
@@ -322,7 +278,6 @@ footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:20
   </div>
 </nav>
 
-<!-- HERO -->
 <div class="hero">
   <h1 id="heroName">Alec DIAMIDIA</h1>
   <div class="keywords-section">
@@ -346,7 +301,6 @@ footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:20
   </div>
 </div>
 
-<!-- AI CARDS -->
 <div class="ai-section-new">
   <div class="ai-section-lbl">Powered by AI</div>
   <h2 class="ai-section-ttl" data-i18n="ai-title">Découvrez mon profil avec l'IA</h2>
@@ -372,10 +326,8 @@ footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:20
   </div>
 </div>
 
-<!-- DIVIDER MON TRAVAIL -->
 <div class="section-divider"><span class="section-label" data-i18n="div-work">Mon travail</span></div>
 
-<!-- SINGLE CARD BUREAU -->
 <div class="section" style="padding-bottom:40px;">
   <div class="section-intro">
     <h2 data-i18n="explore-title">Explorez mon bureau</h2>
@@ -383,10 +335,9 @@ footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:20
   </div>
   <div class="single-card-wrap">
     <a href="projets-pro.html" class="single-card">
-      <img class="single-card-img"
-           src="./assets/photo.jpg"
-           alt="Bureau macOS"
-           onerror="this.style.background='linear-gradient(135deg,#667eea,#764ba2)';this.style.height='200px';this.removeAttribute('src')">
+      <div class="single-card-photo-wrap">
+        <img class="single-card-photo" src="./assets/photo.jpg" alt="Alec DIAMIDIA" onerror="this.style.display='none'">
+      </div>
       <div class="single-card-body">
         <div class="single-card-label" data-i18n="bureau-label">Bureau macOS · CV & Projets</div>
         <div class="single-card-title" data-i18n="bureau-title">Explorer mon bureau</div>
@@ -397,10 +348,8 @@ footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:20
   </div>
 </div>
 
-<!-- DIVIDER RECOMMANDATIONS -->
 <div class="section-divider"><span class="section-label" data-i18n="div-reviews">Recommandations</span></div>
 
-<!-- TESTIMONIALS -->
 <div class="testimonials-section">
   <div class="testimonials-inner">
     <div class="section-intro">
@@ -410,24 +359,9 @@ footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:20
     <div class="testi-carousel">
       <div class="testi-track-wrap">
         <div class="testi-track" id="testiTrack">
-          <div class="testi-card">
-            <div class="testi-progress" id="prog0"></div>
-            <div class="testi-quote">"</div>
-            <p class="testi-text">Alec a été un élément marquant de par son professionnalisme, sa bonne humeur, sa performance, et sa créativité.</p>
-            <div class="testi-author-row"><div class="testi-avatar">HD</div><div><div class="testi-author">Haya DIAWARA</div><div class="testi-role">Ancienne collègue</div></div></div>
-          </div>
-          <div class="testi-card">
-            <div class="testi-progress" id="prog1"></div>
-            <div class="testi-quote">"</div>
-            <p class="testi-text">Alec a fait un excellent stage au sein de notre entreprise : comportement irréprochable, motivation quotidienne. Il a su faire preuve de rigueur, de prises d'initiatives et d'aisance relationnelle. Alec est au dessus des attentes sur son rôle chez Javelo.</p>
-            <div class="testi-author-row"><div class="testi-avatar">DA</div><div><div class="testi-author">Delphine AIM</div><div class="testi-role">Ancienne collègue</div></div></div>
-          </div>
-          <div class="testi-card">
-            <div class="testi-progress" id="prog2"></div>
-            <div class="testi-quote">"</div>
-            <p class="testi-text">Sérieux et investi, très bon élément.</p>
-            <div class="testi-author-row"><div class="testi-avatar">LF</div><div><div class="testi-author">Lucas FINCHELSTEIN</div><div class="testi-role">Ancien collègue</div></div></div>
-          </div>
+          <div class="testi-card"><div class="testi-progress" id="prog0"></div><div class="testi-quote">"</div><p class="testi-text">Alec a été un élément marquant de par son professionnalisme, sa bonne humeur, sa performance, et sa créativité.</p><div class="testi-author-row"><div class="testi-avatar">HD</div><div><div class="testi-author">Haya DIAWARA</div><div class="testi-role">Ancienne collègue</div></div></div></div>
+          <div class="testi-card"><div class="testi-progress" id="prog1"></div><div class="testi-quote">"</div><p class="testi-text">Alec a fait un excellent stage au sein de notre entreprise : comportement irréprochable, motivation quotidienne. Il a su faire preuve de rigueur, de prises d'initiatives et d'aisance relationnelle. Alec est au dessus des attentes sur son rôle chez Javelo.</p><div class="testi-author-row"><div class="testi-avatar">DA</div><div><div class="testi-author">Delphine AIM</div><div class="testi-role">Ancienne collègue</div></div></div></div>
+          <div class="testi-card"><div class="testi-progress" id="prog2"></div><div class="testi-quote">"</div><p class="testi-text">Sérieux et investi, très bon élément.</p><div class="testi-author-row"><div class="testi-avatar">LF</div><div><div class="testi-author">Lucas FINCHELSTEIN</div><div class="testi-role">Ancien collègue</div></div></div></div>
         </div>
       </div>
       <div class="testi-nav">
@@ -439,47 +373,31 @@ footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:20
   </div>
 </div>
 
-<!-- DIVIDER CONTACT -->
 <div class="section-divider"><span class="section-label" data-i18n="div-contact">Contact</span></div>
 
-<!-- CONTACT -->
 <div class="contact-section">
   <h2 data-i18n="contact-me">Contactez-moi</h2>
   <div class="contact-grid">
     <a href="mailto:alecrudydiami@gmail.com" class="contact-card">
-      <svg class="contact-svg" viewBox="0 0 52 52" xmlns="http://www.w3.org/2000/svg">
-        <defs><linearGradient id="mlg" x1="0" y1="0" x2="0" y2="52" gradientUnits="userSpaceOnUse"><stop stop-color="#64D3F5"/><stop offset="1" stop-color="#1179F5"/></linearGradient></defs>
-        <rect width="52" height="52" rx="11" fill="url(#mlg)"/>
-        <rect x="7" y="15" width="38" height="24" rx="3" fill="white"/>
-        <path d="M7 15 L26 28 L45 15" fill="none" stroke="#1179F5" stroke-width="2" stroke-linejoin="round"/>
-      </svg>
+      <svg class="contact-svg" viewBox="0 0 52 52" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="mlg" x1="0" y1="0" x2="0" y2="52" gradientUnits="userSpaceOnUse"><stop stop-color="#64D3F5"/><stop offset="1" stop-color="#1179F5"/></linearGradient></defs><rect width="52" height="52" rx="11" fill="url(#mlg)"/><rect x="7" y="15" width="38" height="24" rx="3" fill="white"/><path d="M7 15 L26 28 L45 15" fill="none" stroke="#1179F5" stroke-width="2" stroke-linejoin="round"/></svg>
       <div class="contact-label" data-i18n="by-email">Par mail</div>
       <div class="contact-value">alecrudydiami@gmail.com</div>
     </a>
     <a href="https://linkedin.com/in/alec-diamidia" target="_blank" class="contact-card">
-      <svg class="contact-svg" viewBox="0 0 52 52" xmlns="http://www.w3.org/2000/svg">
-        <rect width="52" height="52" rx="11" fill="#0A66C2"/>
-        <path fill="white" d="M18 36h-4V22h4v14zm-2-16c-1.3 0-2.3-1-2.3-2.3s1-2.3 2.3-2.3 2.3 1 2.3 2.3S17.3 20 16 20zm22 16h-4v-7c0-1.7-.6-2.8-2.1-2.8-1.1 0-1.8.8-2.1 1.5-.1.3-.1.6-.1.9V36h-4V22h4v1.9c.5-.8 1.5-1.9 3.7-1.9 2.7 0 4.7 1.8 4.7 5.6V36z"/>
-      </svg>
+      <svg class="contact-svg" viewBox="0 0 52 52" xmlns="http://www.w3.org/2000/svg"><rect width="52" height="52" rx="11" fill="#0A66C2"/><path fill="white" d="M18 36h-4V22h4v14zm-2-16c-1.3 0-2.3-1-2.3-2.3s1-2.3 2.3-2.3 2.3 1 2.3 2.3S17.3 20 16 20zm22 16h-4v-7c0-1.7-.6-2.8-2.1-2.8-1.1 0-1.8.8-2.1 1.5-.1.3-.1.6-.1.9V36h-4V22h4v1.9c.5-.8 1.5-1.9 3.7-1.9 2.7 0 4.7 1.8 4.7 5.6V36z"/></svg>
       <div class="contact-label">LinkedIn</div>
       <div class="contact-value">/in/alec-diamidia</div>
     </a>
     <a href="https://github.com/venom6-13" target="_blank" class="contact-card">
-      <svg class="contact-svg" viewBox="0 0 52 52" xmlns="http://www.w3.org/2000/svg">
-        <rect width="52" height="52" rx="11" fill="#24292F"/>
-        <path fill="white" d="M26 13c-7.2 0-13 5.8-13 13 0 5.7 3.7 10.6 8.9 12.3.6.1.8-.3.8-.6v-2.4c-3.6.8-4.4-1.7-4.4-1.7-.6-1.4-1.4-1.8-1.4-1.8-1.1-.8.1-.8.1-.8 1.3.1 1.9 1.3 1.9 1.3 1.1 1.9 3 1.4 3.7 1.1.1-.8.4-1.4.8-1.7-2.9-.3-5.9-1.4-5.9-6.4 0-1.4.5-2.6 1.3-3.5-.1-.3-.6-1.6.1-3.4 0 0 1.1-.3 3.5 1.3 1-.3 2.1-.4 3.2-.4 1.1 0 2.2.1 3.2.4 2.4-1.6 3.5-1.3 3.5-1.3.7 1.7.2 3 .1 3.4.8.9 1.3 2.1 1.3 3.5 0 5-3.1 6.1-6 6.4.5.4.9 1.2.9 2.4v3.6c0 .3.2.7.9.6 5.2-1.7 8.9-6.5 8.9-12.3C39 18.8 33.2 13 26 13z"/>
-      </svg>
+      <svg class="contact-svg" viewBox="0 0 52 52" xmlns="http://www.w3.org/2000/svg"><rect width="52" height="52" rx="11" fill="#24292F"/><path fill="white" d="M26 13c-7.2 0-13 5.8-13 13 0 5.7 3.7 10.6 8.9 12.3.6.1.8-.3.8-.6v-2.4c-3.6.8-4.4-1.7-4.4-1.7-.6-1.4-1.4-1.8-1.4-1.8-1.1-.8.1-.8.1-.8 1.3.1 1.9 1.3 1.9 1.3 1.1 1.9 3 1.4 3.7 1.1.1-.8.4-1.4.8-1.7-2.9-.3-5.9-1.4-5.9-6.4 0-1.4.5-2.6 1.3-3.5-.1-.3-.6-1.6.1-3.4 0 0 1.1-.3 3.5 1.3 1-.3 2.1-.4 3.2-.4 1.1 0 2.2.1 3.2.4 2.4-1.6 3.5-1.3 3.5-1.3.7 1.7.2 3 .1 3.4.8.9 1.3 2.1 1.3 3.5 0 5-3.1 6.1-6 6.4.5.4.9 1.2.9 2.4v3.6c0 .3.2.7.9.6 5.2-1.7 8.9-6.5 8.9-12.3C39 18.8 33.2 13 26 13z"/></svg>
       <div class="contact-label">GitHub</div>
       <div class="contact-value">venom6-13</div>
     </a>
   </div>
 </div>
 
-<footer>
-  <div class="footer-content">© 2026 Alec DIAMIDIA · Revenue Operations, AI & Automation Enthusiast</div>
-</footer>
+<footer><div class="footer-content">© 2026 Alec DIAMIDIA · Revenue Operations, AI & Automation Enthusiast</div></footer>
 
-<!-- CHATBOT iMESSAGE -->
 <button class="imsg-trigger" id="imsgTrigger" onclick="imsgToggle()">
   <div class="imsg-notif" id="imsgNotif">1</div>
   <svg width="26" height="26" viewBox="0 0 28 28" fill="white"><path d="M14 3C8.477 3 4 7.03 4 12c0 2.34.96 4.47 2.52 6.07-.28 1.76-1.04 3.32-1.52 4.25 1.9-.32 4.12-1.1 5.5-2.1C11.52 20.7 12.74 21 14 21c5.523 0 10-4.03 10-9S19.523 3 14 3z"/></svg>
@@ -495,13 +413,10 @@ footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:20
   <div class="imsg-suggs" id="imsgSuggs"></div>
   <div class="imsg-in">
     <input class="imsg-inp" id="imsgInp" placeholder="iMessage" onkeydown="if(event.key==='Enter')imsgSend()">
-    <button class="imsg-send-btn" onclick="imsgSend()">
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="white"><path d="M2 21l21-9L2 3v7l15 2-15 2z"/></svg>
-    </button>
+    <button class="imsg-send-btn" onclick="imsgSend()"><svg width="14" height="14" viewBox="0 0 24 24" fill="white"><path d="M2 21l21-9L2 3v7l15 2-15 2z"/></svg></button>
   </div>
 </div>
 
-<!-- EASTER EGG -->
 <div id="eggModal" style="display:none;position:fixed;inset:0;z-index:99999;background:rgba(0,0,0,.85);align-items:center;justify-content:center;flex-direction:column;gap:16px;backdrop-filter:blur(20px);">
   <div style="font-size:60px;animation:spinEgg 1s linear infinite">🕹️</div>
   <div style="color:white;font-size:22px;font-weight:700;font-family:-apple-system,sans-serif;">Easter egg découvert !</div>
@@ -512,80 +427,24 @@ footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:20
 
 <script>
 const translations={
-  fr:{
-    "your-future":"Votre futur ","keywords-intro":"Quelques compétences clés",
-    "ai-title":"Découvrez mon profil avec l'IA",
-    "ai-gpt-desc":"Résumé complet du profil · Expériences · Projets","ai-gpt-cta":"Ouvrir dans ChatGPT →",
-    "ai-claude-desc":"Analyse approfondie · Compétences · Stack technique","ai-claude-cta":"Ouvrir dans Claude →",
-    "ai-pp-desc":"Recherche IA · Sources · Contexte marché","ai-pp-cta":"Rechercher sur Perplexity →",
-    "div-work":"Mon travail","explore-title":"Explorez mon bureau",
-    "explore-desc":"CV, projets pro & perso dans une interface macOS interactive",
-    "bureau-label":"Bureau macOS · CV & Projets","bureau-title":"Explorer mon bureau",
-    "bureau-desc":"7 projets avec métriques · CV complet · Interface interactive avec Finder, Siri et animations",
-    "bureau-cta":"Ouvrir le bureau →",
-    "div-reviews":"Recommandations","testimonials-title":"Ce qu'on dit de moi","testimonials-sub":"Des collègues qui ont travaillé avec moi",
-    "div-contact":"Contact","contact-me":"Contactez-moi","by-email":"Par mail",
+  fr:{"your-future":"Votre futur ","keywords-intro":"Quelques compétences clés","ai-title":"Découvrez mon profil avec l'IA","ai-gpt-desc":"Résumé complet du profil · Expériences · Projets","ai-gpt-cta":"Ouvrir dans ChatGPT →","ai-claude-desc":"Analyse approfondie · Compétences · Stack technique","ai-claude-cta":"Ouvrir dans Claude →","ai-pp-desc":"Recherche IA · Sources · Contexte marché","ai-pp-cta":"Rechercher sur Perplexity →","div-work":"Mon travail","explore-title":"Explorez mon bureau","explore-desc":"CV, projets pro & perso dans une interface macOS interactive","bureau-label":"Bureau macOS · CV & Projets","bureau-title":"Explorer mon bureau","bureau-desc":"7 projets avec métriques · CV complet · Interface interactive avec Finder, Siri et animations","bureau-cta":"Ouvrir le bureau →","div-reviews":"Recommandations","testimonials-title":"Ce qu'on dit de moi","testimonials-sub":"Des collègues qui ont travaillé avec moi","div-contact":"Contact","contact-me":"Contactez-moi","by-email":"Par mail",
     rainMessages:["Profil hybride Tech / Business 🧠","Spécialisé IA & RevOps","Étudiant Eugenia School · Grenoble EM","Je transforme les données en décisions 📊","Disponible pour des missions en Freelance"],
-    keywords:[
-      {name:"Proactivité",tooltip:"J'anticipe les besoins et propose des solutions"},
-      {name:"Autonomie",tooltip:"Je prends des initiatives et gère mes projets"},
-      {name:"Rigueur",tooltip:"Je garantis la qualité et la précision"},
-      {name:"Engagement",tooltip:"Je m'investis pleinement dans mes missions"},
-      {name:"Ambition",tooltip:"Je vise l'excellence dans chaque projet"},
-      {name:"Organisation",tooltip:"Je structure et optimise mes workflows"},
-      {name:"Amélioration continue",tooltip:"J'apprends et j'évolue constamment"},
-      {name:"Gestion de projets",tooltip:"Je pilote des projets de A à Z"},
-      {name:"Process Optimization",tooltip:"J'identifie et j'améliore les processus"},
-      {name:"Data-driven",tooltip:"Je base mes décisions sur la data"},
-      {name:"Accompagnement revenue",tooltip:"Je forme et soutiens les équipes"},
-      {name:"Problem Solving",tooltip:"Je trouve des solutions créatives"}
-    ],
-    jobs:["Revenue Operations Manager","CRM Manager","Salesforce Operations Expert","Sales Operations Analyst","Business Intelligence Analyst","Data Analyst","RevOps & Growth Specialist"]
-  },
-  en:{
-    "your-future":"Your future ","keywords-intro":"Key skills",
-    "ai-title":"Discover my profile with AI",
-    "ai-gpt-desc":"Full profile summary · Experience · Projects","ai-gpt-cta":"Open in ChatGPT →",
-    "ai-claude-desc":"In-depth analysis · Skills · Tech stack","ai-claude-cta":"Open in Claude →",
-    "ai-pp-desc":"AI search · Sources · Market context","ai-pp-cta":"Search on Perplexity →",
-    "div-work":"My work","explore-title":"Explore my bureau",
-    "explore-desc":"CV, pro & personal projects in an interactive macOS interface",
-    "bureau-label":"macOS Bureau · CV & Projects","bureau-title":"Explore my bureau",
-    "bureau-desc":"7 projects with metrics · Full CV · Interactive interface with Finder, Siri and animations",
-    "bureau-cta":"Open the bureau →",
-    "div-reviews":"Recommendations","testimonials-title":"What people say","testimonials-sub":"Colleagues I've worked with",
-    "div-contact":"Contact","contact-me":"Contact me","by-email":"By email",
+    keywords:[{name:"Proactivité",tooltip:"J'anticipe les besoins et propose des solutions"},{name:"Autonomie",tooltip:"Je prends des initiatives et gère mes projets"},{name:"Rigueur",tooltip:"Je garantis la qualité et la précision"},{name:"Engagement",tooltip:"Je m'investis pleinement dans mes missions"},{name:"Ambition",tooltip:"Je vise l'excellence dans chaque projet"},{name:"Organisation",tooltip:"Je structure et optimise mes workflows"},{name:"Amélioration continue",tooltip:"J'apprends et j'évolue constamment"},{name:"Gestion de projets",tooltip:"Je pilote des projets de A à Z"},{name:"Process Optimization",tooltip:"J'identifie et j'améliore les processus"},{name:"Data-driven",tooltip:"Je base mes décisions sur la data"},{name:"Accompagnement revenue",tooltip:"Je forme et soutiens les équipes"},{name:"Problem Solving",tooltip:"Je trouve des solutions créatives"}],
+    jobs:["Revenue Operations Manager","CRM Manager","Salesforce Operations Expert","Sales Operations Analyst","Business Intelligence Analyst","Data Analyst","RevOps & Growth Specialist"]},
+  en:{"your-future":"Your future ","keywords-intro":"Key skills","ai-title":"Discover my profile with AI","ai-gpt-desc":"Full profile summary · Experience · Projects","ai-gpt-cta":"Open in ChatGPT →","ai-claude-desc":"In-depth analysis · Skills · Tech stack","ai-claude-cta":"Open in Claude →","ai-pp-desc":"AI search · Sources · Market context","ai-pp-cta":"Search on Perplexity →","div-work":"My work","explore-title":"Explore my bureau","explore-desc":"CV, pro & personal projects in an interactive macOS interface","bureau-label":"macOS Bureau · CV & Projects","bureau-title":"Explore my bureau","bureau-desc":"7 projects with metrics · Full CV · Interactive interface with Finder, Siri and animations","bureau-cta":"Open the bureau →","div-reviews":"Recommendations","testimonials-title":"What people say","testimonials-sub":"Colleagues I've worked with","div-contact":"Contact","contact-me":"Contact me","by-email":"By email",
     rainMessages:["Hybrid Tech / Business Profile 🧠","Specialized in AI & RevOps","Student at Eugenia School · Grenoble EM","I turn data into decisions 📊","Available for Freelance missions"],
-    keywords:[
-      {name:"Proactivity",tooltip:"I anticipate needs and propose solutions"},
-      {name:"Autonomy",tooltip:"I take initiatives and manage my projects"},
-      {name:"Rigor",tooltip:"I ensure quality and precision"},
-      {name:"Engagement",tooltip:"I fully commit to my missions"},
-      {name:"Ambition",tooltip:"I aim for excellence in every project"},
-      {name:"Organization",tooltip:"I structure and optimize my workflows"},
-      {name:"Continuous Improvement",tooltip:"I learn and evolve constantly"},
-      {name:"Project Management",tooltip:"I lead projects from A to Z"},
-      {name:"Process Optimization",tooltip:"I identify and improve processes"},
-      {name:"Data-driven",tooltip:"I base decisions on data"},
-      {name:"Revenue Team Support",tooltip:"I train and support teams"},
-      {name:"Problem Solving",tooltip:"I find creative solutions"}
-    ],
-    jobs:["Revenue Operations Manager","CRM Manager","Salesforce Operations Expert","Sales Operations Analyst","Business Intelligence Analyst","Data Analyst","RevOps & Growth Specialist"]
-  }
+    keywords:[{name:"Proactivity",tooltip:"I anticipate needs and propose solutions"},{name:"Autonomy",tooltip:"I take initiatives and manage my projects"},{name:"Rigor",tooltip:"I ensure quality and precision"},{name:"Engagement",tooltip:"I fully commit to my missions"},{name:"Ambition",tooltip:"I aim for excellence in every project"},{name:"Organization",tooltip:"I structure and optimize my workflows"},{name:"Continuous Improvement",tooltip:"I learn and evolve constantly"},{name:"Project Management",tooltip:"I lead projects from A to Z"},{name:"Process Optimization",tooltip:"I identify and improve processes"},{name:"Data-driven",tooltip:"I base decisions on data"},{name:"Revenue Team Support",tooltip:"I train and support teams"},{name:"Problem Solving",tooltip:"I find creative solutions"}],
+    jobs:["Revenue Operations Manager","CRM Manager","Salesforce Operations Expert","Sales Operations Analyst","Business Intelligence Analyst","Data Analyst","RevOps & Growth Specialist"]}
 };
 
 const SI='https://cdn.simpleicons.org/';
 const sfSvg=`<svg viewBox="0 0 40 28" xmlns="http://www.w3.org/2000/svg"><path fill="#00A1E0" d="M16.5 6.5a7.5 7.5 0 0 1 14-3.6A6.4 6.4 0 0 1 38.5 10a5.7 5.7 0 0 1-2 11H7A6.5 6.5 0 0 1 7 7.5a7.5 7.5 0 0 1 9.5-1z"/></svg>`;
 const tbSvg=`<svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><rect x="14.5" y="3" width="3" height="11" rx="1.5" fill="#1F4796"/><rect x="14.5" y="18" width="3" height="11" rx="1.5" fill="#1F4796"/><rect x="3" y="14.5" width="11" height="3" rx="1.5" fill="#1F4796"/><rect x="18" y="14.5" width="11" height="3" rx="1.5" fill="#1F4796"/><rect x="7" y="5.5" width="2.5" height="8" rx="1.25" fill="#E8762D"/><rect x="3" y="9.5" width="10" height="2.5" rx="1.25" fill="#E8762D"/><rect x="22.5" y="5.5" width="2.5" height="8" rx="1.25" fill="#59879B"/><rect x="19" y="9.5" width="10" height="2.5" rx="1.25" fill="#59879B"/><rect x="7" y="18.5" width="2.5" height="8" rx="1.25" fill="#E8762D"/><rect x="3" y="20" width="10" height="2.5" rx="1.25" fill="#E8762D"/><rect x="22.5" y="18.5" width="2.5" height="8" rx="1.25" fill="#59879B"/><rect x="19" y="20" width="10" height="2.5" rx="1.25" fill="#59879B"/></svg>`;
 const techStack=[
-  {name:'Make',light:`${SI}make/6D00CC`,dark:`${SI}make/9B4DFF`},
-  {name:'HubSpot',light:`${SI}hubspot/FF7A59`,dark:`${SI}hubspot/FF7A59`},
-  {name:'Salesforce',svgMarkup:sfSvg,whiteBg:true},
-  {name:'Airtable',light:`${SI}airtable/18BFFF`,dark:`${SI}airtable/18BFFF`},
-  {name:'Tableau',svgMarkup:tbSvg,whiteBg:true},
-  {name:'SQL',light:`${SI}postgresql/4169E1`,dark:`${SI}postgresql/6B93E8`},
-  {name:'Supabase',light:`${SI}supabase/3ECF8E`,dark:`${SI}supabase/3ECF8E`},
-  {name:'Python',light:`${SI}python/3776AB`,dark:`${SI}python/4B9CD3`},
+  {name:'Make',light:`${SI}make/6D00CC`,dark:`${SI}make/9B4DFF`},{name:'HubSpot',light:`${SI}hubspot/FF7A59`,dark:`${SI}hubspot/FF7A59`},
+  {name:'Salesforce',svgMarkup:sfSvg,whiteBg:true},{name:'Airtable',light:`${SI}airtable/18BFFF`,dark:`${SI}airtable/18BFFF`},
+  {name:'Tableau',svgMarkup:tbSvg,whiteBg:true},{name:'SQL',light:`${SI}postgresql/4169E1`,dark:`${SI}postgresql/6B93E8`},
+  {name:'Supabase',light:`${SI}supabase/3ECF8E`,dark:`${SI}supabase/3ECF8E`},{name:'Python',light:`${SI}python/3776AB`,dark:`${SI}python/4B9CD3`},
   {name:'Dust',light:'./assets/Dust AI Logo.jpg',dark:'./assets/Dust AI Logo.jpg',whiteBg:true},
   {name:'Sheets',light:`${SI}googlesheets/34A853`,dark:`${SI}googlesheets/34A853`},
   {name:'BigQuery',light:`${SI}googlebigquery/4285F4`,dark:`${SI}googlebigquery/669DF6`},
@@ -605,44 +464,25 @@ const techStack=[
 ];
 
 const rainImgs=['./assets/photo.jpg','./assets/[Portfolio]_Photo pro.png','./assets/[Portfolio]_Photo-Perso.png'];
-const dropConfig=[
-  {left:'5%',delay:'0s',dur:'15s',dir:'row',msgIdx:0,img:0},
-  {left:'22%',delay:'3.5s',dur:'13s',dir:'row',msgIdx:1,img:1},
-  {left:'43%',delay:'1.5s',dur:'18s',dir:'row',msgIdx:2,img:2},
-  {left:'63%',delay:'5s',dur:'14s',dir:'row-reverse',msgIdx:3,img:0},
-  {left:'78%',delay:'1s',dur:'16s',dir:'row-reverse',msgIdx:4,img:1},
-];
+const dropConfig=[{left:'5%',delay:'0s',dur:'15s',dir:'row',msgIdx:0,img:0},{left:'22%',delay:'3.5s',dur:'13s',dir:'row',msgIdx:1,img:1},{left:'43%',delay:'1.5s',dur:'18s',dir:'row',msgIdx:2,img:2},{left:'63%',delay:'5s',dur:'14s',dir:'row-reverse',msgIdx:3,img:0},{left:'78%',delay:'1s',dur:'16s',dir:'row-reverse',msgIdx:4,img:1}];
 
 let currentLang='fr';
 
 function renderRain(){
   const container=document.getElementById('rainContainer');if(!container)return;
-  const msgs=translations[currentLang].rainMessages;
-  container.innerHTML='';
-  dropConfig.forEach(d=>{
-    const drop=document.createElement('div');drop.className='drop';
-    drop.style.cssText=`--left:${d.left};--delay:${d.delay};--dur:${d.dur};flex-direction:${d.dir}`;
-    const cls=d.dir==='row'?'bubble-right':'bubble-left';
-    drop.innerHTML=`<img src="${rainImgs[d.img]}" class="drop-img" alt="" onerror="this.style.display='none'"><div class="imsg-bubble ${cls}">${msgs[d.msgIdx]}</div>`;
-    container.appendChild(drop);
-  });
+  const msgs=translations[currentLang].rainMessages;container.innerHTML='';
+  dropConfig.forEach(d=>{const drop=document.createElement('div');drop.className='drop';drop.style.cssText=`--left:${d.left};--delay:${d.delay};--dur:${d.dur};flex-direction:${d.dir}`;const cls=d.dir==='row'?'bubble-right':'bubble-left';drop.innerHTML=`<img src="${rainImgs[d.img]}" class="drop-img" alt="" onerror="this.style.display='none'"><div class="imsg-bubble ${cls}">${msgs[d.msgIdx]}</div>`;container.appendChild(drop);});
 }
 
 function updateKeywords(){
   const cloud=document.getElementById('keywordsCloud');cloud.innerHTML='';
-  translations[currentLang].keywords.forEach(item=>{
-    const b=document.createElement('span');b.className='keyword-badge';b.textContent=item.name;b.setAttribute('data-tooltip',item.tooltip);cloud.appendChild(b);
-  });
+  translations[currentLang].keywords.forEach(item=>{const b=document.createElement('span');b.className='keyword-badge';b.textContent=item.name;b.setAttribute('data-tooltip',item.tooltip);cloud.appendChild(b);});
 }
 
 function renderCarousel(){
   const theme=document.documentElement.getAttribute('data-theme')||'light';
   const carousel=document.getElementById('logoCarousel');if(!carousel)return;
-  const build=()=>techStack.map(t=>{
-    const bgClass=t.whiteBg?' white-bg':'';
-    const icon=t.svgMarkup?`<div style="width:32px;height:32px;display:flex;align-items:center;justify-content:center">${t.svgMarkup}</div>`:`<img src="${t[theme]}" alt="${t.name}" width="32" height="32" style="object-fit:contain" loading="lazy">`;
-    return `<div class="logo-item"><div class="logo-icon${bgClass}">${icon}</div><div class="logo-name">${t.name}</div></div>`;
-  }).join('');
+  const build=()=>techStack.map(t=>{const bgClass=t.whiteBg?' white-bg':'';const icon=t.svgMarkup?`<div style="width:32px;height:32px;display:flex;align-items:center;justify-content:center">${t.svgMarkup}</div>`:`<img src="${t[theme]}" alt="${t.name}" width="32" height="32" style="object-fit:contain" loading="lazy">`;return `<div class="logo-item"><div class="logo-icon${bgClass}">${icon}</div><div class="logo-name">${t.name}</div></div>`;}).join('');
   carousel.innerHTML=build()+build();
 }
 
@@ -659,16 +499,12 @@ const fonts=['font-sf-pro','font-sf-compact','font-new-york','font-sf-mono'];
 let fontIdx=0;
 setInterval(()=>{heroName.className='';fontIdx=(fontIdx+1)%fonts.length;heroName.classList.add(fonts[fontIdx]);},6000);
 
-const TESTI_COUNT=3,AUTOPLAY=6000;
-let testiCurrent=0,testiTimer=null;
+const TESTI_COUNT=3,AUTOPLAY=6000;let testiCurrent=0,testiTimer=null;
 function testiGoTo(idx){
-  const track=document.getElementById('testiTrack');
-  testiCurrent=(idx+TESTI_COUNT)%TESTI_COUNT;
-  track.style.transform=`translateX(-${testiCurrent*100}%)`;
+  const track=document.getElementById('testiTrack');testiCurrent=(idx+TESTI_COUNT)%TESTI_COUNT;track.style.transform=`translateX(-${testiCurrent*100}%)`;
   document.querySelectorAll('.testi-dot').forEach((d,i)=>d.classList.toggle('active',i===testiCurrent));
   for(let i=0;i<TESTI_COUNT;i++){const p=document.getElementById(`prog${i}`);if(p){p.style.transition='none';p.style.width='0%';}}
-  clearTimeout(testiTimer);
-  const p=document.getElementById(`prog${testiCurrent}`);
+  clearTimeout(testiTimer);const p=document.getElementById(`prog${testiCurrent}`);
   if(p){p.style.transition='none';p.style.width='0%';requestAnimationFrame(()=>requestAnimationFrame(()=>{p.style.transition=`width ${AUTOPLAY}ms linear`;p.style.width='100%';}));}
   testiTimer=setTimeout(()=>testiGoTo(testiCurrent+1),AUTOPLAY);
 }
@@ -683,18 +519,9 @@ function initTestimonials(){
   testiGoTo(0);
 }
 
-const searchIndex=[
-  {title:"Hackathon PayFit 2026",type:"Projet",url:"projets-pro.html",tags:["Make","GPT-4","Claude"],excerpt:"80% temps économisé · Innovation Award"},
-  {title:"Eugenia — Audit SEO/GEO/AEO",type:"Projet",url:"projets-pro.html",tags:["Dust","SEMrush","IA"],excerpt:"4 agents IA · machine éditoriale 3 jours"},
-  {title:"Marathon Paris 2025",type:"Projet",url:"projets-pro.html",tags:["Python","pandas","data"],excerpt:"50 001 runners analysés"},
-  {title:"TheLook SQL Audit",type:"Projet",url:"projets-pro.html",tags:["BigQuery","SQL","Looker"],excerpt:"6 insights actionnables"},
-  {title:"Hackathon Mirakl",type:"Projet",url:"projets-pro.html",tags:["Next.js","GPT-4o","Supabase"],excerpt:"×37 plus rapide · ROI ×2400"},
-  {title:"CV",type:"Page",url:"cv.html",tags:["expérience","formation"],excerpt:"Mon parcours professionnel"},
-];
+const searchIndex=[{title:"Hackathon PayFit 2026",type:"Projet",url:"projets-pro.html",tags:["Make","GPT-4","Claude"],excerpt:"80% temps économisé · Innovation Award"},{title:"Eugenia — SEO/GEO/AEO",type:"Projet",url:"projets-pro.html",tags:["Dust","IA"],excerpt:"4 agents IA · 3 jours"},{title:"Marathon Paris 2025",type:"Projet",url:"projets-pro.html",tags:["Python","data"],excerpt:"50 001 runners"},{title:"TheLook SQL Audit",type:"Projet",url:"projets-pro.html",tags:["BigQuery","SQL"],excerpt:"6 insights actionnables"},{title:"Hackathon Mirakl",type:"Projet",url:"projets-pro.html",tags:["Next.js","GPT-4o"],excerpt:"×37 plus rapide · ROI ×2400"},{title:"CV",type:"Page",url:"cv.html",tags:["expérience","formation"],excerpt:"Mon parcours professionnel"}];
 let fuse;
-const overlay=document.getElementById('searchOverlay');
-const searchInput=document.getElementById('searchInput');
-const searchResults=document.getElementById('searchResults');
+const overlay=document.getElementById('searchOverlay'),searchInput=document.getElementById('searchInput'),searchResults=document.getElementById('searchResults');
 function openSearch(){overlay.classList.add('open');setTimeout(()=>searchInput.focus(),80);}
 function closeSearch(){overlay.classList.remove('open');searchInput.value='';searchResults.innerHTML='';}
 document.addEventListener('keydown',e=>{if((e.metaKey||e.ctrlKey)&&e.key==='k'){e.preventDefault();overlay.classList.contains('open')?closeSearch():openSearch();}if(e.key==='Escape')closeSearch();});
@@ -709,67 +536,34 @@ searchInput.addEventListener('input',()=>{
 });
 
 function updateLanguage(lang){
-  currentLang=lang;
-  document.querySelectorAll('[data-i18n]').forEach(el=>{const k=el.getAttribute('data-i18n');if(translations[lang][k]!==undefined)el.textContent=translations[lang][k];});
-  updateKeywords();renderRain();
-  currentTitleIndex=0;currentCharIndex=0;isDeleting=false;typingTextEl.textContent='';typeEffect();
+  currentLang=lang;document.querySelectorAll('[data-i18n]').forEach(el=>{const k=el.getAttribute('data-i18n');if(translations[lang][k]!==undefined)el.textContent=translations[lang][k];});
+  updateKeywords();renderRain();currentTitleIndex=0;currentCharIndex=0;isDeleting=false;typingTextEl.textContent='';typeEffect();
 }
-
-function setTheme(t){
-  document.documentElement.setAttribute('data-theme',t);
-  document.getElementById('themeIcon').textContent=t==='dark'?'☀️':'🌙';
-  localStorage.setItem('theme',t);renderCarousel();
-}
+function setTheme(t){document.documentElement.setAttribute('data-theme',t);document.getElementById('themeIcon').textContent=t==='dark'?'☀️':'🌙';localStorage.setItem('theme',t);renderCarousel();}
 document.getElementById('themeToggle').addEventListener('click',()=>{setTheme((document.documentElement.getAttribute('data-theme')||'light')==='dark'?'light':'dark');});
-document.querySelectorAll('.lang-btn').forEach(btn=>{
-  btn.addEventListener('click',()=>{document.querySelectorAll('.lang-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');localStorage.setItem('lang',btn.dataset.lang);updateLanguage(btn.dataset.lang);});
-});
+document.querySelectorAll('.lang-btn').forEach(btn=>{btn.addEventListener('click',()=>{document.querySelectorAll('.lang-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');localStorage.setItem('lang',btn.dataset.lang);updateLanguage(btn.dataset.lang);});});
 
-/* CHATBOT */
 let imsgOpen=false,imsgInited=false,chatCtx=null;
 const KB=[
-  {r:/^(bonjour|salut|hello|hi|hey|coucou|yo)\b/,rep:"Salut ! 👋 Je suis l'assistant d'Alec. Pose-moi une question sur ses projets, sa stack ou pour le contacter !",suggs:["Ses projets 🚀","Sa stack 🛠️","Le contacter 📬"]},
-  {r:/\b(projet|projets|travaux|réalisation)\b/,rep:"Alec a 7 projets :\n\n🏆 Mirakl — ×37 plus rapide, ROI ×2400\n⚡ PayFit — Innovation Award, -80% temps\n🔍 Eugenia SEO — 4 agents IA\n📊 TheLook SQL — BigQuery\n🏃 Marathon Paris — 50 001 runners\n📅 Task Master\n🤖 AI Agents × 9",suggs:["Mirakl 🏆","PayFit ⚡","Sa stack 🛠️"],ctx:'proj'},
-  {r:/mirakl|bdr/,rep:"🏆 Mirakl — Pipeline BDR ×37 plus rapide\n\n• GPT-4o + Supabase + Apify + Vercel\n• -89% coût/lead · ROI ×2400\n• Déployé en production en 48h",suggs:["PayFit ⚡","Le contacter 📬"]},
-  {r:/payfit|award/,rep:"⚡ PayFit 2026 — Innovation Award\n\n• -80% temps de rédaction\n• 14.3/15 qualité moyenne\n• 200K€/an économisés\n• 0 erreur juridique",suggs:["Mirakl 🏆","Le contacter 📬"]},
-  {r:/marathon/,rep:"🏃 Marathon Paris 2025\n\n50 001 finishers · Python · API reverse-engineering · 8 graphiques",suggs:["Sa stack 🛠️"]},
+  {r:/^(bonjour|salut|hello|hi|hey)\b/,rep:"Salut ! 👋 Je suis l'assistant d'Alec. Pose-moi une question !",suggs:["Ses projets 🚀","Sa stack 🛠️","Le contacter 📬"]},
+  {r:/\b(projet|projets|réalisation)\b/,rep:"Alec a 7 projets :\n\n🏆 Mirakl — ×37 plus rapide, ROI ×2400\n⚡ PayFit — Innovation Award, -80% temps\n🔍 Eugenia SEO — 4 agents IA\n📊 TheLook SQL\n🏃 Marathon Paris — 50 001 runners\n📅 Task Master\n🤖 AI Agents × 9",suggs:["Mirakl 🏆","PayFit ⚡","Sa stack 🛠️"]},
+  {r:/mirakl/,rep:"🏆 Mirakl — Pipeline BDR\n\n• ×37 plus rapide · ROI ×2400\n• -89% coût/lead\n• Next.js + GPT-4o + Supabase + Vercel",suggs:["PayFit ⚡","Le contacter 📬"]},
+  {r:/payfit/,rep:"⚡ PayFit 2026 — Innovation Award\n\n• -80% temps · 14.3/15 qualité\n• 200K€/an économisés · 0 erreur juridique",suggs:["Mirakl 🏆","Le contacter 📬"]},
+  {r:/marathon/,rep:"🏃 Marathon Paris 2025\n\n50 001 finishers · Python · API reverse-engineering",suggs:["Sa stack 🛠️"]},
   {r:/\b(stack|outil|techno)\b/,rep:"Sa stack :\n\n💼 CRM : Salesforce · HubSpot\n📊 Data : SQL · BigQuery · Python\n🤖 IA : Dust · GPT-4o · Claude\n⚙️ Automation : Make.com · N8N",suggs:["Ses projets 🚀","Le contacter 📬"]},
-  {r:/\b(expérience|poste|evaneos|united|javelo)\b/,rep:"3 expériences RevOps :\n\n🟢 Evaneos — Salesforce Ops (actuel)\n⚪ United Heroes — RevOps · 1 an\n⚪ Javelo — Sales Ops → RevOps",suggs:["Sa formation 🎓","Le contacter 📬"]},
-  {r:/\b(formation|école|eugenia|master)\b/,rep:"🎓 Eugenia School × Grenoble EM\n\nMSc AI Applied to Business · Titre RNCP · Alternance · Master 2027\n\nPartenaires : Microsoft · Mistral AI · Carrefour · Station F",suggs:["Son expérience 💼","Le contacter 📬"]},
+  {r:/\b(expérience|evaneos|united|javelo)\b/,rep:"3 expériences RevOps :\n\n🟢 Evaneos — Salesforce Ops (actuel)\n⚪ United Heroes — RevOps · 1 an\n⚪ Javelo — Sales Ops → RevOps",suggs:["Sa formation 🎓","Le contacter 📬"]},
+  {r:/\b(formation|école|eugenia|master)\b/,rep:"🎓 Eugenia School × Grenoble EM\n\nMSc AI Applied to Business · Titre RNCP · Alternance · Master 2027\nPartenaires : Microsoft · Mistral AI · Carrefour · Station F",suggs:["Son expérience 💼","Le contacter 📬"]},
   {r:/\b(contact|email|linkedin)\b/,rep:"Pour contacter Alec :\n\n✉️ alecrudydiami@gmail.com\n💼 linkedin.com/in/alec-diamidia\n⌨️ github.com/venom6-13"},
   {r:/\b(merci|thanks|super)\b/,rep:"Avec plaisir ! 😊",suggs:["Ses projets 🚀","Le contacter 📬"]},
 ];
-function imsgToggle(){
-  imsgOpen=!imsgOpen;document.getElementById('imsgWin').classList.toggle('open',imsgOpen);document.getElementById('imsgNotif').style.display='none';
-  if(imsgOpen&&!imsgInited){imsgInited=true;setTimeout(()=>{imsgBotSay("Salut ! 👋 Je suis l'assistant d'Alec. Pose-moi une question !");setTimeout(()=>renderSuggs(["Ses projets 🚀","Sa stack 🛠️","Le contacter 📬"]),1100);},400);}
-  if(imsgOpen)setTimeout(()=>document.getElementById('imsgInp').focus(),300);
-}
-function imsgBotSay(text){
-  const msgs=document.getElementById('imsgMsgs');
-  const tw=document.createElement('div');tw.className='bw alec';tw.innerHTML='<div class="typing-bubbles"><div class="td"></div><div class="td"></div><div class="td"></div></div>';
-  msgs.appendChild(tw);msgs.scrollTop=msgs.scrollHeight;
-  setTimeout(()=>{tw.remove();const bw=document.createElement('div');bw.className='bw alec';bw.innerHTML=`<div class="bb">${text.replace(/\n/g,'<br>')}</div>`;msgs.appendChild(bw);msgs.scrollTop=msgs.scrollHeight;},800+Math.random()*500);
-}
-function imsgUserSay(text){
-  document.getElementById('imsgSuggs').innerHTML='';
-  const msgs=document.getElementById('imsgMsgs');const bw=document.createElement('div');bw.className='bw me';
-  bw.innerHTML=`<div class="bb">${text}</div><div class="bstatus">Envoyé</div>`;msgs.appendChild(bw);msgs.scrollTop=msgs.scrollHeight;
-}
-function renderSuggs(suggs){
-  const el=document.getElementById('imsgSuggs');el.innerHTML='';
-  suggs.forEach(s=>{const b=document.createElement('button');b.className='isug';b.textContent=s;b.onclick=()=>imsgProcess(s.replace(/[🚀🛠️📬🏆⚡📋🏃📊🎓💼]/g,'').trim());el.appendChild(b);});
-}
+function imsgToggle(){imsgOpen=!imsgOpen;document.getElementById('imsgWin').classList.toggle('open',imsgOpen);document.getElementById('imsgNotif').style.display='none';if(imsgOpen&&!imsgInited){imsgInited=true;setTimeout(()=>{imsgBotSay("Salut ! 👋 Je suis l'assistant d'Alec. Pose-moi une question !");setTimeout(()=>renderSuggs(["Ses projets 🚀","Sa stack 🛠️","Le contacter 📬"]),1100);},400);}if(imsgOpen)setTimeout(()=>document.getElementById('imsgInp').focus(),300);}
+function imsgBotSay(text){const msgs=document.getElementById('imsgMsgs');const tw=document.createElement('div');tw.className='bw alec';tw.innerHTML='<div class="typing-bubbles"><div class="td"></div><div class="td"></div><div class="td"></div></div>';msgs.appendChild(tw);msgs.scrollTop=msgs.scrollHeight;setTimeout(()=>{tw.remove();const bw=document.createElement('div');bw.className='bw alec';bw.innerHTML=`<div class="bb">${text.replace(/\n/g,'<br>')}</div>`;msgs.appendChild(bw);msgs.scrollTop=msgs.scrollHeight;},800+Math.random()*500);}
+function imsgUserSay(text){document.getElementById('imsgSuggs').innerHTML='';const msgs=document.getElementById('imsgMsgs');const bw=document.createElement('div');bw.className='bw me';bw.innerHTML=`<div class="bb">${text}</div><div class="bstatus">Envoyé</div>`;msgs.appendChild(bw);msgs.scrollTop=msgs.scrollHeight;}
+function renderSuggs(suggs){const el=document.getElementById('imsgSuggs');el.innerHTML='';suggs.forEach(s=>{const b=document.createElement('button');b.className='isug';b.textContent=s;b.onclick=()=>imsgProcess(s.replace(/[🚀🛠️📬🏆⚡🏃📊🎓💼]/g,'').trim());el.appendChild(b);});}
 function imsgSend(){const inp=document.getElementById('imsgInp');const t=inp.value.trim();if(!t)return;inp.value='';imsgProcess(t);}
-function imsgProcess(text){
-  imsgUserSay(text);const lower=text.toLowerCase().trim();
-  for(const item of KB){if(item.r.test(lower)){const rep=typeof item.rep==='function'?item.rep():item.rep;chatCtx=item.ctx||chatCtx;setTimeout(()=>{imsgBotSay(rep);const suggs=typeof item.suggs==='function'?item.suggs():item.suggs;setTimeout(()=>renderSuggs(suggs||["Ses projets 🚀","Le contacter 📬"]),1400);},200);return;}}
-  setTimeout(()=>{imsgBotSay("Je n'ai pas tout compris 😅 Essaie :");setTimeout(()=>renderSuggs(["Ses projets 🚀","Sa stack 🛠️","Le contacter 📬"]),1400);},200);
-}
+function imsgProcess(text){imsgUserSay(text);const lower=text.toLowerCase().trim();for(const item of KB){if(item.r.test(lower)){const rep=typeof item.rep==='function'?item.rep():item.rep;chatCtx=item.ctx||chatCtx;setTimeout(()=>{imsgBotSay(rep);const suggs=item.suggs||["Ses projets 🚀","Le contacter 📬"];setTimeout(()=>renderSuggs(suggs),1400);},200);return;}}setTimeout(()=>{imsgBotSay("Je n'ai pas tout compris 😅 Essaie :");setTimeout(()=>renderSuggs(["Ses projets 🚀","Sa stack 🛠️","Le contacter 📬"]),1400);},200);}
 
-(function(){
-  const code=['ArrowUp','ArrowUp','ArrowDown','ArrowDown','ArrowLeft','ArrowRight','ArrowLeft','ArrowRight','b','a'];let pos=0;
-  document.addEventListener('keydown',e=>{if(e.key===code[pos]){pos++;if(pos===code.length){pos=0;document.getElementById('eggModal').style.display='flex';}}else pos=e.key===code[0]?1:0;});
-})();
+(function(){const code=['ArrowUp','ArrowUp','ArrowDown','ArrowDown','ArrowLeft','ArrowRight','ArrowLeft','ArrowRight','b','a'];let pos=0;document.addEventListener('keydown',e=>{if(e.key===code[pos]){pos++;if(pos===code.length){pos=0;document.getElementById('eggModal').style.display='flex';}}else pos=e.key===code[0]?1:0;});})();
 
 document.addEventListener('DOMContentLoaded',()=>{
   document.body.classList.add('loaded');
