@@ -4,59 +4,66 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
 <title>Bureau — Alec DIAMIDIA</title>
-<!-- GA4 -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-JQTFPSYHTE"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-JQTFPSYHTE');</script>
 <style>
 *{margin:0;padding:0;box-sizing:border-box;}
-body{font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display",Helvetica,sans-serif;width:100vw;height:100vh;overflow:hidden;-webkit-font-smoothing:antialiased;user-select:none;}
+html,body{width:100vw;height:100vh;overflow:hidden;font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display",Helvetica,sans-serif;-webkit-font-smoothing:antialiased;user-select:none;cursor:none;}
+
+/* ── CUSTOM CURSOR ── */
+#cur-dot{position:fixed;width:8px;height:8px;border-radius:50%;background:rgba(191,90,242,.95);pointer-events:none;z-index:999999;top:0;left:0;transform:translate(-50%,-50%);transition:width .15s,height .15s;box-shadow:0 0 10px rgba(191,90,242,.8),0 0 22px rgba(191,90,242,.4);}
+#cur-ring{position:fixed;width:32px;height:32px;border-radius:50%;border:1.5px solid rgba(255,255,255,.3);pointer-events:none;z-index:999998;top:0;left:0;transform:translate(-50%,-50%);transition:width .2s,height .2s,border-color .2s;will-change:left,top;}
+#cur-dot.click{width:14px;height:14px;}
+#cur-ring.click{width:22px;height:22px;border-color:rgba(191,90,242,.6);}
+#spotlight{position:fixed;inset:0;z-index:2;pointer-events:none;background:radial-gradient(circle 320px at 50% 50%,transparent 0%,rgba(0,0,0,.42) 100%);transition:background .08s;}
 
 /* ── SPLASH ── */
-#splash{position:fixed;inset:0;z-index:99999;background:#000;display:flex;align-items:center;justify-content:center;transition:opacity .5s ease;}
-.splash-card{background:rgba(18,18,24,.95);border:1px solid rgba(255,255,255,.12);border-radius:20px;padding:44px 48px;width:min(400px,90vw);text-align:center;box-shadow:0 60px 120px rgba(0,0,0,.9);}
-.splash-logo{font-size:42px;margin-bottom:16px;animation:splashPulse 2s ease-in-out infinite;}
-@keyframes splashPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.08)}}
+#splash{position:fixed;inset:0;z-index:99999;background:#000;display:flex;align-items:center;justify-content:center;}
+.splash-inner{background:rgba(18,18,26,.96);border:1px solid rgba(255,255,255,.14);border-radius:22px;padding:44px 48px;width:min(420px,90vw);text-align:center;box-shadow:0 60px 120px rgba(0,0,0,.9);}
+.splash-apple{font-size:48px;margin-bottom:18px;display:block;animation:sPulse 2.2s ease-in-out infinite;}
+@keyframes sPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.1)}}
 .splash-title{font-size:22px;font-weight:700;color:#fff;letter-spacing:-.02em;margin-bottom:6px;}
-.splash-sub{font-size:13px;color:rgba(255,255,255,.4);margin-bottom:28px;line-height:1.5;}
-.splash-input{width:100%;padding:12px 16px;border-radius:11px;font-size:15px;background:rgba(255,255,255,.07);border:1.5px solid rgba(255,255,255,.12);color:#fff;outline:none;font-family:inherit;margin-bottom:10px;transition:border-color .2s;}
-.splash-input:focus{border-color:rgba(0,113,227,.8);}
-.splash-input::placeholder{color:rgba(255,255,255,.28);}
-.splash-input.error{border-color:rgba(255,59,48,.7);animation:shake .35s ease;}
-@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
-.splash-btn{width:100%;padding:14px;border-radius:11px;border:none;cursor:pointer;background:#0071e3;color:#fff;font-size:16px;font-weight:600;font-family:inherit;margin-top:4px;transition:all .2s;}
-.splash-btn:hover{background:#0077ed;transform:translateY(-1px);}
-.splash-btn:active{transform:translateY(0);}
-.splash-note{font-size:11px;color:rgba(255,255,255,.2);margin-top:14px;line-height:1.5;}
+.splash-sub{font-size:13px;color:rgba(255,255,255,.4);margin-bottom:28px;line-height:1.55;}
+.sp-inp{width:100%;padding:13px 16px;border-radius:12px;font-size:15px;background:rgba(255,255,255,.07);border:1.5px solid rgba(255,255,255,.12);color:#fff;outline:none;font-family:inherit;margin-bottom:10px;transition:border-color .2s;cursor:text;}
+.sp-inp:focus{border-color:rgba(0,113,227,.8);}
+.sp-inp::placeholder{color:rgba(255,255,255,.28);}
+.sp-inp.err{border-color:rgba(255,59,48,.8);animation:shake .35s ease;}
+@keyframes shake{0%,100%{transform:translateX(0)}20%{transform:translateX(-7px)}60%{transform:translateX(7px)}}
+.sp-btn{width:100%;padding:14px;border-radius:12px;border:none;cursor:pointer;background:#0071e3;color:#fff;font-size:16px;font-weight:600;font-family:inherit;margin-top:4px;transition:all .2s;}
+.sp-btn:hover{background:#0077ed;transform:translateY(-1px);}
+.sp-confirm{display:none;align-items:center;gap:12px;background:rgba(48,209,88,.12);border:1px solid rgba(48,209,88,.25);border-radius:12px;padding:14px 16px;margin-top:16px;text-align:left;}
+.sp-confirm.show{display:flex;}
+.sp-confirm-ico{font-size:22px;flex-shrink:0;}
+.sp-confirm-txt{font-size:13px;color:#30d158;line-height:1.5;}
+.sp-note{font-size:11px;color:rgba(255,255,255,.2);margin-top:14px;line-height:1.5;}
 
-/* ── BOOT SCREEN ── */
-#boot{position:fixed;inset:0;z-index:99998;background:#000;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:32px;opacity:0;pointer-events:none;transition:opacity .5s ease;}
+/* ── BOOT ── */
+#boot{position:fixed;inset:0;z-index:99998;background:#000;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:30px;opacity:0;pointer-events:none;}
 #boot.show{opacity:1;pointer-events:all;}
-.boot-apple{font-size:72px;opacity:.9;}
-.boot-progress-wrap{width:180px;height:3px;background:rgba(255,255,255,.15);border-radius:2px;overflow:hidden;}
-.boot-progress{height:100%;width:0%;background:rgba(255,255,255,.85);border-radius:2px;transition:width 2.4s cubic-bezier(.4,0,.2,1);}
-.boot-name{color:rgba(255,255,255,.5);font-size:13px;font-weight:500;letter-spacing:.04em;opacity:0;transition:opacity .5s ease .3s;}
+.boot-logo{font-size:80px;filter:drop-shadow(0 0 30px rgba(255,255,255,.2));}
+.boot-name{color:rgba(255,255,255,.5);font-size:14px;font-weight:500;letter-spacing:.04em;opacity:0;transition:opacity .5s ease;}
 #boot.show .boot-name{opacity:1;}
+.boot-bar-w{width:200px;height:3px;background:rgba(255,255,255,.14);border-radius:2px;overflow:hidden;}
+.boot-bar{height:100%;width:0%;background:#fff;border-radius:2px;transition:width 2.6s cubic-bezier(.4,0,.2,1);}
 
 /* ── WALLPAPER ── */
-.aurora{position:fixed;inset:0;z-index:0;background:#0a0015;}
-.blob{position:absolute;border-radius:50%;filter:blur(100px);opacity:.65;}
-.b1{width:700px;height:700px;top:-200px;left:-200px;background:radial-gradient(circle,#5e2ca5,transparent 70%);animation:b1 22s ease-in-out infinite;}
-.b2{width:600px;height:600px;top:0;right:-100px;background:radial-gradient(circle,#a8266f,transparent 70%);animation:b2 26s ease-in-out infinite;}
-.b3{width:500px;height:500px;bottom:-100px;left:15%;background:radial-gradient(circle,#c96b3a,transparent 70%);animation:b3 20s ease-in-out infinite;}
-.b4{width:400px;height:400px;bottom:0;right:5%;background:radial-gradient(circle,#1e6fa8,transparent 70%);animation:b4 24s ease-in-out infinite;}
+.aurora{position:fixed;inset:0;z-index:0;background:#080012;}
+.blob{position:absolute;border-radius:50%;filter:blur(100px);opacity:.6;}
+.b1{width:700px;height:700px;top:-200px;left:-200px;background:radial-gradient(#5e2ca5,transparent 70%);animation:b1 22s ease-in-out infinite;}
+.b2{width:600px;height:600px;top:0;right:-100px;background:radial-gradient(#a8266f,transparent 70%);animation:b2 26s ease-in-out infinite;}
+.b3{width:500px;height:500px;bottom:-100px;left:15%;background:radial-gradient(#c96b3a,transparent 70%);animation:b3 20s ease-in-out infinite;}
+.b4{width:400px;height:400px;bottom:0;right:5%;background:radial-gradient(#1e6fa8,transparent 70%);animation:b4 24s ease-in-out infinite;}
 @keyframes b1{0%,100%{transform:translate(0,0) scale(1)}33%{transform:translate(120px,70px) scale(1.1)}66%{transform:translate(150px,-50px) scale(.9)}}
 @keyframes b2{0%,100%{transform:translate(0,0)}40%{transform:translate(-110px,90px) scale(1.1)}80%{transform:translate(70px,-70px) scale(.9)}}
 @keyframes b3{0%,100%{transform:translate(0,0)}50%{transform:translate(90px,-110px) scale(1.2)}}
 @keyframes b4{0%,100%{transform:translate(0,0)}40%{transform:translate(-80px,-60px) scale(1.1)}80%{transform:translate(40px,40px) scale(.9)}}
-
-/* GRAIN */
 .grain{position:fixed;inset:0;z-index:1;pointer-events:none;opacity:.03;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");background-size:200px;}
 
-/* MENU BAR */
+/* ── MENU BAR ── */
 .menubar{position:fixed;top:0;left:0;right:0;height:36px;background:rgba(0,0,0,.6);backdrop-filter:blur(30px) saturate(180%);z-index:5000;display:flex;align-items:center;justify-content:space-between;padding:0 18px;color:#fff;font-size:14px;border-bottom:1px solid rgba(255,255,255,.08);}
 .mb-l,.mb-r{display:flex;align-items:center;gap:18px;}
-.mb-bold{font-weight:700;}
-.mb-dim{opacity:.5;font-size:13px;cursor:default;}
+.mb-bold{font-weight:700;font-size:14px;}
+.mb-dim{opacity:.48;font-size:13px;cursor:default;}
 .mb-time{font-weight:600;font-variant-numeric:tabular-nums;font-size:13px;}
 .lang-sw{display:flex;background:rgba(255,255,255,.12);border-radius:10px;padding:2px;}
 .lang-btn{background:none;border:none;color:rgba(255,255,255,.6);padding:3px 10px;border-radius:8px;font-size:12px;font-weight:500;cursor:pointer;font-family:inherit;transition:all .2s;}
@@ -64,26 +71,27 @@ body{font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display",Helvetica,san
 .mb-siri{background:none;border:none;color:rgba(255,255,255,.75);font-size:13px;cursor:pointer;padding:4px 10px;border-radius:6px;font-family:inherit;display:flex;align-items:center;gap:5px;transition:all .2s;}
 .mb-siri:hover{background:rgba(255,255,255,.12);}
 
-/* DESKTOP */
-.desktop{position:fixed;top:36px;left:0;right:0;bottom:94px;z-index:2;}
-.desk-hint{position:absolute;bottom:14px;left:50%;transform:translateX(-50%);color:rgba(255,255,255,.16);font-size:11px;letter-spacing:.1em;text-transform:uppercase;white-space:nowrap;pointer-events:none;}
+/* ── DESKTOP ── */
+.desktop{position:fixed;top:36px;left:0;right:0;bottom:94px;z-index:3;}
+.desk-hint{position:absolute;bottom:14px;left:50%;transform:translateX(-50%);color:rgba(255,255,255,.15);font-size:11px;letter-spacing:.1em;text-transform:uppercase;white-space:nowrap;pointer-events:none;user-select:none;}
 
-/* DESKTOP ICONS */
-.dicon{position:absolute;display:flex;flex-direction:column;align-items:center;gap:9px;cursor:pointer;width:120px;}
-.dicon .di-img{font-size:72px;filter:drop-shadow(0 8px 24px rgba(0,0,0,.7));transition:transform .22s cubic-bezier(.34,1.56,.64,1);position:relative;}
-.dicon:hover .di-img{transform:scale(1.08) translateY(-6px);}
-.dicon.dragging{opacity:.88;z-index:300;transition:none!important;}
-.di-badge{position:absolute;top:-8px;right:-8px;background:#ff3b30;color:#fff;font-size:10px;font-weight:700;width:20px;height:20px;border-radius:50%;display:flex;align-items:center;justify-content:center;border:2px solid rgba(255,255,255,.25);}
+/* ── DESKTOP ICONS ── */
+.dicon{position:absolute;display:flex;flex-direction:column;align-items:center;cursor:pointer;width:120px;}
+.di-parallax{display:flex;flex-direction:column;align-items:center;gap:9px;transition:transform .5s cubic-bezier(.25,.46,.45,.94);}
+.di-img{font-size:72px;filter:drop-shadow(0 8px 24px rgba(0,0,0,.7));transition:transform .22s cubic-bezier(.34,1.56,.64,1);position:relative;}
+.dicon:hover .di-img{transform:scale(1.1) translateY(-8px);}
+.dicon.dragging .di-parallax{transition:none;}
+.di-badge{position:absolute;top:-8px;right:-10px;background:#ff3b30;color:#fff;font-size:10px;font-weight:700;width:20px;height:20px;border-radius:50%;display:flex;align-items:center;justify-content:center;border:2px solid rgba(255,255,255,.25);}
 .di-lbl{color:#fff;font-size:12px;font-weight:600;text-align:center;text-shadow:0 1px 5px rgba(0,0,0,1);background:rgba(0,0,0,.45);padding:3px 11px;border-radius:5px;backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.07);white-space:nowrap;}
 
-/* CUSTOM TOOLTIP */
-.di-tooltip{position:absolute;bottom:calc(100% + 10px);left:50%;transform:translateX(-50%);background:rgba(20,20,30,.96);backdrop-filter:blur(16px);border:1px solid rgba(255,255,255,.12);border-radius:12px;padding:10px 14px;width:180px;text-align:center;pointer-events:none;opacity:0;transition:opacity .2s ease;z-index:10;}
-.dicon:hover .di-tooltip{opacity:1;}
-.di-tooltip-title{font-size:13px;font-weight:600;color:#fff;margin-bottom:4px;}
-.di-tooltip-desc{font-size:11px;color:rgba(255,255,255,.5);line-height:1.45;}
+/* Tooltip */
+.di-tt{position:absolute;bottom:calc(100% + 12px);left:50%;transform:translateX(-50%);background:rgba(18,18,28,.97);backdrop-filter:blur(16px);border:1px solid rgba(255,255,255,.14);border-radius:12px;padding:10px 14px;width:190px;text-align:center;pointer-events:none;opacity:0;transition:opacity .2s;z-index:20;box-shadow:0 8px 24px rgba(0,0,0,.5);}
+.dicon:hover .di-tt{opacity:1;}
+.di-tt-title{font-size:13px;font-weight:600;color:#fff;margin-bottom:4px;}
+.di-tt-desc{font-size:11px;color:rgba(255,255,255,.48);line-height:1.45;}
 
-/* CV WINDOW */
-.cv-win{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%) scale(.93) translateY(20px);width:min(840px,92vw);height:min(660px,84vh);background:rgba(20,20,26,.98);border:1px solid rgba(255,255,255,.14);border-radius:14px;z-index:1200;display:flex;flex-direction:column;box-shadow:0 60px 140px rgba(0,0,0,.95);opacity:0;pointer-events:none;transition:all .35s cubic-bezier(.34,1.2,.64,1);overflow:hidden;}
+/* ── CV WINDOW ── */
+.cv-win{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%) scale(.93) translateY(24px);width:min(860px,92vw);height:min(680px,85vh);background:rgba(18,18,24,.99);border:1px solid rgba(255,255,255,.13);border-radius:14px;z-index:1200;display:flex;flex-direction:column;box-shadow:0 60px 140px rgba(0,0,0,.95);opacity:0;pointer-events:none;transition:all .35s cubic-bezier(.34,1.2,.64,1);overflow:hidden;}
 .cv-win.open{opacity:1;pointer-events:all;transform:translate(-50%,-50%) scale(1) translateY(0);}
 .cv-bar{height:44px;background:rgba(0,0,0,.32);border-bottom:1px solid rgba(255,255,255,.07);display:flex;align-items:center;padding:0 16px;flex-shrink:0;position:relative;}
 .cv-tls{display:flex;gap:7px;}
@@ -91,46 +99,92 @@ body{font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display",Helvetica,san
 .cvtl:hover{filter:brightness(.75);}
 .cvtl.r{background:#ff5f57;}.cvtl.y{background:#febc2e;}.cvtl.g{background:#28c840;}
 .cv-bartitle{position:absolute;left:50%;transform:translateX(-50%);color:rgba(255,255,255,.8);font-size:14px;font-weight:600;}
-.cv-body{flex:1;overflow-y:auto;padding:40px 52px;user-select:text;}
+.cv-body{flex:1;overflow-y:auto;padding:36px 52px 52px;user-select:text;cursor:auto;}
 .cv-body::-webkit-scrollbar{width:5px;}
 .cv-body::-webkit-scrollbar-thumb{background:rgba(255,255,255,.12);border-radius:3px;}
-.cv-hdr{display:flex;align-items:center;gap:26px;margin-bottom:30px;padding-bottom:26px;border-bottom:1px solid rgba(255,255,255,.08);}
-.cv-av{width:70px;height:70px;border-radius:50%;overflow:hidden;flex-shrink:0;background:linear-gradient(135deg,#667eea,#764ba2);}
+
+/* CV Header */
+.cv-hdr{display:flex;align-items:center;gap:26px;margin-bottom:24px;padding-bottom:24px;border-bottom:1px solid rgba(255,255,255,.08);}
+.cv-av{width:72px;height:72px;border-radius:50%;overflow:hidden;flex-shrink:0;background:linear-gradient(135deg,#667eea,#764ba2);}
 .cv-av img{width:100%;height:100%;object-fit:cover;}
-.cv-nm{font-size:26px;font-weight:700;color:#fff;letter-spacing:-.02em;margin-bottom:4px;}
-.cv-ro{font-size:13px;color:rgba(255,255,255,.45);margin-bottom:10px;}
+.cv-info{}
+.cv-nm{font-size:26px;font-weight:700;color:#fff;letter-spacing:-.025em;margin-bottom:3px;}
+.cv-ro{font-size:13px;color:rgba(255,255,255,.45);margin-bottom:11px;}
 .cv-cts{display:flex;flex-wrap:wrap;gap:7px;}
-.cv-ct{display:flex;align-items:center;gap:5px;font-size:11px;color:rgba(255,255,255,.55);text-decoration:none;background:rgba(255,255,255,.06);padding:4px 10px;border-radius:20px;border:1px solid rgba(255,255,255,.08);transition:all .2s;}
-.cv-ct:hover{color:#fff;background:rgba(255,255,255,.12);}
-.cv-sh{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.14em;color:rgba(255,255,255,.26);margin:22px 0 10px;}
-.cv-xi{margin-bottom:16px;padding:15px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:11px;position:relative;}
-.cv-xco{font-size:15px;font-weight:700;color:#fff;margin-bottom:2px;}
-.cv-xro{font-size:12px;color:rgba(255,255,255,.55);margin-bottom:2px;}
-.cv-xdt{font-size:11px;color:rgba(255,255,255,.3);}
-.cv-xbdg{position:absolute;top:15px;right:15px;background:rgba(48,209,88,.14);color:#30d158;padding:3px 10px;border-radius:20px;font-size:10px;font-weight:600;border:1px solid rgba(48,209,88,.22);}
-.cv-xbl{list-style:none;margin-top:9px;display:flex;flex-direction:column;gap:5px;}
-.cv-xbl li{font-size:12px;color:rgba(255,255,255,.5);padding-left:14px;position:relative;line-height:1.5;}
-.cv-xbl li::before{content:'▸';position:absolute;left:0;color:#bf5af2;font-size:10px;}
-.cv-edu{display:flex;gap:14px;margin-bottom:13px;padding:14px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:11px;}
+.cv-ct{display:flex;align-items:center;gap:5px;font-size:11px;color:rgba(255,255,255,.55);text-decoration:none;background:rgba(255,255,255,.06);padding:4px 10px;border-radius:20px;border:1px solid rgba(255,255,255,.08);transition:all .2s;cursor:pointer;}
+.cv-ct:hover{color:#fff;background:rgba(255,255,255,.13);}
+
+/* Stats bar */
+.cv-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:24px;}
+.cv-stat{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:12px;padding:14px 10px;text-align:center;}
+.cv-stat-val{font-size:22px;font-weight:700;color:#bf5af2;letter-spacing:-.02em;}
+.cv-stat-lbl{font-size:10px;color:rgba(255,255,255,.36);margin-top:3px;line-height:1.3;}
+
+/* Section heading */
+.cv-sh{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.14em;color:rgba(255,255,255,.26);margin:22px 0 12px;display:flex;align-items:center;gap:10px;}
+.cv-sh::after{content:'';flex:1;height:1px;background:rgba(255,255,255,.06);}
+
+/* Timeline experiences */
+.cv-timeline{display:flex;flex-direction:column;gap:0;}
+.cv-tl-item{display:flex;gap:18px;padding-bottom:24px;position:relative;}
+.cv-tl-item:last-child{padding-bottom:0;}
+.cv-tl-left{display:flex;flex-direction:column;align-items:center;width:20px;flex-shrink:0;}
+.cv-tl-dot{width:12px;height:12px;border-radius:50%;background:#bf5af2;flex-shrink:0;box-shadow:0 0 10px rgba(191,90,242,.6);margin-top:4px;}
+.cv-tl-dot.green{background:#30d158;box-shadow:0 0 10px rgba(48,209,88,.6);}
+.cv-tl-line{width:1px;flex:1;background:rgba(255,255,255,.1);margin-top:4px;}
+.cv-tl-content{flex:1;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:12px;padding:16px;}
+.cv-tl-badge{display:inline-block;background:rgba(48,209,88,.13);color:#30d158;padding:2px 9px;border-radius:20px;font-size:10px;font-weight:600;border:1px solid rgba(48,209,88,.2);margin-bottom:8px;}
+.cv-tl-company{font-size:15px;font-weight:700;color:#fff;margin-bottom:2px;}
+.cv-tl-role{font-size:12px;color:rgba(255,255,255,.55);margin-bottom:2px;}
+.cv-tl-date{font-size:11px;color:rgba(255,255,255,.3);margin-bottom:10px;}
+.cv-tl-ul{list-style:none;display:flex;flex-direction:column;gap:5px;}
+.cv-tl-ul li{font-size:12px;color:rgba(255,255,255,.52);padding-left:14px;position:relative;line-height:1.55;}
+.cv-tl-ul li::before{content:'▸';position:absolute;left:0;color:#bf5af2;font-size:10px;top:1px;}
+.cv-tl-ul li strong{color:rgba(255,255,255,.85);}
+.cv-tl-ref{margin-top:10px;padding:8px 10px;background:rgba(255,255,255,.04);border-radius:8px;font-size:11px;color:rgba(255,255,255,.4);border-left:2px solid rgba(191,90,242,.4);}
+
+/* Education */
+.cv-edu{display:flex;gap:14px;margin-bottom:12px;padding:14px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:12px;}
 .cv-edu-emoji{font-size:28px;flex-shrink:0;}
 .cv-edu-sc{font-size:14px;font-weight:700;color:#fff;margin-bottom:2px;}
 .cv-edu-pr{font-size:12px;color:rgba(255,255,255,.45);margin-bottom:2px;}
 .cv-edu-dt{font-size:11px;color:rgba(255,255,255,.3);}
-.cv-sg{display:grid;grid-template-columns:repeat(2,1fr);gap:9px;}
-.cv-sg-item{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:10px;padding:11px;}
-.cv-sg-cat{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.28);margin-bottom:7px;}
+
+/* Skills */
+.cv-skills-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;}
+.cv-sk{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:11px;padding:12px;}
+.cv-sk-cat{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.28);margin-bottom:8px;}
 .cv-tags{display:flex;flex-wrap:wrap;gap:5px;}
 .cv-tag{background:rgba(255,255,255,.07);color:rgba(255,255,255,.65);padding:3px 9px;border-radius:20px;font-size:11px;}
+.cv-tag.expert{background:rgba(191,90,242,.15);color:#bf5af2;border:1px solid rgba(191,90,242,.2);}
+
+/* Testimonials */
+.cv-testimonials{display:flex;flex-direction:column;gap:10px;}
+.cv-testi{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:12px;padding:16px;position:relative;}
+.cv-testi::before{content:'"';position:absolute;top:-4px;left:14px;font-size:40px;color:rgba(191,90,242,.3);line-height:1;font-family:Georgia,serif;}
+.cv-testi-quote{font-size:12.5px;color:rgba(255,255,255,.62);line-height:1.65;font-style:italic;padding-left:8px;margin-bottom:10px;}
+.cv-testi-author{font-size:11px;font-weight:600;color:rgba(255,255,255,.45);}
+
+/* Projects in CV */
 .cv-pg{display:grid;grid-template-columns:repeat(2,1fr);gap:9px;}
 .cv-pj{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:10px;padding:12px;}
 .cv-pj-t{font-size:13px;font-weight:600;color:#fff;margin-bottom:4px;}
 .cv-pj-k{font-size:11px;color:rgba(255,255,255,.42);line-height:1.4;}
 .cv-pj-b{display:inline-block;margin-top:6px;background:rgba(191,90,242,.14);color:#bf5af2;padding:2px 8px;border-radius:20px;font-size:10px;font-weight:600;border:1px solid rgba(191,90,242,.2);}
-.cv-lg{display:flex;gap:10px;flex-wrap:wrap;}
-.cv-lg-item{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:10px;padding:10px 18px;text-align:center;}
 
-/* FINDER WINDOW */
-.finder{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%) scale(.93) translateY(20px);width:min(1040px,88vw);height:min(680px,78vh);background:rgba(20,20,26,.98);backdrop-filter:blur(50px);border:1px solid rgba(255,255,255,.13);border-radius:14px;z-index:1100;display:flex;flex-direction:column;box-shadow:0 60px 140px rgba(0,0,0,.95);opacity:0;pointer-events:none;transition:all .35s cubic-bezier(.34,1.2,.64,1);overflow:hidden;}
+/* Awards */
+.cv-awards{display:flex;gap:10px;flex-wrap:wrap;}
+.cv-award{background:rgba(255,193,7,.08);border:1px solid rgba(255,193,7,.2);border-radius:12px;padding:12px 16px;display:flex;align-items:center;gap:10px;}
+.cv-award-ico{font-size:22px;}
+.cv-award-t{font-size:12px;font-weight:600;color:#fff;margin-bottom:2px;}
+.cv-award-s{font-size:11px;color:rgba(255,255,255,.4);}
+
+/* Languages */
+.cv-lg{display:flex;gap:10px;}
+.cv-lg-item{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:10px;padding:12px 20px;text-align:center;}
+
+/* ── FINDER WINDOW ── */
+.finder{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%) scale(.93) translateY(24px);width:min(1040px,88vw);height:min(680px,78vh);background:rgba(18,18,24,.99);backdrop-filter:blur(50px);border:1px solid rgba(255,255,255,.12);border-radius:14px;z-index:1100;display:flex;flex-direction:column;box-shadow:0 60px 140px rgba(0,0,0,.95);opacity:0;pointer-events:none;transition:all .35s cubic-bezier(.34,1.2,.64,1);overflow:hidden;}
 .finder.open{opacity:1;pointer-events:all;transform:translate(-50%,-50%) scale(1) translateY(0);}
 .fdr-bar{height:44px;background:rgba(0,0,0,.3);border-bottom:1px solid rgba(255,255,255,.07);display:flex;align-items:center;padding:0 16px;flex-shrink:0;position:relative;}
 .ftls{display:flex;gap:7px;}
@@ -139,8 +193,8 @@ body{font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display",Helvetica,san
 .ftl.r{background:#ff5f57;}.ftl.y{background:#febc2e;}.ftl.g{background:#28c840;}
 .fdr-title{position:absolute;left:50%;transform:translateX(-50%);color:rgba(255,255,255,.8);font-size:14px;font-weight:600;display:flex;align-items:center;gap:7px;}
 .fdr-body{display:flex;flex:1;overflow:hidden;}
-.fdr-sb{width:204px;flex-shrink:0;background:rgba(0,0,0,.22);border-right:1px solid rgba(255,255,255,.07);padding:14px 0;display:flex;flex-direction:column;}
-.fdr-sb-ttl{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.26);padding:0 16px;margin-bottom:6px;}
+.fdr-sb{width:210px;flex-shrink:0;background:rgba(0,0,0,.22);border-right:1px solid rgba(255,255,255,.07);padding:14px 0;display:flex;flex-direction:column;}
+.fdr-sb-ttl{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.26);padding:0 16px;margin-bottom:7px;}
 .fdr-pi{padding:9px 16px;cursor:pointer;display:flex;align-items:center;gap:10px;border-radius:8px;margin:0 8px;transition:background .15s;color:rgba(255,255,255,.68);font-size:13px;}
 .fdr-pi:hover{background:rgba(255,255,255,.08);}
 .fdr-pi.active{background:rgba(99,102,241,.25);color:#fff;}
@@ -153,7 +207,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display",Helvetica,san
 .pd{display:flex;flex-direction:column;gap:16px;}
 .pd-hero{display:flex;align-items:flex-start;gap:16px;padding-bottom:18px;border-bottom:1px solid rgba(255,255,255,.07);}
 .pd-ico{font-size:48px;filter:drop-shadow(0 4px 12px rgba(0,0,0,.5));flex-shrink:0;}
-.pd-nm{font-size:23px;font-weight:700;color:#fff;letter-spacing:-.02em;margin-bottom:4px;line-height:1.2;}
+.pd-nm{font-size:22px;font-weight:700;color:#fff;letter-spacing:-.02em;margin-bottom:4px;line-height:1.2;}
 .pd-sb{font-size:12px;color:rgba(255,255,255,.38);margin-bottom:10px;}
 .pd-tags{display:flex;flex-wrap:wrap;gap:5px;}
 .pd-tag{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.09);padding:3px 10px;border-radius:20px;font-size:11px;color:rgba(255,255,255,.52);}
@@ -164,37 +218,37 @@ body{font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display",Helvetica,san
 .pl li{font-size:12.5px;color:rgba(255,255,255,.58);padding-left:16px;position:relative;line-height:1.6;}
 .pl li::before{content:'▸';position:absolute;left:0;color:#bf5af2;font-size:10px;}
 .pl li strong{color:#fff;}
-.pm-g{display:grid;grid-template-columns:repeat(auto-fill,minmax(106px,1fr));gap:8px;}
+.pm-g{display:grid;grid-template-columns:repeat(auto-fill,minmax(100px,1fr));gap:8px;}
 .pm{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:11px;padding:12px;text-align:center;}
 .pmv{font-size:18px;font-weight:700;}
 .pml{font-size:10px;color:rgba(255,255,255,.34);margin-top:3px;line-height:1.3;}
-.pb{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.13);color:#fff;padding:8px 16px;border-radius:20px;text-decoration:none;font-size:12px;font-weight:500;margin-top:4px;transition:all .2s;}
+.pb{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.13);color:#fff;padding:8px 16px;border-radius:20px;text-decoration:none;font-size:12px;font-weight:500;margin-top:4px;transition:all .2s;cursor:pointer;}
 .pb:hover{background:rgba(255,255,255,.15);}
 
-/* SIRI */
+/* ── SIRI ── */
 .siri-ov{position:fixed;bottom:108px;left:50%;transform:translateX(-50%) translateY(16px);width:min(490px,88vw);background:rgba(10,10,18,.96);backdrop-filter:blur(40px);border:1px solid rgba(255,255,255,.18);border-radius:22px;z-index:4000;padding:22px 22px 18px;box-shadow:0 24px 70px rgba(0,0,0,.75);opacity:0;pointer-events:none;transition:opacity .3s,transform .3s;}
 .siri-ov.open{opacity:1;pointer-events:all;transform:translateX(-50%) translateY(0);}
 .siri-cls{position:absolute;top:12px;right:12px;background:rgba(255,255,255,.08);border:none;color:rgba(255,255,255,.5);width:24px;height:24px;border-radius:50%;cursor:pointer;font-size:13px;display:flex;align-items:center;justify-content:center;font-family:inherit;transition:all .2s;}
 .siri-cls:hover{background:rgba(255,255,255,.18);color:#fff;}
 .siri-ring-w{display:flex;justify-content:center;margin-bottom:12px;position:relative;}
-.siri-ring{width:52px;height:52px;border-radius:50%;background:conic-gradient(#ff375f 0deg,#ff9f0a 60deg,#30d158 120deg,#0a84ff 180deg,#bf5af2 240deg,#ff375f 360deg);animation:spin 3s linear infinite;display:flex;align-items:center;justify-content:center;}
+.siri-ring{width:52px;height:52px;border-radius:50%;background:conic-gradient(#ff375f 0deg,#ff9f0a 60deg,#30d158 120deg,#0a84ff 180deg,#bf5af2 240deg,#ff375f 360deg);animation:sPin 3s linear infinite;display:flex;align-items:center;justify-content:center;}
 .siri-ring::after{content:'';width:40px;height:40px;border-radius:50%;background:rgba(10,10,18,.96);}
-@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes sPin{to{transform:rotate(360deg)}}
 .siri-ic{position:absolute;font-size:15px;top:50%;left:50%;transform:translate(-50%,-50%);}
 .siri-wave{display:flex;align-items:center;justify-content:center;gap:3px;height:24px;margin-bottom:10px;}
-.sb{width:3px;border-radius:3px;background:linear-gradient(to top,#0a84ff,#bf5af2);}
-.sb:nth-child(1){animation:wave 1.2s ease-in-out infinite 0s;}
-.sb:nth-child(2){animation:wave 1.2s ease-in-out infinite .1s;}
-.sb:nth-child(3){animation:wave 1.2s ease-in-out infinite .2s;}
-.sb:nth-child(4){animation:wave 1.2s ease-in-out infinite .3s;}
-.sb:nth-child(5){animation:wave 1.2s ease-in-out infinite .4s;}
-.sb:nth-child(6){animation:wave 1.2s ease-in-out infinite .5s;}
-.sb:nth-child(7){animation:wave 1.2s ease-in-out infinite .4s;}
-.sb:nth-child(8){animation:wave 1.2s ease-in-out infinite .3s;}
-@keyframes wave{0%,100%{height:4px;opacity:.4}50%{height:20px;opacity:1}}
+.sw{width:3px;border-radius:3px;background:linear-gradient(to top,#0a84ff,#bf5af2);}
+.sw:nth-child(1){animation:wv 1.2s ease-in-out infinite 0s;}
+.sw:nth-child(2){animation:wv 1.2s ease-in-out infinite .1s;}
+.sw:nth-child(3){animation:wv 1.2s ease-in-out infinite .2s;}
+.sw:nth-child(4){animation:wv 1.2s ease-in-out infinite .3s;}
+.sw:nth-child(5){animation:wv 1.2s ease-in-out infinite .4s;}
+.sw:nth-child(6){animation:wv 1.2s ease-in-out infinite .5s;}
+.sw:nth-child(7){animation:wv 1.2s ease-in-out infinite .4s;}
+.sw:nth-child(8){animation:wv 1.2s ease-in-out infinite .3s;}
+@keyframes wv{0%,100%{height:4px;opacity:.4}50%{height:20px;opacity:1}}
 .siri-out{font-size:13px;color:rgba(255,255,255,.68);line-height:1.65;margin-bottom:11px;min-height:18px;}
 .siri-iw{display:flex;align-items:center;gap:9px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.11);border-radius:13px;padding:9px 13px;margin-bottom:9px;}
-.siri-in{flex:1;background:none;border:none;outline:none;color:#fff;font-size:14px;font-family:inherit;}
+.siri-in{flex:1;background:none;border:none;outline:none;color:#fff;font-size:14px;font-family:inherit;cursor:text;}
 .siri-in::placeholder{color:rgba(255,255,255,.26);}
 .siri-btn{background:rgba(99,102,241,.4);border:none;color:#fff;width:26px;height:26px;border-radius:7px;cursor:pointer;font-size:12px;flex-shrink:0;transition:background .2s;}
 .siri-btn:hover{background:rgba(99,102,241,.7);}
@@ -202,7 +256,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display",Helvetica,san
 .sc{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.11);color:rgba(255,255,255,.58);padding:5px 11px;border-radius:20px;font-size:11px;cursor:pointer;transition:all .15s;font-family:inherit;}
 .sc:hover{background:rgba(255,255,255,.15);color:#fff;}
 
-/* DOCK */
+/* ── DOCK ── */
 .dock-wrap{position:fixed;bottom:10px;left:50%;transform:translateX(-50%);z-index:4500;}
 .dock{display:flex;align-items:flex-end;gap:7px;background:rgba(255,255,255,.12);backdrop-filter:blur(28px) saturate(180%);border:1px solid rgba(255,255,255,.18);border-radius:18px;padding:7px 10px;box-shadow:0 10px 36px rgba(0,0,0,.65);}
 .di{display:flex;flex-direction:column;align-items:center;gap:3px;cursor:pointer;position:relative;}
@@ -214,22 +268,25 @@ body{font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display",Helvetica,san
 .di:hover .di-tip{opacity:1;}
 .dsep{width:1px;height:44px;background:rgba(255,255,255,.15);align-self:center;margin:0 2px;}
 
-/* WELCOME TOAST */
-.w-toast{position:fixed;top:50px;left:50%;transform:translateX(-50%) translateY(-10px);background:rgba(0,113,227,.92);backdrop-filter:blur(20px);color:#fff;padding:10px 22px;border-radius:40px;font-size:14px;font-weight:600;z-index:6000;box-shadow:0 8px 24px rgba(0,113,227,.4);opacity:0;transition:all .4s ease;pointer-events:none;}
+/* ── TOAST ── */
+.w-toast{position:fixed;top:50px;left:50%;transform:translateX(-50%) translateY(-12px);background:rgba(0,113,227,.92);backdrop-filter:blur(20px);color:#fff;padding:10px 22px;border-radius:40px;font-size:14px;font-weight:600;z-index:6000;box-shadow:0 8px 24px rgba(0,113,227,.4);opacity:0;transition:all .4s ease;pointer-events:none;}
 .w-toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
 
-/* RESPONSIVE */
+/* ── RESPONSIVE ── */
 @media(max-width:768px){
+  html,body{cursor:auto;}
+  #cur-dot,#cur-ring{display:none;}
   .mb-dim{display:none;}
   .desktop{bottom:84px;}
-  .dicon{width:88px;}
-  .dicon .di-img{font-size:54px;}
+  .dicon{width:90px;}
+  .di-img{font-size:54px;}
   .di-lbl{font-size:11px;}
-  .di-tooltip{display:none;}
+  .di-tt{display:none;}
   .cv-win{width:96vw;height:88vh;}
-  .cv-body{padding:22px;}
+  .cv-body{padding:20px;}
   .cv-nm{font-size:20px;}
-  .cv-sg,.cv-pg{grid-template-columns:1fr;}
+  .cv-stats{grid-template-columns:repeat(2,1fr);}
+  .cv-skills-grid,.cv-pg{grid-template-columns:1fr;}
   .finder{width:96vw;height:86vh;}
   .fdr-sb{width:140px;}
   .fdr-cnt{padding:18px;}
@@ -239,39 +296,50 @@ body{font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display",Helvetica,san
 }
 @media(max-width:480px){
   .fdr-body{flex-direction:column;}
-  .fdr-sb{width:100%;height:48px;flex-direction:row;padding:0 8px;overflow-x:auto;overflow-y:hidden;flex-shrink:0;}
+  .fdr-sb{width:100%;height:48px;flex-direction:row;padding:0 8px;overflow-x:auto;flex-shrink:0;}
   .fdr-sb-ttl{display:none;}
   .fdr-pi{white-space:nowrap;flex-shrink:0;margin:auto 2px;padding:8px 10px;}
-  .cv-sg,.cv-pg{grid-template-columns:1fr;}
-  .splash-card{padding:32px 24px;}
+  .cv-stats{grid-template-columns:repeat(2,1fr);}
+  .cv-skills-grid,.cv-pg{grid-template-columns:1fr;}
+  .cv-awards{flex-direction:column;}
 }
 </style>
 </head>
 <body>
 
+<!-- CURSOR -->
+<div id="cur-dot"></div>
+<div id="cur-ring"></div>
+<div id="spotlight"></div>
+
 <!-- SPLASH -->
 <div id="splash">
-  <div class="splash-card">
-    <div class="splash-logo">🍎</div>
+  <div class="splash-inner">
+    <span class="splash-apple">🍎</span>
     <div class="splash-title">Bureau — Alec DIAMIDIA</div>
-    <div class="splash-sub">Revenue Operations & Intelligence Artificielle<br><span style="font-size:12px;color:rgba(255,255,255,.3)">Veuillez vous présenter pour accéder au bureau</span></div>
-    <input type="text" id="sp-prenom" class="splash-input" placeholder="Prénom *" autocomplete="given-name">
-    <input type="text" id="sp-nom" class="splash-input" placeholder="Nom *" autocomplete="family-name">
-    <button class="splash-btn" onclick="handleSplash()">Accéder au Bureau →</button>
-    <div class="splash-note">Vos informations sont uniquement transmises à Alec DIAMIDIA.</div>
+    <div class="splash-sub">Revenue Operations & Intelligence Artificielle<br><span style="font-size:12px;color:rgba(255,255,255,.28)">Présentez-vous pour accéder au bureau</span></div>
+    <input type="text" id="sp-prenom" class="sp-inp" placeholder="Prénom *" autocomplete="given-name">
+    <input type="text" id="sp-nom" class="sp-inp" placeholder="Nom *" autocomplete="family-name">
+    <button class="sp-btn" id="spBtn" onclick="handleSplash()">Accéder au Bureau →</button>
+    <div class="sp-confirm" id="spConfirm">
+      <span class="sp-confirm-ico">✅</span>
+      <div class="sp-confirm-txt">
+        <strong id="spConfirmName"></strong><br>
+        Votre visite a été enregistrée. Bienvenue !
+      </div>
+    </div>
+    <div class="sp-note">Vos données sont uniquement transmises à Alec DIAMIDIA.</div>
   </div>
 </div>
 
-<!-- BOOT SCREEN -->
+<!-- BOOT -->
 <div id="boot">
-  <div class="boot-apple">🍎</div>
+  <div class="boot-logo">🍎</div>
   <div class="boot-name" id="bootName">Bienvenue</div>
-  <div class="boot-progress-wrap">
-    <div class="boot-progress" id="bootProgress"></div>
-  </div>
+  <div class="boot-bar-w"><div class="boot-bar" id="bootBar"></div></div>
 </div>
 
-<!-- WELCOME TOAST -->
+<!-- TOAST -->
 <div class="w-toast" id="wToast"></div>
 
 <!-- WALLPAPER -->
@@ -301,101 +369,172 @@ body{font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display",Helvetica,san
 
 <!-- DESKTOP -->
 <div class="desktop" id="desktop">
-  <!-- CV icon -->
   <div class="dicon" id="icon-cv" style="top:45%;left:20%;transform:translate(-50%,-50%)">
-    <div class="di-img">📄</div>
-    <div class="di-lbl" id="lbl-cv">📄 CV</div>
-    <div class="di-tooltip">
-      <div class="di-tooltip-title">Curriculum Vitae</div>
-      <div class="di-tooltip-desc">Expériences RevOps, formation et compétences d'Alec</div>
+    <div class="di-parallax">
+      <div class="di-img">📄</div>
+      <div class="di-lbl" id="lbl-cv">📄 CV</div>
     </div>
+    <div class="di-tt"><div class="di-tt-title" data-i18n="tt-cv-t">Curriculum Vitae</div><div class="di-tt-desc" data-i18n="tt-cv-d">3 expériences RevOps · 7 projets · Top 10 MSc IA</div></div>
   </div>
-  <!-- Pro projects -->
   <div class="dicon" id="icon-pro" style="top:45%;left:50%;transform:translate(-50%,-50%)">
-    <div class="di-img">📁<div class="di-badge">5</div></div>
-    <div class="di-lbl" id="lbl-pro">📊 Projets Pro</div>
-    <div class="di-tooltip">
-      <div class="di-tooltip-title">Projets Professionnels</div>
-      <div class="di-tooltip-desc">Hackathons, SQL, Python, SEO — 5 projets avec métriques</div>
+    <div class="di-parallax">
+      <div class="di-img">📁<div class="di-badge">5</div></div>
+      <div class="di-lbl" id="lbl-pro">📊 Projets Pro</div>
     </div>
+    <div class="di-tt"><div class="di-tt-title" data-i18n="tt-pro-t">Projets Professionnels</div><div class="di-tt-desc" data-i18n="tt-pro-d">Hackathons, SQL, Python, SEO — 5 projets avec métriques</div></div>
   </div>
-  <!-- Perso projects -->
   <div class="dicon" id="icon-perso" style="top:45%;left:80%;transform:translate(-50%,-50%)">
-    <div class="di-img">📂<div class="di-badge">2</div></div>
-    <div class="di-lbl" id="lbl-perso">🎨 Projets Perso</div>
-    <div class="di-tooltip">
-      <div class="di-tooltip-title">Projets Personnels</div>
-      <div class="di-tooltip-desc">Automatisations Google Workspace et écosystème d'agents IA</div>
+    <div class="di-parallax">
+      <div class="di-img">📂<div class="di-badge">2</div></div>
+      <div class="di-lbl" id="lbl-perso">🎨 Projets Perso</div>
     </div>
+    <div class="di-tt"><div class="di-tt-title" data-i18n="tt-perso-t">Projets Personnels</div><div class="di-tt-desc" data-i18n="tt-perso-d">Automatisations Google Workspace & écosystème agents IA</div></div>
   </div>
-  <div class="desk-hint" id="desk-hint">Double-cliquez pour ouvrir · Glissez pour déplacer</div>
+  <div class="desk-hint" id="desk-hint" data-i18n="desk-hint">Double-cliquez pour ouvrir · Glissez pour déplacer</div>
 </div>
 
 <!-- CV WINDOW -->
 <div class="cv-win" id="cvWin">
   <div class="cv-bar">
     <div class="cv-tls"><div class="cvtl r" onclick="closeCV()"></div><div class="cvtl y"></div><div class="cvtl g"></div></div>
-    <div class="cv-bartitle">CV — Alec DIAMIDIA</div>
+    <div class="cv-bartitle" data-i18n="cv-title">CV — Alec DIAMIDIA</div>
   </div>
   <div class="cv-body">
+
+    <!-- Header -->
     <div class="cv-hdr">
       <div class="cv-av"><img src="./assets/[Portfolio]_CV.png" alt="Alec" onerror="this.parentElement.innerHTML='👤'"></div>
-      <div>
+      <div class="cv-info">
         <div class="cv-nm">Alec DIAMIDIA</div>
-        <div class="cv-ro" id="cv-ro">Revenue Operations & CRM Specialist · MSc AI Applied to Business</div>
+        <div class="cv-ro" data-i18n="cv-role">Revenue Operations & CRM Specialist · MSc AI Applied to Business</div>
         <div class="cv-cts">
           <a class="cv-ct" href="mailto:alecrudydiami@gmail.com">📧 alecrudydiami@gmail.com</a>
           <a class="cv-ct" href="https://linkedin.com/in/alec-diamidia" target="_blank">💼 LinkedIn</a>
           <a class="cv-ct" href="https://github.com/venom6-13" target="_blank">⌨️ GitHub</a>
+          <span class="cv-ct">📍 Paris, France</span>
         </div>
       </div>
     </div>
-    <div class="cv-sh" data-i18n="exp">Expériences Professionnelles</div>
-    <div class="cv-xi"><div class="cv-xbdg" data-i18n="en-poste">En poste</div>
-      <div class="cv-xco">Evaneos</div><div class="cv-xro">Salesforce Operations Specialist</div>
-      <div class="cv-xdt">Mars 2026 — Jan 2028 · Paris</div>
-      <ul class="cv-xbl"><li>Configuration Salesforce, Flow Builder, dashboards personnalisés</li><li>Automatisations Make.com & N8N — optimisation pipeline commercial</li><li>Référent : Ugu BASCIANO, Lead RevOps @Evaneos</li></ul>
+
+    <!-- Stats -->
+    <div class="cv-stats">
+      <div class="cv-stat"><div class="cv-stat-val">3</div><div class="cv-stat-lbl" data-i18n="stat-exp">Expériences<br>RevOps</div></div>
+      <div class="cv-stat"><div class="cv-stat-val">7</div><div class="cv-stat-lbl" data-i18n="stat-proj">Projets<br>réalisés</div></div>
+      <div class="cv-stat"><div class="cv-stat-val">2</div><div class="cv-stat-lbl" data-i18n="stat-hack">Hackathons<br>gagnés</div></div>
+      <div class="cv-stat"><div class="cv-stat-val" style="font-size:15px">Top 10</div><div class="cv-stat-lbl" data-i18n="stat-msc">MSc IA<br>national</div></div>
     </div>
-    <div class="cv-xi">
-      <div class="cv-xco">United Heroes</div><div class="cv-xro">Revenue Operations</div>
-      <div class="cv-xdt">Juillet 2024 — Juillet 2025 · Paris · 1 an</div>
-      <ul class="cv-xbl"><li>HubSpot, Planhat, Modjo, Nomination — stack RevOps complet</li><li>Rapports CODIR mensuels, nouvelle stratégie d'attribution multi-touch</li><li>Référent : Lucas FINCHELSTEIN, RevOps @United Heroes</li></ul>
+
+    <!-- Expériences -->
+    <div class="cv-sh" data-i18n="exp-title">Expériences Professionnelles</div>
+    <div class="cv-timeline">
+
+      <div class="cv-tl-item">
+        <div class="cv-tl-left"><div class="cv-tl-dot green"></div><div class="cv-tl-line"></div></div>
+        <div class="cv-tl-content">
+          <div class="cv-tl-badge" data-i18n="current">En poste</div>
+          <div class="cv-tl-company">Evaneos</div>
+          <div class="cv-tl-role">Salesforce Operations Specialist</div>
+          <div class="cv-tl-date">Mars 2026 — Jan 2028 · Paris</div>
+          <ul class="cv-tl-ul">
+            <li>Configuration <strong>Salesforce</strong> : objets custom, Flow Builder, Process Builder, dashboards sur mesure</li>
+            <li>Automatisations <strong>Make.com & N8N</strong> — optimisation pipeline commercial et intégrations CRM</li>
+            <li>Construction et maintenance de l'architecture RevOps de l'entreprise</li>
+          </ul>
+          <div class="cv-tl-ref">👤 Référent : Ugu BASCIANO — Lead RevOps @Evaneos</div>
+        </div>
+      </div>
+
+      <div class="cv-tl-item">
+        <div class="cv-tl-left"><div class="cv-tl-dot"></div><div class="cv-tl-line"></div></div>
+        <div class="cv-tl-content">
+          <div class="cv-tl-company">United Heroes</div>
+          <div class="cv-tl-role">Revenue Operations</div>
+          <div class="cv-tl-date" data-i18n="uh-date">Juillet 2024 — Juillet 2025 · Paris · 1 an</div>
+          <ul class="cv-tl-ul">
+            <li><strong>HubSpot, Planhat, Modjo, Nomination</strong> — déploiement et gestion du stack RevOps complet</li>
+            <li>Conception et livraison des <strong>rapports CODIR</strong> mensuels (pipeline, ARR, churn, NRR)</li>
+            <li>Mise en place d'une <strong>nouvelle stratégie d'attribution multi-touch</strong> pour améliorer la précision revenue</li>
+            <li>Intégration et formation des équipes sales sur les nouveaux outils</li>
+          </ul>
+          <div class="cv-tl-ref">👤 Référent : Lucas FINCHELSTEIN — RevOps @United Heroes · <em>"Sérieux et investi, très bon élément."</em></div>
+        </div>
+      </div>
+
+      <div class="cv-tl-item">
+        <div class="cv-tl-left"><div class="cv-tl-dot"></div></div>
+        <div class="cv-tl-content">
+          <div class="cv-tl-company">Tellent France (ex. Javelo)</div>
+          <div class="cv-tl-role" data-i18n="javelo-role">Sales Ops → Revenue Operations (promotion interne)</div>
+          <div class="cv-tl-date">Juin 2023 — Décembre 2023 · Paris · 7 mois</div>
+          <ul class="cv-tl-ul">
+            <li><strong>HubSpot, Slack, Notion, Zapier, Lemlist</strong> — mise en place des processus Sales Ops</li>
+            <li>Automatisation des séquences d'outreach et reporting pipeline</li>
+            <li>Promotion interne Sales Ops → Revenue Ops en 3 mois</li>
+          </ul>
+          <div class="cv-tl-ref">👤 Référent : Delphine AIM — Manager @Javelo · <em>"Alec est au-dessus des attentes sur son rôle."</em></div>
+        </div>
+      </div>
+
     </div>
-    <div class="cv-xi">
-      <div class="cv-xco">Tellent France (ex. Javelo)</div><div class="cv-xro">Sales Ops → Revenue Operations</div>
-      <div class="cv-xdt">Juin 2023 — Décembre 2023 · Paris · 7 mois</div>
-      <ul class="cv-xbl"><li>HubSpot, Slack, Notion, Zapier, Lemlist — mise en place process sales</li><li>"Alec est au-dessus des attentes sur son rôle" — Delphine AIM, Manager</li></ul>
-    </div>
-    <div class="cv-sh" data-i18n="edu">Formation</div>
+
+    <!-- Formation -->
+    <div class="cv-sh" data-i18n="edu-title">Formation</div>
     <div class="cv-edu"><div class="cv-edu-emoji">🎓</div><div>
       <div class="cv-edu-sc">Eugenia School × Grenoble École de Management</div>
       <div class="cv-edu-pr">MSc AI Applied to Business — <strong style="color:#30d158">Top 10 national</strong></div>
-      <div class="cv-edu-dt">2024 — 2027 · Microsoft · Mistral AI · Carrefour · Station F</div>
+      <div class="cv-edu-dt">2024 — 2027 · Partenaires : Microsoft · Mistral AI · Carrefour · Station F</div>
     </div></div>
     <div class="cv-edu"><div class="cv-edu-emoji">🌍</div><div>
       <div class="cv-edu-sc">emlyon Business School</div>
       <div class="cv-edu-pr">Global BBA — Programme international</div>
       <div class="cv-edu-dt">2020 — 2024</div>
     </div></div>
-    <div class="cv-sh" data-i18n="skills">Compétences</div>
-    <div class="cv-sg">
-      <div class="cv-sg-item"><div class="cv-sg-cat">CRM</div><div class="cv-tags"><span class="cv-tag">Salesforce</span><span class="cv-tag">HubSpot</span><span class="cv-tag">Planhat</span><span class="cv-tag">Airtable</span></div></div>
-      <div class="cv-sg-item"><div class="cv-sg-cat">Data / BI</div><div class="cv-tags"><span class="cv-tag">SQL</span><span class="cv-tag">BigQuery</span><span class="cv-tag">Python</span><span class="cv-tag">Looker</span></div></div>
-      <div class="cv-sg-item"><div class="cv-sg-cat">Automation</div><div class="cv-tags"><span class="cv-tag">Make.com</span><span class="cv-tag">N8N</span><span class="cv-tag">Flow Builder</span><span class="cv-tag">Zapier</span></div></div>
-      <div class="cv-sg-item"><div class="cv-sg-cat">AI / Agents</div><div class="cv-tags"><span class="cv-tag">Dust</span><span class="cv-tag">GPT-4o</span><span class="cv-tag">Claude</span><span class="cv-tag">Cursor</span></div></div>
+
+    <!-- Awards -->
+    <div class="cv-sh" data-i18n="awards-title">Distinctions</div>
+    <div class="cv-awards">
+      <div class="cv-award"><div class="cv-award-ico">🏆</div><div><div class="cv-award-t" data-i18n="award1-t">Innovation Award</div><div class="cv-award-s">Hackathon PayFit 2026</div></div></div>
+      <div class="cv-award"><div class="cv-award-ico">🎓</div><div><div class="cv-award-t" data-i18n="award2-t">Top 10 national</div><div class="cv-award-s">MSc AI Applied to Business</div></div></div>
     </div>
-    <div class="cv-sh" style="margin-top:20px" data-i18n="projs">Projets Clés</div>
+
+    <!-- Compétences -->
+    <div class="cv-sh" data-i18n="skills-title">Compétences</div>
+    <div class="cv-skills-grid">
+      <div class="cv-sk"><div class="cv-sk-cat">CRM</div><div class="cv-tags"><span class="cv-tag expert">Salesforce</span><span class="cv-tag expert">HubSpot</span><span class="cv-tag">Planhat</span><span class="cv-tag">Airtable</span></div></div>
+      <div class="cv-sk"><div class="cv-sk-cat">Data / BI</div><div class="cv-tags"><span class="cv-tag expert">SQL</span><span class="cv-tag expert">BigQuery</span><span class="cv-tag">Python</span><span class="cv-tag">Looker Studio</span><span class="cv-tag">Tableau</span></div></div>
+      <div class="cv-sk"><div class="cv-sk-cat">Automation</div><div class="cv-tags"><span class="cv-tag expert">Make.com</span><span class="cv-tag">N8N</span><span class="cv-tag">Flow Builder</span><span class="cv-tag">Zapier</span><span class="cv-tag">Process Builder</span></div></div>
+      <div class="cv-sk"><div class="cv-sk-cat">AI / Agents</div><div class="cv-tags"><span class="cv-tag expert">Dust</span><span class="cv-tag expert">GPT-4o</span><span class="cv-tag expert">Claude</span><span class="cv-tag">Cursor</span><span class="cv-tag">Perplexity</span></div></div>
+      <div class="cv-sk"><div class="cv-sk-cat">Dev</div><div class="cv-tags"><span class="cv-tag">Next.js</span><span class="cv-tag">Vercel</span><span class="cv-tag">Supabase</span><span class="cv-tag">Webflow</span></div></div>
+      <div class="cv-sk"><div class="cv-sk-cat" data-i18n="sk-langs">Langues</div><div class="cv-tags"><span class="cv-tag expert">🇫🇷 Français — Natif</span><span class="cv-tag">🇬🇧 Anglais — C1</span></div></div>
+    </div>
+
+    <!-- Projets clés -->
+    <div class="cv-sh" data-i18n="projs-title">Projets Clés</div>
     <div class="cv-pg">
       <div class="cv-pj"><div class="cv-pj-t">🏆 Hackathon Mirakl</div><div class="cv-pj-k">Pipeline BDR · ×37 plus rapide · ROI ×2400</div><div class="cv-pj-b">Next.js · GPT-4o · Supabase</div></div>
       <div class="cv-pj"><div class="cv-pj-t">⚡ Hackathon PayFit 2026</div><div class="cv-pj-k">Innovation Award · -80% temps · 14.3/15 qualité</div><div class="cv-pj-b">Make.com · Claude · GPT-4o</div></div>
       <div class="cv-pj"><div class="cv-pj-t">🔍 Eugenia SEO/GEO/AEO</div><div class="cv-pj-k">4 agents Dust · machine éditoriale · 3 jours</div><div class="cv-pj-b">Dust · SEMrush · Perplexity</div></div>
       <div class="cv-pj"><div class="cv-pj-t">📊 TheLook SQL Audit</div><div class="cv-pj-k">BigQuery Multi-CTE · 6 insights · 14 mois</div><div class="cv-pj-b">BigQuery · Looker Studio</div></div>
+      <div class="cv-pj"><div class="cv-pj-t">🏃 Marathon de Paris 2025</div><div class="cv-pj-k">50 001 coureurs · Python · API reverse-engineering</div><div class="cv-pj-b">Python · requests · pandas</div></div>
     </div>
-    <div class="cv-sh" style="margin-top:20px" data-i18n="langs">Langues</div>
-    <div class="cv-lg">
-      <div class="cv-lg-item"><div style="font-size:22px;margin-bottom:4px">🇫🇷</div><div style="font-size:12px;font-weight:600;color:#fff">Français</div><div style="font-size:10px;color:rgba(255,255,255,.4)">Natif</div></div>
-      <div class="cv-lg-item"><div style="font-size:22px;margin-bottom:4px">🇬🇧</div><div style="font-size:12px;font-weight:600;color:#fff">Anglais</div><div style="font-size:10px;color:rgba(255,255,255,.4)">Courant — C1</div></div>
+
+    <!-- Témoignages -->
+    <div class="cv-sh" data-i18n="testi-title">Témoignages</div>
+    <div class="cv-testimonials">
+      <div class="cv-testi">
+        <div class="cv-testi-quote" data-i18n="testi1">"Alec est au-dessus des attentes sur son rôle. Autonome, rigoureux, capable de monter en compétence très rapidement sur des outils techniques."</div>
+        <div class="cv-testi-author">— Delphine AIM, Manager @Tellent (Javelo)</div>
+      </div>
+      <div class="cv-testi">
+        <div class="cv-testi-quote" data-i18n="testi2">"Sérieux et investi, très bon élément. Alec s'est intégré rapidement et a produit des analyses de qualité sur des sujets complexes."</div>
+        <div class="cv-testi-author">— Lucas FINCHELSTEIN, RevOps @United Heroes</div>
+      </div>
+      <div class="cv-testi">
+        <div class="cv-testi-quote" data-i18n="testi3">"Alec a été un élément marquant de par son professionnalisme, sa capacité à comprendre les enjeux business et sa proactivité."</div>
+        <div class="cv-testi-author">— Haya DIAWARA, Pairs @Eugenia School</div>
+      </div>
     </div>
+
   </div>
 </div>
 
@@ -407,7 +546,9 @@ body{font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display",Helvetica,san
   </div>
   <div class="fdr-body">
     <div class="fdr-sb" id="fdrSb"><div class="fdr-sb-ttl" data-i18n="projects">Projets</div></div>
-    <div class="fdr-cnt" id="fdrCnt"><div class="fdr-empty"><div class="fdr-empty-ico">📂</div><p style="font-size:14px" data-i18n="sel-proj">Sélectionnez un projet</p></div></div>
+    <div class="fdr-cnt" id="fdrCnt">
+      <div class="fdr-empty"><div class="fdr-empty-ico">📂</div><p style="font-size:14px" data-i18n="sel-proj">Sélectionnez un projet</p></div>
+    </div>
   </div>
 </div>
 
@@ -415,14 +556,14 @@ body{font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display",Helvetica,san
 <div class="siri-ov" id="siriOv">
   <button class="siri-cls" onclick="closeSiri()">✕</button>
   <div class="siri-ring-w"><div class="siri-ring"><div></div></div><div class="siri-ic">✦</div></div>
-  <div class="siri-wave"><div class="sb"></div><div class="sb"></div><div class="sb"></div><div class="sb"></div><div class="sb"></div><div class="sb"></div><div class="sb"></div><div class="sb"></div></div>
+  <div class="siri-wave"><div class="sw"></div><div class="sw"></div><div class="sw"></div><div class="sw"></div><div class="sw"></div><div class="sw"></div><div class="sw"></div><div class="sw"></div></div>
   <div class="siri-out" id="siriOut">Bonjour ! Je suis Siri. Que puis-je faire pour toi ?</div>
   <div class="siri-iw"><input type="text" class="siri-in" id="siriIn" placeholder="Parle à Siri…"><button class="siri-btn" onclick="siriSend()">↑</button></div>
   <div class="siri-chips">
-    <button class="sc" onclick="siriQ('projets')">Ses projets</button>
-    <button class="sc" onclick="siriQ('stack')">Son stack</button>
-    <button class="sc" onclick="siriQ('contact')">Le contacter</button>
-    <button class="sc" onclick="siriQ('cv')">Son CV</button>
+    <button class="sc" onclick="siriQ('projets')" data-i18n-chip="chip-proj">Ses projets</button>
+    <button class="sc" onclick="siriQ('stack')" data-i18n-chip="chip-stack">Son stack</button>
+    <button class="sc" onclick="siriQ('contact')" data-i18n-chip="chip-contact">Le contacter</button>
+    <button class="sc" onclick="siriQ('cv')" data-i18n-chip="chip-cv">Son CV</button>
   </div>
 </div>
 
@@ -443,106 +584,139 @@ body{font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display",Helvetica,san
 <script>
 /* ══ GOOGLE FORM ══ */
 const FORM_URL='https://docs.google.com/forms/d/e/1FAIpQLScwUFu2nxl-xYxduco3jkUIanqJb2W6Mk3IATgCIMYtR_0hcw/formResponse';
-const F_PRENOM='entry.999164812';
-const F_NOM='entry.152592575';
-
-function submitForm(prenom,nom){
-  const d=new FormData();
-  d.append(F_PRENOM,prenom);
-  d.append(F_NOM,nom);
+function submitForm(p,n){
+  const d=new FormData();d.append('entry.999164812',p);d.append('entry.152592575',n);
   fetch(FORM_URL,{method:'POST',mode:'no-cors',body:d}).catch(()=>{});
-  if(typeof gtag!=='undefined')gtag('event','visitor_identified',{visitor_name:prenom+' '+nom});
+  if(typeof gtag!=='undefined')gtag('event','visitor_id',{name:p+' '+n});
 }
 
 /* ══ SPLASH ══ */
 function handleSplash(){
-  const prenom=document.getElementById('sp-prenom').value.trim();
-  const nom=document.getElementById('sp-nom').value.trim();
+  const p=document.getElementById('sp-prenom').value.trim();
+  const n=document.getElementById('sp-nom').value.trim();
   let err=false;
-  [['sp-prenom',prenom],['sp-nom',nom]].forEach(([id,val])=>{
-    const el=document.getElementById(id);
-    if(!val){el.classList.add('error');setTimeout(()=>el.classList.remove('error'),500);err=true;}
-  });
+  if(!p){const el=document.getElementById('sp-prenom');el.classList.add('err');setTimeout(()=>el.classList.remove('err'),500);err=true;}
+  if(!n){const el=document.getElementById('sp-nom');el.classList.add('err');setTimeout(()=>el.classList.remove('err'),500);err=true;}
   if(err)return;
-  sessionStorage.setItem('visitor',JSON.stringify({prenom,nom}));
+
+  // Show confirmation
+  const btn=document.getElementById('spBtn');
+  btn.textContent='✅ Enregistré !';btn.style.background='#30d158';btn.disabled=true;
+  document.getElementById('spConfirmName').textContent=p+' '+n;
+  document.getElementById('spConfirm').classList.add('show');
+
+  sessionStorage.setItem('visitor',JSON.stringify({prenom:p,nom:n}));
   sessionStorage.setItem('splashDone','1');
-  submitForm(prenom,nom);
-  startBoot(prenom);
+  submitForm(p,n);
+
+  setTimeout(()=>startBoot(p),1800);
 }
 
 /* ══ BOOT ══ */
 function startBoot(prenom){
   const splash=document.getElementById('splash');
-  splash.style.opacity='0';
-  setTimeout(()=>splash.remove(),500);
+  splash.style.transition='opacity .5s';splash.style.opacity='0';
+  setTimeout(()=>{if(splash.parentNode)splash.remove();},500);
+
   const boot=document.getElementById('boot');
   document.getElementById('bootName').textContent='Bienvenue, '+prenom+' !';
-  boot.classList.add('show');
-  setTimeout(()=>{document.getElementById('bootProgress').style.width='100%';},100);
+  boot.style.opacity='0';boot.style.transition='opacity .4s';boot.style.pointerEvents='all';
+  requestAnimationFrame(()=>{boot.style.opacity='1';});
+  setTimeout(()=>{document.getElementById('bootBar').style.width='100%';},150);
   setTimeout(()=>{
     boot.style.opacity='0';
-    setTimeout(()=>{boot.remove();showToast('👋 Bienvenue, '+prenom+' !');},500);
-  },3200);
+    setTimeout(()=>{if(boot.parentNode)boot.remove();showToast('👋 Bienvenue, '+prenom+' !');},500);
+  },3400);
 }
 
 function showToast(msg){
-  const t=document.getElementById('wToast');
-  t.textContent=msg;t.classList.add('show');
-  setTimeout(()=>t.classList.remove('show'),3000);
+  const t=document.getElementById('wToast');t.textContent=msg;t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'),3200);
 }
 
-/* ══ INIT SPLASH CHECK ══ */
-const alreadyVisited=sessionStorage.getItem('splashDone');
-if(alreadyVisited){
-  document.getElementById('splash').remove();
-  // Show quick boot each time
-  if(!sessionStorage.getItem('bootDone')){
-    sessionStorage.setItem('bootDone','1');
-    const boot=document.getElementById('boot');
+/* ══ INIT ══ */
+(function init(){
+  const done=sessionStorage.getItem('splashDone');
+  if(done){
+    document.getElementById('splash').remove();
     const v=JSON.parse(sessionStorage.getItem('visitor')||'{}');
-    if(v.prenom)document.getElementById('bootName').textContent='Bienvenue, '+v.prenom+' !';
-    boot.classList.add('show');
-    setTimeout(()=>{document.getElementById('bootProgress').style.width='100%';},100);
-    setTimeout(()=>{boot.style.opacity='0';setTimeout(()=>boot.remove(),500);},3200);
-  }else{
-    document.getElementById('boot').remove();
+    const prenom=v.prenom||'';
+    // Quick boot on each visit
+    if(!sessionStorage.getItem('bootDone')){
+      sessionStorage.setItem('bootDone','1');
+      const boot=document.getElementById('boot');
+      if(prenom)document.getElementById('bootName').textContent='Bienvenue, '+prenom+' !';
+      boot.style.opacity='0';boot.style.pointerEvents='all';
+      requestAnimationFrame(()=>{boot.style.transition='opacity .4s';boot.style.opacity='1';});
+      setTimeout(()=>{document.getElementById('bootBar').style.width='100%';},150);
+      setTimeout(()=>{boot.style.opacity='0';setTimeout(()=>{if(boot.parentNode)boot.remove();},500);},3400);
+    }else{
+      document.getElementById('boot').remove();
+    }
   }
+  // Enter on keydown
+  document.getElementById('sp-prenom').addEventListener('keydown',e=>{if(e.key==='Enter')document.getElementById('sp-nom').focus();});
+  document.getElementById('sp-nom').addEventListener('keydown',e=>{if(e.key==='Enter')handleSplash();});
+})();
+
+/* ══ CUSTOM CURSOR ══ */
+const dot=document.getElementById('cur-dot');
+const ring=document.getElementById('cur-ring');
+const spot=document.getElementById('spotlight');
+let mx=window.innerWidth/2,my=window.innerHeight/2;
+let rx=mx,ry=my;
+
+document.addEventListener('mousemove',e=>{
+  mx=e.clientX;my=e.clientY;
+  dot.style.left=mx+'px';dot.style.top=my+'px';
+  spot.style.background=`radial-gradient(circle 320px at ${mx}px ${my}px,transparent 0%,rgba(0,0,0,.42) 100%)`;
+  updateParallax(mx,my);
+});
+// Smooth ring follow
+function animRing(){
+  rx+=(mx-rx)*.12;ry+=(my-ry)*.12;
+  ring.style.left=rx+'px';ring.style.top=ry+'px';
+  requestAnimationFrame(animRing);
 }
+animRing();
 
-document.getElementById('sp-prenom').addEventListener('keydown',e=>{if(e.key==='Enter')document.getElementById('sp-nom').focus();});
-document.getElementById('sp-nom').addEventListener('keydown',e=>{if(e.key==='Enter')handleSplash();});
+document.addEventListener('mousedown',()=>{dot.classList.add('click');ring.classList.add('click');});
+document.addEventListener('mouseup',()=>{dot.classList.remove('click');ring.classList.remove('click');});
 
-/* ══ DATA ══ */
-const FOLDERS={
-  pro:{icon:'📁',fr:'Projets Pro',en:'Pro Projects',projects:['mirakl','payfit','seo','marathon','thelook']},
-  perso:{icon:'📂',fr:'Projets Perso',en:'Personal Projects',projects:['taskmaster','aiagent']}
-};
-const P={
-  mirakl:{cat:'pro',icon:'🏆',color:'#ff375f',github:'https://github.com/CodeurFort/mirakl-prospector',fr:{name:'Hackathon Mirakl — Connect Prospector',sub:'Next.js · GPT-4o · Supabase · Vercel · 48h',tags:['Next.js','GPT-4o','Supabase','Apify','Vercel'],ctx:'Les BDRs de <strong>Mirakl Connect</strong> passaient <strong>1h15 par lead</strong> en recherche manuelle.',what:['<strong>UC2-A</strong> : URL → scraping → fit → 3 emails en <strong>6 secondes</strong>','<strong>UC2-B</strong> : filtres → scoring 100 pts → leads priorisés','<strong>Grille</strong> : Catégorie(28)·Géo(22)·Prix(16)·Positionnement(14)·Saisonnalité(10)·Signaux(10)','GPT-4o personnalise l\'outreach par culture marché','Déployé en production sur Vercel'],rh:'Impact',metrics:[{v:'×37',l:'Plus rapide'},{v:'-89%',l:'Coût/lead'},{v:'6¢',l:'Pipeline/lead'},{v:'6s',l:'By Seller'},{v:'×2400',l:'ROI'}],end:'Conception produit de bout en bout. <strong>Impact quantifié, déployé en production.</strong>'},en:{name:'Mirakl Hackathon — Connect Prospector',sub:'Next.js · GPT-4o · Supabase · Vercel · 48h',tags:['Next.js','GPT-4o','Supabase','Apify','Vercel'],ctx:'<strong>Mirakl Connect</strong> BDRs spent <strong>1h15 per lead</strong> on manual research.',what:['<strong>UC2-A</strong>: URL → scraping → fit → 3 emails in <strong>6 seconds</strong>','<strong>UC2-B</strong>: filters → 100-pt scoring → prioritized leads','<strong>Grid</strong>: Category(28)·Geo(22)·Price(16)·Positioning(14)·Seasonality(10)·Signals(10)','GPT-4o personalizes outreach by market culture','Deployed in production on Vercel'],rh:'Impact',metrics:[{v:'×37',l:'Faster'},{v:'-89%',l:'Cost/lead'},{v:'6¢',l:'Pipeline/lead'},{v:'6s',l:'By Seller'},{v:'×2400',l:'ROI'}],end:'End-to-end product design. <strong>Quantified impact, deployed in production.</strong>'}},
-  payfit:{cat:'pro',icon:'⚡',color:'#FF6B35',github:null,fr:{name:'Hackathon PayFit 2026 — SEO Content IA',sub:'🏆 Innovation Award · 48h',tags:['Make.com','GPT-4o','Claude','Google Sheets','Docker'],ctx:'<strong>Goulot critique</strong> : 2h/article, 1 rédacteur, 5h/sem veille juridique.',what:['<strong>4 agents</strong> : Info-Radar · StrategicPlanner · SEO Writer(14+/15) · Quality Guardian(EEAT/100)','2 scénarios Make.com : Keyword Research + Question Generation','APIs réglementaires : URSSAF · Legifrance · DARES enrichies auto','Hub Google Sheets : SOURCE · ANALYSIS · HISTORY · METRICS','Export HTML · DOCX · PDF en 2 minutes'],rh:'Résultats 48h',metrics:[{v:'80%',l:'Temps économisé'},{v:'14.3/15',l:'Qualité'},{v:'200K€',l:'Économies/an'},{v:'0',l:'Erreurs jur.'},{v:'🏆',l:'Innovation Award'}],end:'4 articles en 48h. 50% à 15/15. <strong>Innovation Award PayFit.</strong>'},en:{name:'PayFit Hackathon 2026 — IA SEO Content',sub:'🏆 Innovation Award · 48h',tags:['Make.com','GPT-4o','Claude','Google Sheets','Docker'],ctx:'<strong>Critical bottleneck</strong>: 2h/article, 1 writer, 5h/week legal monitoring.',what:['<strong>4 agents</strong>: Info-Radar · StrategicPlanner · SEO Writer(14+/15) · Quality Guardian(EEAT/100)','2 Make.com scenarios: Keyword Research + Question Generation','Regulatory APIs: URSSAF · Legifrance · DARES auto-enriched','Google Sheets Hub: SOURCE · ANALYSIS · HISTORY · METRICS','HTML · DOCX · PDF export in 2 minutes'],rh:'48h results',metrics:[{v:'80%',l:'Time saved'},{v:'14.3/15',l:'Quality'},{v:'€200K',l:'Annual savings'},{v:'0',l:'Legal errors'},{v:'🏆',l:'Innovation Award'}],end:'4 articles in 48h. 50% at 15/15. <strong>Innovation Award from PayFit.</strong>'}},
-  seo:{cat:'pro',icon:'🔍',color:'#0071e3',github:null,fr:{name:'Eugenia School — SEO/GEO/AEO',sub:'4 agents Dust · Machine éditoriale · Avril 2026',tags:['Dust','SEMrush','ChatGPT','Perplexity','Webflow'],ctx:'Eugenia <strong>inexistante en ligne</strong>. Les lycéens demandent à ChatGPT — Eugenia n\'apparaissait nulle part.',what:['Audit 3 surfaces : SEO·GEO·AEO','Paradoxe Aivancity : 954 mots-clés Google → 0/6 citations LLMs','4 agents Dust : Lundi Édito · Veille · Coordinateur · Rédacteur (seuil 13/15)','Quick win 0€ : page Bachelor IA → Top 20 en 6 semaines','Livrables : prompts, fiche Webflow, calendrier 7 semaines'],rh:'Projections 6 mois',metrics:[{v:'10→150',l:'Mots-clés'},{v:'+1500',l:'Trafic/mois'},{v:'1→3/6',l:'Citations LLMs'},{v:'2h/sem',l:'Effort humain'},{v:'13/15',l:'Qualité'}],end:'Machine opérationnelle <strong>déployable le lendemain.</strong>'},en:{name:'Eugenia School — SEO/GEO/AEO',sub:'4 Dust agents · Editorial machine · April 2026',tags:['Dust','SEMrush','ChatGPT','Perplexity','Webflow'],ctx:'Eugenia <strong>invisible online</strong>. Students ask ChatGPT — Eugenia appeared nowhere.',what:['3-surface audit: SEO·GEO·AEO','Aivancity paradox: 954 keywords → 0/6 LLM citations','4 Dust agents: Monday · Watch · Coordinator · Writer (threshold 13/15)','€0 quick win: AI Bachelor page → Top 20 in 6 weeks','Deliverables: prompts, Webflow sheet, 7-week calendar'],rh:'6-month projections',metrics:[{v:'10→150',l:'Keywords'},{v:'+1500',l:'Monthly traffic'},{v:'1→3/6',l:'LLM citations'},{v:'2h/week',l:'Human effort'},{v:'13/15',l:'Quality'}],end:'Operational machine <strong>deployable the next day.</strong>'}},
-  marathon:{cat:'pro',icon:'🏃',color:'#30d158',github:'https://github.com/venom6-13/scraping_marathonParis',fr:{name:'Marathon de Paris 2025',sub:'50 001 finishers · Python · Reverse-engineering API',tags:['Python','requests','pandas','Google Sheets'],ctx:'Aucune API publique. <strong>Reverse-engineering</strong> de l\'API interne de results.timeto.com.',what:['GET authentifié : cookies PHPSESSID + user-agent','9 champs utiles sur ~40 JSON brut + 4 variables calculées','search_continent() + runner_cat() (sexe, âge)','JSON + CSV → Google Sheets · 8 graphiques','Insight : Africains 25min plus rapides que les Asiatiques'],rh:'Chiffres',metrics:[{v:'50 001',l:'Finishers'},{v:'72%',l:'Hommes'},{v:'100+',l:'Nationalités'},{v:'5:28',l:'min/km africains'}],end:'<strong>API reverse-engineering</strong> · Pipeline structuré · Insights actionnables.'},en:{name:'Paris Marathon 2025',sub:'50,001 finishers · Python · API reverse-engineering',tags:['Python','requests','pandas','Google Sheets'],ctx:'No public API. <strong>Reverse-engineered</strong> the internal API of results.timeto.com.',what:['Authenticated GET: PHPSESSID cookies + user-agent','9 useful fields from ~40 raw JSON + 4 calculated variables','search_continent() + runner_cat() (gender, age)','JSON + CSV → Google Sheets · 8 charts','Insight: African runners 25min faster than Asians'],rh:'Figures',metrics:[{v:'50,001',l:'Finishers'},{v:'72%',l:'Male'},{v:'100+',l:'Nationalities'},{v:'5:28',l:'min/km African'}],end:'<strong>API reverse-engineering</strong> · Structured pipeline · Actionable insights.'}},
-  thelook:{cat:'pro',icon:'📊',color:'#bf5af2',github:'https://github.com/venom6-13/1_sql_thelook_ecommercet_audit',fr:{name:'TheLook E-Commerce — SQL Audit',sub:'BigQuery Multi-CTE · 14 mois · 6 insights',tags:['BigQuery','SQL','Looker Studio'],ctx:'<strong>+154% CA</strong>, <strong>+163% commandes</strong> — rentabilité stagnante. Les retours érodent le P&L.',what:['Multi-CTE : financial_monthly · sessions_monthly · retention_monthly','LEFT JOIN : exhaustivité garantie','SAFE_DIVIDE : robustesse production','Marge nette estimée : NRF 16.9%','7 requêtes : retours · genre · Email jan. · Chine · Japon/Brésil'],rh:'6 insights',metrics:[{v:'30%',l:'Return rate'},{v:'8pts',l:'Marge ♀>♂'},{v:'42%',l:'CA Chine'},{v:'4.6%',l:'Record Brésil'},{v:'Jan ☠️',l:'Email rebond'}],end:'Réallouer budget vers femmes. Suspendre Email jan. Investiguer <strong>blueprint Brésil Q4</strong>.'},en:{name:'TheLook E-Commerce — SQL Audit',sub:'BigQuery Multi-CTE · 14 months · 6 insights',tags:['BigQuery','SQL','Looker Studio'],ctx:'<strong>+154% revenue</strong>, <strong>+163% orders</strong> — stagnant profitability. Returns erode P&L.',what:['Multi-CTE: financial_monthly · sessions_monthly · retention_monthly','LEFT JOIN: complete data guaranteed','SAFE_DIVIDE: production robustness','Estimated net margin: NRF 16.9%','7 queries: returns · gender · Jan Email · China · Japan/Brazil'],rh:'6 insights',metrics:[{v:'30%',l:'Return rate'},{v:'8pts',l:'Margin ♀>♂'},{v:'42%',l:'Revenue China'},{v:'4.6%',l:'Brazil record'},{v:'Jan ☠️',l:'Email bounce'}],end:'Reallocate budget to women. Suspend Jan Email. Investigate <strong>Brazil Q4 blueprint</strong>.'}},
-  taskmaster:{cat:'perso',icon:'✅',color:'#30d158',github:null,fr:{name:'Weekly Task Master',sub:'Google Workspace · 0 dépendances',tags:['Apps Script','Google Sheets','Gmail','Calendar'],ctx:'Système <strong>100% auto-hébergé</strong> sur Google Workspace — zéro outil tiers.',what:['Pilier 1 — Capture : formulaire Google auto chaque lundi','Pilier 2 — Organisation : Google Sheet central','Pilier 3 — Rappels : Apps Script → résumé vendredi 18h','Pilier 4 — Revue : dashboard hebdo auto-généré','0 dépendances : 100% Google natif'],rh:'Impact',metrics:[{v:'0€',l:'Coût'},{v:'4',l:'Piliers'},{v:'100%',l:'Tâches trackées'},{v:'-60%',l:'Oublis'}],end:'Système de productivité <strong>utilisé au quotidien.</strong>'},en:{name:'Weekly Task Master',sub:'Google Workspace · 0 dependencies',tags:['Apps Script','Google Sheets','Gmail','Calendar'],ctx:'<strong>100% self-hosted</strong> system on Google Workspace — zero third-party tools.',what:['Pillar 1 — Capture: Google form auto every Monday','Pillar 2 — Organization: Central Google Sheet','Pillar 3 — Reminders: Apps Script → Friday 6pm summary','Pillar 4 — Review: Auto weekly dashboard','0 dependencies: 100% native Google'],rh:'Impact',metrics:[{v:'€0',l:'Cost'},{v:'4',l:'Pillars'},{v:'100%',l:'Tasks tracked'},{v:'-60%',l:'Forgotten'}],end:'Productivity system <strong>used daily.</strong>'}},
-  aiagent:{cat:'perso',icon:'🤖',color:'#bf5af2',github:null,fr:{name:'AI Agent Ecosystem — 9 agents Dust × Claude',sub:'Agents spécialisés · Usage quotidien',tags:['Dust','Claude','Anthropic','Prompt Engineering','RAG'],ctx:'Écosystème de <strong>9 agents IA spécialisés</strong> sur Dust.',what:['Agent Stratège : analyse business et recommandations','Agent Rédacteur : contenu long-format, grille qualité','Agent Data : interprétation SQL/CSV','Agent RevOps : optimisation CRM, workflows Salesforce','Agent Veille : monitoring concurrentiel'],rh:'Architecture',metrics:[{v:'9',l:'Agents'},{v:'Daily',l:'Usage'},{v:'Claude',l:'Moteur'},{v:'RAG',l:'Knowledge'},{v:'0€',l:'Coût'}],end:'<strong>Assistant personnel augmenté</strong> remplaçant 5 outils différents.'},en:{name:'AI Agent Ecosystem — 9 Dust × Claude Agents',sub:'Specialized agents · Daily use',tags:['Dust','Claude','Anthropic','Prompt Engineering','RAG'],ctx:'Ecosystem of <strong>9 specialized AI agents</strong> on Dust.',what:['Strategy Agent: business analysis and recommendations','Writer Agent: long-form content with quality grid','Data Agent: SQL/CSV interpretation','RevOps Agent: CRM optimization, Salesforce workflows','Watch Agent: competitive monitoring'],rh:'Architecture',metrics:[{v:'9',l:'Agents'},{v:'Daily',l:'Usage'},{v:'Claude',l:'Engine'},{v:'RAG',l:'Knowledge'},{v:'€0',l:'Cost'}],end:'<strong>Augmented personal assistant</strong> replacing 5 different tools.'}}
-};
-
-/* ══ STATE ══ */
-let lang=localStorage.getItem('lang')||'fr';
-let openFdr=null,openProj=null,cvOpen=false,siriOpen=false;
-
-/* ══ CLOCK ══ */
-function tick(){const n=new Date();document.getElementById('mbTime').textContent=`${String(n.getHours()).padStart(2,'0')}:${String(n.getMinutes()).padStart(2,'0')}`;}
-tick();setInterval(tick,10000);
+/* ══ PARALLAX ══ */
+function updateParallax(mx,my){
+  const cx=window.innerWidth/2,cy=window.innerHeight/2;
+  const dx=(mx-cx)/cx,dy=(my-cy)/cy;
+  document.querySelectorAll('.dicon:not(.dragging)').forEach((icon,i)=>{
+    const d=6+i*4;
+    const pl=icon.querySelector('.di-parallax');
+    if(pl)pl.style.transform=`translate(${dx*d}px,${dy*d}px)`;
+  });
+}
 
 /* ══ DRAG ══ */
 function makeDraggable(el){
   let drag=false,ox=0,oy=0,moved=false,sx=0,sy=0;
   const desk=document.getElementById('desktop');
-  const st=(cx,cy)=>{drag=true;moved=false;sx=cx;sy=cy;const r=el.getBoundingClientRect();ox=cx-r.left-r.width/2;oy=cy-r.top-r.height/2;el.classList.add('dragging');el.style.transition='none';el.style.zIndex=300;};
-  const mv=(cx,cy)=>{if(!drag)return;if(Math.abs(cx-sx)+Math.abs(cy-sy)>5)moved=true;const dr=desk.getBoundingClientRect();const x=Math.max(6,Math.min(94,(cx-ox-dr.left)/dr.width*100));const y=Math.max(6,Math.min(94,(cy-oy-dr.top)/dr.height*100));el.style.left=x+'%';el.style.top=y+'%';el.style.transform='translate(-50%,-50%)';};
-  const en=()=>{if(!drag)return;drag=false;el.classList.remove('dragging');el.style.transition='';el.style.zIndex='';if(!moved){const id=el.id.replace('icon-','');id==='cv'?openCV():openFolder(id);}};
-  el.addEventListener('mousedown',e=>{e.preventDefault();st(e.clientX,e.clientY);});
+  const st=(cx,cy)=>{
+    drag=true;moved=false;sx=cx;sy=cy;
+    const r=el.getBoundingClientRect();ox=cx-r.left-r.width/2;oy=cy-r.top-r.height/2;
+    el.classList.add('dragging');el.style.transition='none';el.style.zIndex=300;
+  };
+  const mv=(cx,cy)=>{
+    if(!drag)return;
+    if(Math.abs(cx-sx)+Math.abs(cy-sy)>5)moved=true;
+    const dr=desk.getBoundingClientRect();
+    const x=Math.max(6,Math.min(94,(cx-ox-dr.left)/dr.width*100));
+    const y=Math.max(6,Math.min(94,(cy-oy-dr.top)/dr.height*100));
+    el.style.left=x+'%';el.style.top=y+'%';el.style.transform='translate(-50%,-50%)';
+  };
+  const en=()=>{
+    if(!drag)return;drag=false;
+    el.classList.remove('dragging');el.style.transition='';el.style.zIndex='';
+    if(!moved){const id=el.id.replace('icon-','');id==='cv'?openCV():openFolder(id);}
+  };
+  el.addEventListener('mousedown',e=>{if(e.button!==0)return;e.preventDefault();st(e.clientX,e.clientY);});
   document.addEventListener('mousemove',e=>{if(drag)mv(e.clientX,e.clientY);});
   document.addEventListener('mouseup',en);
   el.addEventListener('touchstart',e=>{e.preventDefault();const t=e.touches[0];st(t.clientX,t.clientY);},{passive:false});
@@ -552,35 +726,204 @@ function makeDraggable(el){
 ['cv','pro','perso'].forEach(id=>{const el=document.getElementById('icon-'+id);if(el)makeDraggable(el);});
 
 /* ══ CV ══ */
-function openCV(){cvOpen=true;document.getElementById('cvWin').classList.add('open');}
-function closeCV(){cvOpen=false;document.getElementById('cvWin').classList.remove('open');}
+function openCV(){document.getElementById('cvWin').classList.add('open');}
+function closeCV(){document.getElementById('cvWin').classList.remove('open');}
 
 /* ══ FINDER ══ */
-function openFolder(cat){openFdr=cat;openProj=null;const fd=FOLDERS[cat];document.getElementById('fdr-ico').textContent=fd.icon;document.getElementById('fdr-nm').textContent=fd[lang];renderSb(cat);renderEmpty();document.getElementById('finder').classList.add('open');}
+const FOLDERS={
+  pro:{icon:'📁',fr:'Projets Pro',en:'Pro Projects',projects:['mirakl','payfit','seo','marathon','thelook']},
+  perso:{icon:'📂',fr:'Projets Perso',en:'Personal Projects',projects:['taskmaster','aiagent']}
+};
+const P={
+  mirakl:{cat:'pro',icon:'🏆',color:'#ff375f',github:'https://github.com/CodeurFort/mirakl-prospector',
+    fr:{name:'Hackathon Mirakl — Connect Prospector',sub:'Next.js · GPT-4o · Supabase · Vercel · 48h',tags:['Next.js','GPT-4o','Supabase','Apify','Vercel'],ctx:'Les BDRs de <strong>Mirakl Connect</strong> (700+ opérateurs) passaient <strong>1h15 par lead</strong> en recherche manuelle. Objectif : automatiser le pipeline BDR de A à Z.',what:['<strong>UC2-A (By Seller)</strong> : URL → scraping → fit marketplace → 3 emails en <strong>6 secondes</strong>','<strong>UC2-B (By Marketplace)</strong> : filtres → scoring 100 pts → leads priorisés','<strong>Grille de scoring</strong> : Catégorie(28)·Géo(22)·Prix(16)·Positionnement(14)·Saisonnalité(10)·Signaux(10)','GPT-4o personnalise l\'outreach selon la culture du marché cible','Déployé en production sur Vercel avec screenshots réels'],rh:'Impact business',metrics:[{v:'×37',l:'Plus rapide'},{v:'-89%',l:'Coût/lead'},{v:'6¢',l:'Pipeline/lead'},{v:'6s',l:'By Seller'},{v:'+62pts',l:'Temps vente'},{v:'×2400',l:'ROI estimé'}],end:'Conception produit de bout en bout : problème terrain → pipeline → scoring → outreach → jury. <strong>ROI calculé, déployé en production.</strong>'},
+    en:{name:'Mirakl Hackathon — Connect Prospector',sub:'Next.js · GPT-4o · Supabase · Vercel · 48h',tags:['Next.js','GPT-4o','Supabase','Apify','Vercel'],ctx:'<strong>Mirakl Connect</strong> BDRs (700+ operators) spent <strong>1h15 per lead</strong> on manual research. Goal: automate the full BDR pipeline end-to-end.',what:['<strong>UC2-A (By Seller)</strong>: URL → scraping → marketplace fit → 3 emails in <strong>6 seconds</strong>','<strong>UC2-B (By Marketplace)</strong>: filters → 100-pt scoring → prioritized leads','<strong>Scoring grid</strong>: Category(28)·Geo(22)·Price(16)·Positioning(14)·Seasonality(10)·Signals(10)','GPT-4o personalizes outreach based on target market culture','Deployed in production on Vercel with real screenshots'],rh:'Business impact',metrics:[{v:'×37',l:'Faster'},{v:'-89%',l:'Cost/lead'},{v:'6¢',l:'Pipeline/lead'},{v:'6s',l:'By Seller'},{v:'+62pts',l:'Sales time'},{v:'×2400',l:'Estimated ROI'}],end:'End-to-end product design: field problem → pipeline → scoring → outreach → jury. <strong>Calculated ROI, deployed in production.</strong>'}},
+  payfit:{cat:'pro',icon:'⚡',color:'#FF6B35',github:null,
+    fr:{name:'Hackathon PayFit 2026 — SEO Content IA',sub:'🏆 Innovation Award · 48h · Automatisation enterprise',tags:['Make.com','GPT-4o','Claude Sonnet','Google Sheets','Docker'],ctx:'PayFit face à un <strong>goulot critique</strong> : 2h par article expert, 1 rédacteur disponible, 5h/semaine de veille juridique. Scaling impossible face à la concurrence IA.',what:['<strong>4 agents orchestrés</strong> : Info-Radar · StrategicPlanner(scoring /13) · SEO Writer(14+/15) · Quality Guardian(EEAT /100)','<strong>2 scénarios Make.com</strong> : Keyword Research automatisé + Question Generation sectoriel','<strong>APIs réglementaires</strong> : URSSAF · Legifrance · DARES enrichies automatiquement','<strong>Hub Google Sheets</strong> : SOURCE · ANALYSIS · HISTORY · METRICS','<strong>Export multi-format</strong> : HTML · DOCX · PDF en moins de 2 minutes'],rh:'Résultats (48h de hackathon)',metrics:[{v:'80%',l:'Temps économisé'},{v:'14.3/15',l:'Qualité moyenne'},{v:'200K€',l:'Économies/an'},{v:'92%',l:'Automation'},{v:'0',l:'Erreurs juridiques'},{v:'🏆',l:'Innovation Award'}],end:'4 articles en 48h (vs 1 semaine normal). 50% notés 15/15. Zéro erreur compliance. <strong>Innovation Award décerné par PayFit.</strong>'},
+    en:{name:'PayFit Hackathon 2026 — IA SEO Content',sub:'🏆 Innovation Award · 48h · Enterprise automation',tags:['Make.com','GPT-4o','Claude Sonnet','Google Sheets','Docker'],ctx:'PayFit facing a <strong>critical bottleneck</strong>: 2h per expert article, 1 available writer, 5h/week legal monitoring. Impossible to scale against AI competitors.',what:['<strong>4 orchestrated agents</strong>: Info-Radar · StrategicPlanner(scoring /13) · SEO Writer(14+/15) · Quality Guardian(EEAT /100)','<strong>2 Make.com scenarios</strong>: Automated Keyword Research + Sector Question Generation','<strong>Regulatory APIs</strong>: URSSAF · Legifrance · DARES auto-enriched','<strong>Google Sheets Hub</strong>: SOURCE · ANALYSIS · HISTORY · METRICS','<strong>Multi-format export</strong>: HTML · DOCX · PDF in under 2 minutes'],rh:'Results (48h hackathon)',metrics:[{v:'80%',l:'Time saved'},{v:'14.3/15',l:'Avg quality'},{v:'€200K',l:'Annual savings'},{v:'92%',l:'Automation'},{v:'0',l:'Legal errors'},{v:'🏆',l:'Innovation Award'}],end:'4 articles in 48h (vs 1 week normally). 50% rated 15/15. Zero compliance errors. <strong>Innovation Award from PayFit.</strong>'}},
+  seo:{cat:'pro',icon:'🔍',color:'#0071e3',github:null,
+    fr:{name:'Eugenia School — Audit SEO/GEO/AEO',sub:'4 agents Dust · Machine éditoriale opérationnelle · Avril 2026',tags:['Dust','SEMrush','ChatGPT','Perplexity','Webflow','Substack'],ctx:'Eugenia School <strong>inexistante en ligne</strong>. En 2026, les lycéens demandent à ChatGPT "quelle école IA choisir" — Eugenia n\'apparaissait nulle part : ni sur Google, ni dans les LLMs.',what:['<strong>Audit 3 surfaces</strong> : SEO · GEO (ChatGPT+Perplexity) · AEO (Featured Snippets)','<strong>Paradoxe Aivancity</strong> : 954 mots-clés Google, 0/6 citations LLMs','<strong>4 agents Dust déployés</strong> : Lundi Édito · Veille · Coordinateur · Rédacteur (seuil qualité 13/15)','<strong>Quick win 0€</strong> : page Bachelor IA non publiée → Top 20 potentiel en 6 semaines','<strong>Livrables opérationnels</strong> : prompts, fiche Webflow, calendrier 7 semaines'],rh:'Projections 6 mois',metrics:[{v:'10→150',l:'Mots-clés'},{v:'+1 500',l:'Trafic/mois'},{v:'1→3/6',l:'Citations LLMs'},{v:'2/sem',l:'Articles'},{v:'2h/sem',l:'Effort humain'},{v:'13/15',l:'Qualité garantie'}],end:'Solution livrée = <strong>machine opérationnelle déployable le lendemain</strong>. Pas un rapport PDF — un système qui tourne.'},
+    en:{name:'Eugenia School — SEO/GEO/AEO Audit',sub:'4 Dust agents · Operational editorial machine · April 2026',tags:['Dust','SEMrush','ChatGPT','Perplexity','Webflow','Substack'],ctx:'Eugenia School <strong>virtually invisible online</strong>. In 2026, students ask ChatGPT "which AI school to choose" — Eugenia appeared nowhere: not on Google, not in LLMs.',what:['<strong>3-surface audit</strong>: SEO · GEO (ChatGPT+Perplexity) · AEO (Featured Snippets)','<strong>Aivancity paradox</strong>: 954 Google keywords, 0/6 LLM citations','<strong>4 Dust agents deployed</strong>: Monday Editorial · Watch · Coordinator · Writer (quality threshold 13/15)','<strong>€0 quick win</strong>: unpublished AI Bachelor page → Top 20 potential in 6 weeks','<strong>Operational deliverables</strong>: prompts, Webflow sheet, 7-week calendar'],rh:'6-month projections',metrics:[{v:'10→150',l:'Keywords'},{v:'+1,500',l:'Monthly traffic'},{v:'1→3/6',l:'LLM citations'},{v:'2/week',l:'Articles'},{v:'2h/week',l:'Human effort'},{v:'13/15',l:'Quality guaranteed'}],end:'Delivered solution = <strong>operational machine deployable the next day</strong>. Not a PDF report — a running system.'}},
+  marathon:{cat:'pro',icon:'🏃',color:'#30d158',github:'https://github.com/venom6-13/scraping_marathonParis',
+    fr:{name:'Marathon de Paris 2025 — 50 001 Finishers',sub:'Python · Pipeline data complet · Reverse-engineering API',tags:['Python','requests','pandas','Google Sheets','GitHub'],ctx:'Le site officiel n\'offre aucune API publique. Via l\'inspecteur réseau (F12), nous avons <strong>reverse-engineeré une API interne non documentée</strong> pour collecter les données de 50 001 coureurs.',what:['<strong>Collecte</strong> : GET authentifié avec cookies PHPSESSID + headers user-agent ciblés','<strong>Nettoyage</strong> : 9 champs utiles extraits sur ~40 champs du JSON brut · 4 variables calculées','<strong>Enrichissement</strong> : search_continent() · runner_cat() (catégorie FFA → sexe, tranche d\'âge)','<strong>Export</strong> : JSON + CSV → Google Sheets · 8 graphiques · 3 axes d\'analyse','<strong>Insight clé</strong> : les coureurs africains courent 25 min plus vite que les Asiatiques sur marathon'],rh:'Chiffres clés',metrics:[{v:'50 001',l:'Finishers analysés'},{v:'72%',l:'Hommes'},{v:'100+',l:'Nationalités'},{v:'5:28',l:'min/km africains'},{v:'71,9%',l:'Finishers FR'},{v:'1s/km',l:'Écart 18-34/35-44'}],end:'<strong>Reverse-engineering API</strong> · Pipeline structuré en fonctions réutilisables · Insights actionnables pour les organisateurs et sponsors.'},
+    en:{name:'Paris Marathon 2025 — 50,001 Finishers',sub:'Python · Full data pipeline · API reverse-engineering',tags:['Python','requests','pandas','Google Sheets','GitHub'],ctx:'The official site offers no public API. Through network inspector (F12), we <strong>reverse-engineered an undocumented internal API</strong> to collect data on 50,001 runners.',what:['<strong>Collection</strong>: Authenticated GET with PHPSESSID cookies + targeted user-agent headers','<strong>Cleaning</strong>: 9 useful fields from ~40 raw JSON fields · 4 calculated variables','<strong>Enrichment</strong>: search_continent() · runner_cat() (FFA category → gender, age group)','<strong>Export</strong>: JSON + CSV → Google Sheets · 8 charts · 3 analysis axes','<strong>Key insight</strong>: African runners are 25 minutes faster than Asian runners over marathon distance'],rh:'Key figures',metrics:[{v:'50,001',l:'Finishers analyzed'},{v:'72%',l:'Male'},{v:'100+',l:'Nationalities'},{v:'5:28',l:'min/km African'},{v:'71.9%',l:'French finishers'},{v:'1s/km',l:'Gap 18-34 vs 35-44'}],end:'<strong>API reverse-engineering</strong> · Reusable pipeline functions · Actionable insights for organizers and sponsors.'}},
+  thelook:{cat:'pro',icon:'📊',color:'#bf5af2',github:'https://github.com/venom6-13/1_sql_thelook_ecommercet_audit',
+    fr:{name:'TheLook E-Commerce — SQL Audit',sub:'BigQuery Multi-CTE · 14 mois de données · 6 insights actionnables',tags:['BigQuery','SQL','Looker Studio','Google Cloud'],ctx:'Anomalie détectée : <strong>+154% de CA</strong> et <strong>+163% de commandes</strong> sur 14 mois — mais la rentabilité nette ne progresse pas. Les retours produits érodent silencieusement le P&L.',what:['<strong>Architecture Multi-CTE</strong> : financial_monthly · sessions_monthly · retention_monthly','<strong>LEFT JOIN systématique</strong> : exhaustivité garantie — aucun article exclu du périmètre','<strong>SAFE_DIVIDE</strong> : robustesse production (gestion NULL vs Division by zero)','<strong>Marge nette estimée</strong> : intégration des coûts logistiques retours (benchmark NRF 16.9%)','<strong>7 requêtes spécialisées</strong> : retours · genre · canal Email jan · focus Chine · Japon/Brésil'],rh:'6 insights business actionnables',metrics:[{v:'30%',l:'Return rate moyen'},{v:'8 pts',l:'Marge femmes > hommes'},{v:'42%',l:'CA concentré Chine'},{v:'4.6%',l:'Record Brésil déc.'},{v:'~15%',l:'Japon (benchmark)'},{v:'Jan ☠️',l:'Email: 100% rebond 2 ans'}],end:'Réallouer 30% budget acquisition vers les femmes (+1.6 pts marge). Suspendre Email janvier. Localiser fiches Chine. <strong>Investiguer blueprint Brésil Q4.</strong>'},
+    en:{name:'TheLook E-Commerce — SQL Audit',sub:'BigQuery Multi-CTE · 14 months of data · 6 actionable insights',tags:['BigQuery','SQL','Looker Studio','Google Cloud'],ctx:'Detected anomaly: <strong>+154% revenue</strong> and <strong>+163% orders</strong> over 14 months — but net profitability isn\'t improving. Product returns are silently eroding the P&L.',what:['<strong>Multi-CTE architecture</strong>: financial_monthly · sessions_monthly · retention_monthly','<strong>Systematic LEFT JOIN</strong>: complete data guaranteed — no item excluded from scope','<strong>SAFE_DIVIDE</strong>: production robustness (NULL vs Division by zero handling)','<strong>Estimated net margin</strong>: return logistics costs included (NRF 16.9% benchmark)','<strong>7 specialized queries</strong>: returns · gender · Jan Email channel · China focus · Japan/Brazil'],rh:'6 actionable business insights',metrics:[{v:'30%',l:'Avg return rate'},{v:'8 pts',l:'Women\'s margin > men\'s'},{v:'42%',l:'Revenue concentrated China'},{v:'4.6%',l:'Brazil record Dec.'},{v:'~15%',l:'Japan (benchmark)'},{v:'Jan ☠️',l:'Email: 100% bounce 2 years'}],end:'Reallocate 30% acquisition budget to women (+1.6 margin pts). Suspend January Email. Localize China pages. <strong>Investigate Brazil Q4 blueprint.</strong>'}},
+  taskmaster:{cat:'perso',icon:'✅',color:'#30d158',github:null,
+    fr:{name:'Weekly Task Master',sub:'Automatisation Google Workspace · 4 piliers · 0 dépendances externes',tags:['Google Apps Script','Google Sheets','Gmail','Google Calendar'],ctx:'Face à l\'accumulation de tâches non trackées et de réunions sans action de suivi, j\'ai conçu un système <strong>100% auto-hébergé</strong> sur Google Workspace — sans aucun outil tiers payant.',what:['<strong>Pilier 1 — Capture</strong> : formulaire Google auto-injecté chaque lundi matin dans Gmail','<strong>Pilier 2 — Organisation</strong> : Google Sheet central avec statuts, priorités et deadlines','<strong>Pilier 3 — Rappels</strong> : Apps Script envoie des résumés automatiques chaque vendredi à 18h','<strong>Pilier 4 — Revue</strong> : dashboard hebdomadaire auto-généré avec KPIs et taux de complétion','<strong>Zéro dépendance</strong> : pas de Zapier, pas de Make — 100% Google Workspace natif'],rh:'Impact personnel',metrics:[{v:'0€',l:'Coût infra'},{v:'4',l:'Piliers système'},{v:'100%',l:'Tâches trackées'},{v:'0',l:'Outils externes'},{v:'-60%',l:'Tâches oubliées'},{v:'∞',l:'Scalable'}],end:'Un système de productivité <strong>réellement utilisé au quotidien</strong>, construit sur des outils déjà disponibles. Zéro friction, zéro coût.'},
+    en:{name:'Weekly Task Master',sub:'Google Workspace automation · 4 pillars · 0 external dependencies',tags:['Google Apps Script','Google Sheets','Gmail','Google Calendar'],ctx:'To tackle accumulating untracked tasks and meetings without follow-up, I designed a <strong>100% self-hosted</strong> system on Google Workspace — with no paid third-party tools.',what:['<strong>Pillar 1 — Capture</strong>: Google form auto-injected every Monday morning in Gmail','<strong>Pillar 2 — Organization</strong>: Central Google Sheet with statuses, priorities and deadlines','<strong>Pillar 3 — Reminders</strong>: Apps Script sends automatic summaries every Friday at 6pm','<strong>Pillar 4 — Review</strong>: Auto-generated weekly dashboard with KPIs and completion rate','<strong>Zero dependencies</strong>: no Zapier, no Make — 100% native Google Workspace'],rh:'Personal impact',metrics:[{v:'€0',l:'Infra cost'},{v:'4',l:'System pillars'},{v:'100%',l:'Tasks tracked'},{v:'0',l:'External tools'},{v:'-60%',l:'Forgotten tasks'},{v:'∞',l:'Scalable'}],end:'A productivity system <strong>actually used daily</strong>, built entirely on already-available tools. Zero friction, zero cost.'}},
+  aiagent:{cat:'perso',icon:'🤖',color:'#bf5af2',github:null,
+    fr:{name:'AI Agent Ecosystem — 9 agents Dust × Claude',sub:'Écosystème d\'agents spécialisés · Usage quotidien · RAG',tags:['Dust','Claude Sonnet','Anthropic','Prompt Engineering','RAG'],ctx:'J\'ai conçu et déployé un écosystème de <strong>9 agents IA spécialisés</strong> sur Dust, chacun expert dans un domaine précis de mon activité quotidienne — du brainstorming à la production de contenu.',what:['<strong>Agent Stratège</strong> : analyse de problématiques business et recommandations actionnables','<strong>Agent Rédacteur</strong> : production de contenu long-format avec grille qualité auto-évaluée (0-15)','<strong>Agent Data</strong> : interprétation de datasets SQL/CSV et génération d\'insights visuels','<strong>Agent RevOps</strong> : optimisation de processus CRM et workflows Salesforce/HubSpot','<strong>Agent Veille</strong> : monitoring concurrentiel et synthèse d\'actualités IA quotidienne'],rh:'Architecture de l\'écosystème',metrics:[{v:'9',l:'Agents spécialisés'},{v:'Daily',l:'Usage quotidien'},{v:'Claude',l:'Moteur IA'},{v:'RAG',l:'Knowledge enrichie'},{v:'0€',l:'Coût (Dust plan)'}],end:'Un <strong>assistant personnel augmenté</strong> qui remplace 5 outils différents. Chaque agent dispose de sa propre personnalité, instructions système et corpus de connaissances.'},
+    en:{name:'AI Agent Ecosystem — 9 Dust × Claude Agents',sub:'Specialized agent ecosystem · Daily use · RAG',tags:['Dust','Claude Sonnet','Anthropic','Prompt Engineering','RAG'],ctx:'I designed and deployed an ecosystem of <strong>9 specialized AI agents</strong> on Dust, each expert in a specific domain of my daily work — from brainstorming to content production.',what:['<strong>Strategy Agent</strong>: business problem analysis and actionable recommendations','<strong>Writer Agent</strong>: long-form content production with auto-evaluated quality grid (0-15)','<strong>Data Agent</strong>: SQL/CSV dataset interpretation and visual insights generation','<strong>RevOps Agent</strong>: CRM process optimization and Salesforce/HubSpot workflows','<strong>Watch Agent</strong>: competitive monitoring and daily AI news synthesis'],rh:'Ecosystem architecture',metrics:[{v:'9',l:'Specialized agents'},{v:'Daily',l:'Daily usage'},{v:'Claude',l:'AI engine'},{v:'RAG',l:'Enriched knowledge'},{v:'€0',l:'Cost (Dust plan)'}],end:'An <strong>augmented personal assistant</strong> replacing 5 different tools. Each agent has its own personality, system instructions and knowledge corpus.'}}
+};
+
+let lang=localStorage.getItem('lang')||'fr';
+let openFdr=null,openProj=null,siriOpen=false;
+
+/* ══ CLOCK ══ */
+function tick(){const n=new Date();document.getElementById('mbTime').textContent=`${String(n.getHours()).padStart(2,'0')}:${String(n.getMinutes()).padStart(2,'0')}`;}
+tick();setInterval(tick,10000);
+
+/* ══ CV ══ */
+function openCV(){document.getElementById('cvWin').classList.add('open');}
+function closeCV(){document.getElementById('cvWin').classList.remove('open');}
+
+/* ══ FINDER ══ */
+function openFolder(cat){
+  openFdr=cat;openProj=null;
+  const fd=FOLDERS[cat];
+  document.getElementById('fdr-ico').textContent=fd.icon;
+  document.getElementById('fdr-nm').textContent=fd[lang];
+  renderSb(cat);renderEmpty();
+  document.getElementById('finder').classList.add('open');
+}
 function closeFinder(){document.getElementById('finder').classList.remove('open');openFdr=null;openProj=null;}
-function renderSb(cat){const sb=document.getElementById('fdrSb');const lbl=lang==='fr'?'Projets':'Projects';let h=`<div class="fdr-sb-ttl">${lbl}</div>`;FOLDERS[cat].projects.forEach(pid=>{const p=P[pid],d=p[lang];const s=d.name.length>22?d.name.substring(0,22)+'…':d.name;h+=`<div class="fdr-pi${openProj===pid?' active':''}" onclick="selP('${pid}')" id="si-${pid}"><span class="ico">${p.icon}</span><span>${s}</span></div>`;});sb.innerHTML=h;}
-function renderEmpty(){const lbl=lang==='fr'?'Sélectionnez un projet':'Select a project';document.getElementById('fdrCnt').innerHTML=`<div class="fdr-empty"><div class="fdr-empty-ico">📂</div><p style="font-size:14px">${lbl}</p></div>`;}
-function selP(pid){openProj=pid;document.querySelectorAll('.fdr-pi').forEach(el=>el.classList.toggle('active',el.id===`si-${pid}`));const p=P[pid],d=p[lang];const cH=lang==='fr'?'Contexte':'Context',wH=lang==='fr'?'Ce que j\'ai fait':'What I built',ghL=lang==='fr'?'GitHub':'GitHub';const metrics=d.metrics.map(m=>`<div class="pm"><div class="pmv" style="color:${p.color}">${m.v}</div><div class="pml">${m.l}</div></div>`).join('');const tags=d.tags.map(t=>`<span class="pd-tag">${t}</span>`).join('');const what=d.what.map(w=>`<li>${w}</li>`).join('');const gh=p.github?`<a href="${p.github}" target="_blank" class="pb">⌨️ ${ghL}</a>`:'';document.getElementById('fdrCnt').innerHTML=`<div class="pd"><div class="pd-hero"><div class="pd-ico">${p.icon}</div><div><div class="pd-nm">${d.name}</div><div class="pd-sb">${d.sub}</div><div class="pd-tags">${tags}</div></div></div><div class="ph">${cH}</div><p class="pt">${d.ctx}</p><div class="ph">${wH}</div><ul class="pl">${what}</ul><div class="ph">${d.rh}</div><div class="pm-g">${metrics}</div><div class="ph">Impact</div><p class="pt">${d.end}</p>${gh}</div>`;}
+
+function renderSb(cat){
+  const sb=document.getElementById('fdrSb');
+  const lbl=lang==='fr'?'Projets':'Projects';
+  let h=`<div class="fdr-sb-ttl">${lbl}</div>`;
+  FOLDERS[cat].projects.forEach(pid=>{
+    const p=P[pid],d=p[lang];
+    const s=d.name.length>22?d.name.substring(0,22)+'…':d.name;
+    h+=`<div class="fdr-pi${openProj===pid?' active':''}" onclick="selP('${pid}')" id="si-${pid}"><span class="ico">${p.icon}</span><span>${s}</span></div>`;
+  });
+  sb.innerHTML=h;
+}
+
+function renderEmpty(){
+  const lbl=lang==='fr'?'Sélectionnez un projet':'Select a project';
+  document.getElementById('fdrCnt').innerHTML=`<div class="fdr-empty"><div class="fdr-empty-ico">📂</div><p style="font-size:14px">${lbl}</p></div>`;
+}
+
+function selP(pid){
+  openProj=pid;
+  document.querySelectorAll('.fdr-pi').forEach(el=>el.classList.toggle('active',el.id===`si-${pid}`));
+  const p=P[pid],d=p[lang];
+  const cH=lang==='fr'?'Contexte':'Context';
+  const wH=lang==='fr'?'Ce que j\'ai fait':'What I built';
+  const ghL=lang==='fr'?'Voir sur GitHub':'View on GitHub';
+  const metrics=d.metrics.map(m=>`<div class="pm"><div class="pmv" style="color:${p.color}">${m.v}</div><div class="pml">${m.l}</div></div>`).join('');
+  const tags=d.tags.map(t=>`<span class="pd-tag">${t}</span>`).join('');
+  const what=d.what.map(w=>`<li>${w}</li>`).join('');
+  const gh=p.github?`<a href="${p.github}" target="_blank" class="pb">⌨️ ${ghL}</a>`:'';
+  document.getElementById('fdrCnt').innerHTML=`
+  <div class="pd">
+    <div class="pd-hero"><div class="pd-ico">${p.icon}</div><div><div class="pd-nm">${d.name}</div><div class="pd-sb">${d.sub}</div><div class="pd-tags">${tags}</div></div></div>
+    <div class="ph">${cH}</div><p class="pt">${d.ctx}</p>
+    <div class="ph">${wH}</div><ul class="pl">${what}</ul>
+    <div class="ph">${d.rh}</div><div class="pm-g">${metrics}</div>
+    <div class="ph">Impact</div><p class="pt">${d.end}</p>${gh}
+  </div>`;
+}
 
 /* ══ SIRI ══ */
-const KB={fr:{projets:'Alec a 7 projets : Mirakl(×37), PayFit(🏆), Eugenia SEO, Marathon(50k), TheLook SQL, Task Master, AI Agents. 📁',stack:'Salesforce, HubSpot, Make.com, N8N, Dust, GPT-4o, Claude, SQL, BigQuery, Python, Next.js, Supabase, Vercel. 🛠️',contact:'Email : alecrudydiami@gmail.com · LinkedIn : /in/alec-diamidia · GitHub : venom6-13 📬',cv:'CV disponible dans le dossier CV ! 3 expériences RevOps, Eugenia School × GEM (Top 10). 📄',default:'Je suis Siri. Pose-moi une question sur Alec ! ✦'},en:{projets:'Alec has 7 projects: Mirakl(×37), PayFit(🏆), Eugenia SEO, Marathon(50k), TheLook SQL, Task Master, AI Agents. 📁',stack:'Salesforce, HubSpot, Make.com, N8N, Dust, GPT-4o, Claude, SQL, BigQuery, Python, Next.js, Supabase, Vercel. 🛠️',contact:'Email: alecrudydiami@gmail.com · LinkedIn: /in/alec-diamidia · GitHub: venom6-13 📬',cv:'CV in the CV folder! 3 RevOps roles, Eugenia School × GEM (Top 10). 📄',default:'I\'m Siri. Ask me about Alec! ✦'}};
+const KB={
+  fr:{
+    projets:'Alec a 7 projets : 5 professionnels (Mirakl ×37, PayFit 🏆, Eugenia SEO, Marathon 50k, TheLook SQL) et 2 personnels (Weekly Task Master, AI Agent Ecosystem). Ouvre un dossier pour explorer ! 📁',
+    stack:'Son stack complet : CRM (Salesforce, HubSpot, Planhat), Data (SQL, BigQuery, Python), Automation (Make.com, N8N, Zapier), AI (Dust, GPT-4o, Claude), Dev (Next.js, Supabase, Vercel). 🛠️',
+    contact:'Tu peux contacter Alec par email à alecrudydiami@gmail.com, sur LinkedIn /in/alec-diamidia, ou sur GitHub venom6-13. Il est basé à Paris. 📬',
+    cv:'Le CV d\'Alec couvre 3 expériences RevOps (Evaneos actuellement, United Heroes, Javelo), Eugenia School × Grenoble EM (Top 10 national) et 7 projets avec métriques. Clique sur l\'icône CV ! 📄',
+    default:'Je suis Siri, l\'assistant IA du bureau d\'Alec DIAMIDIA. Pose-moi une question sur ses projets, son stack technique, son CV ou comment le contacter ! ✦'
+  },
+  en:{
+    projets:'Alec has 7 projects: 5 professional (Mirakl ×37, PayFit 🏆, Eugenia SEO, Marathon 50k, TheLook SQL) and 2 personal (Weekly Task Master, AI Agent Ecosystem). Open a folder to explore! 📁',
+    stack:'His full stack: CRM (Salesforce, HubSpot, Planhat), Data (SQL, BigQuery, Python), Automation (Make.com, N8N, Zapier), AI (Dust, GPT-4o, Claude), Dev (Next.js, Supabase, Vercel). 🛠️',
+    contact:'You can reach Alec by email at alecrudydiami@gmail.com, on LinkedIn /in/alec-diamidia, or GitHub venom6-13. Based in Paris. 📬',
+    cv:'Alec\'s CV covers 3 RevOps roles (Evaneos currently, United Heroes, Javelo), Eugenia School × Grenoble EM (Top 10 national) and 7 projects with metrics. Click the CV icon! 📄',
+    default:'I\'m Siri, the AI assistant on Alec DIAMIDIA\'s bureau. Ask me about his projects, tech stack, CV or how to contact him! ✦'
+  }
+};
+
 function siriQ(t){document.getElementById('siriOut').textContent=KB[lang][t]||KB[lang].default;}
-function siriSend(){const i=document.getElementById('siriIn'),q=i.value.trim().toLowerCase();if(!q)return;let r=KB[lang].default;if(/projet|project/i.test(q))r=KB[lang].projets;else if(/stack|outil|techno/i.test(q))r=KB[lang].stack;else if(/contact|email|linkedin/i.test(q))r=KB[lang].contact;else if(/cv|exp|formation/i.test(q))r=KB[lang].cv;document.getElementById('siriOut').textContent=r;i.value='';}
+function siriSend(){
+  const i=document.getElementById('siriIn'),q=i.value.trim().toLowerCase();if(!q)return;
+  let r=KB[lang].default;
+  if(/projet|project/i.test(q))r=KB[lang].projets;
+  else if(/stack|outil|techno|tech/i.test(q))r=KB[lang].stack;
+  else if(/contact|email|linkedin|joindre|reach/i.test(q))r=KB[lang].contact;
+  else if(/cv|exp|formation|expéri/i.test(q))r=KB[lang].cv;
+  document.getElementById('siriOut').textContent=r;i.value='';
+}
 function toggleSiri(){siriOpen=!siriOpen;document.getElementById('siriOv').classList.toggle('open',siriOpen);if(siriOpen)document.getElementById('siriIn').focus();}
 function closeSiri(){siriOpen=false;document.getElementById('siriOv').classList.remove('open');}
 document.getElementById('siriBtn').addEventListener('click',toggleSiri);
 document.getElementById('siriIn').addEventListener('keydown',e=>{if(e.key==='Enter')siriSend();});
 
 /* ══ LANG ══ */
-const UI={fr:{'d-home':'Accueil','d-pro':'Projets Pro','d-perso':'Projets Perso','exp':'Expériences Professionnelles','edu':'Formation','skills':'Compétences','projs':'Projets Clés','langs':'Langues','projects':'Projets','sel-proj':'Sélectionnez un projet','en-poste':'En poste','lbl-cv':'📄 CV','lbl-pro':'📊 Projets Pro','lbl-perso':'🎨 Projets Perso'},en:{'d-home':'Home','d-pro':'Pro Projects','d-perso':'Personal Projects','exp':'Professional Experience','edu':'Education','skills':'Skills','projs':'Key Projects','langs':'Languages','projects':'Projects','sel-proj':'Select a project','en-poste':'Current','lbl-cv':'📄 CV','lbl-pro':'📊 Pro Projects','lbl-perso':'🎨 Personal Projects'}};
-function setLang(l){lang=l;localStorage.setItem('lang',l);document.querySelectorAll('.lang-btn').forEach(b=>b.classList.toggle('active',b.textContent.toLowerCase()===l));document.querySelectorAll('[data-i18n]').forEach(el=>{const k=el.getAttribute('data-i18n');if(UI[l][k])el.textContent=UI[l][k];});['cv','pro','perso'].forEach(c=>{const el=document.getElementById('lbl-'+c);if(el&&UI[l]['lbl-'+c])el.textContent=UI[l]['lbl-'+c];});if(openFdr){document.getElementById('fdr-nm').textContent=FOLDERS[openFdr][l];renderSb(openFdr);if(openProj)selP(openProj);else renderEmpty();}}
+const UI={
+  fr:{
+    'tt-cv-t':'Curriculum Vitae','tt-cv-d':'3 expériences RevOps · 7 projets · Top 10 MSc IA',
+    'tt-pro-t':'Projets Professionnels','tt-pro-d':'Hackathons, SQL, Python, SEO — 5 projets avec métriques',
+    'tt-perso-t':'Projets Personnels','tt-perso-d':'Automatisations Google Workspace & agents IA',
+    'desk-hint':'Double-cliquez pour ouvrir · Glissez pour déplacer',
+    'lbl-cv':'📄 CV','lbl-pro':'📊 Projets Pro','lbl-perso':'🎨 Projets Perso',
+    'd-home':'Accueil','d-pro':'Projets Pro','d-perso':'Projets Perso',
+    'cv-title':'CV — Alec DIAMIDIA','cv-role':'Revenue Operations & CRM Specialist · MSc AI Applied to Business',
+    'stat-exp':'Expériences\nRevOps','stat-proj':'Projets\nréalisés','stat-hack':'Hackathons\ngagnés','stat-msc':'MSc IA\nnational',
+    'exp-title':'Expériences Professionnelles','edu-title':'Formation','skills-title':'Compétences',
+    'awards-title':'Distinctions','award1-t':'Innovation Award','award2-t':'Top 10 national',
+    'projs-title':'Projets Clés','testi-title':'Témoignages',
+    'current':'En poste','uh-date':'Juillet 2024 — Juillet 2025 · Paris · 1 an',
+    'javelo-role':'Sales Ops → Revenue Operations (promotion interne)',
+    'sk-langs':'Langues','projects':'Projets','sel-proj':'Sélectionnez un projet',
+    'testi1':'"Alec est au-dessus des attentes sur son rôle. Autonome, rigoureux, capable de monter en compétence très rapidement sur des outils techniques."',
+    'testi2':'"Sérieux et investi, très bon élément. Alec s\'est intégré rapidement et a produit des analyses de qualité sur des sujets complexes."',
+    'testi3':'"Alec a été un élément marquant de par son professionnalisme, sa capacité à comprendre les enjeux business et sa proactivité."',
+    'chip-proj':'Ses projets','chip-stack':'Son stack','chip-contact':'Le contacter','chip-cv':'Son CV'
+  },
+  en:{
+    'tt-cv-t':'Curriculum Vitae','tt-cv-d':'3 RevOps roles · 7 projects · Top 10 MSc AI',
+    'tt-pro-t':'Professional Projects','tt-pro-d':'Hackathons, SQL, Python, SEO — 5 projects with metrics',
+    'tt-perso-t':'Personal Projects','tt-perso-d':'Google Workspace automation & AI agent ecosystem',
+    'desk-hint':'Double-click to open · Drag to move',
+    'lbl-cv':'📄 CV','lbl-pro':'📊 Pro Projects','lbl-perso':'🎨 Personal Projects',
+    'd-home':'Home','d-pro':'Pro Projects','d-perso':'Personal Projects',
+    'cv-title':'CV — Alec DIAMIDIA','cv-role':'Revenue Operations & CRM Specialist · MSc AI Applied to Business',
+    'stat-exp':'RevOps\nExperiences','stat-proj':'Projects\ncompleted','stat-hack':'Hackathons\nwon','stat-msc':'MSc AI\nnational Top 10',
+    'exp-title':'Professional Experience','edu-title':'Education','skills-title':'Skills',
+    'awards-title':'Distinctions','award1-t':'Innovation Award','award2-t':'National Top 10',
+    'projs-title':'Key Projects','testi-title':'Testimonials',
+    'current':'Current','uh-date':'July 2024 — July 2025 · Paris · 1 year',
+    'javelo-role':'Sales Ops → Revenue Operations (internal promotion)',
+    'sk-langs':'Languages','projects':'Projects','sel-proj':'Select a project',
+    'testi1':'"Alec exceeds expectations in his role. Autonomous, rigorous, capable of rapidly gaining expertise in technical tools."',
+    'testi2':'"Serious and committed, an excellent team member. Alec integrated quickly and produced high-quality analyses on complex topics."',
+    'testi3':'"Alec was a standout contributor thanks to his professionalism, his ability to understand business challenges and his proactivity."',
+    'chip-proj':'His projects','chip-stack':'His stack','chip-contact':'Contact him','chip-cv':'His CV'
+  }
+};
+
+function setLang(l){
+  lang=l;localStorage.setItem('lang',l);
+  document.querySelectorAll('.lang-btn').forEach(b=>b.classList.toggle('active',b.textContent.toLowerCase()===l));
+  document.querySelectorAll('[data-i18n]').forEach(el=>{
+    const k=el.getAttribute('data-i18n');if(UI[l][k])el.textContent=UI[l][k];
+  });
+  document.querySelectorAll('[data-i18n-chip]').forEach(el=>{
+    const k=el.getAttribute('data-i18n-chip');if(UI[l][k])el.textContent=UI[l][k];
+  });
+  ['cv','pro','perso'].forEach(c=>{const el=document.getElementById('lbl-'+c);if(el&&UI[l]['lbl-'+c])el.textContent=UI[l]['lbl-'+c];});
+  if(siriOpen)document.getElementById('siriOut').textContent=l==='fr'?'Bonjour ! Je suis Siri. Que puis-je faire pour toi ?':'Hello! I\'m Siri. How can I help you?';
+  if(openFdr){document.getElementById('fdr-nm').textContent=FOLDERS[openFdr][l];renderSb(openFdr);if(openProj)selP(openProj);else renderEmpty();}
+}
 
 /* ══ ESCAPE ══ */
-document.addEventListener('keydown',e=>{if(e.key==='Escape'){if(siriOpen)closeSiri();else if(cvOpen)closeCV();else if(openFdr)closeFinder();}});
+document.addEventListener('keydown',e=>{
+  if(e.key==='Escape'){
+    if(siriOpen){closeSiri();}
+    else if(document.getElementById('cvWin').classList.contains('open')){closeCV();}
+    else if(openFdr){closeFinder();}
+  }
+});
 
 /* ══ KONAMI ══ */
 let ks=[],kc=[38,38,40,40,37,39,37,39,66,65];
-document.addEventListener('keydown',e=>{ks.push(e.keyCode);if(ks.length>10)ks.shift();if(ks.join(',')===kc.join(','))alert('🎮 Konami Code ! Easter Egg trouvé !');});
+document.addEventListener('keydown',e=>{
+  ks.push(e.keyCode);if(ks.length>10)ks.shift();
+  if(ks.join(',')===kc.join(','))alert('🎮 Konami Code activé ! Easter Egg trouvé !');
+});
 
 setLang(lang);
 </script>
