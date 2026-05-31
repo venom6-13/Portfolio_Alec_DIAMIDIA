@@ -37,7 +37,7 @@ body::after{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;back
 .bubble-right{border-radius:12px 12px 12px 3px;}
 .bubble-left{border-radius:12px 12px 3px 12px;}
 
-/* BACKGROUND SHAPES */
+/* BACKGROUND */
 .animated-background{position:fixed;inset:0;z-index:0;opacity:.4;pointer-events:none;}
 .bg-shape{position:absolute;border-radius:50%;filter:blur(80px);opacity:.3;animation:float 20s infinite ease-in-out;}
 .bg-shape-1{width:500px;height:500px;background:linear-gradient(135deg,#667eea,#764ba2);top:-10%;left:-10%;}
@@ -115,7 +115,7 @@ nav{position:fixed;top:0;left:0;right:0;background:rgba(255,255,255,.72);backdro
 .logo-icon svg{width:32px;height:32px;}
 .logo-name{font-size:11px;font-weight:500;color:var(--text-secondary);white-space:nowrap;}
 
-/* ── AI CARDS (grandes) ── */
+/* AI CARDS */
 .ai-section-new{position:relative;z-index:1;padding:80px 22px;text-align:center;max-width:980px;margin:0 auto;}
 .ai-section-lbl{font-size:14px;color:var(--text-secondary);margin-bottom:8px;letter-spacing:.04em;}
 .ai-section-ttl{font-size:clamp(28px,4vw,44px);font-weight:700;letter-spacing:-.025em;margin-bottom:48px;color:var(--text-primary);}
@@ -129,14 +129,14 @@ nav{position:fixed;top:0;left:0;right:0;background:rgba(255,255,255,.72);backdro
 .ai-card-cta-btn{margin-top:8px;padding:8px 22px;border-radius:20px;font-size:13px;font-weight:600;background:rgba(0,113,227,.1);border:1px solid rgba(0,113,227,.2);color:var(--accent);transition:all .2s;}
 .ai-card-new:hover .ai-card-cta-btn{background:var(--accent);border-color:var(--accent);color:#fff;}
 
-/* ── SINGLE CARD BUREAU ── */
+/* SINGLE CARD BUREAU */
 .single-card-wrap{max-width:680px;margin:0 auto;}
 .single-card{display:block;background:var(--card-bg);border:1px solid var(--border);border-radius:22px;overflow:hidden;text-decoration:none;color:inherit;transition:all .4s cubic-bezier(.4,0,.2,1);position:relative;}
 .single-card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,#667eea,var(--accent),#764ba2);transform:scaleX(0);transform-origin:left;transition:transform .4s;}
 .single-card:hover::before{transform:scaleX(1);}
 .single-card:hover{transform:translateY(-10px) scale(1.01);box-shadow:0 32px 64px rgba(0,0,0,.15);}
 [data-theme="dark"] .single-card:hover{box-shadow:0 32px 64px rgba(255,255,255,.06);}
-.single-card-img{width:100%;height:300px;object-fit:cover;object-position:top;display:block;}
+.single-card-img{width:100%;height:200px;object-fit:cover;object-position:center top;display:block;}
 .single-card-body{padding:28px 32px 32px;}
 .single-card-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:var(--accent);margin-bottom:8px;}
 .single-card-title{font-size:28px;font-weight:700;letter-spacing:-.02em;margin-bottom:8px;}
@@ -188,7 +188,7 @@ nav{position:fixed;top:0;left:0;right:0;background:rgba(255,255,255,.72);backdro
 .contact-label{font-size:13px;font-weight:700;color:var(--text-primary);}
 .contact-value{font-size:11px;color:var(--text-secondary);word-break:break-all;}
 
-/* SEARCH MODAL */
+/* SEARCH */
 .search-overlay{position:fixed;inset:0;z-index:99999;background:rgba(0,0,0,.55);backdrop-filter:blur(10px);display:flex;align-items:flex-start;justify-content:center;padding-top:12vh;opacity:0;pointer-events:none;transition:opacity .2s;}
 .search-overlay.open{opacity:1;pointer-events:all;}
 .search-modal{width:620px;max-width:calc(100vw - 32px);background:var(--bg-primary);border-radius:18px;border:1px solid var(--border);box-shadow:0 32px 80px rgba(0,0,0,.4);overflow:hidden;transform:scale(.95) translateY(-10px);transition:transform .2s;}
@@ -211,25 +211,11 @@ nav{position:fixed;top:0;left:0;right:0;background:rgba(255,255,255,.72);backdro
 footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:20px 22px;}
 .footer-content{max-width:980px;margin:0 auto;text-align:center;font-size:12px;color:var(--text-secondary);}
 
-/* DOCK */
-.dock-wrap{position:fixed;bottom:10px;left:50%;transform:translateX(-50%);z-index:9999;}
-.dock{display:flex;align-items:flex-end;gap:5px;padding:9px 16px;background:rgba(255,255,255,0.22);backdrop-filter:blur(24px) saturate(200%);-webkit-backdrop-filter:blur(24px) saturate(200%);border-radius:20px;border:0.5px solid rgba(255,255,255,0.3);box-shadow:0 8px 32px rgba(0,0,0,.15),0 0 0 0.5px rgba(0,0,0,.08);}
-[data-theme="dark"] .dock{background:rgba(38,38,40,.45);border-color:rgba(255,255,255,.12);}
-.di{position:relative;display:flex;flex-direction:column;align-items:center;text-decoration:none;transition:transform 0.12s ease;cursor:pointer;}
-.di-icon{width:52px;height:52px;border-radius:13px;display:flex;align-items:center;justify-content:center;font-size:30px;box-shadow:0 2px 8px rgba(0,0,0,.15);}
-.di-lbl{position:absolute;bottom:calc(100% + 10px);left:50%;transform:translateX(-50%);background:rgba(28,28,30,.85);color:#fff;font-size:11px;font-weight:500;padding:4px 9px;border-radius:7px;white-space:nowrap;opacity:0;transition:opacity .12s;pointer-events:none;font-family:-apple-system,sans-serif;}
-.di:hover .di-lbl{opacity:1;}
-.di-dot{width:4px;height:4px;border-radius:50%;background:rgba(0,0,0,.5);margin-top:4px;display:none;}
-.di.active .di-dot{display:block;}
-[data-theme="dark"] .di-dot{background:rgba(255,255,255,.6);}
-.dock-sep{width:0.5px;height:36px;background:rgba(0,0,0,.12);align-self:center;margin:0 3px;}
-[data-theme="dark"] .dock-sep{background:rgba(255,255,255,.15);}
-
-/* CHATBOT iMESSAGE */
-.imsg-trigger{position:fixed;right:20px;bottom:90px;z-index:9998;width:56px;height:56px;border-radius:50%;background:linear-gradient(135deg,#34C759,#28a745);border:none;cursor:pointer;box-shadow:0 4px 20px rgba(52,199,89,.5);display:flex;align-items:center;justify-content:center;transition:transform .2s,box-shadow .2s;}
+/* CHATBOT */
+.imsg-trigger{position:fixed;right:20px;bottom:24px;z-index:9998;width:56px;height:56px;border-radius:50%;background:linear-gradient(135deg,#34C759,#28a745);border:none;cursor:pointer;box-shadow:0 4px 20px rgba(52,199,89,.5);display:flex;align-items:center;justify-content:center;transition:transform .2s,box-shadow .2s;}
 .imsg-trigger:hover{transform:scale(1.08);box-shadow:0 6px 28px rgba(52,199,89,.7);}
 .imsg-notif{position:absolute;top:-3px;right:-3px;width:18px;height:18px;border-radius:50%;background:#FF3B30;color:white;font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;border:2px solid white;line-height:1;}
-.imsg-win{position:fixed;right:20px;bottom:160px;z-index:9997;width:340px;max-height:560px;background:rgba(242,242,247,.97);backdrop-filter:blur(40px) saturate(180%);-webkit-backdrop-filter:blur(40px) saturate(180%);border-radius:20px;overflow:hidden;box-shadow:0 0 0 0.5px rgba(0,0,0,.15),0 24px 64px rgba(0,0,0,.3);display:none;flex-direction:column;font-family:-apple-system,BlinkMacSystemFont,sans-serif;}
+.imsg-win{position:fixed;right:20px;bottom:94px;z-index:9997;width:340px;max-height:560px;background:rgba(242,242,247,.97);backdrop-filter:blur(40px) saturate(180%);border-radius:20px;overflow:hidden;box-shadow:0 0 0 0.5px rgba(0,0,0,.15),0 24px 64px rgba(0,0,0,.3);display:none;flex-direction:column;font-family:-apple-system,BlinkMacSystemFont,sans-serif;}
 [data-theme="dark"] .imsg-win{background:rgba(28,28,30,.97);}
 .imsg-win.open{display:flex;animation:msgOpen .25s cubic-bezier(.4,0,.2,1);}
 @keyframes msgOpen{from{opacity:0;transform:scale(.9) translateY(12px);}to{opacity:1;transform:scale(1) translateY(0);}}
@@ -254,7 +240,6 @@ footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:20
 .bw.me .bb{background:#007AFF;color:white;border-radius:18px 18px 4px 18px;}
 .bstatus{font-size:10px;color:rgba(0,0,0,.28);padding:0 4px;margin-top:1px;}
 [data-theme="dark"] .bstatus{color:rgba(255,255,255,.22);}
-.typing-wrap{align-items:flex-start;}
 .typing-bubbles{background:rgba(0,0,0,.08);border-radius:18px 18px 18px 4px;padding:11px 15px;display:inline-flex;gap:4px;}
 [data-theme="dark"] .typing-bubbles{background:rgba(255,255,255,.12);}
 .td{width:7px;height:7px;border-radius:50%;background:rgba(0,0,0,.3);animation:td 1.2s infinite;}
@@ -290,10 +275,7 @@ footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:20
   .testi-text{font-size:15px;}
   .contact-section h2{font-size:28px;}
   .logo-carousel-container{padding:24px 16px;}
-  .di-icon{width:42px;height:42px;font-size:24px;}
-  .dock{gap:3px;padding:7px 12px;}
   .ai-cards-grid{grid-template-columns:1fr;max-width:400px;}
-  .single-card-img{height:220px;}
   .single-card-body{padding:20px 22px 24px;}
   .single-card-title{font-size:22px;}
 }
@@ -322,7 +304,7 @@ footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:20
   </div>
 </div>
 
-<!-- NAV (sans pomme) -->
+<!-- NAV -->
 <nav>
   <div class="nav-content">
     <span style="font-size:15px;font-weight:700;letter-spacing:-.01em;color:var(--text-primary)">Alec DIAMIDIA</span>
@@ -364,40 +346,36 @@ footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:20
   </div>
 </div>
 
-<!-- ══ AI SECTION (grandes cartes) ══ -->
+<!-- AI CARDS -->
 <div class="ai-section-new">
   <div class="ai-section-lbl">Powered by AI</div>
   <h2 class="ai-section-ttl" data-i18n="ai-title">Découvrez mon profil avec l'IA</h2>
   <div class="ai-cards-grid">
-
     <a class="ai-card-new" href="https://chatgpt.com/?q=R%C3%A9sume%20le%20profil%20d%27Alec%20DIAMIDIA%2C%20%C3%A9tudiant%20Eugenia%20School%20%C3%97%20Grenoble%20EM%2C%20sp%C3%A9cialiste%20Revenue%20Operations%20%26%20IA.%20Exp%C3%A9riences%20%3A%20Salesforce%20Ops%20chez%20Evaneos%20(actuel)%2C%20RevOps%20chez%20United%20Heroes%2C%20Sales%20Ops%20chez%20Javelo.%20Projets%20%3A%20Hackathon%20Mirakl%20(%C3%9737%20rapide%2C%20ROI%20%C3%972400)%2C%20Hackathon%20PayFit%20(Innovation%20Award%2C%20-80%25%20temps)%2C%20TheLook%20SQL%20(BigQuery)%2C%20Marathon%20Paris%20(50k%20runners).%20Stack%20%3A%20Salesforce%2C%20HubSpot%2C%20SQL%2C%20Python%2C%20Make.com%2C%20Claude%2C%20Dust.%20Master%202027." target="_blank">
       <div class="ai-card-ico-new" style="background:rgba(16,163,127,.12)">🤖</div>
       <div class="ai-card-nm">ChatGPT</div>
       <div class="ai-card-ds" data-i18n="ai-gpt-desc">Résumé complet du profil · Expériences · Projets</div>
       <div class="ai-card-cta-btn" data-i18n="ai-gpt-cta">Ouvrir dans ChatGPT →</div>
     </a>
-
     <a class="ai-card-new" href="https://claude.ai/new?q=Peux-tu%20me%20r%C3%A9sumer%20le%20profil%20d%27Alec%20DIAMIDIA%20%3F%20Il%20est%20%C3%A9tudiant%20en%20Master%20%C3%A0%20Eugenia%20School%20%C3%97%20Grenoble%20EM%2C%20sp%C3%A9cialiste%20Revenue%20Operations%20%26%20IA.%203%20exp%C3%A9riences%20RevOps%20%3A%20Evaneos%20(Salesforce%20Ops%2C%20actuel)%2C%20United%20Heroes%20(RevOps%201%20an)%2C%20Javelo%20(Sales%20Ops).%20Projets%20%3A%20Mirakl%20(%C3%9737%2C%20ROI%20%C3%972400)%2C%20PayFit%20(Innovation%20Award)%2C%20Marathon%20Paris%20(50k%20runners).%20Stack%20%3A%20Salesforce%2C%20HubSpot%2C%20SQL%2C%20Python%2C%20Make.com%2C%20Dust%2C%20Claude." target="_blank">
       <div class="ai-card-ico-new" style="background:rgba(217,119,87,.12)">✦</div>
       <div class="ai-card-nm">Claude</div>
       <div class="ai-card-ds" data-i18n="ai-claude-desc">Analyse approfondie · Compétences · Stack technique</div>
       <div class="ai-card-cta-btn" data-i18n="ai-claude-cta">Ouvrir dans Claude →</div>
     </a>
-
     <a class="ai-card-new" href="https://www.perplexity.ai/search?q=Qui+est+Alec+DIAMIDIA+Revenue+Operations+IA+Automation+Eugenia+School" target="_blank">
       <div class="ai-card-ico-new" style="background:rgba(32,128,141,.12)">🔍</div>
       <div class="ai-card-nm">Perplexity</div>
       <div class="ai-card-ds" data-i18n="ai-pp-desc">Recherche IA · Sources · Contexte marché</div>
       <div class="ai-card-cta-btn" data-i18n="ai-pp-cta">Rechercher sur Perplexity →</div>
     </a>
-
   </div>
 </div>
 
 <!-- DIVIDER MON TRAVAIL -->
 <div class="section-divider"><span class="section-label" data-i18n="div-work">Mon travail</span></div>
 
-<!-- ══ SINGLE CARD BUREAU ══ -->
+<!-- SINGLE CARD BUREAU -->
 <div class="section" style="padding-bottom:40px;">
   <div class="section-intro">
     <h2 data-i18n="explore-title">Explorez mon bureau</h2>
@@ -406,9 +384,9 @@ footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:20
   <div class="single-card-wrap">
     <a href="projets-pro.html" class="single-card">
       <img class="single-card-img"
-           src="./assets/[Portfolio]_Photo pro.png"
+           src="./assets/photo.jpg"
            alt="Bureau macOS"
-           onerror="this.style.background='linear-gradient(135deg,#667eea,#764ba2)';this.style.height='180px';this.removeAttribute('src')">
+           onerror="this.style.background='linear-gradient(135deg,#667eea,#764ba2)';this.style.height='200px';this.removeAttribute('src')">
       <div class="single-card-body">
         <div class="single-card-label" data-i18n="bureau-label">Bureau macOS · CV & Projets</div>
         <div class="single-card-title" data-i18n="bureau-title">Explorer mon bureau</div>
@@ -436,28 +414,19 @@ footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:20
             <div class="testi-progress" id="prog0"></div>
             <div class="testi-quote">"</div>
             <p class="testi-text">Alec a été un élément marquant de par son professionnalisme, sa bonne humeur, sa performance, et sa créativité.</p>
-            <div class="testi-author-row">
-              <div class="testi-avatar">HD</div>
-              <div><div class="testi-author">Haya DIAWARA</div><div class="testi-role">Ancienne collègue</div></div>
-            </div>
+            <div class="testi-author-row"><div class="testi-avatar">HD</div><div><div class="testi-author">Haya DIAWARA</div><div class="testi-role">Ancienne collègue</div></div></div>
           </div>
           <div class="testi-card">
             <div class="testi-progress" id="prog1"></div>
             <div class="testi-quote">"</div>
-            <p class="testi-text">Alec a fait un excellent stage au sein de notre entreprise : comportement irréprochable, motivation quotidienne. Il a su faire preuve de rigueur, de prises d'initiatives et d'aisance relationnelle. Alec est au dessus des attentes sur son rôle chez Javelo et nous a beaucoup aidé sur de nombreux projets.</p>
-            <div class="testi-author-row">
-              <div class="testi-avatar">DA</div>
-              <div><div class="testi-author">Delphine AIM</div><div class="testi-role">Ancienne collègue</div></div>
-            </div>
+            <p class="testi-text">Alec a fait un excellent stage au sein de notre entreprise : comportement irréprochable, motivation quotidienne. Il a su faire preuve de rigueur, de prises d'initiatives et d'aisance relationnelle. Alec est au dessus des attentes sur son rôle chez Javelo.</p>
+            <div class="testi-author-row"><div class="testi-avatar">DA</div><div><div class="testi-author">Delphine AIM</div><div class="testi-role">Ancienne collègue</div></div></div>
           </div>
           <div class="testi-card">
             <div class="testi-progress" id="prog2"></div>
             <div class="testi-quote">"</div>
             <p class="testi-text">Sérieux et investi, très bon élément.</p>
-            <div class="testi-author-row">
-              <div class="testi-avatar">LF</div>
-              <div><div class="testi-author">Lucas FINCHELSTEIN</div><div class="testi-role">Ancien collègue</div></div>
-            </div>
+            <div class="testi-author-row"><div class="testi-avatar">LF</div><div><div class="testi-author">Lucas FINCHELSTEIN</div><div class="testi-role">Ancien collègue</div></div></div>
           </div>
         </div>
       </div>
@@ -510,49 +479,16 @@ footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:20
   <div class="footer-content">© 2026 Alec DIAMIDIA · Revenue Operations, AI & Automation Enthusiast</div>
 </footer>
 
-<!-- DOCK -->
-<div class="dock-wrap">
-  <div class="dock" id="mainDock">
-    <a href="cv.html" class="di" data-p="cv.html">
-      <div class="di-icon" style="background:linear-gradient(135deg,#f093fb,#f5576c);">📄</div>
-      <span class="di-lbl">CV</span><div class="di-dot"></div>
-    </a>
-    <a href="projets-pro.html" class="di" data-p="projets-pro.html">
-      <div class="di-icon" style="background:linear-gradient(135deg,#667eea,#764ba2);">💡</div>
-      <span class="di-lbl">Bureau</span><div class="di-dot"></div>
-    </a>
-    <div class="dock-sep"></div>
-    <a href="https://linkedin.com/in/alec-diamidia" target="_blank" class="di">
-      <div class="di-icon" style="background:#0A66C2;color:white;font-size:22px;font-weight:900;letter-spacing:-.02em;">in</div>
-      <span class="di-lbl">LinkedIn</span><div class="di-dot"></div>
-    </a>
-    <a href="https://github.com/venom6-13" target="_blank" class="di">
-      <div class="di-icon" style="background:#24292f;">
-        <svg width="28" height="28" viewBox="0 0 24 24" fill="white"><path d="M12 2C6.48 2 2 6.48 2 12c0 4.42 2.87 8.17 6.84 9.5.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.61.07-.61 1 .07 1.53 1.03 1.53 1.03.89 1.52 2.34 1.08 2.91.83.09-.65.35-1.08.63-1.33-2.22-.25-4.56-1.11-4.56-4.95 0-1.09.39-1.99 1.03-2.69-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02A9.56 9.56 0 0 1 12 6.8c.85 0 1.71.11 2.51.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.38.2 2.4.1 2.65.64.7 1.03 1.6 1.03 2.69 0 3.85-2.34 4.7-4.57 4.94.36.31.68.92.68 1.85v2.74c0 .27.18.58.69.48C19.13 20.17 22 16.42 22 12c0-5.52-4.48-10-10-10z"/></svg>
-      </div>
-      <span class="di-lbl">GitHub</span><div class="di-dot"></div>
-    </a>
-    <a href="mailto:alecrudydiami@gmail.com" class="di">
-      <div class="di-icon" style="background:linear-gradient(135deg,#64D3F5,#1179F5);">📧</div>
-      <span class="di-lbl">Mail</span><div class="di-dot"></div>
-    </a>
-  </div>
-</div>
-
 <!-- CHATBOT iMESSAGE -->
 <button class="imsg-trigger" id="imsgTrigger" onclick="imsgToggle()">
   <div class="imsg-notif" id="imsgNotif">1</div>
   <svg width="26" height="26" viewBox="0 0 28 28" fill="white"><path d="M14 3C8.477 3 4 7.03 4 12c0 2.34.96 4.47 2.52 6.07-.28 1.76-1.04 3.32-1.52 4.25 1.9-.32 4.12-1.1 5.5-2.1C11.52 20.7 12.74 21 14 21c5.523 0 10-4.03 10-9S19.523 3 14 3z"/></svg>
 </button>
-
 <div class="imsg-win" id="imsgWin">
   <div class="imsg-head">
     <button class="imsg-back" onclick="imsgToggle()">‹</button>
-    <img src="./assets/[Portfolio]_CV.png" class="imsg-avatar" alt="Alec" onerror="this.style.display='none'">
-    <div style="flex:1">
-      <div class="imsg-cname">Alec DIAMIDIA</div>
-      <div class="imsg-cstatus">● En ligne</div>
-    </div>
+    <img src="./assets/photo.jpg" class="imsg-avatar" alt="Alec" onerror="this.style.display='none'">
+    <div style="flex:1"><div class="imsg-cname">Alec DIAMIDIA</div><div class="imsg-cstatus">● En ligne</div></div>
     <button class="imsg-x" onclick="imsgToggle()">✕</button>
   </div>
   <div class="imsg-msgs" id="imsgMsgs"></div>
@@ -565,7 +501,7 @@ footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:20
   </div>
 </div>
 
-<!-- EASTER EGG KONAMI -->
+<!-- EASTER EGG -->
 <div id="eggModal" style="display:none;position:fixed;inset:0;z-index:99999;background:rgba(0,0,0,.85);align-items:center;justify-content:center;flex-direction:column;gap:16px;backdrop-filter:blur(20px);">
   <div style="font-size:60px;animation:spinEgg 1s linear infinite">🕹️</div>
   <div style="color:white;font-size:22px;font-weight:700;font-family:-apple-system,sans-serif;">Easter egg découvert !</div>
@@ -575,31 +511,20 @@ footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:20
 <style>@keyframes spinEgg{to{transform:rotate(360deg);}}</style>
 
 <script>
-/* ══ i18n ══ */
 const translations={
   fr:{
-    "your-future":"Votre futur ",
-    "keywords-intro":"Quelques compétences clés",
+    "your-future":"Votre futur ","keywords-intro":"Quelques compétences clés",
     "ai-title":"Découvrez mon profil avec l'IA",
-    "ai-gpt-desc":"Résumé complet du profil · Expériences · Projets",
-    "ai-gpt-cta":"Ouvrir dans ChatGPT →",
-    "ai-claude-desc":"Analyse approfondie · Compétences · Stack",
-    "ai-claude-cta":"Ouvrir dans Claude →",
-    "ai-pp-desc":"Recherche IA · Sources · Contexte marché",
-    "ai-pp-cta":"Rechercher sur Perplexity →",
-    "div-work":"Mon travail",
-    "explore-title":"Explorez mon bureau",
+    "ai-gpt-desc":"Résumé complet du profil · Expériences · Projets","ai-gpt-cta":"Ouvrir dans ChatGPT →",
+    "ai-claude-desc":"Analyse approfondie · Compétences · Stack technique","ai-claude-cta":"Ouvrir dans Claude →",
+    "ai-pp-desc":"Recherche IA · Sources · Contexte marché","ai-pp-cta":"Rechercher sur Perplexity →",
+    "div-work":"Mon travail","explore-title":"Explorez mon bureau",
     "explore-desc":"CV, projets pro & perso dans une interface macOS interactive",
-    "bureau-label":"Bureau macOS · CV & Projets",
-    "bureau-title":"Explorer mon bureau",
+    "bureau-label":"Bureau macOS · CV & Projets","bureau-title":"Explorer mon bureau",
     "bureau-desc":"7 projets avec métriques · CV complet · Interface interactive avec Finder, Siri et animations",
     "bureau-cta":"Ouvrir le bureau →",
-    "div-reviews":"Recommandations",
-    "testimonials-title":"Ce qu'on dit de moi",
-    "testimonials-sub":"Des collègues qui ont travaillé avec moi",
-    "div-contact":"Contact",
-    "contact-me":"Contactez-moi",
-    "by-email":"Par mail",
+    "div-reviews":"Recommandations","testimonials-title":"Ce qu'on dit de moi","testimonials-sub":"Des collègues qui ont travaillé avec moi",
+    "div-contact":"Contact","contact-me":"Contactez-moi","by-email":"Par mail",
     rainMessages:["Profil hybride Tech / Business 🧠","Spécialisé IA & RevOps","Étudiant Eugenia School · Grenoble EM","Je transforme les données en décisions 📊","Disponible pour des missions en Freelance"],
     keywords:[
       {name:"Proactivité",tooltip:"J'anticipe les besoins et propose des solutions"},
@@ -618,28 +543,18 @@ const translations={
     jobs:["Revenue Operations Manager","CRM Manager","Salesforce Operations Expert","Sales Operations Analyst","Business Intelligence Analyst","Data Analyst","RevOps & Growth Specialist"]
   },
   en:{
-    "your-future":"Your future ",
-    "keywords-intro":"Key skills",
+    "your-future":"Your future ","keywords-intro":"Key skills",
     "ai-title":"Discover my profile with AI",
-    "ai-gpt-desc":"Full profile summary · Experience · Projects",
-    "ai-gpt-cta":"Open in ChatGPT →",
-    "ai-claude-desc":"In-depth analysis · Skills · Tech stack",
-    "ai-claude-cta":"Open in Claude →",
-    "ai-pp-desc":"AI search · Sources · Market context",
-    "ai-pp-cta":"Search on Perplexity →",
-    "div-work":"My work",
-    "explore-title":"Explore my bureau",
+    "ai-gpt-desc":"Full profile summary · Experience · Projects","ai-gpt-cta":"Open in ChatGPT →",
+    "ai-claude-desc":"In-depth analysis · Skills · Tech stack","ai-claude-cta":"Open in Claude →",
+    "ai-pp-desc":"AI search · Sources · Market context","ai-pp-cta":"Search on Perplexity →",
+    "div-work":"My work","explore-title":"Explore my bureau",
     "explore-desc":"CV, pro & personal projects in an interactive macOS interface",
-    "bureau-label":"macOS Bureau · CV & Projects",
-    "bureau-title":"Explore my bureau",
+    "bureau-label":"macOS Bureau · CV & Projects","bureau-title":"Explore my bureau",
     "bureau-desc":"7 projects with metrics · Full CV · Interactive interface with Finder, Siri and animations",
     "bureau-cta":"Open the bureau →",
-    "div-reviews":"Recommendations",
-    "testimonials-title":"What people say",
-    "testimonials-sub":"Colleagues I've worked with",
-    "div-contact":"Contact",
-    "contact-me":"Contact me",
-    "by-email":"By email",
+    "div-reviews":"Recommendations","testimonials-title":"What people say","testimonials-sub":"Colleagues I've worked with",
+    "div-contact":"Contact","contact-me":"Contact me","by-email":"By email",
     rainMessages:["Hybrid Tech / Business Profile 🧠","Specialized in AI & RevOps","Student at Eugenia School · Grenoble EM","I turn data into decisions 📊","Available for Freelance missions"],
     keywords:[
       {name:"Proactivity",tooltip:"I anticipate needs and propose solutions"},
@@ -689,7 +604,7 @@ const techStack=[
   {name:'N8N',light:`${SI}n8n/EA4B71`,dark:`${SI}n8n/EA4B71`},
 ];
 
-const rainImgs=['./assets/[Portfolio]_CV.png','./assets/[Portfolio]_Photo pro.png','./assets/[Portfolio]_Photo-Perso.png'];
+const rainImgs=['./assets/photo.jpg','./assets/[Portfolio]_Photo pro.png','./assets/[Portfolio]_Photo-Perso.png'];
 const dropConfig=[
   {left:'5%',delay:'0s',dur:'15s',dir:'row',msgIdx:0,img:0},
   {left:'22%',delay:'3.5s',dur:'13s',dir:'row',msgIdx:1,img:1},
@@ -705,11 +620,10 @@ function renderRain(){
   const msgs=translations[currentLang].rainMessages;
   container.innerHTML='';
   dropConfig.forEach(d=>{
-    const drop=document.createElement('div');
-    drop.className='drop';
+    const drop=document.createElement('div');drop.className='drop';
     drop.style.cssText=`--left:${d.left};--delay:${d.delay};--dur:${d.dur};flex-direction:${d.dir}`;
     const cls=d.dir==='row'?'bubble-right':'bubble-left';
-    drop.innerHTML=`<img src="${rainImgs[d.img]}" class="drop-img" alt=""><div class="imsg-bubble ${cls}">${msgs[d.msgIdx]}</div>`;
+    drop.innerHTML=`<img src="${rainImgs[d.img]}" class="drop-img" alt="" onerror="this.style.display='none'"><div class="imsg-bubble ${cls}">${msgs[d.msgIdx]}</div>`;
     container.appendChild(drop);
   });
 }
@@ -717,9 +631,7 @@ function renderRain(){
 function updateKeywords(){
   const cloud=document.getElementById('keywordsCloud');cloud.innerHTML='';
   translations[currentLang].keywords.forEach(item=>{
-    const b=document.createElement('span');
-    b.className='keyword-badge';b.textContent=item.name;b.setAttribute('data-tooltip',item.tooltip);
-    cloud.appendChild(b);
+    const b=document.createElement('span');b.className='keyword-badge';b.textContent=item.name;b.setAttribute('data-tooltip',item.tooltip);cloud.appendChild(b);
   });
 }
 
@@ -728,9 +640,7 @@ function renderCarousel(){
   const carousel=document.getElementById('logoCarousel');if(!carousel)return;
   const build=()=>techStack.map(t=>{
     const bgClass=t.whiteBg?' white-bg':'';
-    const icon=t.svgMarkup
-      ?`<div style="width:32px;height:32px;display:flex;align-items:center;justify-content:center">${t.svgMarkup}</div>`
-      :`<img src="${t[theme]}" alt="${t.name}" width="32" height="32" style="object-fit:contain" loading="lazy">`;
+    const icon=t.svgMarkup?`<div style="width:32px;height:32px;display:flex;align-items:center;justify-content:center">${t.svgMarkup}</div>`:`<img src="${t[theme]}" alt="${t.name}" width="32" height="32" style="object-fit:contain" loading="lazy">`;
     return `<div class="logo-item"><div class="logo-icon${bgClass}">${icon}</div><div class="logo-name">${t.name}</div></div>`;
   }).join('');
   carousel.innerHTML=build()+build();
@@ -739,17 +649,9 @@ function renderCarousel(){
 let currentTitleIndex=0,currentCharIndex=0,isDeleting=false;
 const typingTextEl=document.getElementById('typingText');
 function typeEffect(){
-  const jobs=translations[currentLang].jobs;
-  const cur=jobs[currentTitleIndex];
-  if(!isDeleting){
-    typingTextEl.textContent=cur.substring(0,currentCharIndex++);
-    if(currentCharIndex>cur.length){isDeleting=true;setTimeout(typeEffect,2000);return;}
-    setTimeout(typeEffect,100);
-  }else{
-    typingTextEl.textContent=cur.substring(0,currentCharIndex--);
-    if(currentCharIndex===0){isDeleting=false;currentTitleIndex=(currentTitleIndex+1)%jobs.length;setTimeout(typeEffect,500);return;}
-    setTimeout(typeEffect,50);
-  }
+  const jobs=translations[currentLang].jobs;const cur=jobs[currentTitleIndex];
+  if(!isDeleting){typingTextEl.textContent=cur.substring(0,currentCharIndex++);if(currentCharIndex>cur.length){isDeleting=true;setTimeout(typeEffect,2000);return;}setTimeout(typeEffect,100);}
+  else{typingTextEl.textContent=cur.substring(0,currentCharIndex--);if(currentCharIndex===0){isDeleting=false;currentTitleIndex=(currentTitleIndex+1)%jobs.length;setTimeout(typeEffect,500);return;}setTimeout(typeEffect,50);}
 }
 
 const heroName=document.getElementById('heroName');
@@ -759,15 +661,12 @@ setInterval(()=>{heroName.className='';fontIdx=(fontIdx+1)%fonts.length;heroName
 
 const TESTI_COUNT=3,AUTOPLAY=6000;
 let testiCurrent=0,testiTimer=null;
-function testiGoTo(idx,resetAuto=true){
+function testiGoTo(idx){
   const track=document.getElementById('testiTrack');
   testiCurrent=(idx+TESTI_COUNT)%TESTI_COUNT;
   track.style.transform=`translateX(-${testiCurrent*100}%)`;
   document.querySelectorAll('.testi-dot').forEach((d,i)=>d.classList.toggle('active',i===testiCurrent));
   for(let i=0;i<TESTI_COUNT;i++){const p=document.getElementById(`prog${i}`);if(p){p.style.transition='none';p.style.width='0%';}}
-  if(resetAuto)startAutoPlay();
-}
-function startAutoPlay(){
   clearTimeout(testiTimer);
   const p=document.getElementById(`prog${testiCurrent}`);
   if(p){p.style.transition='none';p.style.width='0%';requestAnimationFrame(()=>requestAnimationFrame(()=>{p.style.transition=`width ${AUTOPLAY}ms linear`;p.style.width='100%';}));}
@@ -785,13 +684,12 @@ function initTestimonials(){
 }
 
 const searchIndex=[
-  {title:"Hackathon PayFit 2026",type:"Projet",url:"projets-pro.html",tags:["Make","GPT-4","Claude","automation","SEO"],excerpt:"80% temps économisé · Innovation Award"},
-  {title:"Eugenia — Audit SEO/GEO/AEO",type:"Projet",url:"projets-pro.html",tags:["Dust","SEMrush","IA","SEO","agents"],excerpt:"4 agents IA · machine éditoriale 3 jours"},
-  {title:"Marathon Paris 2025",type:"Projet",url:"projets-pro.html",tags:["Python","pandas","scraping","data"],excerpt:"50 001 runners analysés"},
-  {title:"TheLook SQL Audit",type:"Projet",url:"projets-pro.html",tags:["BigQuery","SQL","Looker","data"],excerpt:"6 insights actionnables · BigQuery"},
-  {title:"Hackathon Mirakl",type:"Projet",url:"projets-pro.html",tags:["Next.js","GPT-4o","Supabase","Apify"],excerpt:"×37 plus rapide · ROI ×2400"},
-  {title:"CV",type:"Page",url:"cv.html",tags:["expérience","formation","Eugenia","RevOps"],excerpt:"Mon parcours professionnel"},
-  {title:"Salesforce",type:"Compétence",url:"cv.html",tags:["CRM","Salesforce","RevOps"],excerpt:"Salesforce Ops Specialist chez Evaneos"},
+  {title:"Hackathon PayFit 2026",type:"Projet",url:"projets-pro.html",tags:["Make","GPT-4","Claude"],excerpt:"80% temps économisé · Innovation Award"},
+  {title:"Eugenia — Audit SEO/GEO/AEO",type:"Projet",url:"projets-pro.html",tags:["Dust","SEMrush","IA"],excerpt:"4 agents IA · machine éditoriale 3 jours"},
+  {title:"Marathon Paris 2025",type:"Projet",url:"projets-pro.html",tags:["Python","pandas","data"],excerpt:"50 001 runners analysés"},
+  {title:"TheLook SQL Audit",type:"Projet",url:"projets-pro.html",tags:["BigQuery","SQL","Looker"],excerpt:"6 insights actionnables"},
+  {title:"Hackathon Mirakl",type:"Projet",url:"projets-pro.html",tags:["Next.js","GPT-4o","Supabase"],excerpt:"×37 plus rapide · ROI ×2400"},
+  {title:"CV",type:"Page",url:"cv.html",tags:["expérience","formation"],excerpt:"Mon parcours professionnel"},
 ];
 let fuse;
 const overlay=document.getElementById('searchOverlay');
@@ -799,15 +697,11 @@ const searchInput=document.getElementById('searchInput');
 const searchResults=document.getElementById('searchResults');
 function openSearch(){overlay.classList.add('open');setTimeout(()=>searchInput.focus(),80);}
 function closeSearch(){overlay.classList.remove('open');searchInput.value='';searchResults.innerHTML='';}
-document.addEventListener('keydown',e=>{
-  if((e.metaKey||e.ctrlKey)&&e.key==='k'){e.preventDefault();overlay.classList.contains('open')?closeSearch():openSearch();}
-  if(e.key==='Escape')closeSearch();
-});
+document.addEventListener('keydown',e=>{if((e.metaKey||e.ctrlKey)&&e.key==='k'){e.preventDefault();overlay.classList.contains('open')?closeSearch():openSearch();}if(e.key==='Escape')closeSearch();});
 overlay.addEventListener('click',e=>{if(e.target===overlay)closeSearch();});
 document.getElementById('searchBtn').addEventListener('click',openSearch);
 searchInput.addEventListener('input',()=>{
-  if(!fuse)return;
-  const q=searchInput.value.trim();if(!q){searchResults.innerHTML='';return;}
+  if(!fuse)return;const q=searchInput.value.trim();if(!q){searchResults.innerHTML='';return;}
   const results=fuse.search(q).slice(0,10);
   if(!results.length){searchResults.innerHTML=`<div class="search-empty">Aucun résultat pour "<strong>${q}</strong>"</div>`;return;}
   const groups={};results.forEach(r=>{const t=r.item.type;if(!groups[t])groups[t]=[];groups[t].push(r.item);});
@@ -828,78 +722,53 @@ function setTheme(t){
 }
 document.getElementById('themeToggle').addEventListener('click',()=>{setTheme((document.documentElement.getAttribute('data-theme')||'light')==='dark'?'light':'dark');});
 document.querySelectorAll('.lang-btn').forEach(btn=>{
-  btn.addEventListener('click',()=>{
-    document.querySelectorAll('.lang-btn').forEach(b=>b.classList.remove('active'));
-    btn.classList.add('active');localStorage.setItem('lang',btn.dataset.lang);updateLanguage(btn.dataset.lang);
-  });
+  btn.addEventListener('click',()=>{document.querySelectorAll('.lang-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');localStorage.setItem('lang',btn.dataset.lang);updateLanguage(btn.dataset.lang);});
 });
-
-(function(){
-  const items=[...document.querySelectorAll('#mainDock .di')];
-  const dock=document.getElementById('mainDock');
-  items.forEach((item,i)=>{item.addEventListener('mousemove',()=>{items.forEach((el,j)=>{const d=Math.abs(i-j);el.style.transform=d===0?'scale(1.45) translateY(-14px)':d===1?'scale(1.22) translateY(-7px)':d===2?'scale(1.08) translateY(-2px)':'';});});});
-  dock.addEventListener('mouseleave',()=>items.forEach(el=>el.style.transform=''));
-  const page=location.pathname.split('/').pop()||'index.html';
-  items.forEach(el=>{if(el.dataset.p&&el.dataset.p===page)el.classList.add('active');});
-})();
 
 /* CHATBOT */
 let imsgOpen=false,imsgInited=false,chatCtx=null;
 const KB=[
   {r:/^(bonjour|salut|hello|hi|hey|coucou|yo)\b/,rep:"Salut ! 👋 Je suis l'assistant d'Alec. Pose-moi une question sur ses projets, sa stack ou pour le contacter !",suggs:["Ses projets 🚀","Sa stack 🛠️","Le contacter 📬"]},
-  {r:/\b(tous|tout|all|liste|ensemble)\b/,rep:"Ses 7 projets :\n\n🏆 Mirakl — Pipeline BDR ×37 plus rapide\n⚡ PayFit 2026 — Innovation Award, -80% temps\n🔍 Eugenia — SEO/GEO/AEO + 4 agents IA\n📊 TheLook — SQL Audit BigQuery\n🏃 Marathon Paris — 50 001 runners\n📅 Weekly Task Master — Automatisation Workspace\n🤖 AI Agent Ecosystem — 9 agents Dust × Claude",suggs:["Mirakl 🏆","PayFit ⚡","Marathon 🏃"],ctx:'proj'},
-  {r:/^(oui|yes|ok|ouais|yep)\b/,rep:()=>chatCtx==='proj'?"Lequel t'intéresse ?":"Super ! Que veux-tu savoir ?",suggs:["Mirakl 🏆","PayFit ⚡","Sa stack 🛠️"]},
-  {r:/\b(projet|projets|travaux|réalisation|work)\b/,rep:"Alec a 7 projets. Les 2 phares :\n\n🏆 **Mirakl** — pipeline BDR ×37 plus rapide, ROI ×2400\n⚡ **PayFit** — Innovation Award, -80% temps, 200K€/an\n\nTu veux en voir d'autres ?",suggs:["Tous les projets 📋","Mirakl 🏆","PayFit ⚡"],ctx:'proj'},
-  {r:/mirakl|bdr|prospection/,rep:"🏆 Hackathon Mirakl Connect Prospector\n\n• 1h15 → 2 min/lead (×37 plus rapide)\n• -89% coût/lead · ROI ×2400\n• Next.js, GPT-4o, Supabase, Apify\n• Déployé sur Vercel 🚀",suggs:["PayFit ⚡","Marathon 🏃","Le contacter 📬"]},
-  {r:/payfit|award|innovation/,rep:"⚡ Hackathon PayFit 2026 — Innovation Award\n\n• 2h → 24 min/article (-80%)\n• Qualité : 14.3/15\n• 200K€/an économisés\n• 0 erreur juridique",suggs:["Mirakl 🏆","Sa stack 🛠️","Le contacter 📬"]},
-  {r:/marathon|runner|50.?001/,rep:"🏃 Marathon de Paris 2025\n\nPipeline Python complet sur 50 001 finishers. Reverse-engineering d'une API non documentée.\n\n• 100+ nationalités · 72% d'hommes\n• 8 visualisations · 3 axes d'analyse",suggs:["TheLook SQL 📊","Sa stack 🛠️"]},
-  {r:/thelook|sql|bigquery/,rep:"📊 TheLook E-Commerce SQL Audit\n\nBigQuery Multi-CTE + Looker Studio sur 14 mois.\n\n• Return rate : 30%\n• Marge femmes +8pts vs hommes\n• 6 insights actionnables",suggs:["Mirakl 🏆","PayFit ⚡"]},
-  {r:/\b(stack|compétence|outil|techno)\b/,rep:"Sa stack :\n\n💼 CRM : Salesforce · HubSpot · Airtable\n📊 Data : SQL · BigQuery · Python\n🤖 IA : Dust · GPT-4o · Claude\n⚙️ Automation : Make.com · N8N · Zapier",suggs:["Ses projets 🚀","Le contacter 📬"]},
-  {r:/\b(expérience|travail|poste|evaneos|united|javelo)\b/,rep:"3 expériences RevOps :\n\n🟢 Evaneos — Salesforce Ops (actuel)\n⚪ United Heroes — RevOps · 1 an\n⚪ Javelo — Sales Ops → RevOps · 7 mois",suggs:["Sa formation 🎓","Sa stack 🛠️","Le contacter 📬"]},
-  {r:/\b(formation|école|eugenia|master|diplôme)\b/,rep:"🎓 Eugenia School × Grenoble École de Management\n\nMSc AI Applied to Business — Titre RNCP reconnu par l'État. Alternance. Master 2027.\n\nPartenaires : Microsoft · Mistral AI · Carrefour · Station F",suggs:["Son expérience 💼","Ses projets 🚀","Le contacter 📬"]},
-  {r:/\b(contact|email|linkedin|joindre|recruter|freelance)\b/,rep:"Pour contacter Alec :\n\n✉️ alecrudydiami@gmail.com\n💼 linkedin.com/in/alec-diamidia\n⌨️ github.com/venom6-13"},
-  {r:/\b(merci|thanks|super|génial)\b/,rep:"Avec plaisir ! N'hésite pas si tu as d'autres questions 😊",suggs:["Ses projets 🚀","Le contacter 📬"]},
+  {r:/\b(projet|projets|travaux|réalisation)\b/,rep:"Alec a 7 projets :\n\n🏆 Mirakl — ×37 plus rapide, ROI ×2400\n⚡ PayFit — Innovation Award, -80% temps\n🔍 Eugenia SEO — 4 agents IA\n📊 TheLook SQL — BigQuery\n🏃 Marathon Paris — 50 001 runners\n📅 Task Master\n🤖 AI Agents × 9",suggs:["Mirakl 🏆","PayFit ⚡","Sa stack 🛠️"],ctx:'proj'},
+  {r:/mirakl|bdr/,rep:"🏆 Mirakl — Pipeline BDR ×37 plus rapide\n\n• GPT-4o + Supabase + Apify + Vercel\n• -89% coût/lead · ROI ×2400\n• Déployé en production en 48h",suggs:["PayFit ⚡","Le contacter 📬"]},
+  {r:/payfit|award/,rep:"⚡ PayFit 2026 — Innovation Award\n\n• -80% temps de rédaction\n• 14.3/15 qualité moyenne\n• 200K€/an économisés\n• 0 erreur juridique",suggs:["Mirakl 🏆","Le contacter 📬"]},
+  {r:/marathon/,rep:"🏃 Marathon Paris 2025\n\n50 001 finishers · Python · API reverse-engineering · 8 graphiques",suggs:["Sa stack 🛠️"]},
+  {r:/\b(stack|outil|techno)\b/,rep:"Sa stack :\n\n💼 CRM : Salesforce · HubSpot\n📊 Data : SQL · BigQuery · Python\n🤖 IA : Dust · GPT-4o · Claude\n⚙️ Automation : Make.com · N8N",suggs:["Ses projets 🚀","Le contacter 📬"]},
+  {r:/\b(expérience|poste|evaneos|united|javelo)\b/,rep:"3 expériences RevOps :\n\n🟢 Evaneos — Salesforce Ops (actuel)\n⚪ United Heroes — RevOps · 1 an\n⚪ Javelo — Sales Ops → RevOps",suggs:["Sa formation 🎓","Le contacter 📬"]},
+  {r:/\b(formation|école|eugenia|master)\b/,rep:"🎓 Eugenia School × Grenoble EM\n\nMSc AI Applied to Business · Titre RNCP · Alternance · Master 2027\n\nPartenaires : Microsoft · Mistral AI · Carrefour · Station F",suggs:["Son expérience 💼","Le contacter 📬"]},
+  {r:/\b(contact|email|linkedin)\b/,rep:"Pour contacter Alec :\n\n✉️ alecrudydiami@gmail.com\n💼 linkedin.com/in/alec-diamidia\n⌨️ github.com/venom6-13"},
+  {r:/\b(merci|thanks|super)\b/,rep:"Avec plaisir ! 😊",suggs:["Ses projets 🚀","Le contacter 📬"]},
 ];
-
 function imsgToggle(){
-  imsgOpen=!imsgOpen;
-  document.getElementById('imsgWin').classList.toggle('open',imsgOpen);
-  document.getElementById('imsgNotif').style.display='none';
+  imsgOpen=!imsgOpen;document.getElementById('imsgWin').classList.toggle('open',imsgOpen);document.getElementById('imsgNotif').style.display='none';
   if(imsgOpen&&!imsgInited){imsgInited=true;setTimeout(()=>{imsgBotSay("Salut ! 👋 Je suis l'assistant d'Alec. Pose-moi une question !");setTimeout(()=>renderSuggs(["Ses projets 🚀","Sa stack 🛠️","Le contacter 📬"]),1100);},400);}
   if(imsgOpen)setTimeout(()=>document.getElementById('imsgInp').focus(),300);
 }
 function imsgBotSay(text){
   const msgs=document.getElementById('imsgMsgs');
-  const tw=document.createElement('div');tw.className='bw alec';
-  tw.innerHTML='<div class="typing-bubbles"><div class="td"></div><div class="td"></div><div class="td"></div></div>';
+  const tw=document.createElement('div');tw.className='bw alec';tw.innerHTML='<div class="typing-bubbles"><div class="td"></div><div class="td"></div><div class="td"></div></div>';
   msgs.appendChild(tw);msgs.scrollTop=msgs.scrollHeight;
-  setTimeout(()=>{tw.remove();const bw=document.createElement('div');bw.className='bw alec';bw.innerHTML=`<div class="bb">${text.replace(/\n/g,'<br>').replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>')}</div>`;msgs.appendChild(bw);msgs.scrollTop=msgs.scrollHeight;},800+Math.random()*500);
+  setTimeout(()=>{tw.remove();const bw=document.createElement('div');bw.className='bw alec';bw.innerHTML=`<div class="bb">${text.replace(/\n/g,'<br>')}</div>`;msgs.appendChild(bw);msgs.scrollTop=msgs.scrollHeight;},800+Math.random()*500);
 }
 function imsgUserSay(text){
   document.getElementById('imsgSuggs').innerHTML='';
-  const msgs=document.getElementById('imsgMsgs');
-  const bw=document.createElement('div');bw.className='bw me';
-  bw.innerHTML=`<div class="bb">${text}</div><div class="bstatus">Envoyé</div>`;
-  msgs.appendChild(bw);msgs.scrollTop=msgs.scrollHeight;
+  const msgs=document.getElementById('imsgMsgs');const bw=document.createElement('div');bw.className='bw me';
+  bw.innerHTML=`<div class="bb">${text}</div><div class="bstatus">Envoyé</div>`;msgs.appendChild(bw);msgs.scrollTop=msgs.scrollHeight;
 }
 function renderSuggs(suggs){
   const el=document.getElementById('imsgSuggs');el.innerHTML='';
-  suggs.forEach(s=>{const b=document.createElement('button');b.className='isug';b.textContent=s;b.onclick=()=>imsgProcess(s.replace(/[🚀🛠️📬🏆⚡📋🏃📊🎓💼📄]/g,'').trim());el.appendChild(b);});
+  suggs.forEach(s=>{const b=document.createElement('button');b.className='isug';b.textContent=s;b.onclick=()=>imsgProcess(s.replace(/[🚀🛠️📬🏆⚡📋🏃📊🎓💼]/g,'').trim());el.appendChild(b);});
 }
 function imsgSend(){const inp=document.getElementById('imsgInp');const t=inp.value.trim();if(!t)return;inp.value='';imsgProcess(t);}
 function imsgProcess(text){
   imsgUserSay(text);const lower=text.toLowerCase().trim();
-  for(const item of KB){if(item.r.test(lower)){const rep=typeof item.rep==='function'?item.rep():item.rep;chatCtx=item.ctx||chatCtx;setTimeout(()=>{imsgBotSay(rep);const suggs=typeof item.suggs==='function'?item.suggs():item.suggs;setTimeout(()=>renderSuggs(suggs||["Ses projets 🚀","Sa stack 🛠️","Le contacter 📬"]),1400);},200);return;}}
-  setTimeout(()=>{imsgBotSay("Je n'ai pas tout compris 😅 Essaie avec :");setTimeout(()=>renderSuggs(["Ses projets 🚀","Sa stack 🛠️","Son expérience 💼","Le contacter 📬"]),1400);},200);
+  for(const item of KB){if(item.r.test(lower)){const rep=typeof item.rep==='function'?item.rep():item.rep;chatCtx=item.ctx||chatCtx;setTimeout(()=>{imsgBotSay(rep);const suggs=typeof item.suggs==='function'?item.suggs():item.suggs;setTimeout(()=>renderSuggs(suggs||["Ses projets 🚀","Le contacter 📬"]),1400);},200);return;}}
+  setTimeout(()=>{imsgBotSay("Je n'ai pas tout compris 😅 Essaie :");setTimeout(()=>renderSuggs(["Ses projets 🚀","Sa stack 🛠️","Le contacter 📬"]),1400);},200);
 }
 
 (function(){
-  const code=['ArrowUp','ArrowUp','ArrowDown','ArrowDown','ArrowLeft','ArrowRight','ArrowLeft','ArrowRight','b','a'];
-  let pos=0;
-  document.addEventListener('keydown',e=>{
-    if(e.key===code[pos]){pos++;if(pos===code.length){pos=0;document.getElementById('eggModal').style.display='flex';}}
-    else pos=e.key===code[0]?1:0;
-  });
+  const code=['ArrowUp','ArrowUp','ArrowDown','ArrowDown','ArrowLeft','ArrowRight','ArrowLeft','ArrowRight','b','a'];let pos=0;
+  document.addEventListener('keydown',e=>{if(e.key===code[pos]){pos++;if(pos===code.length){pos=0;document.getElementById('eggModal').style.display='flex';}}else pos=e.key===code[0]?1:0;});
 })();
 
 document.addEventListener('DOMContentLoaded',()=>{
