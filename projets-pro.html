@@ -38,11 +38,10 @@ html,body{width:100vw;height:100vh;overflow:hidden;font-family:-apple-system,Bli
 .sp-note{font-size:11px;color:rgba(255,255,255,.2);margin-top:14px;line-height:1.5;}
 
 /* BOOT */
-#boot{position:fixed;inset:0;z-index:99998;background:#000;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:30px;opacity:0;pointer-events:none;}
-#boot.show{opacity:1;pointer-events:all;}
+#boot{position:fixed;inset:0;z-index:99998;background:#000;display:none;flex-direction:column;align-items:center;justify-content:center;gap:30px;}
+#boot.show{display:flex;}
 .boot-logo{font-size:80px;filter:drop-shadow(0 0 30px rgba(255,255,255,.2));}
-.boot-name{color:rgba(255,255,255,.5);font-size:14px;font-weight:500;letter-spacing:.04em;opacity:0;transition:opacity .5s ease;}
-#boot.show .boot-name{opacity:1;}
+.boot-name{color:rgba(255,255,255,.5);font-size:14px;font-weight:500;letter-spacing:.04em;}
 .boot-bar-w{width:200px;height:3px;background:rgba(255,255,255,.14);border-radius:2px;overflow:hidden;}
 .boot-bar{height:100%;width:0%;background:#fff;border-radius:2px;transition:width 2.6s cubic-bezier(.4,0,.2,1);}
 
@@ -75,21 +74,21 @@ html,body{width:100vw;height:100vh;overflow:hidden;font-family:-apple-system,Bli
 .desktop{position:fixed;top:36px;left:0;right:0;bottom:94px;z-index:3;}
 .desk-hint{position:absolute;bottom:14px;left:50%;transform:translateX(-50%);color:rgba(255,255,255,.15);font-size:11px;letter-spacing:.1em;text-transform:uppercase;white-space:nowrap;pointer-events:none;}
 
-/* DESKTOP ICONS */
-.dicon{position:absolute;display:flex;flex-direction:column;align-items:center;cursor:pointer;width:120px;}
-.di-parallax{display:flex;flex-direction:column;align-items:center;gap:9px;transition:transform .5s cubic-bezier(.25,.46,.45,.94);}
-.di-img{font-size:72px;filter:drop-shadow(0 8px 24px rgba(0,0,0,.7));transition:transform .22s cubic-bezier(.34,1.56,.64,1);position:relative;}
-.dicon:hover .di-img{transform:scale(1.1) translateY(-8px);}
+/* DESKTOP ICONS — plus grands */
+.dicon{position:absolute;display:flex;flex-direction:column;align-items:center;cursor:pointer;width:144px;}
+.di-parallax{display:flex;flex-direction:column;align-items:center;gap:10px;transition:transform .5s cubic-bezier(.25,.46,.45,.94);}
+.di-img{font-size:90px;filter:drop-shadow(0 8px 28px rgba(0,0,0,.7));transition:transform .22s cubic-bezier(.34,1.56,.64,1);position:relative;}
+.dicon:hover .di-img{transform:scale(1.1) translateY(-10px);}
 .dicon.dragging .di-parallax{transition:none;}
-.di-badge{position:absolute;top:-8px;right:-10px;background:#ff3b30;color:#fff;font-size:10px;font-weight:700;width:20px;height:20px;border-radius:50%;display:flex;align-items:center;justify-content:center;border:2px solid rgba(255,255,255,.25);}
-.di-lbl{color:#fff;font-size:12px;font-weight:600;text-align:center;text-shadow:0 1px 5px rgba(0,0,0,1);background:rgba(0,0,0,.45);padding:3px 11px;border-radius:5px;backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.07);white-space:nowrap;}
-.di-tt{position:absolute;bottom:calc(100% + 12px);left:50%;transform:translateX(-50%);background:rgba(18,18,28,.97);backdrop-filter:blur(16px);border:1px solid rgba(255,255,255,.14);border-radius:12px;padding:10px 14px;width:190px;text-align:center;pointer-events:none;opacity:0;transition:opacity .2s;z-index:20;box-shadow:0 8px 24px rgba(0,0,0,.5);}
+.di-badge{position:absolute;top:-8px;right:-10px;background:#ff3b30;color:#fff;font-size:11px;font-weight:700;width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;border:2px solid rgba(255,255,255,.25);}
+.di-lbl{color:#fff;font-size:13px;font-weight:600;text-align:center;text-shadow:0 1px 5px rgba(0,0,0,1);background:rgba(0,0,0,.45);padding:4px 13px;border-radius:6px;backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.07);white-space:nowrap;}
+.di-tt{position:absolute;bottom:calc(100% + 12px);left:50%;transform:translateX(-50%);background:rgba(18,18,28,.97);backdrop-filter:blur(16px);border:1px solid rgba(255,255,255,.14);border-radius:12px;padding:10px 14px;width:200px;text-align:center;pointer-events:none;opacity:0;transition:opacity .2s;z-index:20;box-shadow:0 8px 24px rgba(0,0,0,.5);}
 .dicon:hover .di-tt{opacity:1;}
 .di-tt-title{font-size:13px;font-weight:600;color:#fff;margin-bottom:4px;}
 .di-tt-desc{font-size:11px;color:rgba(255,255,255,.48);line-height:1.45;}
 
-/* CV WINDOW */
-.cv-win{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%) scale(.93) translateY(24px);width:min(880px,92vw);height:min(700px,88vh);background:rgba(18,18,24,.99);border:1px solid rgba(255,255,255,.13);border-radius:14px;z-index:1200;display:flex;flex-direction:column;box-shadow:0 60px 140px rgba(0,0,0,.95);opacity:0;pointer-events:none;transition:all .35s cubic-bezier(.34,1.2,.64,1);overflow:hidden;}
+/* CV WINDOW — plus grand */
+.cv-win{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%) scale(.93) translateY(24px);width:min(960px,94vw);height:min(780px,92vh);background:rgba(18,18,24,.99);border:1px solid rgba(255,255,255,.13);border-radius:14px;z-index:1200;display:flex;flex-direction:column;box-shadow:0 60px 140px rgba(0,0,0,.95);opacity:0;pointer-events:none;transition:all .35s cubic-bezier(.34,1.2,.64,1);overflow:hidden;}
 .cv-win.open{opacity:1;pointer-events:all;transform:translate(-50%,-50%) scale(1) translateY(0);}
 .cv-bar{height:44px;background:rgba(0,0,0,.32);border-bottom:1px solid rgba(255,255,255,.07);display:flex;align-items:center;padding:0 16px;flex-shrink:0;position:relative;}
 .cv-tls{display:flex;gap:7px;}
@@ -97,11 +96,9 @@ html,body{width:100vw;height:100vh;overflow:hidden;font-family:-apple-system,Bli
 .cvtl:hover{filter:brightness(.75);}
 .cvtl.r{background:#ff5f57;}.cvtl.y{background:#febc2e;}.cvtl.g{background:#28c840;}
 .cv-bartitle{position:absolute;left:50%;transform:translateX(-50%);color:rgba(255,255,255,.8);font-size:14px;font-weight:600;}
-.cv-body{flex:1;overflow-y:auto;padding:36px 52px 52px;user-select:text;cursor:auto;}
+.cv-body{flex:1;overflow-y:auto;padding:36px 56px 52px;user-select:text;cursor:auto;}
 .cv-body::-webkit-scrollbar{width:5px;}
 .cv-body::-webkit-scrollbar-thumb{background:rgba(255,255,255,.12);border-radius:3px;}
-
-/* CV Header */
 .cv-hdr{display:flex;align-items:center;gap:26px;margin-bottom:24px;padding-bottom:24px;border-bottom:1px solid rgba(255,255,255,.08);}
 .cv-av{width:72px;height:72px;border-radius:50%;overflow:hidden;flex-shrink:0;background:linear-gradient(135deg,#667eea,#764ba2);}
 .cv-av img{width:100%;height:100%;object-fit:cover;}
@@ -110,19 +107,13 @@ html,body{width:100vw;height:100vh;overflow:hidden;font-family:-apple-system,Bli
 .cv-cts{display:flex;flex-wrap:wrap;gap:7px;}
 .cv-ct{display:flex;align-items:center;gap:5px;font-size:11px;color:rgba(255,255,255,.55);text-decoration:none;background:rgba(255,255,255,.06);padding:4px 10px;border-radius:20px;border:1px solid rgba(255,255,255,.08);transition:all .2s;cursor:pointer;}
 .cv-ct:hover{color:#fff;background:rgba(255,255,255,.13);}
-
-/* Stats */
 .cv-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:24px;}
 .cv-stat{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:12px;padding:14px 10px;text-align:center;}
 .cv-stat-val{font-size:22px;font-weight:700;color:#bf5af2;letter-spacing:-.02em;}
 .cv-stat-lbl{font-size:10px;color:rgba(255,255,255,.36);margin-top:3px;line-height:1.3;}
-
-/* Section heading */
 .cv-sh{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.14em;color:rgba(255,255,255,.26);margin:24px 0 12px;display:flex;align-items:center;gap:10px;}
 .cv-sh::after{content:'';flex:1;height:1px;background:rgba(255,255,255,.06);}
-
-/* Timeline */
-.cv-timeline{display:flex;flex-direction:column;gap:0;}
+.cv-timeline{display:flex;flex-direction:column;}
 .cv-tl-item{display:flex;gap:18px;padding-bottom:24px;}
 .cv-tl-item:last-child{padding-bottom:0;}
 .cv-tl-left{display:flex;flex-direction:column;align-items:center;width:20px;flex-shrink:0;}
@@ -139,19 +130,14 @@ html,body{width:100vw;height:100vh;overflow:hidden;font-family:-apple-system,Bli
 .cv-tl-ul{list-style:none;display:flex;flex-direction:column;gap:4px;}
 .cv-tl-ul li{font-size:12px;color:rgba(255,255,255,.52);padding-left:14px;position:relative;line-height:1.55;}
 .cv-tl-ul li::before{content:'▸';position:absolute;left:0;color:#bf5af2;font-size:10px;top:1px;}
-.cv-tl-ul li strong{color:rgba(255,255,255,.85);}
 .cv-tl-tags{display:flex;flex-wrap:wrap;gap:5px;margin:8px 0 10px;}
 .cv-tl-ref{margin-top:10px;padding:8px 10px;background:rgba(255,255,255,.04);border-radius:8px;font-size:11px;color:rgba(255,255,255,.4);border-left:2px solid rgba(191,90,242,.4);}
-
-/* Education */
 .cv-edu{display:flex;gap:14px;margin-bottom:12px;padding:14px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:12px;}
 .cv-edu-emoji{font-size:28px;flex-shrink:0;}
 .cv-edu-sc{font-size:14px;font-weight:700;color:#fff;margin-bottom:2px;}
 .cv-edu-pr{font-size:12px;color:rgba(255,255,255,.45);margin-bottom:6px;}
-.cv-edu-dt{font-size:11px;color:rgba(255,255,255,.3);margin-bottom:6px;}
-.cv-edu-tags{display:flex;flex-wrap:wrap;gap:4px;}
-
-/* Skills */
+.cv-edu-dt{font-size:11px;color:rgba(255,255,255,.3);}
+.cv-edu-tags{display:flex;flex-wrap:wrap;gap:4px;margin-top:6px;}
 .cv-skills-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;}
 .cv-sk{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:11px;padding:12px;}
 .cv-sk-cat{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.28);margin-bottom:8px;}
@@ -159,34 +145,26 @@ html,body{width:100vw;height:100vh;overflow:hidden;font-family:-apple-system,Bli
 .cv-tag{background:rgba(255,255,255,.07);color:rgba(255,255,255,.65);padding:3px 9px;border-radius:20px;font-size:11px;}
 .cv-tag.expert{background:rgba(191,90,242,.15);color:#bf5af2;border:1px solid rgba(191,90,242,.2);}
 .cv-tag.sm{font-size:10px;padding:2px 7px;}
-
-/* Awards */
 .cv-awards{display:flex;gap:10px;flex-wrap:wrap;}
 .cv-award{background:rgba(255,193,7,.08);border:1px solid rgba(255,193,7,.2);border-radius:12px;padding:12px 16px;display:flex;align-items:center;gap:10px;}
 .cv-award-ico{font-size:22px;}
 .cv-award-t{font-size:12px;font-weight:600;color:#fff;margin-bottom:2px;}
 .cv-award-s{font-size:11px;color:rgba(255,255,255,.4);}
-
-/* Projects */
 .cv-pg{display:grid;grid-template-columns:repeat(2,1fr);gap:9px;}
 .cv-pj{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:10px;padding:12px;}
 .cv-pj-t{font-size:13px;font-weight:600;color:#fff;margin-bottom:4px;}
 .cv-pj-k{font-size:11px;color:rgba(255,255,255,.42);line-height:1.4;}
 .cv-pj-b{display:inline-block;margin-top:6px;background:rgba(191,90,242,.14);color:#bf5af2;padding:2px 8px;border-radius:20px;font-size:10px;font-weight:600;border:1px solid rgba(191,90,242,.2);}
-
-/* Testimonials */
 .cv-testimonials{display:flex;flex-direction:column;gap:10px;}
 .cv-testi{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:12px;padding:16px;position:relative;}
 .cv-testi::before{content:'"';position:absolute;top:-4px;left:14px;font-size:40px;color:rgba(191,90,242,.3);line-height:1;font-family:Georgia,serif;}
 .cv-testi-quote{font-size:12.5px;color:rgba(255,255,255,.62);line-height:1.65;font-style:italic;padding-left:8px;margin-bottom:10px;}
 .cv-testi-author{font-size:11px;font-weight:600;color:rgba(255,255,255,.45);}
-
-/* Languages */
 .cv-lg{display:flex;gap:10px;}
 .cv-lg-item{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:10px;padding:12px 20px;text-align:center;}
 
-/* FINDER WINDOW */
-.finder{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%) scale(.93) translateY(24px);width:min(1040px,88vw);height:min(680px,78vh);background:rgba(18,18,24,.99);backdrop-filter:blur(50px);border:1px solid rgba(255,255,255,.12);border-radius:14px;z-index:1100;display:flex;flex-direction:column;box-shadow:0 60px 140px rgba(0,0,0,.95);opacity:0;pointer-events:none;transition:all .35s cubic-bezier(.34,1.2,.64,1);overflow:hidden;}
+/* FINDER WINDOW — plus grand */
+.finder{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%) scale(.93) translateY(24px);width:min(1100px,94vw);height:min(780px,88vh);background:rgba(18,18,24,.99);backdrop-filter:blur(50px);border:1px solid rgba(255,255,255,.12);border-radius:14px;z-index:1100;display:flex;flex-direction:column;box-shadow:0 60px 140px rgba(0,0,0,.95);opacity:0;pointer-events:none;transition:all .35s cubic-bezier(.34,1.2,.64,1);overflow:hidden;}
 .finder.open{opacity:1;pointer-events:all;transform:translate(-50%,-50%) scale(1) translateY(0);}
 .fdr-bar{height:44px;background:rgba(0,0,0,.3);border-bottom:1px solid rgba(255,255,255,.07);display:flex;align-items:center;padding:0 16px;flex-shrink:0;position:relative;}
 .ftls{display:flex;gap:7px;}
@@ -195,21 +173,21 @@ html,body{width:100vw;height:100vh;overflow:hidden;font-family:-apple-system,Bli
 .ftl.r{background:#ff5f57;}.ftl.y{background:#febc2e;}.ftl.g{background:#28c840;}
 .fdr-title{position:absolute;left:50%;transform:translateX(-50%);color:rgba(255,255,255,.8);font-size:14px;font-weight:600;display:flex;align-items:center;gap:7px;}
 .fdr-body{display:flex;flex:1;overflow:hidden;}
-.fdr-sb{width:210px;flex-shrink:0;background:rgba(0,0,0,.22);border-right:1px solid rgba(255,255,255,.07);padding:14px 0;display:flex;flex-direction:column;}
+.fdr-sb{width:220px;flex-shrink:0;background:rgba(0,0,0,.22);border-right:1px solid rgba(255,255,255,.07);padding:14px 0;display:flex;flex-direction:column;}
 .fdr-sb-ttl{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.26);padding:0 16px;margin-bottom:7px;}
-.fdr-pi{padding:9px 16px;cursor:pointer;display:flex;align-items:center;gap:10px;border-radius:8px;margin:0 8px;transition:background .15s;color:rgba(255,255,255,.68);font-size:13px;}
+.fdr-pi{padding:10px 16px;cursor:pointer;display:flex;align-items:center;gap:10px;border-radius:8px;margin:0 8px;transition:background .15s;color:rgba(255,255,255,.68);font-size:13px;}
 .fdr-pi:hover{background:rgba(255,255,255,.08);}
 .fdr-pi.active{background:rgba(99,102,241,.25);color:#fff;}
 .fdr-pi .ico{font-size:15px;}
-.fdr-cnt{flex:1;overflow-y:auto;padding:30px 38px;}
+.fdr-cnt{flex:1;overflow-y:auto;padding:32px 40px;}
 .fdr-cnt::-webkit-scrollbar{width:5px;}
 .fdr-cnt::-webkit-scrollbar-thumb{background:rgba(255,255,255,.1);border-radius:3px;}
 .fdr-empty{display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;gap:14px;color:rgba(255,255,255,.2);}
 .fdr-empty-ico{font-size:56px;opacity:.35;}
 .pd{display:flex;flex-direction:column;gap:16px;}
 .pd-hero{display:flex;align-items:flex-start;gap:16px;padding-bottom:18px;border-bottom:1px solid rgba(255,255,255,.07);}
-.pd-ico{font-size:48px;filter:drop-shadow(0 4px 12px rgba(0,0,0,.5));flex-shrink:0;}
-.pd-nm{font-size:22px;font-weight:700;color:#fff;letter-spacing:-.02em;margin-bottom:4px;line-height:1.2;}
+.pd-ico{font-size:52px;filter:drop-shadow(0 4px 12px rgba(0,0,0,.5));flex-shrink:0;}
+.pd-nm{font-size:24px;font-weight:700;color:#fff;letter-spacing:-.02em;margin-bottom:4px;line-height:1.2;}
 .pd-sb{font-size:12px;color:rgba(255,255,255,.38);margin-bottom:10px;}
 .pd-tags{display:flex;flex-wrap:wrap;gap:5px;}
 .pd-tag{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.09);padding:3px 10px;border-radius:20px;font-size:11px;color:rgba(255,255,255,.52);}
@@ -220,15 +198,15 @@ html,body{width:100vw;height:100vh;overflow:hidden;font-family:-apple-system,Bli
 .pl li{font-size:12.5px;color:rgba(255,255,255,.58);padding-left:16px;position:relative;line-height:1.6;}
 .pl li::before{content:'▸';position:absolute;left:0;color:#bf5af2;font-size:10px;}
 .pl li strong{color:#fff;}
-.pm-g{display:grid;grid-template-columns:repeat(auto-fill,minmax(100px,1fr));gap:8px;}
-.pm{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:11px;padding:12px;text-align:center;}
-.pmv{font-size:18px;font-weight:700;}
+.pm-g{display:grid;grid-template-columns:repeat(auto-fill,minmax(110px,1fr));gap:10px;}
+.pm{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:11px;padding:14px;text-align:center;}
+.pmv{font-size:20px;font-weight:700;}
 .pml{font-size:10px;color:rgba(255,255,255,.34);margin-top:3px;line-height:1.3;}
 .pb{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.13);color:#fff;padding:8px 16px;border-radius:20px;text-decoration:none;font-size:12px;font-weight:500;margin-top:4px;transition:all .2s;cursor:pointer;}
 .pb:hover{background:rgba(255,255,255,.15);}
 
 /* SIRI */
-.siri-ov{position:fixed;bottom:108px;left:50%;transform:translateX(-50%) translateY(16px);width:min(490px,88vw);background:rgba(10,10,18,.96);backdrop-filter:blur(40px);border:1px solid rgba(255,255,255,.18);border-radius:22px;z-index:4000;padding:22px 22px 18px;box-shadow:0 24px 70px rgba(0,0,0,.75);opacity:0;pointer-events:none;transition:opacity .3s,transform .3s;}
+.siri-ov{position:fixed;bottom:108px;left:50%;transform:translateX(-50%) translateY(16px);width:min(520px,88vw);background:rgba(10,10,18,.96);backdrop-filter:blur(40px);border:1px solid rgba(255,255,255,.18);border-radius:22px;z-index:4000;padding:22px 22px 18px;box-shadow:0 24px 70px rgba(0,0,0,.75);opacity:0;pointer-events:none;transition:opacity .3s,transform .3s;}
 .siri-ov.open{opacity:1;pointer-events:all;transform:translateX(-50%) translateY(0);}
 .siri-cls{position:absolute;top:12px;right:12px;background:rgba(255,255,255,.08);border:none;color:rgba(255,255,255,.5);width:24px;height:24px;border-radius:50%;cursor:pointer;font-size:13px;display:flex;align-items:center;justify-content:center;font-family:inherit;transition:all .2s;}
 .siri-cls:hover{background:rgba(255,255,255,.18);color:#fff;}
@@ -239,16 +217,9 @@ html,body{width:100vw;height:100vh;overflow:hidden;font-family:-apple-system,Bli
 .siri-ic{position:absolute;font-size:15px;top:50%;left:50%;transform:translate(-50%,-50%);}
 .siri-wave{display:flex;align-items:center;justify-content:center;gap:3px;height:24px;margin-bottom:10px;}
 .sw{width:3px;border-radius:3px;background:linear-gradient(to top,#0a84ff,#bf5af2);}
-.sw:nth-child(1){animation:wv 1.2s ease-in-out infinite 0s;}
-.sw:nth-child(2){animation:wv 1.2s ease-in-out infinite .1s;}
-.sw:nth-child(3){animation:wv 1.2s ease-in-out infinite .2s;}
-.sw:nth-child(4){animation:wv 1.2s ease-in-out infinite .3s;}
-.sw:nth-child(5){animation:wv 1.2s ease-in-out infinite .4s;}
-.sw:nth-child(6){animation:wv 1.2s ease-in-out infinite .5s;}
-.sw:nth-child(7){animation:wv 1.2s ease-in-out infinite .4s;}
-.sw:nth-child(8){animation:wv 1.2s ease-in-out infinite .3s;}
+.sw:nth-child(1){animation:wv 1.2s ease-in-out infinite 0s;}.sw:nth-child(2){animation:wv 1.2s ease-in-out infinite .1s;}.sw:nth-child(3){animation:wv 1.2s ease-in-out infinite .2s;}.sw:nth-child(4){animation:wv 1.2s ease-in-out infinite .3s;}.sw:nth-child(5){animation:wv 1.2s ease-in-out infinite .4s;}.sw:nth-child(6){animation:wv 1.2s ease-in-out infinite .5s;}.sw:nth-child(7){animation:wv 1.2s ease-in-out infinite .4s;}.sw:nth-child(8){animation:wv 1.2s ease-in-out infinite .3s;}
 @keyframes wv{0%,100%{height:4px;opacity:.4}50%{height:20px;opacity:1}}
-.siri-out{font-size:13px;color:rgba(255,255,255,.68);line-height:1.65;margin-bottom:11px;min-height:18px;}
+.siri-out{font-size:13px;color:rgba(255,255,255,.72);line-height:1.7;margin-bottom:11px;min-height:40px;}
 .siri-iw{display:flex;align-items:center;gap:9px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.11);border-radius:13px;padding:9px 13px;margin-bottom:9px;}
 .siri-in{flex:1;background:none;border:none;outline:none;color:#fff;font-size:14px;font-family:inherit;cursor:text;}
 .siri-in::placeholder{color:rgba(255,255,255,.26);}
@@ -274,37 +245,17 @@ html,body{width:100vw;height:100vh;overflow:hidden;font-family:-apple-system,Bli
 .w-toast{position:fixed;top:50px;left:50%;transform:translateX(-50%) translateY(-12px);background:rgba(0,113,227,.92);backdrop-filter:blur(20px);color:#fff;padding:10px 22px;border-radius:40px;font-size:14px;font-weight:600;z-index:6000;box-shadow:0 8px 24px rgba(0,113,227,.4);opacity:0;transition:all .4s ease;pointer-events:none;}
 .w-toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
 
-/* RESPONSIVE */
 @media(max-width:768px){
-  html,body{cursor:auto;}
-  #cur-dot,#cur-ring{display:none;}
-  .mb-dim{display:none;}
-  .desktop{bottom:84px;}
-  .dicon{width:90px;}
-  .di-img{font-size:54px;}
-  .di-lbl{font-size:11px;}
-  .di-tt{display:none;}
-  .cv-win{width:96vw;height:90vh;}
-  .cv-body{padding:20px;}
-  .cv-nm{font-size:20px;}
-  .cv-stats{grid-template-columns:repeat(2,1fr);}
+  html,body{cursor:auto;}#cur-dot,#cur-ring{display:none;}
+  .mb-dim{display:none;}.desktop{bottom:84px;}
+  .dicon{width:100px;}.di-img{font-size:64px;}
+  .di-lbl{font-size:11px;}.di-tt{display:none;}
+  .cv-win{width:96vw;height:90vh;}.cv-body{padding:20px;}
+  .cv-nm{font-size:20px;}.cv-stats{grid-template-columns:repeat(2,1fr);}
   .cv-skills-grid,.cv-pg{grid-template-columns:1fr;}
-  .finder{width:96vw;height:88vh;}
-  .fdr-sb{width:140px;}
-  .fdr-cnt{padding:18px;}
-  .siri-ov{width:92vw;}
-  .dock .di-ico{width:42px;height:42px;font-size:24px;}
+  .finder{width:96vw;height:88vh;}.fdr-sb{width:140px;}.fdr-cnt{padding:18px;}
+  .siri-ov{width:92vw;}.dock .di-ico{width:42px;height:42px;font-size:24px;}
   .dock{padding:6px 8px;gap:5px;}
-}
-@media(max-width:480px){
-  .fdr-body{flex-direction:column;}
-  .fdr-sb{width:100%;height:48px;flex-direction:row;padding:0 8px;overflow-x:auto;flex-shrink:0;}
-  .fdr-sb-ttl{display:none;}
-  .fdr-pi{white-space:nowrap;flex-shrink:0;margin:auto 2px;padding:8px 10px;}
-  .cv-stats{grid-template-columns:repeat(2,1fr);}
-  .cv-skills-grid,.cv-pg{grid-template-columns:1fr;}
-  .cv-awards,.cv-lg{flex-direction:column;}
-  .splash-inner{padding:32px 24px;}
 }
 </style>
 </head>
@@ -339,28 +290,16 @@ html,body{width:100vw;height:100vh;overflow:hidden;font-family:-apple-system,Bli
 </div>
 
 <div class="w-toast" id="wToast"></div>
-
-<!-- WALLPAPER -->
 <div class="aurora"><div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div><div class="blob b4"></div></div>
 <div class="grain"></div>
 
 <!-- MENU BAR -->
 <div class="menubar">
-  <div class="mb-l">
-    <span style="font-size:18px">🍎</span>
-    <span class="mb-bold">Bureau</span>
-    <span class="mb-dim">Finder</span>
-    <span class="mb-dim">Affichage</span>
-    <span class="mb-dim">Aller</span>
-  </div>
+  <div class="mb-l"><span style="font-size:18px">🍎</span><span class="mb-bold">Bureau</span><span class="mb-dim">Finder</span><span class="mb-dim">Affichage</span><span class="mb-dim">Aller</span></div>
   <div class="mb-r">
     <button class="mb-siri" id="siriBtn">✦ Siri</button>
-    <div class="lang-sw">
-      <button class="lang-btn active" onclick="setLang('fr')">FR</button>
-      <button class="lang-btn" onclick="setLang('en')">EN</button>
-    </div>
-    <span style="opacity:.5;font-size:15px">🔋</span>
-    <span style="opacity:.5;font-size:15px">📶</span>
+    <div class="lang-sw"><button class="lang-btn active" onclick="setLang('fr')">FR</button><button class="lang-btn" onclick="setLang('en')">EN</button></div>
+    <span style="opacity:.5;font-size:15px">🔋</span><span style="opacity:.5;font-size:15px">📶</span>
     <span class="mb-time" id="mbTime">--:--</span>
   </div>
 </div>
@@ -372,7 +311,7 @@ html,body{width:100vw;height:100vh;overflow:hidden;font-family:-apple-system,Bli
       <div class="di-img">📄</div>
       <div class="di-lbl" id="lbl-cv">📄 CV</div>
     </div>
-    <div class="di-tt"><div class="di-tt-title" data-i18n="tt-cv-t">Curriculum Vitae</div><div class="di-tt-desc" data-i18n="tt-cv-d">3 expériences RevOps · 7 projets · Top 10 MSc IA</div></div>
+    <div class="di-tt"><div class="di-tt-title" data-i18n="tt-cv-t">Curriculum Vitae</div><div class="di-tt-desc" data-i18n="tt-cv-d">3 expériences RevOps · 7 projets · Titre RNCP</div></div>
   </div>
   <div class="dicon" id="icon-pro" style="top:45%;left:50%;transform:translate(-50%,-50%)">
     <div class="di-parallax">
@@ -395,15 +334,14 @@ html,body{width:100vw;height:100vh;overflow:hidden;font-family:-apple-system,Bli
 <div class="cv-win" id="cvWin">
   <div class="cv-bar">
     <div class="cv-tls"><div class="cvtl r" onclick="closeCV()"></div><div class="cvtl y"></div><div class="cvtl g"></div></div>
-    <div class="cv-bartitle" data-i18n="cv-title">CV — Alec DIAMIDIA</div>
+    <div class="cv-bartitle">CV — Alec DIAMIDIA</div>
   </div>
   <div class="cv-body">
-
     <div class="cv-hdr">
-      <div class="cv-av"><img src="./assets/[Portfolio]_CV.png" alt="Alec" onerror="this.parentElement.innerHTML='👤'"></div>
+      <div class="cv-av"><img src="./assets/photo.jpg" alt="Alec" onerror="this.parentElement.innerHTML='👤'"></div>
       <div>
         <div class="cv-nm">Alec DIAMIDIA</div>
-        <div class="cv-ro" data-i18n="cv-role">Revenue Operations & CRM Specialist · MSc AI Applied to Business</div>
+        <div class="cv-ro">Revenue Operations & CRM Specialist · MSc AI Applied to Business</div>
         <div class="cv-cts">
           <a class="cv-ct" href="mailto:alecrudydiami@gmail.com">📧 alecrudydiami@gmail.com</a>
           <a class="cv-ct" href="https://linkedin.com/in/alec-diamidia" target="_blank">💼 LinkedIn</a>
@@ -412,155 +350,81 @@ html,body{width:100vw;height:100vh;overflow:hidden;font-family:-apple-system,Bli
         </div>
       </div>
     </div>
-
     <div class="cv-stats">
-      <div class="cv-stat"><div class="cv-stat-val">3</div><div class="cv-stat-lbl" data-i18n="stat-exp">Expériences RevOps</div></div>
-      <div class="cv-stat"><div class="cv-stat-val">7</div><div class="cv-stat-lbl" data-i18n="stat-proj">Projets réalisés</div></div>
-      <div class="cv-stat"><div class="cv-stat-val">2</div><div class="cv-stat-lbl" data-i18n="stat-hack">Hackathons gagnés</div></div>
-      <div class="cv-stat"><div class="cv-stat-val" style="font-size:15px">Top 10</div><div class="cv-stat-lbl" data-i18n="stat-msc">MSc IA national</div></div>
+      <div class="cv-stat"><div class="cv-stat-val">3</div><div class="cv-stat-lbl">Expériences RevOps</div></div>
+      <div class="cv-stat"><div class="cv-stat-val">7</div><div class="cv-stat-lbl">Projets réalisés</div></div>
+      <div class="cv-stat"><div class="cv-stat-val">2</div><div class="cv-stat-lbl">Hackathons gagnés</div></div>
+      <div class="cv-stat"><div class="cv-stat-val" style="font-size:15px">RNCP</div><div class="cv-stat-lbl">Titre reconnu État</div></div>
     </div>
-
-    <div class="cv-sh" data-i18n="exp-title">Expériences Professionnelles</div>
+    <div class="cv-sh">Expériences Professionnelles</div>
     <div class="cv-timeline">
-
-      <!-- EVANEOS -->
       <div class="cv-tl-item">
         <div class="cv-tl-left"><div class="cv-tl-dot green"></div><div class="cv-tl-line"></div></div>
         <div class="cv-tl-content">
-          <div class="cv-tl-badge" data-i18n="current">En poste</div>
+          <div class="cv-tl-badge">En poste</div>
           <div class="cv-tl-company">Evaneos</div>
-          <div class="cv-tl-role">Salesforce Operations Specialist · <span style="color:rgba(255,255,255,.35);font-size:11px" data-i18n="ev-desc">Plateforme de voyage sur-mesure</span></div>
+          <div class="cv-tl-role">Salesforce Operations Specialist · Plateforme de voyage sur-mesure</div>
           <div class="cv-tl-date">Mars 2026 — Janv. 2028</div>
           <div class="cv-tl-tags"><span class="cv-tag sm">Salesforce</span><span class="cv-tag sm">Make</span><span class="cv-tag sm">N8N</span><span class="cv-tag sm">Flow Builder</span><span class="cv-tag sm">Reporting</span></div>
-
-          <div class="cv-cat" data-i18n="ev-cat1">⚙️ Configuration & Maintenance Salesforce</div>
-          <ul class="cv-tl-ul">
-            <li data-i18n="ev-1a">Gestion des comptes utilisateurs, profils, rôles, workflows et permissions.</li>
-            <li data-i18n="ev-1b">Data management : import/export, déduplication et nettoyage.</li>
-            <li data-i18n="ev-1c">Monitoring et résolution des incidents techniques.</li>
-            <li data-i18n="ev-1d">Support quotidien et formation des utilisateurs Salesforce.</li>
-          </ul>
-          <div class="cv-cat" data-i18n="ev-cat2">🔄 Automatisation des processus</div>
-          <ul class="cv-tl-ul">
-            <li data-i18n="ev-2a">Configuration de Process Builder, Flows et Workflows.</li>
-            <li data-i18n="ev-2b">Création de workflows automatisés avec Make et N8N.</li>
-          </ul>
-          <div class="cv-cat" data-i18n="ev-cat3">📊 Reporting & Dashboards</div>
-          <ul class="cv-tl-ul">
-            <li data-i18n="ev-3a">Rapports et dashboards custom pour Sales, AM et Marketing.</li>
-            <li data-i18n="ev-3b">Adaptation de Salesforce aux besoins métier des stakeholders.</li>
-          </ul>
-          <div class="cv-cat" data-i18n="ev-cat4">🤝 Collaboration transversale</div>
-          <ul class="cv-tl-ul">
-            <li data-i18n="ev-4a">Participation aux projets de system upgrades et intégrations.</li>
-          </ul>
+          <div class="cv-cat">⚙️ Configuration & Maintenance Salesforce</div>
+          <ul class="cv-tl-ul"><li>Gestion des comptes utilisateurs, profils, rôles, workflows et permissions.</li><li>Data management : import/export, déduplication et nettoyage.</li><li>Monitoring et résolution des incidents techniques.</li><li>Support quotidien et formation des utilisateurs Salesforce.</li></ul>
+          <div class="cv-cat">🔄 Automatisation des processus</div>
+          <ul class="cv-tl-ul"><li>Configuration de Process Builder, Flows et Workflows.</li><li>Création de workflows automatisés avec Make et N8N.</li></ul>
+          <div class="cv-cat">📊 Reporting & Dashboards</div>
+          <ul class="cv-tl-ul"><li>Rapports et dashboards custom pour Sales, AM et Marketing.</li><li>Adaptation de Salesforce aux besoins métier des stakeholders.</li></ul>
+          <div class="cv-cat">🤝 Collaboration transversale</div>
+          <ul class="cv-tl-ul"><li>Participation aux projets de system upgrades et intégrations.</li></ul>
           <div class="cv-tl-ref">👤 Ugu BASCIANO — Lead Revenue Operations @Evaneos</div>
         </div>
       </div>
-
-      <!-- UNITED HEROES -->
       <div class="cv-tl-item">
         <div class="cv-tl-left"><div class="cv-tl-dot"></div><div class="cv-tl-line"></div></div>
         <div class="cv-tl-content">
           <div class="cv-tl-company">United Heroes</div>
-          <div class="cv-tl-role">Revenue Operations · <span style="color:rgba(255,255,255,.35);font-size:11px" data-i18n="uh-desc">Application d'engagement collaborateurs</span></div>
-          <div class="cv-tl-date" data-i18n="uh-date">07/2024 — 07/2025 · 1 an</div>
-          <div class="cv-tl-tags"><span class="cv-tag sm">HubSpot</span><span class="cv-tag sm">Planhat</span><span class="cv-tag sm">Modjo</span><span class="cv-tag sm">Nomination</span><span class="cv-tag sm">RevOps</span></div>
-
-          <div class="cv-cat" data-i18n="uh-cat1">📈 Stratégie</div>
-          <ul class="cv-tl-ul">
-            <li data-i18n="uh-1a">Refonte des rapports à destination du CODIR.</li>
-            <li data-i18n="uh-1b">Proposition d'une nouvelle stratégie d'attribution de portefeuille.</li>
-            <li data-i18n="uh-1c">Automatisations réductrices de temps de saisie via HubSpot et Planhat.</li>
-            <li data-i18n="uh-1d">Accompagnement des équipes sur l'adoption et l'optimisation des outils.</li>
-          </ul>
-          <div class="cv-cat" data-i18n="uh-cat2">🛠️ Outils & Données</div>
-          <ul class="cv-tl-ul">
-            <li data-i18n="uh-2a">Implémentation de Modjo et Nomination ; co-gestion HubSpot / Planhat.</li>
-            <li data-i18n="uh-2b">Cleaning des doublons (entreprises, contacts, deals).</li>
-            <li data-i18n="uh-2c">Enrichissement de la donnée entreprise en volume et qualité.</li>
-            <li data-i18n="uh-2d">Création de workflows, rapports et dashboards personnalisés.</li>
-          </ul>
-          <div class="cv-cat" data-i18n="uh-cat3">📚 Process, Enablement & FAQ</div>
-          <ul class="cv-tl-ul">
-            <li data-i18n="uh-3a">Rédaction des process Sales, CSM et AM.</li>
-            <li data-i18n="uh-3b">Formation des équipes et refonte de la base de connaissance.</li>
-            <li data-i18n="uh-3c">FAQ management via canal Slack dédié.</li>
-          </ul>
+          <div class="cv-tl-role">Revenue Operations · Application d'engagement collaborateurs</div>
+          <div class="cv-tl-date">07/2024 — 07/2025 · 1 an</div>
+          <div class="cv-tl-tags"><span class="cv-tag sm">HubSpot</span><span class="cv-tag sm">Planhat</span><span class="cv-tag sm">Modjo</span><span class="cv-tag sm">Nomination</span></div>
+          <div class="cv-cat">📈 Stratégie</div>
+          <ul class="cv-tl-ul"><li>Refonte des rapports à destination du CODIR.</li><li>Proposition d'une nouvelle stratégie d'attribution de portefeuille.</li><li>Automatisations réductrices de temps de saisie via HubSpot et Planhat.</li><li>Accompagnement des équipes sur l'adoption et l'optimisation des outils.</li></ul>
+          <div class="cv-cat">🛠️ Outils & Données</div>
+          <ul class="cv-tl-ul"><li>Implémentation de Modjo et Nomination ; co-gestion HubSpot / Planhat.</li><li>Cleaning des doublons (entreprises, contacts, deals).</li><li>Enrichissement de la donnée entreprise en volume et qualité.</li><li>Création de workflows, rapports et dashboards personnalisés.</li></ul>
+          <div class="cv-cat">📚 Process, Enablement & FAQ</div>
+          <ul class="cv-tl-ul"><li>Rédaction des process Sales, CSM et AM.</li><li>Formation des équipes et refonte de la base de connaissance.</li><li>FAQ management via canal Slack dédié.</li></ul>
           <div class="cv-tl-ref">👤 Lucas FINCHELSTEIN — Rev Ops @United Heroes · <em>"Sérieux et investi, très bon élément."</em></div>
         </div>
       </div>
-
-      <!-- JAVELO -->
       <div class="cv-tl-item">
         <div class="cv-tl-left"><div class="cv-tl-dot"></div></div>
         <div class="cv-tl-content">
           <div class="cv-tl-company">Tellent France (ex. Javelo)</div>
-          <div class="cv-tl-role" data-i18n="jv-role">Sales Ops → Revenue Ops · Plateforme RH de développement de compétences</div>
+          <div class="cv-tl-role">Sales Ops → Revenue Ops · Plateforme RH de développement de compétences</div>
           <div class="cv-tl-date">06/2023 — 12/2023 · 7 mois</div>
           <div class="cv-tl-tags"><span class="cv-tag sm">HubSpot</span><span class="cv-tag sm">Slack</span><span class="cv-tag sm">Notion</span><span class="cv-tag sm">Zapier</span><span class="cv-tag sm">Lemlist</span></div>
-
-          <div class="cv-cat" data-i18n="jv-cat1">🎯 Stratégie & Process</div>
-          <ul class="cv-tl-ul">
-            <li data-i18n="jv-1a">Analyse et segmentation du marché adressable.</li>
-            <li data-i18n="jv-1b">Lancement de campagnes Sales et BDR ciblées.</li>
-            <li data-i18n="jv-1c">Création du process des campagnes d'upsell.</li>
-            <li data-i18n="jv-1d">Workflows via HubSpot, Slack × Notion et Zapier.</li>
-          </ul>
-          <div class="cv-cat" data-i18n="jv-cat2">📂 Gestion de données</div>
-          <ul class="cv-tl-ul">
-            <li data-i18n="jv-2a">Mapping de comptes ; dispatching des leads inbound.</li>
-            <li data-i18n="jv-2b">Cleaning des données (doublons entreprises et contacts).</li>
-            <li data-i18n="jv-2c">Rapports et dashboards pour Sales, BDR et CSM.</li>
-            <li data-i18n="jv-2d">Vérification des deals closés : New biz, Renews, Upsells.</li>
-          </ul>
-          <div class="cv-cat" data-i18n="jv-cat3">📚 Process, Enablement & FAQ</div>
-          <ul class="cv-tl-ul">
-            <li data-i18n="jv-3a">Support aux problématiques des équipes Sales, BDR et CSM.</li>
-            <li data-i18n="jv-3b">Rédaction de la source d'enablement Sales et BDRs.</li>
-          </ul>
+          <div class="cv-cat">🎯 Stratégie & Process</div>
+          <ul class="cv-tl-ul"><li>Analyse et segmentation du marché adressable.</li><li>Lancement de campagnes Sales et BDR ciblées.</li><li>Création du process des campagnes d'upsell.</li><li>Workflows via HubSpot, Slack × Notion et Zapier.</li></ul>
+          <div class="cv-cat">📂 Gestion de données</div>
+          <ul class="cv-tl-ul"><li>Mapping de comptes ; dispatching des leads inbound.</li><li>Cleaning des données (doublons entreprises et contacts).</li><li>Rapports et dashboards pour Sales, BDR et CSM.</li><li>Vérification des deals closés : New biz, Renews, Upsells.</li></ul>
+          <div class="cv-cat">📚 Process, Enablement & FAQ</div>
+          <ul class="cv-tl-ul"><li>Support aux problématiques des équipes Sales, BDR et CSM.</li><li>Rédaction de la source d'enablement Sales et BDRs.</li></ul>
           <div class="cv-tl-ref">👤 Delphine AIM — Rev Ops @Tellent France · <em>"Alec est au-dessus des attentes sur son rôle."</em></div>
         </div>
       </div>
     </div>
-
-    <div class="cv-sh" data-i18n="edu-title">Formation</div>
-    <div class="cv-edu">
-      <div class="cv-edu-emoji">🎓</div>
-      <div>
-        <div class="cv-edu-sc">Eugenia School × Grenoble École de Management</div>
-        <div class="cv-edu-pr">MSc AI Applied to Business — <strong style="color:#30d158">Eugenia School</strong></div>
-        <div class="cv-edu-dt">2024 — Présent · Microsoft · Mistral AI · Carrefour · Station F</div>
-        <div class="cv-edu-tags"><span class="cv-tag sm">Python</span><span class="cv-tag sm">SQL</span><span class="cv-tag sm">Make</span><span class="cv-tag sm">Google Apps Script</span><span class="cv-tag sm">Cursor</span><span class="cv-tag sm">Dust</span><span class="cv-tag sm">Tableau</span><span class="cv-tag sm">Power BI</span><span class="cv-tag sm">Agentic IA</span></div>
-      </div>
-    </div>
-    <div class="cv-edu">
-      <div class="cv-edu-emoji">🌍</div>
-      <div>
-        <div class="cv-edu-sc">emlyon Business School</div>
-        <div class="cv-edu-pr">Global BBA — Programme international</div>
-        <div class="cv-edu-dt">2020 — 2024</div>
-        <div class="cv-edu-tags"><span class="cv-tag sm">Business Intelligence</span><span class="cv-tag sm">Sales Strategy</span><span class="cv-tag sm">AI for Business</span><span class="cv-tag sm">Data Management</span><span class="cv-tag sm">International Business</span></div>
-      </div>
-    </div>
-
-    <div class="cv-sh" data-i18n="awards-title">Distinctions</div>
-    <div class="cv-awards">
-      <div class="cv-award"><div class="cv-award-ico">🏆</div><div><div class="cv-award-t">Innovation Award</div><div class="cv-award-s">Hackathon PayFit 2026</div></div></div>
-      <div class="cv-award"><div class="cv-award-ico">🎓</div><div class="cv-award-s">MSc AI Applied to Business</div></div></div>
-    </div>
-
-    <div class="cv-sh" data-i18n="skills-title">Compétences</div>
+    <div class="cv-sh">Formation</div>
+    <div class="cv-edu"><div class="cv-edu-emoji">🎓</div><div><div class="cv-edu-sc">Eugenia School × Grenoble École de Management</div><div class="cv-edu-pr">MSc AI Applied to Business — <strong style="color:#30d158">Titre RNCP reconnu par l'État · Alternance</strong></div><div class="cv-edu-dt">2024 — 2027 · Microsoft · Mistral AI · Carrefour · Station F</div><div class="cv-edu-tags"><span class="cv-tag sm">Python</span><span class="cv-tag sm">SQL</span><span class="cv-tag sm">Make</span><span class="cv-tag sm">Apps Script</span><span class="cv-tag sm">Cursor</span><span class="cv-tag sm">Dust</span><span class="cv-tag sm">Tableau</span><span class="cv-tag sm">Power BI</span></div></div></div>
+    <div class="cv-edu"><div class="cv-edu-emoji">🌍</div><div><div class="cv-edu-sc">emlyon Business School</div><div class="cv-edu-pr">Global BBA — Programme international</div><div class="cv-edu-dt">2020 — 2024</div></div></div>
+    <div class="cv-sh">Distinctions</div>
+    <div class="cv-awards"><div class="cv-award"><div class="cv-award-ico">🏆</div><div><div class="cv-award-t">Innovation Award</div><div class="cv-award-s">Hackathon PayFit 2026</div></div></div><div class="cv-award"><div class="cv-award-ico">🎓</div><div><div class="cv-award-t">Titre RNCP reconnu</div><div class="cv-award-s">MSc AI Applied to Business</div></div></div></div>
+    <div class="cv-sh">Compétences</div>
     <div class="cv-skills-grid">
       <div class="cv-sk"><div class="cv-sk-cat">CRM</div><div class="cv-tags"><span class="cv-tag expert">Salesforce</span><span class="cv-tag expert">HubSpot</span><span class="cv-tag">Planhat</span><span class="cv-tag">Airtable</span></div></div>
-      <div class="cv-sk"><div class="cv-sk-cat">Data / BI</div><div class="cv-tags"><span class="cv-tag expert">SQL</span><span class="cv-tag expert">BigQuery</span><span class="cv-tag">Python</span><span class="cv-tag">Looker Studio</span><span class="cv-tag">Tableau</span><span class="cv-tag">Power BI</span></div></div>
-      <div class="cv-sk"><div class="cv-sk-cat">Automation</div><div class="cv-tags"><span class="cv-tag expert">Make.com</span><span class="cv-tag">N8N</span><span class="cv-tag">Flow Builder</span><span class="cv-tag">Process Builder</span><span class="cv-tag">Zapier</span></div></div>
-      <div class="cv-sk"><div class="cv-sk-cat">AI / Agents</div><div class="cv-tags"><span class="cv-tag expert">Dust</span><span class="cv-tag expert">GPT-4o</span><span class="cv-tag expert">Claude</span><span class="cv-tag">Cursor</span><span class="cv-tag">Perplexity</span></div></div>
-      <div class="cv-sk"><div class="cv-sk-cat">Dev</div><div class="cv-tags"><span class="cv-tag">Next.js</span><span class="cv-tag">Vercel</span><span class="cv-tag">Supabase</span><span class="cv-tag">Webflow</span><span class="cv-tag">Apps Script</span></div></div>
-      <div class="cv-sk"><div class="cv-sk-cat" data-i18n="sk-langs">Langues</div><div class="cv-tags"><span class="cv-tag expert">🇫🇷 Français — Natif</span><span class="cv-tag">🇬🇧 Anglais — C1</span></div></div>
+      <div class="cv-sk"><div class="cv-sk-cat">Data / BI</div><div class="cv-tags"><span class="cv-tag expert">SQL</span><span class="cv-tag expert">BigQuery</span><span class="cv-tag">Python</span><span class="cv-tag">Looker Studio</span><span class="cv-tag">Tableau</span></div></div>
+      <div class="cv-sk"><div class="cv-sk-cat">Automation</div><div class="cv-tags"><span class="cv-tag expert">Make.com</span><span class="cv-tag">N8N</span><span class="cv-tag">Flow Builder</span><span class="cv-tag">Zapier</span></div></div>
+      <div class="cv-sk"><div class="cv-sk-cat">AI / Agents</div><div class="cv-tags"><span class="cv-tag expert">Dust</span><span class="cv-tag expert">GPT-4o</span><span class="cv-tag expert">Claude</span><span class="cv-tag">Cursor</span></div></div>
+      <div class="cv-sk"><div class="cv-sk-cat">Dev</div><div class="cv-tags"><span class="cv-tag">Next.js</span><span class="cv-tag">Vercel</span><span class="cv-tag">Supabase</span><span class="cv-tag">Webflow</span></div></div>
+      <div class="cv-sk"><div class="cv-sk-cat">Langues</div><div class="cv-tags"><span class="cv-tag expert">🇫🇷 Français — Natif</span><span class="cv-tag">🇬🇧 Anglais — C1</span></div></div>
     </div>
-
-    <div class="cv-sh" style="margin-top:20px" data-i18n="projs-title">Projets Clés</div>
+    <div class="cv-sh" style="margin-top:20px">Projets Clés</div>
     <div class="cv-pg">
       <div class="cv-pj"><div class="cv-pj-t">🏆 Hackathon Mirakl</div><div class="cv-pj-k">Pipeline BDR · ×37 plus rapide · ROI ×2400</div><div class="cv-pj-b">Next.js · GPT-4o · Supabase</div></div>
       <div class="cv-pj"><div class="cv-pj-t">⚡ Hackathon PayFit 2026</div><div class="cv-pj-k">Innovation Award · -80% temps · 14.3/15 qualité</div><div class="cv-pj-b">Make.com · Claude · GPT-4o</div></div>
@@ -568,32 +432,21 @@ html,body{width:100vw;height:100vh;overflow:hidden;font-family:-apple-system,Bli
       <div class="cv-pj"><div class="cv-pj-t">📊 TheLook SQL Audit</div><div class="cv-pj-k">BigQuery Multi-CTE · 6 insights · 14 mois</div><div class="cv-pj-b">BigQuery · Looker Studio</div></div>
       <div class="cv-pj"><div class="cv-pj-t">🏃 Marathon de Paris 2025</div><div class="cv-pj-k">50 001 coureurs · Python · Reverse-engineering API</div><div class="cv-pj-b">Python · requests · pandas</div></div>
     </div>
-
-    <div class="cv-sh" style="margin-top:20px" data-i18n="testi-title">Témoignages</div>
+    <div class="cv-sh" style="margin-top:20px">Témoignages</div>
     <div class="cv-testimonials">
-      <div class="cv-testi"><div class="cv-testi-quote" data-i18n="testi1">"Alec est au-dessus des attentes sur son rôle. Autonome, rigoureux, capable de monter en compétence très rapidement sur des outils techniques."</div><div class="cv-testi-author">— Delphine AIM, Manager @Tellent (Javelo)</div></div>
-      <div class="cv-testi"><div class="cv-testi-quote" data-i18n="testi2">"Sérieux et investi, très bon élément. Alec s'est intégré rapidement et a produit des analyses de qualité sur des sujets complexes."</div><div class="cv-testi-author">— Lucas FINCHELSTEIN, RevOps @United Heroes</div></div>
-      <div class="cv-testi"><div class="cv-testi-quote" data-i18n="testi3">"Alec a été un élément marquant de par son professionnalisme, sa capacité à comprendre les enjeux business et sa proactivité."</div><div class="cv-testi-author">— Haya DIAWARA, Pairs @Eugenia School</div></div>
+      <div class="cv-testi"><div class="cv-testi-quote">"Alec est au-dessus des attentes sur son rôle. Autonome, rigoureux, capable de monter en compétence très rapidement sur des outils techniques."</div><div class="cv-testi-author">— Delphine AIM, Manager @Tellent (Javelo)</div></div>
+      <div class="cv-testi"><div class="cv-testi-quote">"Sérieux et investi, très bon élément. Alec s'est intégré rapidement et a produit des analyses de qualité sur des sujets complexes."</div><div class="cv-testi-author">— Lucas FINCHELSTEIN, RevOps @United Heroes</div></div>
+      <div class="cv-testi"><div class="cv-testi-quote">"Alec a été un élément marquant de par son professionnalisme, sa capacité à comprendre les enjeux business et sa proactivité."</div><div class="cv-testi-author">— Haya DIAWARA, Pairs @Eugenia School</div></div>
     </div>
-
-    <div class="cv-sh" style="margin-top:20px" data-i18n="langs-title">Langues</div>
-    <div class="cv-lg">
-      <div class="cv-lg-item"><div style="font-size:22px;margin-bottom:4px">🇫🇷</div><div style="font-size:12px;font-weight:600;color:#fff">Français</div><div style="font-size:10px;color:rgba(255,255,255,.4)" data-i18n="fr-level">Natif</div></div>
-      <div class="cv-lg-item"><div style="font-size:22px;margin-bottom:4px">🇬🇧</div><div style="font-size:12px;font-weight:600;color:#fff">Anglais</div><div style="font-size:10px;color:rgba(255,255,255,.4)" data-i18n="en-level">Courant — C1</div></div>
-    </div>
-
   </div>
 </div>
 
 <!-- FINDER WINDOW -->
 <div class="finder" id="finder">
-  <div class="fdr-bar">
-    <div class="ftls"><div class="ftl r" onclick="closeFinder()"></div><div class="ftl y"></div><div class="ftl g"></div></div>
-    <div class="fdr-title"><span id="fdr-ico">📁</span><span id="fdr-nm">Projets</span></div>
-  </div>
+  <div class="fdr-bar"><div class="ftls"><div class="ftl r" onclick="closeFinder()"></div><div class="ftl y"></div><div class="ftl g"></div></div><div class="fdr-title"><span id="fdr-ico">📁</span><span id="fdr-nm">Projets</span></div></div>
   <div class="fdr-body">
-    <div class="fdr-sb" id="fdrSb"><div class="fdr-sb-ttl" data-i18n="projects">Projets</div></div>
-    <div class="fdr-cnt" id="fdrCnt"><div class="fdr-empty"><div class="fdr-empty-ico">📂</div><p style="font-size:14px" data-i18n="sel-proj">Sélectionnez un projet</p></div></div>
+    <div class="fdr-sb" id="fdrSb"><div class="fdr-sb-ttl">Projets</div></div>
+    <div class="fdr-cnt" id="fdrCnt"><div class="fdr-empty"><div class="fdr-empty-ico">📂</div><p style="font-size:14px">Sélectionnez un projet</p></div></div>
   </div>
 </div>
 
@@ -602,23 +455,25 @@ html,body{width:100vw;height:100vh;overflow:hidden;font-family:-apple-system,Bli
   <button class="siri-cls" onclick="closeSiri()">✕</button>
   <div class="siri-ring-w"><div class="siri-ring"><div></div></div><div class="siri-ic">✦</div></div>
   <div class="siri-wave"><div class="sw"></div><div class="sw"></div><div class="sw"></div><div class="sw"></div><div class="sw"></div><div class="sw"></div><div class="sw"></div><div class="sw"></div></div>
-  <div class="siri-out" id="siriOut">Bonjour ! Je suis Siri. Que puis-je faire pour toi ?</div>
+  <div class="siri-out" id="siriOut">Bonjour ! Je suis Siri, l'assistant d'Alec. Pose-moi une question !</div>
   <div class="siri-iw"><input type="text" class="siri-in" id="siriIn" placeholder="Parle à Siri…"><button class="siri-btn" onclick="siriSend()">↑</button></div>
   <div class="siri-chips">
-    <button class="sc" onclick="siriQ('projets')" data-i18n="chip-proj">Ses projets</button>
-    <button class="sc" onclick="siriQ('stack')" data-i18n="chip-stack">Son stack</button>
-    <button class="sc" onclick="siriQ('contact')" data-i18n="chip-contact">Le contacter</button>
-    <button class="sc" onclick="siriQ('cv')" data-i18n="chip-cv">Son CV</button>
+    <button class="sc" onclick="siriQ('projets')">Ses projets</button>
+    <button class="sc" onclick="siriQ('mirakl')">Mirakl 🏆</button>
+    <button class="sc" onclick="siriQ('payfit')">PayFit ⚡</button>
+    <button class="sc" onclick="siriQ('stack')">Son stack</button>
+    <button class="sc" onclick="siriQ('cv')">Son parcours</button>
+    <button class="sc" onclick="siriQ('contact')">Le contacter</button>
   </div>
 </div>
 
 <!-- DOCK -->
 <div class="dock-wrap"><div class="dock">
-  <div class="di" onclick="location.href='index.html'"><div class="di-ico" style="background:linear-gradient(145deg,#667eea,#764ba2)">🏠</div><div class="di-dot"></div><div class="di-tip" data-i18n="d-home">Accueil</div></div>
+  <div class="di" onclick="location.href='index.html'"><div class="di-ico" style="background:linear-gradient(145deg,#667eea,#764ba2)">🏠</div><div class="di-dot"></div><div class="di-tip">Accueil</div></div>
   <div class="dsep"></div>
   <div class="di" onclick="openCV()"><div class="di-ico" style="background:linear-gradient(145deg,#f093fb,#f5576c)">📄</div><div class="di-dot"></div><div class="di-tip">CV</div></div>
-  <div class="di" onclick="openFolder('pro')"><div class="di-ico" style="background:linear-gradient(145deg,#9775fa,#6741d9)">💡</div><div class="di-dot"></div><div class="di-tip" data-i18n="d-pro">Projets Pro</div></div>
-  <div class="di" onclick="openFolder('perso')"><div class="di-ico" style="background:linear-gradient(145deg,#4facfe,#1971c2)">🎨</div><div class="di-dot"></div><div class="di-tip" data-i18n="d-perso">Projets Perso</div></div>
+  <div class="di" onclick="openFolder('pro')"><div class="di-ico" style="background:linear-gradient(145deg,#9775fa,#6741d9)">💡</div><div class="di-dot"></div><div class="di-tip">Projets Pro</div></div>
+  <div class="di" onclick="openFolder('perso')"><div class="di-ico" style="background:linear-gradient(145deg,#4facfe,#1971c2)">🎨</div><div class="di-dot"></div><div class="di-tip">Projets Perso</div></div>
   <div class="dsep"></div>
   <div class="di" onclick="toggleSiri()"><div class="di-ico" style="background:linear-gradient(145deg,#30d158,#007aff)">✦</div><div class="di-tip">Siri</div></div>
   <div class="di" onclick="window.open('https://linkedin.com/in/alec-diamidia','_blank')"><div class="di-ico" style="background:#0a66c2">💼</div><div class="di-tip">LinkedIn</div></div>
@@ -627,13 +482,9 @@ html,body{width:100vw;height:100vh;overflow:hidden;font-family:-apple-system,Bli
 </div></div>
 
 <script>
-/* ══ GOOGLE FORM ══ */
+/* ══ FORM ══ */
 const FORM_URL='https://docs.google.com/forms/d/e/1FAIpQLScwUFu2nxl-xYxduco3jkUIanqJb2W6Mk3IATgCIMYtR_0hcw/formResponse';
-function submitForm(p,n){
-  const d=new FormData();d.append('entry.999164812',p);d.append('entry.152592575',n);
-  fetch(FORM_URL,{method:'POST',mode:'no-cors',body:d}).catch(()=>{});
-  if(typeof gtag!=='undefined')gtag('event','visitor_id',{visitor_name:p+' '+n});
-}
+function submitForm(p,n){const d=new FormData();d.append('entry.999164812',p);d.append('entry.152592575',n);fetch(FORM_URL,{method:'POST',mode:'no-cors',body:d}).catch(()=>{});if(typeof gtag!=='undefined')gtag('event','visitor_id',{visitor_name:p+' '+n});}
 
 /* ══ SPLASH ══ */
 function handleSplash(){
@@ -656,42 +507,63 @@ function handleSplash(){
 /* ══ BOOT ══ */
 function startBoot(prenom){
   const splash=document.getElementById('splash');
-  splash.style.transition='opacity .5s';splash.style.opacity='0';
-  setTimeout(()=>{if(splash.parentNode)splash.remove();},500);
+  if(splash){splash.style.opacity='0';splash.style.transition='opacity .5s';setTimeout(()=>{if(splash.parentNode)splash.remove();},500);}
   const boot=document.getElementById('boot');
+  if(!boot)return;
   document.getElementById('bootName').textContent='Bienvenue, '+prenom+' !';
-  boot.style.transition='opacity .4s';boot.style.opacity='1';boot.style.pointerEvents='all';
-  setTimeout(()=>{document.getElementById('bootBar').style.width='100%';},150);
+  boot.classList.add('show');
+  setTimeout(()=>{const bar=document.getElementById('bootBar');if(bar)bar.style.width='100%';},150);
   setTimeout(()=>{
-    boot.style.opacity='0';
+    boot.style.opacity='0';boot.style.transition='opacity .5s';
     setTimeout(()=>{if(boot.parentNode)boot.remove();showToast('👋 Bienvenue, '+prenom+' !');},500);
   },3400);
 }
 
-function showToast(msg){
-  const t=document.getElementById('wToast');t.textContent=msg;t.classList.add('show');
-  setTimeout(()=>t.classList.remove('show'),3200);
-}
+function showToast(msg){const t=document.getElementById('wToast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),3200);}
 
-/* ══ INIT ══ */
+/* ══ INIT ROBUSTE ══ */
 (function init(){
+  const splash=document.getElementById('splash');
+  const boot=document.getElementById('boot');
   const done=sessionStorage.getItem('splashDone');
+
   if(done){
-    document.getElementById('splash').remove();
-    const v=JSON.parse(sessionStorage.getItem('visitor')||'{}');
-    if(!sessionStorage.getItem('bootDone')){
+    // Retirer le splash immédiatement
+    if(splash){splash.style.display='none';setTimeout(()=>{if(splash.parentNode)splash.remove();},0);}
+
+    const booted=sessionStorage.getItem('bootDone');
+    if(booted){
+      // Les deux faits — afficher le bureau directement
+      if(boot){boot.style.display='none';setTimeout(()=>{if(boot.parentNode)boot.remove();},0);}
+    } else {
       sessionStorage.setItem('bootDone','1');
-      const boot=document.getElementById('boot');
-      if(v.prenom)document.getElementById('bootName').textContent='Bienvenue, '+v.prenom+' !';
-      boot.style.transition='opacity .4s';boot.style.opacity='1';boot.style.pointerEvents='all';
-      setTimeout(()=>{document.getElementById('bootBar').style.width='100%';},150);
-      setTimeout(()=>{boot.style.opacity='0';setTimeout(()=>{if(boot.parentNode)boot.remove();},500);},3400);
-    }else{
-      document.getElementById('boot').remove();
+      if(boot){
+        const v=JSON.parse(sessionStorage.getItem('visitor')||'{}');
+        const nameEl=document.getElementById('bootName');
+        if(nameEl&&v.prenom)nameEl.textContent='Bienvenue, '+v.prenom+' !';
+        boot.classList.add('show');
+        setTimeout(()=>{const bar=document.getElementById('bootBar');if(bar)bar.style.width='100%';},150);
+        setTimeout(()=>{
+          boot.style.opacity='0';boot.style.transition='opacity .5s';
+          setTimeout(()=>{if(boot.parentNode)boot.remove();},500);
+        },3400);
+      }
     }
   }
-  document.getElementById('sp-prenom').addEventListener('keydown',e=>{if(e.key==='Enter')document.getElementById('sp-nom').focus();});
-  document.getElementById('sp-nom').addEventListener('keydown',e=>{if(e.key==='Enter')handleSplash();});
+
+  // Attacher les events clavier sur le splash
+  const spP=document.getElementById('sp-prenom');
+  const spN=document.getElementById('sp-nom');
+  if(spP)spP.addEventListener('keydown',e=>{if(e.key==='Enter'&&spN)spN.focus();});
+  if(spN)spN.addEventListener('keydown',e=>{if(e.key==='Enter')handleSplash();});
+
+  // FALLBACK DE SÉCURITÉ — si après 7s quelque chose bloque encore, on force le bureau
+  setTimeout(()=>{
+    ['splash','boot'].forEach(id=>{
+      const el=document.getElementById(id);
+      if(el){el.style.opacity='0';el.style.pointerEvents='none';setTimeout(()=>{if(el.parentNode)el.remove();},300);}
+    });
+  },7000);
 })();
 
 /* ══ CURSOR ══ */
@@ -709,8 +581,7 @@ document.addEventListener('mouseup',()=>{dot.classList.remove('click');ring.clas
 
 /* ══ PARALLAX ══ */
 function updateParallax(mx,my){
-  const cx=innerWidth/2,cy=innerHeight/2;
-  const dx=(mx-cx)/cx,dy=(my-cy)/cy;
+  const cx=innerWidth/2,cy=innerHeight/2,dx=(mx-cx)/cx,dy=(my-cy)/cy;
   document.querySelectorAll('.dicon:not(.dragging)').forEach((icon,i)=>{
     const pl=icon.querySelector('.di-parallax');
     if(pl)pl.style.transform=`translate(${dx*(6+i*4)}px,${dy*(6+i*4)}px)`;
@@ -744,28 +615,61 @@ tick();setInterval(tick,10000);
 /* ══ FINDER DATA ══ */
 const FOLDERS={pro:{icon:'📁',fr:'Projets Pro',en:'Pro Projects',projects:['mirakl','payfit','seo','marathon','thelook']},perso:{icon:'📂',fr:'Projets Perso',en:'Personal Projects',projects:['taskmaster','aiagent']}};
 const P={
-  mirakl:{cat:'pro',icon:'🏆',color:'#ff375f',github:'https://github.com/CodeurFort/mirakl-prospector',fr:{name:'Hackathon Mirakl — Connect Prospector',sub:'Next.js · GPT-4o · Supabase · Vercel · 48h',tags:['Next.js','GPT-4o','Supabase','Apify','Vercel'],ctx:'Les BDRs de <strong>Mirakl Connect</strong> (700+ opérateurs) passaient <strong>1h15 par lead</strong> en recherche manuelle.',what:['<strong>UC2-A (By Seller)</strong> : URL → scraping → fit → 3 emails en <strong>6 secondes</strong>','<strong>UC2-B (By Marketplace)</strong> : filtres → scoring 100 pts → leads priorisés','<strong>Grille</strong> : Catégorie(28)·Géo(22)·Prix(16)·Positionnement(14)·Saisonnalité(10)·Signaux(10)','GPT-4o personnalise l\'outreach selon la culture marché','Déployé en production sur Vercel'],rh:'Impact business',metrics:[{v:'×37',l:'Plus rapide'},{v:'-89%',l:'Coût/lead'},{v:'6¢',l:'Pipeline/lead'},{v:'6s',l:'By Seller'},{v:'+62pts',l:'Temps vente'},{v:'×2400',l:'ROI estimé'}],end:'Conception de bout en bout. <strong>ROI calculé, déployé en production.</strong>'},en:{name:'Mirakl Hackathon — Connect Prospector',sub:'Next.js · GPT-4o · Supabase · Vercel · 48h',tags:['Next.js','GPT-4o','Supabase','Apify','Vercel'],ctx:'<strong>Mirakl Connect</strong> BDRs (700+ operators) spent <strong>1h15 per lead</strong> on manual research.',what:['<strong>UC2-A (By Seller)</strong>: URL → scraping → fit → 3 emails in <strong>6 seconds</strong>','<strong>UC2-B (By Marketplace)</strong>: filters → 100-pt scoring → prioritized leads','<strong>Grid</strong>: Category(28)·Geo(22)·Price(16)·Positioning(14)·Seasonality(10)·Signals(10)','GPT-4o personalizes outreach by market culture','Deployed in production on Vercel'],rh:'Business impact',metrics:[{v:'×37',l:'Faster'},{v:'-89%',l:'Cost/lead'},{v:'6¢',l:'Pipeline/lead'},{v:'6s',l:'By Seller'},{v:'+62pts',l:'Sales time'},{v:'×2400',l:'Est. ROI'}],end:'End-to-end design. <strong>Calculated ROI, deployed in production.</strong>'}},
-  payfit:{cat:'pro',icon:'⚡',color:'#FF6B35',github:null,fr:{name:'Hackathon PayFit 2026 — SEO Content IA',sub:'🏆 Innovation Award · 48h',tags:['Make.com','GPT-4o','Claude','Google Sheets','Docker'],ctx:'<strong>Goulot critique</strong> : 2h/article, 1 rédacteur, 5h/sem veille juridique.',what:['<strong>4 agents</strong> : Info-Radar · StrategicPlanner(/13) · SEO Writer(14+/15) · Quality Guardian(EEAT/100)','2 scénarios Make.com : Keyword Research + Question Generation','APIs URSSAF · Legifrance · DARES enrichies automatiquement','Hub Google Sheets : SOURCE · ANALYSIS · HISTORY · METRICS','Export HTML · DOCX · PDF en 2 minutes'],rh:'Résultats 48h',metrics:[{v:'80%',l:'Temps économisé'},{v:'14.3/15',l:'Qualité'},{v:'200K€',l:'Économies/an'},{v:'0',l:'Erreurs jur.'},{v:'🏆',l:'Innovation Award'}],end:'4 articles en 48h. 50% à 15/15. <strong>Innovation Award PayFit.</strong>'},en:{name:'PayFit Hackathon 2026 — IA SEO Content',sub:'🏆 Innovation Award · 48h',tags:['Make.com','GPT-4o','Claude','Google Sheets','Docker'],ctx:'<strong>Critical bottleneck</strong>: 2h/article, 1 writer, 5h/week legal monitoring.',what:['<strong>4 agents</strong>: Info-Radar · StrategicPlanner(/13) · SEO Writer(14+/15) · Quality Guardian(EEAT/100)','2 Make.com scenarios: Keyword Research + Question Generation','URSSAF · Legifrance · DARES APIs auto-enriched','Google Sheets Hub: SOURCE · ANALYSIS · HISTORY · METRICS','HTML · DOCX · PDF export in 2 minutes'],rh:'48h results',metrics:[{v:'80%',l:'Time saved'},{v:'14.3/15',l:'Quality'},{v:'€200K',l:'Annual savings'},{v:'0',l:'Legal errors'},{v:'🏆',l:'Innovation Award'}],end:'4 articles in 48h. 50% at 15/15. <strong>Innovation Award from PayFit.</strong>'}},
-  seo:{cat:'pro',icon:'🔍',color:'#0071e3',github:null,fr:{name:'Eugenia School — SEO/GEO/AEO',sub:'4 agents Dust · Machine éditoriale · Avril 2026',tags:['Dust','SEMrush','ChatGPT','Perplexity','Webflow'],ctx:'Eugenia <strong>inexistante en ligne</strong>. Les lycéens demandent à ChatGPT — Eugenia n\'apparaissait nulle part.',what:['Audit 3 surfaces : SEO · GEO · AEO','Paradoxe Aivancity : 954 mots-clés Google → 0/6 citations LLMs','4 agents Dust : Lundi Édito · Veille · Coordinateur · Rédacteur (seuil 13/15)','Quick win 0€ : page Bachelor IA → Top 20 en 6 semaines','Livrables : prompts, fiche Webflow, calendrier 7 semaines'],rh:'Projections 6 mois',metrics:[{v:'10→150',l:'Mots-clés'},{v:'+1500',l:'Trafic/mois'},{v:'1→3/6',l:'Citations LLMs'},{v:'2h/sem',l:'Effort humain'}],end:'Machine opérationnelle <strong>déployable le lendemain.</strong>'},en:{name:'Eugenia School — SEO/GEO/AEO',sub:'4 Dust agents · Editorial machine · April 2026',tags:['Dust','SEMrush','ChatGPT','Perplexity','Webflow'],ctx:'Eugenia <strong>invisible online</strong>. Students ask ChatGPT — Eugenia appeared nowhere.',what:['3-surface audit: SEO · GEO · AEO','Aivancity paradox: 954 keywords → 0/6 LLM citations','4 Dust agents: Monday · Watch · Coordinator · Writer (threshold 13/15)','€0 quick win: AI Bachelor page → Top 20 in 6 weeks','Deliverables: prompts, Webflow sheet, 7-week calendar'],rh:'6-month projections',metrics:[{v:'10→150',l:'Keywords'},{v:'+1500',l:'Monthly traffic'},{v:'1→3/6',l:'LLM citations'},{v:'2h/week',l:'Human effort'}],end:'Operational machine <strong>deployable the next day.</strong>'}},
-  marathon:{cat:'pro',icon:'🏃',color:'#30d158',github:'https://github.com/venom6-13/scraping_marathonParis',fr:{name:'Marathon de Paris 2025',sub:'50 001 finishers · Python · API reverse-engineering',tags:['Python','requests','pandas','Google Sheets'],ctx:'Aucune API publique. <strong>Reverse-engineering</strong> de l\'API interne via F12.',what:['GET authentifié : cookies PHPSESSID + user-agent','9 champs utiles / ~40 JSON brut · 4 variables calculées','search_continent() + runner_cat()','JSON + CSV → Google Sheets · 8 graphiques','Insight : Africains 25min plus rapides que les Asiatiques'],rh:'Chiffres',metrics:[{v:'50 001',l:'Finishers'},{v:'72%',l:'Hommes'},{v:'100+',l:'Nationalités'},{v:'5:28',l:'min/km africains'}],end:'<strong>API reverse-engineering</strong> · Pipeline structuré · Insights actionnables.'},en:{name:'Paris Marathon 2025',sub:'50,001 finishers · Python · API reverse-engineering',tags:['Python','requests','pandas','Google Sheets'],ctx:'No public API. <strong>Reverse-engineered</strong> the internal API via F12.',what:['Authenticated GET: PHPSESSID cookies + user-agent','9 useful fields / ~40 raw JSON · 4 calculated variables','search_continent() + runner_cat()','JSON + CSV → Google Sheets · 8 charts','Insight: African runners 25min faster than Asians'],rh:'Figures',metrics:[{v:'50,001',l:'Finishers'},{v:'72%',l:'Male'},{v:'100+',l:'Nationalities'},{v:'5:28',l:'min/km African'}],end:'<strong>API reverse-engineering</strong> · Structured pipeline · Actionable insights.'}},
-  thelook:{cat:'pro',icon:'📊',color:'#bf5af2',github:'https://github.com/venom6-13/1_sql_thelook_ecommercet_audit',fr:{name:'TheLook E-Commerce — SQL Audit',sub:'BigQuery Multi-CTE · 14 mois · 6 insights',tags:['BigQuery','SQL','Looker Studio'],ctx:'<strong>+154% CA</strong>, <strong>+163% commandes</strong> — rentabilité stagnante. Les retours érodent le P&L.',what:['Multi-CTE : financial_monthly · sessions_monthly · retention_monthly','LEFT JOIN : exhaustivité garantie','SAFE_DIVIDE : robustesse production','Marge nette estimée : NRF 16.9%','7 requêtes : retours · genre · Email jan. · Chine · Japon/Brésil'],rh:'6 insights',metrics:[{v:'30%',l:'Return rate'},{v:'8pts',l:'Marge ♀>♂'},{v:'42%',l:'CA Chine'},{v:'4.6%',l:'Record Brésil'},{v:'Jan ☠️',l:'Email rebond'}],end:'Réallouer budget vers femmes. Suspendre Email jan. <strong>Blueprint Brésil Q4.</strong>'},en:{name:'TheLook E-Commerce — SQL Audit',sub:'BigQuery Multi-CTE · 14 months · 6 insights',tags:['BigQuery','SQL','Looker Studio'],ctx:'<strong>+154% revenue</strong>, <strong>+163% orders</strong> — stagnant profitability. Returns erode P&L.',what:['Multi-CTE: financial_monthly · sessions_monthly · retention_monthly','LEFT JOIN: complete data guaranteed','SAFE_DIVIDE: production robustness','Estimated net margin: NRF 16.9%','7 queries: returns · gender · Jan Email · China · Japan/Brazil'],rh:'6 insights',metrics:[{v:'30%',l:'Return rate'},{v:'8pts',l:'Margin ♀>♂'},{v:'42%',l:'Revenue China'},{v:'4.6%',l:'Brazil record'},{v:'Jan ☠️',l:'Email bounce'}],end:'Reallocate budget to women. Suspend Jan Email. <strong>Brazil Q4 blueprint.</strong>'}},
-  taskmaster:{cat:'perso',icon:'✅',color:'#30d158',github:null,fr:{name:'Weekly Task Master',sub:'Google Workspace · 4 piliers · 0 dépendances',tags:['Apps Script','Google Sheets','Gmail','Calendar'],ctx:'Système <strong>100% auto-hébergé</strong> — zéro outil tiers.',what:['Pilier 1 — Capture : formulaire Google auto chaque lundi','Pilier 2 — Organisation : Google Sheet central','Pilier 3 — Rappels : Apps Script → résumé vendredi 18h','Pilier 4 — Revue : dashboard hebdo auto-généré','0 dépendances : 100% Google natif'],rh:'Impact',metrics:[{v:'0€',l:'Coût'},{v:'4',l:'Piliers'},{v:'100%',l:'Tâches trackées'},{v:'-60%',l:'Oublis'}],end:'Système de productivité <strong>utilisé au quotidien.</strong>'},en:{name:'Weekly Task Master',sub:'Google Workspace · 4 pillars · 0 dependencies',tags:['Apps Script','Google Sheets','Gmail','Calendar'],ctx:'<strong>100% self-hosted</strong> system — zero third-party tools.',what:['Pillar 1 — Capture: Google form auto every Monday','Pillar 2 — Organization: Central Google Sheet','Pillar 3 — Reminders: Apps Script → Friday 6pm summary','Pillar 4 — Review: Auto weekly dashboard','0 dependencies: 100% native Google'],rh:'Impact',metrics:[{v:'€0',l:'Cost'},{v:'4',l:'Pillars'},{v:'100%',l:'Tasks tracked'},{v:'-60%',l:'Forgotten'}],end:'Productivity system <strong>used daily.</strong>'}},
-  aiagent:{cat:'perso',icon:'🤖',color:'#bf5af2',github:null,fr:{name:'AI Agent Ecosystem — 9 agents Dust × Claude',sub:'Agents spécialisés · Usage quotidien · RAG',tags:['Dust','Claude','Anthropic','Prompt Engineering','RAG'],ctx:'Écosystème de <strong>9 agents IA spécialisés</strong> sur Dust.',what:['Agent Stratège : analyse business et recommandations','Agent Rédacteur : contenu long-format, grille qualité auto','Agent Data : interprétation SQL/CSV, insights','Agent RevOps : CRM, workflows Salesforce/HubSpot','Agent Veille : monitoring concurrentiel, actualités IA'],rh:'Architecture',metrics:[{v:'9',l:'Agents'},{v:'Daily',l:'Usage'},{v:'Claude',l:'Moteur'},{v:'RAG',l:'Knowledge'},{v:'0€',l:'Coût'}],end:'<strong>Assistant personnel augmenté</strong> remplaçant 5 outils.'},en:{name:'AI Agent Ecosystem — 9 Dust × Claude Agents',sub:'Specialized agents · Daily use · RAG',tags:['Dust','Claude','Anthropic','Prompt Engineering','RAG'],ctx:'Ecosystem of <strong>9 specialized AI agents</strong> on Dust.',what:['Strategy Agent: business analysis and recommendations','Writer Agent: long-form content with quality grid','Data Agent: SQL/CSV interpretation and insights','RevOps Agent: CRM optimization, Salesforce/HubSpot workflows','Watch Agent: competitive monitoring, AI news'],rh:'Architecture',metrics:[{v:'9',l:'Agents'},{v:'Daily',l:'Usage'},{v:'Claude',l:'Engine'},{v:'RAG',l:'Knowledge'},{v:'€0',l:'Cost'}],end:'<strong>Augmented personal assistant</strong> replacing 5 tools.'}}
+  mirakl:{cat:'pro',icon:'🏆',color:'#ff375f',github:'https://github.com/CodeurFort/mirakl-prospector',fr:{name:'Hackathon Mirakl — Connect Prospector',sub:'Next.js · GPT-4o · Supabase · Vercel · 48h',tags:['Next.js','GPT-4o','Supabase','Apify','Vercel'],ctx:'Les BDRs de <strong>Mirakl Connect</strong> (700+ opérateurs) passaient <strong>1h15 par lead</strong> en recherche manuelle. Objectif : automatiser le pipeline BDR complet en 48h.',what:['<strong>UC2-A</strong> : URL → scraping → fit marketplace → 3 emails en <strong>6 secondes</strong>','<strong>UC2-B</strong> : filtres → scoring 100 pts → leads priorisés','Grille de scoring : Catégorie(28)·Géo(22)·Prix(16)·Positionnement(14)·Saisonnalité(10)·Signaux(10)','GPT-4o personnalise l\'outreach selon la culture du marché cible','Déployé en production sur Vercel avec screenshots réels'],rh:'Impact business',metrics:[{v:'×37',l:'Plus rapide'},{v:'-89%',l:'Coût/lead'},{v:'6¢',l:'Pipeline/lead'},{v:'6s',l:'By Seller'},{v:'+62pts',l:'Temps vente'},{v:'×2400',l:'ROI estimé'}],end:'Conception de bout en bout en 48h. <strong>ROI calculé, déployé en production.</strong>'},en:{name:'Mirakl Hackathon — Connect Prospector',sub:'Next.js · GPT-4o · Supabase · Vercel · 48h',tags:['Next.js','GPT-4o','Supabase','Apify','Vercel'],ctx:'<strong>Mirakl Connect</strong> BDRs (700+ operators) spent <strong>1h15 per lead</strong> on manual research. Goal: automate full BDR pipeline in 48h.',what:['<strong>UC2-A</strong>: URL → scraping → marketplace fit → 3 emails in <strong>6 seconds</strong>','<strong>UC2-B</strong>: filters → 100-pt scoring → prioritized leads','Scoring grid: Category(28)·Geo(22)·Price(16)·Positioning(14)·Seasonality(10)·Signals(10)','GPT-4o personalizes outreach based on target market culture','Deployed in production on Vercel with real screenshots'],rh:'Business impact',metrics:[{v:'×37',l:'Faster'},{v:'-89%',l:'Cost/lead'},{v:'6¢',l:'Pipeline/lead'},{v:'6s',l:'By Seller'},{v:'+62pts',l:'Sales time'},{v:'×2400',l:'Est. ROI'}],end:'End-to-end design in 48h. <strong>Calculated ROI, deployed in production.</strong>'}},
+  payfit:{cat:'pro',icon:'⚡',color:'#FF6B35',github:null,fr:{name:'Hackathon PayFit 2026 — SEO Content IA',sub:'🏆 Innovation Award · 48h · Automatisation enterprise',tags:['Make.com','GPT-4o','Claude Sonnet','Google Sheets','Docker'],ctx:'PayFit face à un <strong>goulot critique</strong> : 2h par article, 1 rédacteur, 5h/sem de veille juridique. Scaling impossible face à la concurrence IA.',what:['<strong>4 agents orchestrés</strong> : Info-Radar · StrategicPlanner(/13) · SEO Writer(14+/15) · Quality Guardian(EEAT/100)','2 scénarios Make.com : Keyword Research automatisé + Question Generation','APIs URSSAF · Legifrance · DARES enrichies automatiquement','Hub Google Sheets : SOURCE · ANALYSIS · HISTORY · METRICS','Export HTML · DOCX · PDF en moins de 2 minutes'],rh:'Résultats 48h',metrics:[{v:'80%',l:'Temps économisé'},{v:'14.3/15',l:'Qualité moyenne'},{v:'200K€',l:'Économies/an'},{v:'0',l:'Erreurs juridiques'},{v:'🏆',l:'Innovation Award'}],end:'4 articles en 48h (vs 1 semaine normal). 50% notés 15/15. Zéro erreur compliance. <strong>Innovation Award décerné par PayFit.</strong>'},en:{name:'PayFit Hackathon 2026 — IA SEO Content',sub:'🏆 Innovation Award · 48h',tags:['Make.com','GPT-4o','Claude','Google Sheets'],ctx:'PayFit facing a <strong>critical bottleneck</strong>: 2h/article, 1 writer, 5h/week legal monitoring.',what:['<strong>4 orchestrated agents</strong>: Info-Radar · StrategicPlanner · SEO Writer(14+/15) · Quality Guardian','2 Make.com scenarios: Keyword Research + Question Generation','URSSAF · Legifrance · DARES APIs auto-enriched','Google Sheets Hub: SOURCE · ANALYSIS · HISTORY · METRICS','HTML · DOCX · PDF export in under 2 minutes'],rh:'48h results',metrics:[{v:'80%',l:'Time saved'},{v:'14.3/15',l:'Avg quality'},{v:'€200K',l:'Annual savings'},{v:'0',l:'Legal errors'},{v:'🏆',l:'Innovation Award'}],end:'4 articles in 48h. 50% rated 15/15. Zero compliance errors. <strong>Innovation Award from PayFit.</strong>'}},
+  seo:{cat:'pro',icon:'🔍',color:'#0071e3',github:null,fr:{name:'Eugenia School — Audit SEO/GEO/AEO',sub:'4 agents Dust · Machine éditoriale · Avril 2026',tags:['Dust','SEMrush','ChatGPT','Perplexity','Webflow'],ctx:'Eugenia School <strong>inexistante en ligne</strong>. Les lycéens demandent à ChatGPT — Eugenia n\'apparaissait nulle part.',what:['Audit 3 surfaces : SEO · GEO (ChatGPT+Perplexity) · AEO (Featured Snippets)','Paradoxe Aivancity : 954 mots-clés Google → 0/6 citations LLMs','4 agents Dust : Lundi Édito · Veille · Coordinateur · Rédacteur (seuil 13/15)','Quick win 0€ : page Bachelor IA → Top 20 potentiel en 6 semaines','Livrables : prompts, fiche Webflow, calendrier 7 semaines'],rh:'Projections 6 mois',metrics:[{v:'10→150',l:'Mots-clés'},{v:'+1 500',l:'Trafic/mois'},{v:'1→3/6',l:'Citations LLMs'},{v:'2h/sem',l:'Effort humain'}],end:'Machine opérationnelle <strong>déployable le lendemain</strong>. Pas un rapport PDF — un système qui tourne.'},en:{name:'Eugenia School — SEO/GEO/AEO',sub:'4 Dust agents · Editorial machine · April 2026',tags:['Dust','SEMrush','Perplexity'],ctx:'Eugenia School <strong>invisible online</strong>.',what:['3-surface audit: SEO · GEO · AEO','Aivancity paradox: 954 keywords → 0/6 LLM citations','4 Dust agents: Monday · Watch · Coordinator · Writer (threshold 13/15)'],rh:'6-month projections',metrics:[{v:'10→150',l:'Keywords'},{v:'+1,500',l:'Monthly traffic'},{v:'1→3/6',l:'LLM citations'}],end:'Operational machine <strong>deployable the next day.</strong>'}},
+  marathon:{cat:'pro',icon:'🏃',color:'#30d158',github:'https://github.com/venom6-13/scraping_marathonParis',fr:{name:'Marathon de Paris 2025 — 50 001 Finishers',sub:'Python · Pipeline data complet · Reverse-engineering API',tags:['Python','requests','pandas','Google Sheets'],ctx:'Aucune API publique. Reverse-engineering d\'une API interne non documentée via F12.',what:['GET authentifié : cookies PHPSESSID + headers user-agent','9 champs utiles / ~40 JSON brut · 4 variables calculées','search_continent() + runner_cat() (sexe, tranche d\'âge)','JSON + CSV → Google Sheets · 8 graphiques','Insight : Africains 25 min plus rapides que les Asiatiques'],rh:'Chiffres',metrics:[{v:'50 001',l:'Finishers'},{v:'72%',l:'Hommes'},{v:'100+',l:'Nationalités'},{v:'5:28',l:'min/km africains'}],end:'<strong>API reverse-engineering</strong> · Pipeline structuré · Insights actionnables.'},en:{name:'Paris Marathon 2025',sub:'Python · API reverse-engineering',tags:['Python','pandas'],ctx:'No public API. Reverse-engineered undocumented internal API.',what:['Authenticated GET: PHPSESSID cookies + user-agent','9 useful fields from ~40 raw JSON','search_continent() + runner_cat()'],rh:'Figures',metrics:[{v:'50,001',l:'Finishers'},{v:'72%',l:'Male'},{v:'100+',l:'Nationalities'}],end:'<strong>API reverse-engineering</strong> · Actionable insights.'}},
+  thelook:{cat:'pro',icon:'📊',color:'#bf5af2',github:'https://github.com/venom6-13/1_sql_thelook_ecommercet_audit',fr:{name:'TheLook E-Commerce — SQL Audit',sub:'BigQuery Multi-CTE · 14 mois · 6 insights actionnables',tags:['BigQuery','SQL','Looker Studio'],ctx:'<strong>+154% CA</strong>, <strong>+163% commandes</strong> — rentabilité stagnante. Les retours érodent silencieusement le P&L.',what:['Architecture Multi-CTE : financial_monthly · sessions_monthly · retention_monthly','LEFT JOIN : exhaustivité garantie · SAFE_DIVIDE : robustesse production','Marge nette estimée avec benchmark NRF 16.9%','7 requêtes spécialisées : retours · genre · canal Email jan. · Chine · Japon/Brésil'],rh:'6 insights business',metrics:[{v:'30%',l:'Return rate'},{v:'8pts',l:'Marge ♀>♂'},{v:'42%',l:'CA Chine'},{v:'4.6%',l:'Record Brésil'},{v:'Jan ☠️',l:'Email rebond 2 ans'}],end:'Réallouer budget vers femmes. Suspendre Email janvier. <strong>Investiguer blueprint Brésil Q4.</strong>'},en:{name:'TheLook E-Commerce — SQL Audit',sub:'BigQuery Multi-CTE · 14 months',tags:['BigQuery','SQL','Looker'],ctx:'<strong>+154% revenue</strong> but stagnant profitability.',what:['Multi-CTE architecture: financial_monthly · sessions_monthly','LEFT JOIN + SAFE_DIVIDE for production robustness','7 specialized queries'],rh:'6 insights',metrics:[{v:'30%',l:'Return rate'},{v:'8pts',l:'Margin ♀>♂'},{v:'42%',l:'Revenue China'}],end:'Reallocate budget to women. Suspend Jan Email. <strong>Brazil Q4 blueprint.</strong>'}},
+  taskmaster:{cat:'perso',icon:'✅',color:'#30d158',github:null,fr:{name:'Weekly Task Master',sub:'Google Workspace · 4 piliers · 0 dépendances',tags:['Apps Script','Google Sheets','Gmail','Calendar'],ctx:'Système <strong>100% auto-hébergé</strong> sur Google Workspace — zéro outil tiers payant.',what:['Pilier 1 — Capture : formulaire Google auto chaque lundi matin','Pilier 2 — Organisation : Google Sheet central avec statuts et deadlines','Pilier 3 — Rappels : Apps Script → résumé vendredi 18h automatique','Pilier 4 — Revue : dashboard hebdo auto-généré avec KPIs'],rh:'Impact',metrics:[{v:'0€',l:'Coût'},{v:'4',l:'Piliers'},{v:'-60%',l:'Tâches oubliées'},{v:'0',l:'Outils externes'}],end:'Système de productivité <strong>utilisé au quotidien.</strong> Zéro friction, zéro coût.'},en:{name:'Weekly Task Master',sub:'Google Workspace · 4 pillars · 0 dependencies',tags:['Apps Script','Google Sheets'],ctx:'<strong>100% self-hosted</strong> system — zero paid third-party tools.',what:['Pillar 1 — Capture: Google form auto every Monday','Pillar 2 — Organization: Central Google Sheet','Pillar 3 — Reminders: Friday 6pm automatic summary','Pillar 4 — Review: Auto weekly KPI dashboard'],rh:'Impact',metrics:[{v:'€0',l:'Cost'},{v:'4',l:'Pillars'},{v:'-60%',l:'Forgotten tasks'}],end:'Productivity system <strong>used daily.</strong>'}},
+  aiagent:{cat:'perso',icon:'🤖',color:'#bf5af2',github:null,fr:{name:'AI Agent Ecosystem — 9 agents Dust × Claude',sub:'Agents spécialisés · Usage quotidien · RAG',tags:['Dust','Claude','Prompt Engineering','RAG'],ctx:'Écosystème de <strong>9 agents IA spécialisés</strong> sur Dust, chacun expert dans un domaine précis.',what:['Agent Stratège : analyse business et recommandations actionnables','Agent Rédacteur : contenu long-format avec grille qualité auto-évaluée (0-15)','Agent Data : interprétation SQL/CSV et génération d\'insights','Agent RevOps : optimisation CRM, workflows Salesforce/HubSpot','Agent Veille : monitoring concurrentiel et actualités IA quotidienne'],rh:'Architecture',metrics:[{v:'9',l:'Agents'},{v:'Daily',l:'Usage'},{v:'Claude',l:'Moteur'},{v:'0€',l:'Coût'}],end:'<strong>Assistant personnel augmenté</strong> remplaçant 5 outils différents.'},en:{name:'AI Agent Ecosystem — 9 Dust × Claude Agents',sub:'Specialized agents · Daily use · RAG',tags:['Dust','Claude','RAG'],ctx:'Ecosystem of <strong>9 specialized AI agents</strong> on Dust.',what:['Strategy Agent: business analysis and recommendations','Writer Agent: long-form content with quality grid','Data Agent: SQL/CSV insights','RevOps Agent: CRM optimization','Watch Agent: competitive monitoring'],rh:'Architecture',metrics:[{v:'9',l:'Agents'},{v:'Daily',l:'Usage'},{v:'Claude',l:'Engine'},{v:'€0',l:'Cost'}],end:'<strong>Augmented personal assistant</strong> replacing 5 tools.'}}
 };
 
 /* ══ FINDER LOGIC ══ */
 let lang=localStorage.getItem('lang')||'fr',openFdr=null,openProj=null,siriOpen=false;
-
 function openFolder(cat){openFdr=cat;openProj=null;const fd=FOLDERS[cat];document.getElementById('fdr-ico').textContent=fd.icon;document.getElementById('fdr-nm').textContent=fd[lang];renderSb(cat);renderEmpty();document.getElementById('finder').classList.add('open');}
 function closeFinder(){document.getElementById('finder').classList.remove('open');openFdr=null;openProj=null;}
-function renderSb(cat){const sb=document.getElementById('fdrSb');const lbl=lang==='fr'?'Projets':'Projects';let h=`<div class="fdr-sb-ttl">${lbl}</div>`;FOLDERS[cat].projects.forEach(pid=>{const p=P[pid],d=p[lang];const s=d.name.length>22?d.name.substring(0,22)+'…':d.name;h+=`<div class="fdr-pi${openProj===pid?' active':''}" onclick="selP('${pid}')" id="si-${pid}"><span class="ico">${p.icon}</span><span>${s}</span></div>`;});sb.innerHTML=h;}
+function renderSb(cat){const sb=document.getElementById('fdrSb');const lbl=lang==='fr'?'Projets':'Projects';let h=`<div class="fdr-sb-ttl">${lbl}</div>`;FOLDERS[cat].projects.forEach(pid=>{const p=P[pid],d=p[lang];const s=d.name.length>24?d.name.substring(0,24)+'…':d.name;h+=`<div class="fdr-pi${openProj===pid?' active':''}" onclick="selP('${pid}')" id="si-${pid}"><span class="ico">${p.icon}</span><span>${s}</span></div>`;});sb.innerHTML=h;}
 function renderEmpty(){const lbl=lang==='fr'?'Sélectionnez un projet':'Select a project';document.getElementById('fdrCnt').innerHTML=`<div class="fdr-empty"><div class="fdr-empty-ico">📂</div><p style="font-size:14px">${lbl}</p></div>`;}
-function selP(pid){openProj=pid;document.querySelectorAll('.fdr-pi').forEach(el=>el.classList.toggle('active',el.id===`si-${pid}`));const p=P[pid],d=p[lang];const cH=lang==='fr'?'Contexte':'Context',wH=lang==='fr'?'Ce que j\'ai fait':'What I built',ghL=lang==='fr'?'GitHub':'GitHub';const metrics=d.metrics.map(m=>`<div class="pm"><div class="pmv" style="color:${p.color}">${m.v}</div><div class="pml">${m.l}</div></div>`).join('');const tags=d.tags.map(t=>`<span class="pd-tag">${t}</span>`).join('');const what=d.what.map(w=>`<li>${w}</li>`).join('');const gh=p.github?`<a href="${p.github}" target="_blank" class="pb">⌨️ ${ghL}</a>`:'';document.getElementById('fdrCnt').innerHTML=`<div class="pd"><div class="pd-hero"><div class="pd-ico">${p.icon}</div><div><div class="pd-nm">${d.name}</div><div class="pd-sb">${d.sub}</div><div class="pd-tags">${tags}</div></div></div><div class="ph">${cH}</div><p class="pt">${d.ctx}</p><div class="ph">${wH}</div><ul class="pl">${what}</ul><div class="ph">${d.rh}</div><div class="pm-g">${metrics}</div><div class="ph">Impact</div><p class="pt">${d.end}</p>${gh}</div>`;}
+function selP(pid){openProj=pid;document.querySelectorAll('.fdr-pi').forEach(el=>el.classList.toggle('active',el.id===`si-${pid}`));const p=P[pid],d=p[lang];const cH=lang==='fr'?'Contexte':'Context',wH=lang==='fr'?'Ce que j\'ai fait':'What I built',ghL=lang==='fr'?'Voir sur GitHub':'View on GitHub';const metrics=d.metrics.map(m=>`<div class="pm"><div class="pmv" style="color:${p.color}">${m.v}</div><div class="pml">${m.l}</div></div>`).join('');const tags=d.tags.map(t=>`<span class="pd-tag">${t}</span>`).join('');const what=d.what.map(w=>`<li>${w}</li>`).join('');const gh=p.github?`<a href="${p.github}" target="_blank" class="pb">⌨️ ${ghL}</a>`:'';document.getElementById('fdrCnt').innerHTML=`<div class="pd"><div class="pd-hero"><div class="pd-ico">${p.icon}</div><div><div class="pd-nm">${d.name}</div><div class="pd-sb">${d.sub}</div><div class="pd-tags">${tags}</div></div></div><div class="ph">${cH}</div><p class="pt">${d.ctx}</p><div class="ph">${wH}</div><ul class="pl">${what}</ul><div class="ph">${d.rh}</div><div class="pm-g">${metrics}</div><div class="ph">Impact</div><p class="pt">${d.end}</p>${gh}</div>`;}
 
-/* ══ SIRI ══ */
-const KB={fr:{projets:'Alec a 7 projets : Mirakl(×37), PayFit(🏆), Eugenia SEO, Marathon(50k), TheLook SQL, Task Master, AI Agents. Ouvre un dossier ! 📁',stack:'Salesforce, HubSpot, Make.com, N8N, Dust, GPT-4o, Claude, SQL, BigQuery, Python, Next.js, Supabase, Vercel. 🛠️',contact:'Email : alecrudydiami@gmail.com · LinkedIn : /in/alec-diamidia · GitHub : venom6-13 · Paris 📬',cv:'CV disponible : 3 expériences RevOps (Evaneos actuel, United Heroes, Javelo), Eugenia School × GEM (Top 10 national), 7 projets. 📄',default:'Je suis Siri, l\'assistant d\'Alec DIAMIDIA. Pose-moi une question ! ✦'},en:{projets:'Alec has 7 projects: Mirakl(×37), PayFit(🏆), Eugenia SEO, Marathon(50k), TheLook SQL, Task Master, AI Agents. Open a folder! 📁',stack:'Salesforce, HubSpot, Make.com, N8N, Dust, GPT-4o, Claude, SQL, BigQuery, Python, Next.js, Supabase, Vercel. 🛠️',contact:'Email: alecrudydiami@gmail.com · LinkedIn: /in/alec-diamidia · GitHub: venom6-13 · Paris 📬',cv:'CV available: 3 RevOps roles (Evaneos current, United Heroes, Javelo), Eugenia School × GEM (Top 10 national), 7 projects. 📄',default:'I\'m Siri, Alec DIAMIDIA\'s assistant. Ask me anything! ✦'}};
-function siriQ(t){document.getElementById('siriOut').textContent=KB[lang][t]||KB[lang].default;}
-function siriSend(){const i=document.getElementById('siriIn'),q=i.value.trim().toLowerCase();if(!q)return;let r=KB[lang].default;if(/projet|project/i.test(q))r=KB[lang].projets;else if(/stack|outil|techno/i.test(q))r=KB[lang].stack;else if(/contact|email|linkedin/i.test(q))r=KB[lang].contact;else if(/cv|exp|formation/i.test(q))r=KB[lang].cv;document.getElementById('siriOut').textContent=r;i.value='';}
+/* ══ SIRI — KB détaillé ══ */
+const KB={
+  fr:{
+    projets:`Alec a <strong>7 projets</strong> au total :<br><br>📁 <strong>Pro (5)</strong> :<br>🏆 <strong>Mirakl</strong> — Pipeline BDR ×37, ROI ×2400<br>⚡ <strong>PayFit</strong> — 🏆 Innovation Award, -80% temps<br>🔍 <strong>Eugenia SEO/GEO/AEO</strong> — 4 agents Dust<br>📊 <strong>TheLook SQL</strong> — 6 insights BigQuery<br>🏃 <strong>Marathon Paris</strong> — 50 001 runners<br><br>📂 <strong>Perso (2)</strong> :<br>📅 Weekly Task Master — Google Workspace<br>🤖 AI Agent Ecosystem — 9 agents Dust × Claude`,
+    mirakl:`🏆 <strong>Hackathon Mirakl — Connect Prospector</strong><br><br>Problème : les BDRs passaient 1h15 par lead. En 48h, Alec a construit un pipeline complet :<br><br>• URL → scraping → scoring 100pts → 3 emails en 6 secondes<br>• Grille : Catégorie(28) · Géo(22) · Prix(16) · Positionnement(14)<br>• Stack : Next.js · GPT-4o · Supabase · Apify · Vercel<br><br>📈 Résultats : ×37 plus rapide · -89% coût/lead · ROI ×2400 · Déployé en production`,
+    payfit:`⚡ <strong>Hackathon PayFit 2026 — 🏆 Innovation Award</strong><br><br>Contexte : 2h/article, 1 rédacteur, 5h/sem veille juridique.<br><br>Solution : 4 agents orchestrés (Info-Radar · StrategicPlanner · SEO Writer · Quality Guardian) + 2 scénarios Make.com<br><br>📈 Résultats :<br>• -80% temps de rédaction<br>• Qualité moyenne 14.3/15<br>• 200K€/an économisés<br>• 0 erreur juridique<br>• 🏆 Innovation Award PayFit`,
+    seo:`🔍 <strong>Eugenia School — SEO/GEO/AEO</strong><br><br>Diagnostic : Eugenia invisible sur Google ET dans les LLMs (0/6 citations vs 954 mots-clés Aivancity).<br><br>Solution : 4 agents Dust déployés + calendrier éditorial 7 semaines + quick win 0€.<br><br>📈 Projections 6 mois : 10→150 mots-clés · +1500 trafic/mois · 1→3 citations LLMs`,
+    marathon:`🏃 <strong>Marathon de Paris 2025</strong><br><br>Challenge : aucune API publique. Alec a reverse-engineeré l'API interne via F12.<br><br>50 001 finishers analysés en Python :<br>• 72% hommes · 100+ nationalités<br>• Africains 25 min plus rapides<br>• 8 graphiques · 3 axes d'analyse<br><br>Stack : Python · requests · pandas · Google Sheets`,
+    thelook:`📊 <strong>TheLook SQL Audit</strong><br><br>Anomalie : +154% CA mais rentabilité stagnante.<br><br>Architecture BigQuery Multi-CTE : 14 mois de données · 7 requêtes spécialisées<br><br>6 insights :<br>• Return rate 30% — érosion P&L silencieuse<br>• Marge femmes +8pts vs hommes<br>• 42% CA concentré en Chine<br>• Email janvier : 100% rebond sur 2 ans`,
+    cv:`📄 <strong>Parcours d'Alec DIAMIDIA</strong><br><br>🟢 <strong>Evaneos</strong> (actuel) — Salesforce Ops : config, automation Make/N8N, dashboards<br>⚪ <strong>United Heroes</strong> — RevOps 1 an : HubSpot, Planhat, CODIR reports<br>⚪ <strong>Javelo/Tellent</strong> — Sales Ops → RevOps · 7 mois<br><br>🎓 <strong>Formation</strong> : Eugenia School × Grenoble EM · MSc AI Applied to Business · Titre RNCP · 2024-2027<br>Partenaires : Microsoft · Mistral AI · Carrefour · Station F`,
+    stack:`🛠️ <strong>Stack complet d'Alec</strong><br><br>💼 CRM : <strong>Salesforce</strong> · <strong>HubSpot</strong> · Planhat · Airtable<br>📊 Data : <strong>SQL</strong> · <strong>BigQuery</strong> · Python · Looker Studio · Tableau<br>⚙️ Automation : <strong>Make.com</strong> · N8N · Flow Builder · Zapier<br>🤖 IA : <strong>Dust</strong> · <strong>GPT-4o</strong> · <strong>Claude</strong> · Cursor · Perplexity<br>💻 Dev : Next.js · Vercel · Supabase · Webflow · Apps Script`,
+    contact:`📬 <strong>Contacter Alec</strong><br><br>✉️ alecrudydiami@gmail.com<br>💼 linkedin.com/in/alec-diamidia<br>⌨️ github.com/venom6-13<br><br>Basé à Paris · Disponible en alternance`,
+    default:`Je suis Siri, l'assistant d'Alec DIAMIDIA. Je peux te parler de ses projets (Mirakl, PayFit, SQL...), son parcours RevOps, sa stack technique ou comment le contacter. Essaie un des boutons ci-dessous !`
+  },
+  en:{
+    projets:`Alec has <strong>7 projects</strong> in total:<br><br>📁 <strong>Pro (5)</strong>:<br>🏆 Mirakl — BDR pipeline ×37, ROI ×2400<br>⚡ PayFit — 🏆 Innovation Award, -80% time<br>🔍 Eugenia SEO/GEO/AEO — 4 Dust agents<br>📊 TheLook SQL — 6 BigQuery insights<br>🏃 Paris Marathon — 50,001 runners<br><br>📂 <strong>Personal (2)</strong>:<br>📅 Weekly Task Master<br>🤖 AI Agent Ecosystem`,
+    mirakl:`🏆 <strong>Mirakl Hackathon — Connect Prospector</strong><br><br>BDRs spent 1h15 per lead. In 48h, Alec built a full pipeline:<br>• URL → scraping → 100pt scoring → 3 emails in 6 seconds<br>• Stack: Next.js · GPT-4o · Supabase · Apify · Vercel<br><br>📈 Results: ×37 faster · -89% cost/lead · ROI ×2400 · Deployed in production`,
+    payfit:`⚡ <strong>PayFit Hackathon 2026 — 🏆 Innovation Award</strong><br><br>4 orchestrated agents + 2 Make.com scenarios<br><br>📈 Results:<br>• -80% writing time<br>• 14.3/15 avg quality<br>• €200K/year saved<br>• 0 legal errors<br>• 🏆 Innovation Award`,
+    cv:`📄 <strong>Alec DIAMIDIA's career</strong><br><br>🟢 Evaneos (current) — Salesforce Ops<br>⚪ United Heroes — RevOps 1 year<br>⚪ Javelo/Tellent — Sales Ops → RevOps<br><br>🎓 Eugenia School × Grenoble EM · MSc AI Applied to Business · RNCP · 2024-2027`,
+    stack:`🛠️ <strong>Alec's full stack</strong><br><br>CRM: Salesforce · HubSpot · Planhat<br>Data: SQL · BigQuery · Python<br>Automation: Make.com · N8N · Zapier<br>AI: Dust · GPT-4o · Claude · Cursor<br>Dev: Next.js · Vercel · Supabase`,
+    contact:`📬 <strong>Contact Alec</strong><br><br>✉️ alecrudydiami@gmail.com<br>💼 linkedin.com/in/alec-diamidia<br>⌨️ github.com/venom6-13`,
+    default:`I'm Siri, Alec DIAMIDIA's assistant. Ask me about his projects, RevOps career, tech stack or how to contact him!`
+  }
+};
+const KBr=[
+  {r:/mirakl|connect|prospector|bdr/i,k:'mirakl'},
+  {r:/payfit|innovation award/i,k:'payfit'},
+  {r:/eugenia|seo|geo|aeo/i,k:'seo'},
+  {r:/marathon|runner|paris.*2025/i,k:'marathon'},
+  {r:/thelook|sql|bigquery|ecommerce/i,k:'thelook'},
+  {r:/projet|project|réalisation|work|portefeuille/i,k:'projets'},
+  {r:/stack|outil|techno|compétence|skill/i,k:'stack'},
+  {r:/cv|parcours|expérience|experience|evaneos|united|javelo|poste/i,k:'cv'},
+  {r:/formation|école|eugenia|master|msc|diplôme/i,k:'cv'},
+  {r:/contact|email|linkedin|joindre|recruter/i,k:'contact'},
+];
+function siriQ(k){const r=KB[lang][k]||KB[lang].default;document.getElementById('siriOut').innerHTML=r;}
+function siriSend(){const i=document.getElementById('siriIn'),q=i.value.trim();if(!q)return;i.value='';let found=false;for(const entry of KBr){if(entry.r.test(q)){siriQ(entry.k);found=true;break;}}if(!found)siriQ('default');}
 function toggleSiri(){siriOpen=!siriOpen;document.getElementById('siriOv').classList.toggle('open',siriOpen);if(siriOpen)document.getElementById('siriIn').focus();}
 function closeSiri(){siriOpen=false;document.getElementById('siriOv').classList.remove('open');}
 document.getElementById('siriBtn').addEventListener('click',toggleSiri);
@@ -773,84 +677,15 @@ document.getElementById('siriIn').addEventListener('keydown',e=>{if(e.key==='Ent
 
 /* ══ LANG ══ */
 const UI={
-  fr:{
-    'tt-cv-t':'Curriculum Vitae','tt-cv-d':'3 expériences RevOps · 7 projets · Top 10 MSc IA',
-    'tt-pro-t':'Projets Professionnels','tt-pro-d':'Hackathons, SQL, Python, SEO — 5 projets',
-    'tt-perso-t':'Projets Personnels','tt-perso-d':'Automatisations Google Workspace & agents IA',
-    'desk-hint':'Double-cliquez pour ouvrir · Glissez pour déplacer',
-    'lbl-cv':'📄 CV','lbl-pro':'📊 Projets Pro','lbl-perso':'🎨 Projets Perso',
-    'd-home':'Accueil','d-pro':'Projets Pro','d-perso':'Projets Perso',
-    'cv-title':'CV — Alec DIAMIDIA','cv-role':'Revenue Operations & CRM Specialist · MSc AI Applied to Business',
-    'stat-exp':'Expériences RevOps','stat-proj':'Projets réalisés','stat-hack':'Hackathons gagnés','stat-msc':'MSc IA national',
-    'exp-title':'Expériences Professionnelles','edu-title':'Formation','awards-title':'Distinctions',
-    'skills-title':'Compétences','projs-title':'Projets Clés','testi-title':'Témoignages','langs-title':'Langues',
-    'current':'En poste',
-    'ev-desc':'Plateforme de voyage sur-mesure',
-    'ev-cat1':'⚙️ Configuration & Maintenance Salesforce','ev-cat2':'🔄 Automatisation des processus','ev-cat3':'📊 Reporting & Dashboards','ev-cat4':'🤝 Collaboration transversale',
-    'ev-1a':'Gestion des comptes utilisateurs, profils, rôles, workflows et permissions.','ev-1b':'Data management : import/export, déduplication et nettoyage.','ev-1c':'Monitoring et résolution des incidents techniques.','ev-1d':'Support quotidien et formation des utilisateurs Salesforce.',
-    'ev-2a':'Configuration de Process Builder, Flows et Workflows.','ev-2b':'Création de workflows automatisés avec Make et N8N.',
-    'ev-3a':'Rapports et dashboards custom pour Sales, AM et Marketing.','ev-3b':'Adaptation de Salesforce aux besoins métier des stakeholders.',
-    'ev-4a':'Participation aux projets de system upgrades et intégrations.',
-    'uh-desc':'Application d\'engagement collaborateurs','uh-date':'07/2024 — 07/2025 · 1 an',
-    'uh-cat1':'📈 Stratégie','uh-cat2':'🛠️ Outils & Données','uh-cat3':'📚 Process, Enablement & FAQ',
-    'uh-1a':'Refonte des rapports à destination du CODIR.','uh-1b':'Proposition d\'une nouvelle stratégie d\'attribution de portefeuille.','uh-1c':'Automatisations réductrices de temps de saisie via HubSpot et Planhat.','uh-1d':'Accompagnement des équipes sur l\'adoption et l\'optimisation des outils.',
-    'uh-2a':'Implémentation de Modjo et Nomination ; co-gestion HubSpot / Planhat.','uh-2b':'Cleaning des doublons (entreprises, contacts, deals).','uh-2c':'Enrichissement de la donnée entreprise en volume et qualité.','uh-2d':'Création de workflows, rapports et dashboards personnalisés.',
-    'uh-3a':'Rédaction des process Sales, CSM et AM.','uh-3b':'Formation des équipes et refonte de la base de connaissance.','uh-3c':'FAQ management via canal Slack dédié.',
-    'jv-role':'Sales Ops → Revenue Ops · Plateforme RH de développement de compétences',
-    'jv-cat1':'🎯 Stratégie & Process','jv-cat2':'📂 Gestion de données','jv-cat3':'📚 Process, Enablement & FAQ',
-    'jv-1a':'Analyse et segmentation du marché adressable.','jv-1b':'Lancement de campagnes Sales et BDR ciblées.','jv-1c':'Création du process des campagnes d\'upsell.','jv-1d':'Workflows via HubSpot, Slack × Notion et Zapier.',
-    'jv-2a':'Mapping de comptes ; dispatching des leads inbound.','jv-2b':'Cleaning des données (doublons entreprises et contacts).','jv-2c':'Rapports et dashboards pour Sales, BDR et CSM.','jv-2d':'Vérification des deals closés : New biz, Renews, Upsells.',
-    'jv-3a':'Support aux problématiques des équipes Sales, BDR et CSM.','jv-3b':'Rédaction de la source d\'enablement Sales et BDRs.',
-    'award2-t':'Top 10 national','sk-langs':'Langues','projects':'Projets','sel-proj':'Sélectionnez un projet',
-    'testi1':'"Alec est au-dessus des attentes sur son rôle. Autonome, rigoureux, capable de monter en compétence très rapidement sur des outils techniques."',
-    'testi2':'"Sérieux et investi, très bon élément. Alec s\'est intégré rapidement et a produit des analyses de qualité sur des sujets complexes."',
-    'testi3':'"Alec a été un élément marquant de par son professionnalisme, sa capacité à comprendre les enjeux business et sa proactivité."',
-    'fr-level':'Natif','en-level':'Courant — C1',
-    'chip-proj':'Ses projets','chip-stack':'Son stack','chip-contact':'Le contacter','chip-cv':'Son CV'
-  },
-  en:{
-    'tt-cv-t':'Curriculum Vitae','tt-cv-d':'3 RevOps roles · 7 projects · Top 10 MSc AI',
-    'tt-pro-t':'Professional Projects','tt-pro-d':'Hackathons, SQL, Python, SEO — 5 projects',
-    'tt-perso-t':'Personal Projects','tt-perso-d':'Google Workspace automation & AI agents',
-    'desk-hint':'Double-click to open · Drag to move',
-    'lbl-cv':'📄 CV','lbl-pro':'📊 Pro Projects','lbl-perso':'🎨 Personal Projects',
-    'd-home':'Home','d-pro':'Pro Projects','d-perso':'Personal Projects',
-    'cv-title':'CV — Alec DIAMIDIA','cv-role':'Revenue Operations & CRM Specialist · MSc AI Applied to Business',
-    'stat-exp':'RevOps Experiences','stat-proj':'Projects completed','stat-hack':'Hackathons won','stat-msc':'MSc AI national',
-    'exp-title':'Professional Experience','edu-title':'Education','awards-title':'Distinctions',
-    'skills-title':'Skills','projs-title':'Key Projects','testi-title':'Testimonials','langs-title':'Languages',
-    'current':'Current',
-    'ev-desc':'Custom travel platform',
-    'ev-cat1':'⚙️ Salesforce Configuration & Maintenance','ev-cat2':'🔄 Process Automation','ev-cat3':'📊 Reporting & Dashboards','ev-cat4':'🤝 Cross-functional Collaboration',
-    'ev-1a':'Management of user accounts, profiles, roles, workflows and permissions.','ev-1b':'Data management: import/export, deduplication and cleanup.','ev-1c':'Monitoring and resolution of technical incidents.','ev-1d':'Daily support and training of Salesforce users.',
-    'ev-2a':'Configuration of Process Builder, Flows and Workflows.','ev-2b':'Creation of automated workflows with Make and N8N.',
-    'ev-3a':'Custom reports and dashboards for Sales, AM and Marketing.','ev-3b':'Adapting Salesforce to stakeholder business needs.',
-    'ev-4a':'Participation in system upgrades and integration projects.',
-    'uh-desc':'Employee engagement application','uh-date':'07/2024 — 07/2025 · 1 year',
-    'uh-cat1':'📈 Strategy','uh-cat2':'🛠️ Tools & Data','uh-cat3':'📚 Process, Enablement & FAQ',
-    'uh-1a':'Overhaul of reports for the Executive Committee.','uh-1b':'Proposal of a new portfolio attribution strategy.','uh-1c':'Time-saving automations via HubSpot and Planhat.','uh-1d':'Supporting teams on tool adoption and optimization.',
-    'uh-2a':'Implementation of Modjo and Nomination; co-management of HubSpot/Planhat.','uh-2b':'Deduplication cleanup (companies, contacts, deals).','uh-2c':'Company data enrichment in volume and quality.','uh-2d':'Creation of custom workflows, reports and dashboards.',
-    'uh-3a':'Writing Sales, CSM and AM processes.','uh-3b':'Team training and knowledge base overhaul.','uh-3c':'FAQ management via dedicated Slack channel.',
-    'jv-role':'Sales Ops → Revenue Ops · HR skills development platform',
-    'jv-cat1':'🎯 Strategy & Process','jv-cat2':'📂 Data Management','jv-cat3':'📚 Process, Enablement & FAQ',
-    'jv-1a':'Analysis and segmentation of the addressable market.','jv-1b':'Launch of targeted Sales and BDR campaigns.','jv-1c':'Creation of upsell campaign processes.','jv-1d':'Workflows via HubSpot, Slack × Notion and Zapier.',
-    'jv-2a':'Account mapping; inbound lead dispatching.','jv-2b':'Data cleaning (company and contact duplicates).','jv-2c':'Reports and dashboards for Sales, BDR and CSM.','jv-2d':'Verification of closed deals: New biz, Renewals, Upsells.',
-    'jv-3a':'Support for Sales, BDR and CSM team issues.','jv-3b':'Writing the Sales and BDR enablement source.',
-    'award2-t':'National Top 10','sk-langs':'Languages','projects':'Projects','sel-proj':'Select a project',
-    'testi1':'"Alec exceeds expectations in his role. Autonomous, rigorous, able to rapidly master technical tools."',
-    'testi2':'"Serious and committed, an excellent team member. Alec integrated quickly and produced quality analyses on complex topics."',
-    'testi3':'"Alec was a standout contributor for his professionalism, ability to understand business challenges and proactivity."',
-    'fr-level':'Native','en-level':'Fluent — C1',
-    'chip-proj':'His projects','chip-stack':'His stack','chip-contact':'Contact him','chip-cv':'His CV'
-  }
+  fr:{'tt-cv-t':'Curriculum Vitae','tt-cv-d':'3 expériences RevOps · 7 projets · Titre RNCP','tt-pro-t':'Projets Professionnels','tt-pro-d':'Hackathons, SQL, Python, SEO — 5 projets','tt-perso-t':'Projets Personnels','tt-perso-d':'Automatisations & agents IA','desk-hint':'Double-cliquez pour ouvrir · Glissez pour déplacer','lbl-cv':'📄 CV','lbl-pro':'📊 Projets Pro','lbl-perso':'🎨 Projets Perso'},
+  en:{'tt-cv-t':'Curriculum Vitae','tt-cv-d':'3 RevOps roles · 7 projects · RNCP','tt-pro-t':'Professional Projects','tt-pro-d':'Hackathons, SQL, Python, SEO — 5 projects','tt-perso-t':'Personal Projects','tt-perso-d':'Automations & AI agents','desk-hint':'Double-click to open · Drag to move','lbl-cv':'📄 CV','lbl-pro':'📊 Pro Projects','lbl-perso':'🎨 Personal Projects'}
 };
-
 function setLang(l){
   lang=l;localStorage.setItem('lang',l);
   document.querySelectorAll('.lang-btn').forEach(b=>b.classList.toggle('active',b.textContent.toLowerCase()===l));
-  document.querySelectorAll('[data-i18n]').forEach(el=>{const k=el.getAttribute('data-i18n');if(UI[l][k]!==undefined)el.textContent=UI[l][k];});
+  document.querySelectorAll('[data-i18n]').forEach(el=>{const k=el.getAttribute('data-i18n');if(UI[l][k])el.textContent=UI[l][k];});
   ['cv','pro','perso'].forEach(c=>{const el=document.getElementById('lbl-'+c);if(el&&UI[l]['lbl-'+c])el.textContent=UI[l]['lbl-'+c];});
-  if(siriOpen)document.getElementById('siriOut').textContent=l==='fr'?'Bonjour ! Je suis Siri. Que puis-je faire pour toi ?':'Hello! I\'m Siri. How can I help?';
+  if(siriOpen)document.getElementById('siriOut').textContent=l==='fr'?'Bonjour ! Je suis Siri, l\'assistant d\'Alec. Pose-moi une question !':'Hello! I\'m Siri, Alec\'s assistant. Ask me anything!';
   if(openFdr){document.getElementById('fdr-nm').textContent=FOLDERS[openFdr][l];renderSb(openFdr);if(openProj)selP(openProj);else renderEmpty();}
 }
 
